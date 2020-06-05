@@ -116,6 +116,8 @@ class CoolerScraper extends AbstractScraping
         } catch (GuzzleException $e) {
             echo $e->getMessage();
             return;
+        } catch (\InvalidArgumentException $e) {
+            echo $e->getMessage();
         }
     }
 

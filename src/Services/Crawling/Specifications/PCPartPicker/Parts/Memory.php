@@ -351,7 +351,7 @@ class Memory
 
     private function exceptionMessage(string $part): string
     {
-        return "Required filed: " . $part . " is absent from " . $this->name;
+        return "Required field: " . $part . " is absent from " . $this->name;
     }
 
     /**
