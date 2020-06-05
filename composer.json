@@ -1,0 +1,14 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\" : "src/"
+    }
+  },
+  "require": {
+    "symfony/dom-crawler": "^5.0",
+    "guzzlehttp/guzzle": "~6.0",
+    "symfony/http-foundation": "^5.0",
+    "doctrine/orm": "*",
+    "symfony/css-selector": "^5.0"
+  }
+}

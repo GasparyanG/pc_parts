@@ -1,0 +1,2744 @@
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/p6RFf7/corsair-memory-cmk16gx4m2b3200c16
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2B3200C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 16 GB
+    [url] => https://pcpartpicker.com/product/QDhKHx/corsair-vengeance-rgb-pro-16gb-2-x-8gb-ddr4-3200-memory-cmw16gx4m2c3200c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW16GX4M2C3200C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V 16 GB
+    [url] => https://pcpartpicker.com/product/jBZzK8/gskill-ripjaws-v-16-gb-2-x-8-gb-ddr4-3600-memory-f4-3600c16d-16gvkc
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16D-16GVKC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 32 GB
+    [url] => https://pcpartpicker.com/product/NyTPxr/corsair-vengeance-rgb-pro-32gb-2-x-16gb-ddr4-3200-memory-cmw32gx4m2c3200c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW32GX4M2C3200C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 16 GB
+    [url] => https://pcpartpicker.com/product/6jBTwP/gskill-trident-z-rgb-16gb-2-x-8gb-ddr4-3600-memory-f4-3600c18d-16gtzrx
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C18D-16GTZRX
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 16 GB
+    [url] => https://pcpartpicker.com/product/Cf98TW/gskill-memory-f43200c16d16gvkb
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-16GVKB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/MYH48d/corsair-memory-cmk16gx4m2b3000c15
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2B3000C15
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 15
+    [timing] => 15-17-17-35
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-FORCE VULCAN Z 16 GB
+    [url] => https://pcpartpicker.com/product/z3VD4D/team-t-force-vulcan-z-16-gb-2-x-8-gb-ddr4-3200-memory-tlzgd416g3200hc16cdc01
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TLZGD416G3200HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 32 GB
+    [url] => https://pcpartpicker.com/product/kXbkcf/gskill-memory-f43200c16d32gvk
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-32GVK
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Neo 32 GB
+    [url] => https://pcpartpicker.com/product/w3FKHx/gskill-trident-z-neo-32-gb-2-x-16-gb-ddr4-3600-memory-f4-3600c16d-32gtznc
+    [color] => Array
+        (
+            [0] => Black
+            [1] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16D-32GTZNC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Aegis 16 GB
+    [url] => https://pcpartpicker.com/product/FNprxr/gskill-aegis-16gb-2-x-8gb-ddr4-3000-memory-f43000c16d16gisb
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Red
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3000C16D-16GISB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 16 GB
+    [url] => https://pcpartpicker.com/product/ybrcCJ/gskill-tridentz-rgb-16gb-2-x-8gb-ddr4-3200-memory-f4-3200c16d-16gtzr
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-16GTZR
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/VNJtt6/corsair-16-gb-2-x-8-gb-ddr4-3600-memory-cmk16gx4m2d3600c18
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2D3600C18
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 16 GB
+    [url] => https://pcpartpicker.com/product/vfDJ7P/corsair-vengeance-rgb-pro-16gb-2-x-8gb-ddr4-3200-memory-cmw16gx4m2c3200c16w
+    [color] => Array
+        (
+            [0] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW16GX4M2C3200C16W
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V 16 GB
+    [url] => https://pcpartpicker.com/product/n6RgXL/gskill-ripjaws-v-16-gb-2-x-8-gb-ddr4-3600-memory-f4-3600c18d-16gvk
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C18D-16GVK
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-FORCE VULCAN Z 16 GB
+    [url] => https://pcpartpicker.com/product/6wGxFT/team-t-force-vulcan-z-16-gb-2-x-8-gb-ddr4-3000-memory-tlzgd416g3000hc16cdc01
+    [color] => Array
+        (
+            [0] => Silver
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TLZGD416G3000HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V 32 GB
+    [url] => https://pcpartpicker.com/product/zcH8TW/gskill-ripjaws-v-32-gb-2-x-16-gb-ddr4-3600-memory-f4-3600c16d-32gvkc
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16D-32GVKC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 8 GB
+    [url] => https://pcpartpicker.com/product/sMbkcf/corsair-memory-cmk8gx4m1a2400c16
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK8GX4M1A2400C16
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Corsair
+    [speed] => 2400
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V 16 GB
+    [url] => https://pcpartpicker.com/product/VtL48d/gskill-ripjaws-v-16gb-2-x-8gb-ddr4-3600-memory-f4-3600c19d-16gvrb
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C19D-16GVRB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 19
+    [timing] => 19-20-20-40
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 16 GB
+    [url] => https://pcpartpicker.com/product/XWGnTW/corsair-vengeance-rgb-pro-16-gb-2-x-8-gb-ddr4-3600-memory-cmw16gx4m2d3600c18
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW16GX4M2D3600C18
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Crucial Ballistix 8 GB
+    [url] => https://pcpartpicker.com/product/8XMTwP/crucial-ballistix-8-gb-2-x-4-gb-ddr4-2400-memory-bl2k4g24c16u4b
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => BL2K4G24C16U4B
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Crucial
+    [speed] => 2400
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 4
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Aegis 16 GB
+    [url] => https://pcpartpicker.com/product/mcH8TW/gskill-aegis-16-gb-2-x-8-gb-ddr4-3200-memory-f4-3200c16d-16gis
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-16GIS
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 32 GB
+    [url] => https://pcpartpicker.com/product/6rrcCJ/corsair-memory-cmk32gx4m2b3200c16
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK32GX4M2B3200C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 32 GB
+    [url] => https://pcpartpicker.com/product/jxH8TW/gskill-trident-z-rgb-32-gb-2-x-16-gb-ddr4-3600-memory-f4-3600c16d-32gtzrc
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16D-32GTZRC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/fjWfrH/corsair-vengeance-lpx-16gb-1-x-16gb-ddr4-3000-memory-cmk16gx4m1d3000c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M1D3000C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-20-20-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-Force Delta RGB 16 GB
+    [url] => https://pcpartpicker.com/product/2bJtt6/team-t-force-delta-rgb-16-gb-2-x-8-gb-ddr4-3200-memory-tf3d416g3200hc16cdc01
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TF3D416G3200HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Neo 16 GB
+    [url] => https://pcpartpicker.com/product/JgLwrH/gskill-trident-z-neo-16-gb-2-x-8-gb-ddr4-3600-memory-f4-3600c16d-16gtznc
+    [color] => Array
+        (
+            [0] => Black
+            [1] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16D-16GTZNC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Aegis 8 GB
+    [url] => https://pcpartpicker.com/product/XJYWGX/gskill-aegis-8gb-1-x-8gb-ddr4-3000-memory-f4-3000c16s-8gisb
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Red
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3000C16S-8GISB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 32 GB
+    [url] => https://pcpartpicker.com/product/3yQG3C/corsair-vengeance-rgb-pro-32gb-4-x-8gb-ddr4-3200-memory-cmw32gx4m4c3200c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW32GX4M4C3200C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 8 GB
+    [url] => https://pcpartpicker.com/product/Tb97YJ/corsair-vengeance-lpx-8-gb-2-x-4-gb-ddr4-3000-memory-cmk8gx4m2c3000c16
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK8GX4M2C3000C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 4
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Kingston HyperX Fury 16 GB
+    [url] => https://pcpartpicker.com/product/QBrYcf/kingston-hyperx-fury-16-gb-2-x-8-gb-ddr4-3200-memory-hx432c16fb3k216
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Silver
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => HX432C16FB3K2/16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Kingston
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 32 GB
+    [url] => https://pcpartpicker.com/product/L7qhP6/corsair-vengeance-rgb-pro-32gb-2-x-16gb-ddr4-3200-memory-cmw32gx4m2c3200c16w
+    [color] => Array
+        (
+            [0] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW32GX4M2C3200C16W
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Aegis 32 GB
+    [url] => https://pcpartpicker.com/product/8BLwrH/gskill-aegis-32-gb-2-x-16-gb-ddr4-3200-memory-f4-3200c16d-32gis
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-32GIS
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Crucial Ballistix 16 GB
+    [url] => https://pcpartpicker.com/product/BxTzK8/crucial-ballistix-16-gb-2-x-8-gb-ddr4-3200-memory-bl2k8g32c16u4b
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => BL2K8G32C16U4B
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Crucial
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 16 GB
+    [url] => https://pcpartpicker.com/product/qGqbt6/gskill-memory-f43200c16d16gvgb
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-16GVGB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 32 GB
+    [url] => https://pcpartpicker.com/product/wLndnQ/gskill-trident-z-rgb-32gb-4-x-8gb-ddr4-3600-memory-f4-3600c19q-32gtzrb
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C19Q-32GTZRB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 8
+    [cas_latency] => 19
+    [timing] => 19-20-20-40
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-FORCE VULCAN Z 16 GB
+    [url] => https://pcpartpicker.com/product/JmyV3C/team-t-force-vulcan-z-16-gb-2-x-8-gb-ddr4-3200-memory-tlzrd416g3200hc16cdc01
+    [color] => Array
+        (
+            [0] => Red
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TLZRD416G3200HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 32 GB
+    [url] => https://pcpartpicker.com/product/g2YQzy/corsair-vengeance-lpx-32-gb-2-x-16-gb-ddr4-3600-memory-cmk32gx4m2z3600c20
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK32GX4M2Z3600C20
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 20
+    [timing] => 20-23-23-43
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 8 GB
+    [url] => https://pcpartpicker.com/product/D6RFf7/gskill-memory-f43200c16d8gvkb
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-8GVKB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 4
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Neo 64 GB
+    [url] => https://pcpartpicker.com/product/hFdrxr/gskill-trident-z-neo-64-gb-4-x-16-gb-ddr4-3600-memory-f4-3600c16q-64gtznc
+    [color] => Array
+        (
+            [0] => Black
+            [1] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16Q-64GTZNC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 128 GB
+    [url] => https://pcpartpicker.com/product/DyH8TW/corsair-vengeance-rgb-pro-128-gb-4-x-32-gb-ddr4-3600-memory-cmw128gx4m4d3600c18
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW128GX4M4D3600C18
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 32
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/J27CmG/corsair-memory-cmk16gx4m2a2666c16
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2A2666C16
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Corsair
+    [speed] => 2666
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-35
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-Force Delta RGB 16 GB
+    [url] => https://pcpartpicker.com/product/Zz3H99/team-t-force-delta-rgb-16-gb-2-x-8-gb-ddr4-3200-memory-tf4d416g3200hc16cdc01
+    [color] => Array
+        (
+            [0] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TF4D416G3200HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 32 GB
+    [url] => https://pcpartpicker.com/product/FPYLrH/gskill-trident-z-rgb-32gb-2-x-16gb-ddr4-3200-memory-f4-3200c16d-32gtzr
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-32GTZR
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Aegis 32 GB
+    [url] => https://pcpartpicker.com/product/XCDJ7P/gskill-aegis-32gb-2-x-16gb-ddr4-3000-memory-f4-3000c16d-32gisb
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3000C16D-32GISB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V 32 GB
+    [url] => https://pcpartpicker.com/product/JBzkcf/gskill-ripjaws-v-32gb-2-x-16gb-ddr4-3600-memory-f4-3600c19d-32gvrb
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C19D-32GVRB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 19
+    [timing] => 19-20-20-40
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/wZ22FT/corsair-vengeance-lpx-16gb-2-x-8gb-ddr4-3000-memory-cmk16gx4m2d3000c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2D3000C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-20-20-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-Force Delta RGB 16 GB
+    [url] => https://pcpartpicker.com/product/PBPKHx/team-t-force-delta-rgb-16gb-2-x-8gb-ddr4-3000-memory-tf3d416g3000hc16cdc01
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TF3D416G3000HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/yZJmP6/corsair-vengeance-lpx-16-gb-2-x-8-gb-ddr4-5000-memory-cmk16gx4m2z5000c18
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2Z5000C18
+        )
+
+    [voltage] => 1.5 V
+    [manufacturer] => Corsair
+    [speed] => 5000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 18
+    [timing] => 18-26-26-46
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team TED48G2400C1601 8 GB
+    [url] => https://pcpartpicker.com/product/zHBTwP/team-8gb-1-x-8gb-ddr4-2400-memory-ted48g2400c1601
+    [color] => Array
+        (
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TED48G2400C1601
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Team
+    [speed] => 2400
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-16-16-39
+    [heat_spreader] => 
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws X Series 16 GB
+    [url] => https://pcpartpicker.com/product/qqvRsY/gskill-memory-f312800cl10d16gbxl
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Red
+        )
+
+    [form_factor] => 240-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F3-12800CL10D-16GBXL
+        )
+
+    [voltage] => 1.5 V
+    [manufacturer] => G.Skill
+    [speed] => 1600
+    [type] => DDR3
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 10
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 16 GB
+    [url] => https://pcpartpicker.com/product/WRK2FT/gskill-trident-z-rgb-16-gb-2-x-8-gb-ddr4-3600-memory-f4-3600c16d-16gtzrc
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16D-16GTZRC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 32 GB
+    [url] => https://pcpartpicker.com/product/Yg3mP6/corsair-vengeance-lpx-32-gb-2-x-16-gb-ddr4-3600-memory-cmk32gx4m2d3600c18
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK32GX4M2D3600C18
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Patriot Viper 4 Blackout 8 GB
+    [url] => https://pcpartpicker.com/product/mhtKHx/patriot-viper-4-blackout-8-gb-2-x-4-gb-ddr4-3000-memory-pvb48g300c6k
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => PVB48G300C6K
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Patriot
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 4
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Kingston HyperX Fury 8 GB
+    [url] => https://pcpartpicker.com/product/LfDkcf/kingston-hyperx-fury-8-gb-1-x-8-gb-ddr4-2400-memory-hx424c15fb38
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => HX424C15FB3/8
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Kingston
+    [speed] => 2400
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 15
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/q7448d/corsair-vengeance-lpx-16gb-2-x-8gb-ddr4-3000-memory-cmk16gx4m2c3000c16w
+    [color] => Array
+        (
+            [0] => White
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2C3000C16W
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Patriot Viper Elite 8 GB
+    [url] => https://pcpartpicker.com/product/sP8j4D/patriot-viper-elite-8gb-2-x-4gb-ddr4-2666-memory-pve48g266c6kgy
+    [color] => Array
+        (
+            [0] => Silver
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => PVE48G266C6KGY
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Patriot
+    [speed] => 2666
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 4
+    [cas_latency] => 16
+    [timing] => 16-17-17-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/y9rcCJ/corsair-memory-cmk16gx4m2a2400c16
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2A2400C16
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Corsair
+    [speed] => 2400
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-16-16-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => ADATA XPG Z1 16 GB
+    [url] => https://pcpartpicker.com/product/KmfhP6/adata-xpg-z1-16-gb-2-x-8-gb-ddr4-3000-memory-ax4u300038g16-dsz1
+    [color] => Array
+        (
+            [0] => Silver
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => AX4U300038G16-DSZ1
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => ADATA
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 64 GB
+    [url] => https://pcpartpicker.com/product/7Xbkcf/gskill-memory-f43200c16q64gvk
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16Q-64GVK
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Neo 32 GB
+    [url] => https://pcpartpicker.com/product/H7hmP6/gskill-trident-z-neo-32-gb-2-x-16-gb-ddr4-3600-memory-f4-3600c18d-32gtzn
+    [color] => Array
+        (
+            [0] => Black
+            [1] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C18D-32GTZN
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-FORCE VULCAN Z 16 GB
+    [url] => https://pcpartpicker.com/product/PgDJ7P/team-t-force-vulcan-z-16-gb-2-x-8-gb-ddr4-3000-memory-tlzrd416g3000hc16cdc01
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TLZRD416G3000HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 16 GB
+    [url] => https://pcpartpicker.com/product/qjM323/gskill-trident-z-rgb-16gb-2-x-8gb-ddr3-3000-memory-f4-3000c16d-16gtzr
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3000C16D-16GTZR
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 16 GB
+    [url] => https://pcpartpicker.com/product/jjZ2FT/corsair-vengeance-lpx-16gb-2-x-8gb-ddr4-3200-memory-cmk16gx4m2b3200c16w
+    [color] => Array
+        (
+            [0] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK16GX4M2B3200C16W
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Crucial Ballistix 16 GB
+    [url] => https://pcpartpicker.com/product/2TFKHx/crucial-ballistix-16-gb-2-x-8-gb-ddr4-3600-memory-bl2k8g36c16u4b
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => BL2K8G36C16U4B
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Crucial
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Aegis 8 GB
+    [url] => https://pcpartpicker.com/product/yz6qqs/gskill-aegis-8-gb-1-x-8-gb-ddr4-3200-memory-f4-3200c16s-8gis
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16S-8GIS
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 16 GB
+    [url] => https://pcpartpicker.com/product/VcTrxr/gskill-memory-f43200c16s16gvk
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16S-16GVK
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 64 GB
+    [url] => https://pcpartpicker.com/product/LPK2FT/corsair-vengeance-rgb-pro-64-gb-2-x-32-gb-ddr4-3600-memory-cmw64gx4m2d3600c18
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW64GX4M2D3600C18
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 32
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 16 GB
+    [url] => https://pcpartpicker.com/product/Nqp323/gskill-memory-f43200c16d16gvrb
+    [color] => Array
+        (
+            [0] => Red
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-16GVRB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 128 GB
+    [url] => https://pcpartpicker.com/product/BVjJ7P/corsair-vengeance-lpx-128-gb-8-x-16-gb-ddr4-4000-memory-cmk128gx4m8x4000c19
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Yellow
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK128GX4M8X4000C19
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 4000
+    [type] => DDR4
+    [amount] => 8
+    [capacity] => 16
+    [cas_latency] => 19
+    [timing] => 19-23-23-45
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 8 GB
+    [url] => https://pcpartpicker.com/product/TRF48d/corsair-vengeance-lpx-8gb-1-x-8gb-ddr4-3000-memory-cmk8gx4m1d3000c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK8GX4M1D3000C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-20-20-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Patriot Viper Steel 16 GB
+    [url] => https://pcpartpicker.com/product/vVVD4D/patriot-viper-steel-16-gb-2-x-8-gb-ddr4-4400-memory-pvs416g440c9k
+    [color] => Array
+        (
+            [0] => Silver
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => PVS416G440C9K
+        )
+
+    [voltage] => 1.45 V
+    [manufacturer] => Patriot
+    [speed] => 4400
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 19
+    [timing] => 19-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 32 GB
+    [url] => https://pcpartpicker.com/product/vZrmP6/corsair-vengeance-rgb-pro-32gb-4-x-8gb-ddr4-3200-memory-cmw32gx4m4c3200c16w
+    [color] => Array
+        (
+            [0] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW32GX4M4C3200C16W
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 16 GB
+    [url] => https://pcpartpicker.com/product/gmWfrH/corsair-vengeance-rgb-pro-16gb-2-x-8gb-ddr4-3000-memory-cmw16gx4m2d3000c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW16GX4M2D3000C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-20-20-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Royal 32 GB
+    [url] => https://pcpartpicker.com/product/sNrmP6/gskill-trident-z-royal-32-gb-2-x-16-gb-ddr4-3600-memory-f4-3600c19d-32gtrs
+    [color] => Array
+        (
+            [0] => Silver
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C19D-32GTRS
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 19
+    [timing] => 19-20-20-40
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 32 GB
+    [url] => https://pcpartpicker.com/product/dHjJ7P/gskill-trident-z-rgb-32gb-2-x-16gb-ddr4-3200-memory-f4-3200c16d-32gtzrx
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16D-32GTZRX
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Neo 128 GB
+    [url] => https://pcpartpicker.com/product/TfVG3C/gskill-trident-z-neo-128-gb-4-x-32-gb-ddr4-3200-memory-f4-3200c16q-128gtzn
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Silver
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16Q-128GTZN
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 32
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V 8 GB
+    [url] => https://pcpartpicker.com/product/mV22FT/gskill-ripjaws-v-8gb-1-x-8gb-ddr4-3600-memory-f4-3600c19s-8gvrb
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C19S-8GVRB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 19
+    [timing] => 19-20-20-40
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V Series 64 GB
+    [url] => https://pcpartpicker.com/product/kTJkcf/gskill-memory-f42400c15q64gvr
+    [color] => Array
+        (
+            [0] => Red
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-2400C15Q-64GVR
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => G.Skill
+    [speed] => 2400
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 16
+    [cas_latency] => 15
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Patriot Viper 4 8 GB
+    [url] => https://pcpartpicker.com/product/p4cMnQ/patriot-viper-4-8gb-2-x-4gb-ddr4-3000-memory-pv48g300c6k
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Red
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => PV48G300C6K
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Patriot
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 4
+    [cas_latency] => 16
+    [timing] => 16-16-16-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Aegis 16 GB
+    [url] => https://pcpartpicker.com/product/DpYLrH/gskill-aegis-16-gb-2-x-8-gb-ddr4-2666-memory-f4-2666c19s-16gis
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Red
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-2666C19S-16GIS
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => G.Skill
+    [speed] => 2666
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 16
+    [cas_latency] => 19
+    [timing] => 19-19-19-43
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Team T-FORCE VULCAN Z 32 GB
+    [url] => https://pcpartpicker.com/product/TLvbt6/team-t-force-vulcan-z-32-gb-2-x-16-gb-ddr4-3200-memory-tlzgd432g3200hc16cdc01
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => TLZGD432G3200HC16CDC01
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Team
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws Series 8 GB
+    [url] => https://pcpartpicker.com/product/36zv6h/gskill-memory-f312800cl9d8gbrl
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Red
+        )
+
+    [form_factor] => 240-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F3-12800CL9D-8GBRL
+        )
+
+    [voltage] => 1.5 V
+    [manufacturer] => G.Skill
+    [speed] => 1600
+    [type] => DDR3
+    [amount] => 2
+    [capacity] => 4
+    [cas_latency] => 9
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 32 GB
+    [url] => https://pcpartpicker.com/product/khmFf7/corsair-vengeance-rgb-pro-32-gb-2-x-16-gb-ddr4-3600-memory-cmw32gx4m2z3600c18
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW32GX4M2Z3600C18
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => OLOy WarHawk RGB 16 GB
+    [url] => https://pcpartpicker.com/product/tRsnTW/oloy-warhawk-rgb-16-gb-2-x-8-gb-ddr4-3200-memory-md4u083216beda
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Gold
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => MD4U083216BEDA
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => OLOy
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Crucial Ballistix 16 GB
+    [url] => https://pcpartpicker.com/product/Wy848d/crucial-ballistix-16-gb-2-x-8-gb-ddr4-3000-memory-bl2k8g30c15u4b
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => BL2K8G30C15U4B
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Crucial
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 15
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Crucial CT8G4DFS8266 8 GB
+    [url] => https://pcpartpicker.com/product/NXtQzy/crucial-8-gb-1-x-8-gb-ddr4-2666-memory-ct8g4dfs8266
+    [color] => Array
+        (
+            [0] => Green
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CT8G4DFS8266
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Crucial
+    [speed] => 2666
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 19
+    [timing] => 
+    [heat_spreader] => 
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Neo 16 GB
+    [url] => https://pcpartpicker.com/product/DwVG3C/gskill-trident-z-neo-16-gb-2-x-8-gb-ddr4-3600-memory-f4-3600c18d-16gtzn
+    [color] => Array
+        (
+            [0] => Black
+            [1] => White
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C18D-16GTZN
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Dominator Platinum 64 GB
+    [url] => https://pcpartpicker.com/product/ypqdnQ/corsair-memory-cmd64gx3m8a2400c10
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Silver
+        )
+
+    [form_factor] => 240-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMD64GX3M8A2400C10
+        )
+
+    [voltage] => 1.65 V
+    [manufacturer] => Corsair
+    [speed] => 2400
+    [type] => DDR3
+    [amount] => 8
+    [capacity] => 8
+    [cas_latency] => 10
+    [timing] => 10-12-12-31
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Kingston KHX24C11K4/16X 16 GB
+    [url] => https://pcpartpicker.com/product/wyh9TW/kingston-memory-khx24c11k416x
+    [color] => Array
+        (
+            [0] => Blue
+            [1] => Silver
+        )
+
+    [form_factor] => 240-pin DIMM
+    [part_number] => Array
+        (
+            [0] => KHX24C11K4/16X
+        )
+
+    [voltage] => 1.65 V
+    [manufacturer] => Kingston
+    [speed] => 2400
+    [type] => DDR3
+    [amount] => 4
+    [capacity] => 4
+    [cas_latency] => 11
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 128 GB
+    [url] => https://pcpartpicker.com/product/qxkgXL/gskill-trident-z-rgb-128-gb-4-x-32-gb-ddr4-3600-memory-f4-3600c18q-128gtzr
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C18Q-128GTZR
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 32
+    [cas_latency] => 18
+    [timing] => 18-22-22-42
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Ripjaws V 16 GB
+    [url] => https://pcpartpicker.com/product/TjRzK8/gskill-ripjaws-v-16gb-1-x-16gb-ddr4-3600-memory-f4-3600c19s-16gvrb
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C19S-16GVRB
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 16
+    [cas_latency] => 19
+    [timing] => 19-20-20-40
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Dominator Platinum RGB 32 GB
+    [url] => https://pcpartpicker.com/product/f7KcCJ/corsair-dominator-platinum-rgb-32-gb-2-x-16-gb-ddr4-3200-memory-cmt32gx4m2c3200c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMT32GX4M2C3200C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z RGB 32 GB
+    [url] => https://pcpartpicker.com/product/KJ2rxr/gskill-tridentz-rgb-32gb-4-x-8gb-ddr4-3200-memory-f4-3200c16q-32gtzr
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3200C16Q-32GTZR
+            [1] => GS-F4-3200C16Q-32GTZR
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => GeIL EVO POTENZA 16 GB
+    [url] => https://pcpartpicker.com/product/xnXYcf/geil-evo-potenza-16-gb-2-x-8-gb-ddr4-3000-memory-gapr416gb3000c16adc
+    [color] => Array
+        (
+            [0] => Red
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => GAPR416GB3000C16ADC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => GeIL
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance LPX 32 GB
+    [url] => https://pcpartpicker.com/product/DFXnTW/corsair-vengeance-lpx-32gb-2-x-16gb-ddr4-3000-memory-cmk32gx4m2d3000c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMK32GX4M2D3000C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3000
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 16
+    [cas_latency] => 16
+    [timing] => 16-20-20-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => G.Skill Trident Z Neo 32 GB
+    [url] => https://pcpartpicker.com/product/XJVG3C/gskill-trident-z-neo-32-gb-4-x-8-gb-ddr4-3600-memory-f4-3600c16q-32gtznc
+    [color] => Array
+        (
+            [0] => Silver
+            [1] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => F4-3600C16Q-32GTZNC
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => G.Skill
+    [speed] => 3600
+    [type] => DDR4
+    [amount] => 4
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-19-19-39
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Patriot Viper Steel 16 GB
+    [url] => https://pcpartpicker.com/product/mCHRsY/patriot-viper-steel-16-gb-2-x-8-gb-ddr4-3200-memory-pvs416g320c6k
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => PVS416G320C6K
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Patriot
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 2
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 16-18-18-36
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Corsair Vengeance RGB Pro 256 GB
+    [url] => https://pcpartpicker.com/product/Q9848d/corsair-vengeance-rgb-pro-256-gb-8-x-32-gb-ddr4-3200-memory-cmw256gx4m8e3200c16
+    [color] => Array
+        (
+            [0] => Black
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => CMW256GX4M8E3200C16
+        )
+
+    [voltage] => 1.35 V
+    [manufacturer] => Corsair
+    [speed] => 3200
+    [type] => DDR4
+    [amount] => 8
+    [capacity] => 32
+    [cas_latency] => 16
+    [timing] => 16-20-20-38
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
+Array
+(
+    [name] => Kingston HyperX Fury 8 GB
+    [url] => https://pcpartpicker.com/product/krprxr/kingston-hyperx-fury-8gb-1-x-8gb-ddr4-2666-memory-hx426c16fb28
+    [color] => Array
+        (
+            [0] => Black
+            [1] => Silver
+        )
+
+    [form_factor] => 288-pin DIMM
+    [part_number] => Array
+        (
+            [0] => HX426C16FB2/8
+        )
+
+    [voltage] => 1.2 V
+    [manufacturer] => Kingston
+    [speed] => 2666
+    [type] => DDR4
+    [amount] => 1
+    [capacity] => 8
+    [cas_latency] => 16
+    [timing] => 
+    [heat_spreader] => 1
+    [ecc] => Non-ECC
+    [registered] => Unbuffered
+)
