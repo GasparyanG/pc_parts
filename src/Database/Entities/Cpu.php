@@ -4,6 +4,8 @@
 namespace App\Database\Entities;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="cpus")
@@ -149,6 +151,16 @@ class Cpu
      * @JoinColumn(name="l_three_cache_id")
      */
     private $lThreeCache;
+
+    /**
+     * @OneToMany(targetEntity="CpuPartNumber", mappedBy="cpu")
+     */
+    private $cpuPartNumbers;
+
+    public function __construct()
+    {
+        $this->cpuPartNumbers = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -500,5 +512,24 @@ class Cpu
     public function setLThreeCache(?LThreeCache $lThreeCache): void
     {
         $this->lThreeCache = $lThreeCache;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCpuPartNumbers()
+    {
+        return $this->cpuPartNumbers;
+    }
+
+    /**
+     * @param mixed $cpuPartNumbers
+     */
+    public function addCpuPartNumber($cpuPartNumbers): void
+    {
+        if (!$this->cpuPartNumbers->contains($cpuPartNumbers)) {
+            $this->cpuPartNumbers[] = $cpuPartNumbers;
+            $cpuPartNumbers->setCooler($this);
+        }
     }
 }
