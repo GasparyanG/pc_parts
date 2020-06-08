@@ -130,6 +130,13 @@ class Cpu
     private $coreFamily;
 
     /**
+     * @var LOneCache|null
+     * @ManyToOne(targetEntity="LOneCache", inversedBy="cpus")
+     * @JoinColumn(name="l_one_cache_id")
+     */
+    private $lOneCache;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -372,7 +379,7 @@ class Cpu
     /**
      * @return CpuSeries
      */
-    public function getCpuSeries(): CpuSeries
+    public function getCpuSeries(): ?CpuSeries
     {
         return $this->cpuSeries;
     }
@@ -380,7 +387,7 @@ class Cpu
     /**
      * @param CpuSeries $cpuSeries
      */
-    public function setCpuSeries(CpuSeries $cpuSeries): void
+    public function setCpuSeries(?CpuSeries $cpuSeries): void
     {
         $this->cpuSeries = $cpuSeries;
     }
@@ -388,7 +395,7 @@ class Cpu
     /**
      * @return Microarchitecture
      */
-    public function getMicroarchitecture(): Microarchitecture
+    public function getMicroarchitecture(): ?Microarchitecture
     {
         return $this->microarchitecture;
     }
@@ -396,7 +403,7 @@ class Cpu
     /**
      * @param Microarchitecture $microarchitecture
      */
-    public function setMicroarchitecture(Microarchitecture $microarchitecture): void
+    public function setMicroarchitecture(?Microarchitecture $microarchitecture): void
     {
         $this->microarchitecture = $microarchitecture;
     }
@@ -404,7 +411,7 @@ class Cpu
     /**
      * @return IntegratedGraphic
      */
-    public function getIntegratedGraphic(): IntegratedGraphic
+    public function getIntegratedGraphic(): ?IntegratedGraphic
     {
         return $this->integratedGraphic;
     }
@@ -412,7 +419,7 @@ class Cpu
     /**
      * @param IntegratedGraphic $integratedGraphic
      */
-    public function setIntegratedGraphic(IntegratedGraphic $integratedGraphic): void
+    public function setIntegratedGraphic(?IntegratedGraphic $integratedGraphic): void
     {
         $this->integratedGraphic = $integratedGraphic;
     }
@@ -420,7 +427,7 @@ class Cpu
     /**
      * @return CoreFamily
      */
-    public function getCoreFamily(): CoreFamily
+    public function getCoreFamily(): ?CoreFamily
     {
         return $this->coreFamily;
     }
@@ -428,8 +435,24 @@ class Cpu
     /**
      * @param CoreFamily $coreFamily
      */
-    public function setCoreFamily(CoreFamily $coreFamily): void
+    public function setCoreFamily(?CoreFamily $coreFamily): void
     {
         $this->coreFamily = $coreFamily;
+    }
+
+    /**
+     * @return LOneCache|null
+     */
+    public function getLOneCache(): ?LOneCache
+    {
+        return $this->lOneCache;
+    }
+
+    /**
+     * @param LOneCache|null $lOneCache
+     */
+    public function setLOneCache(?LOneCache $lOneCache): void
+    {
+        $this->lOneCache = $lOneCache;
     }
 }
