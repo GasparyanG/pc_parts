@@ -123,6 +123,13 @@ class Cpu
     private $integratedGraphic;
 
     /**
+     * @var CoreFamily
+     * @ManyToOne(targetEntity="CoreFamily", inversedBy="cpus")
+     * @JoinColumn(name="core_family_id")
+     */
+    private $coreFamily;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -408,5 +415,21 @@ class Cpu
     public function setIntegratedGraphic(IntegratedGraphic $integratedGraphic): void
     {
         $this->integratedGraphic = $integratedGraphic;
+    }
+
+    /**
+     * @return CoreFamily
+     */
+    public function getCoreFamily(): CoreFamily
+    {
+        return $this->coreFamily;
+    }
+
+    /**
+     * @param CoreFamily $coreFamily
+     */
+    public function setCoreFamily(CoreFamily $coreFamily): void
+    {
+        $this->coreFamily = $coreFamily;
     }
 }
