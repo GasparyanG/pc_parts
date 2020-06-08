@@ -116,6 +116,13 @@ class Cpu
     private $microarchitecture;
 
     /**
+     * @var IntegratedGraphic
+     * @ManyToOne(targetEntity="IntegratedGraphic", inversedBy="cpus")
+     * @JoinColumn(name="integrated_graphic_id")
+     */
+    private $integratedGraphic;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -385,5 +392,21 @@ class Cpu
     public function setMicroarchitecture(Microarchitecture $microarchitecture): void
     {
         $this->microarchitecture = $microarchitecture;
+    }
+
+    /**
+     * @return IntegratedGraphic
+     */
+    public function getIntegratedGraphic(): IntegratedGraphic
+    {
+        return $this->integratedGraphic;
+    }
+
+    /**
+     * @param IntegratedGraphic $integratedGraphic
+     */
+    public function setIntegratedGraphic(IntegratedGraphic $integratedGraphic): void
+    {
+        $this->integratedGraphic = $integratedGraphic;
     }
 }
