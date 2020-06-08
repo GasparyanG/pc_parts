@@ -4,20 +4,16 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
 
-
-use App\Services\Crawling\Specifications\PCPartPicker\ExtractionEnum\MemoryExtractionEnum;
-use App\Services\Crawling\Specifications\PCPartPicker\PartPersisting\MemoryPersistingImplementation;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
-use App\Services\Crawling\Specifications\PCPartPicker\Parts\Memory;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\DomCrawler\Crawler;
 
-class MemoryScraper extends AbstractScraping
+class CPUScraper extends AbstractScraping
 {
-    static $collectionUrl = "https://pcpartpicker.com/products/memory/fetch/";
-    static $enumNamespace = "App\Services\Crawling\Specifications\PCPartPicker\ExtractionEnum\MemoryExtractionEnum";
+    static $collectionUrl = "https://pcpartpicker.com/products/cpu/fetch/";
+    static $enumNamespace = "App\Services\Crawling\Specifications\PCPartPicker\ExtractionEnum\CPUExtractionEnum";
 
     /**
      * {@inheritDoc}
@@ -42,7 +38,7 @@ class MemoryScraper extends AbstractScraping
         "sec-fetch-site" => "same-origin",
         "sec-fetch-mode" => "cors",
         "sec-fetch-dest" => "empty",
-        "referer" => "https://pcpartpicker.com/products/memory/",
+        "referer" => "https://pcpartpicker.com/products/cpu/",
         "origin" => "https://pcpartpicker.com",
         "accept-language" => "en-US,en;q=0.9,hy-AM;q=0.8,hy;q=0.7,ru-RU;q=0.6,ru;q=0.5,la;q=0.4",
         "cookie" => "xcsrftoken=DQkGqCEtILSOWlANbIJGSoPj7U5kFKoe6IpOFbuvO4b18njVMnkR48E0AZym5V4w; "
@@ -50,6 +46,7 @@ class MemoryScraper extends AbstractScraping
             . "theme=light-mode; xsessionid=lqcvep65fzh8eji6nc5cpr3e9t4wzp12; "
             . "__cfduid=d66736e21d329af7bbccdc3241a8b58961590753547"
     ];
+
 
     /**
      * Meant for collection retrieval.
@@ -59,7 +56,7 @@ class MemoryScraper extends AbstractScraping
     protected $request_form_params = [
         "xslug" => "",
         "location" => "",
-        "token" => "142e1df6be954ef3970a5e12bf6a6c9d%3Aa4%2F%2Buf1TehxcPlYnvAT%2BRekAhq079slqerrnVoRN8%2B2Vql7bgQiJRtV5cTTHVfA89gRXvX6RD9Jbm0DFigbXeg%3D%3D",
+        "token" => "45ba0a9374616ae6593d1cb6fe6c8c35%3ALlgZxVQzuV0sToruEKIlC%2F%2FQ2lETo%2BPho9RdetYkjkclPE4pccQRx%2B5BPo3xg4LHOzzaCn0yHQfjyWvHAkGQ0Q%3D%3D",
         "search" => "",
         "qid" => 1,
         "scr" => 1,
@@ -70,8 +67,8 @@ class MemoryScraper extends AbstractScraping
         "scr_daw" => 1920,
         "scr_dah" => 1040,
         "scr_ddw" => 1903,
-        "scr_ddh" => 4187,
-        "ms" => 1591287115584
+        "scr_ddh" => 4020,
+        "ms" => 1591617710124
     ];
 
     /**
@@ -88,7 +85,7 @@ class MemoryScraper extends AbstractScraping
         "sec-fetch-mode" => "navigate",
         "sec-fetch-user" => "?1",
         "sec-fetch-dest" => "document",
-        "referer"  => "https://pcpartpicker.com/products/memory/",
+        "referer"  => "https://pcpartpicker.com/products/cpu/",
         "accept-language" => "en-US,en;q=0.9,hy-AM;q=0.8,hy;q=0.7,ru-RU;q=0.6,ru;q=0.5,la;q=0.4",
         "cookie" => "xcsrftoken=DQkGqCEtILSOWlANbIJGSoPj7U5kFKoe6IpOFbuvO4b18njVMnkR48E0AZym5V4w; "
             . "xgdpr-consent=allow; theme=light-mode; "
@@ -108,18 +105,17 @@ class MemoryScraper extends AbstractScraping
                 $response = $this->client->send($request, [RequestOptions::DELAY => self::$delay]);
                 $body = $response->getBody()->getContents();
 
-                    // scraping
+                // scraping
                 $data_from_spec_page = $this->extract_specs($body);
                 $data_from_spec_page[Cooler::NAME] = $part[Cooler::NAME];
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
-                $data_from_spec_page[MemoryExtractionEnum::get_key(MemoryExtractionEnum::SPEED)]
-                    = $part[MemoryExtractionEnum::get_key(MemoryExtractionEnum::SPEED)];
 
-                $memory = new Memory($data_from_spec_page);
-
-                // persisting
-                $coolerPersistingImplementer = new MemoryPersistingImplementation($memory);
-                $coolerPersistingImplementer->insert();
+                file_put_contents(__DIR__ . "/test.txt", print_r($data_from_spec_page, true), FILE_APPEND);
+//                $memory = new Memory($data_from_spec_page);
+//
+//                // persisting
+//                $coolerPersistingImplementer = new MemoryPersistingImplementation($memory);
+//                $coolerPersistingImplementer->insert();
             }
         } catch (GuzzleException $e) {
             echo $e->getMessage();
@@ -134,10 +130,7 @@ class MemoryScraper extends AbstractScraping
         $data = [];
         $data[Cooler::NAME] = $node->filter(".td__name > a > .td__nameWrapper > p")->text();
         $data[Cooler::URL] = $node->filter(".td__name > a")->link()->getUri();
-        $data[MemoryExtractionEnum::get_key(MemoryExtractionEnum::SPEED)]
-            = $node->matches(".tr__product > .td__spec.td__spec--1")
-            ? $node->filter(".tr__product > td.td__spec.td__spec--1")->text()
-            : null;
+
         return $data;
     }
 }
