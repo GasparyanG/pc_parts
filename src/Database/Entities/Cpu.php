@@ -110,6 +110,12 @@ class Cpu
     private $cpuSeries;
 
     /**
+     * @var Microarchitecture
+     * @ManyToOne(targetEntity="Microarchitecture", inversedBy="cpus")
+     */
+    private $microarchitecture;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -363,5 +369,21 @@ class Cpu
     public function setCpuSeries(CpuSeries $cpuSeries): void
     {
         $this->cpuSeries = $cpuSeries;
+    }
+
+    /**
+     * @return Microarchitecture
+     */
+    public function getMicroarchitecture(): Microarchitecture
+    {
+        return $this->microarchitecture;
+    }
+
+    /**
+     * @param Microarchitecture $microarchitecture
+     */
+    public function setMicroarchitecture(Microarchitecture $microarchitecture): void
+    {
+        $this->microarchitecture = $microarchitecture;
     }
 }
