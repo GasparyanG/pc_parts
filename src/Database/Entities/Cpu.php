@@ -103,6 +103,13 @@ class Cpu
     private $lithography;
 
     /**
+     * @var CpuSeries
+     * @ManyToOne(targetEntity="CpuSeries", inversedBy="cpus")
+     * @JoinColumn(name="cpu_series_id")
+     */
+    private $cpuSeries;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -340,5 +347,21 @@ class Cpu
     public function setLithography(?float $lithography): void
     {
         $this->lithography = $lithography;
+    }
+
+    /**
+     * @return CpuSeries
+     */
+    public function getCpuSeries(): CpuSeries
+    {
+        return $this->cpuSeries;
+    }
+
+    /**
+     * @param CpuSeries $cpuSeries
+     */
+    public function setCpuSeries(CpuSeries $cpuSeries): void
+    {
+        $this->cpuSeries = $cpuSeries;
     }
 }
