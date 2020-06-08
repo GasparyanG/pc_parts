@@ -144,6 +144,13 @@ class Cpu
     private $lTwoCache;
 
     /**
+     * @var LThreeCache|null
+     * @ManyToOne(targetEntity="LThreeCache", inversedBy="cpus")
+     * @JoinColumn(name="l_three_cache_id")
+     */
+    private $lThreeCache;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -477,5 +484,21 @@ class Cpu
     public function setLTwoCache(?LTwoCache $lTwoCache): void
     {
         $this->lTwoCache = $lTwoCache;
+    }
+
+    /**
+     * @return LThreeCache|null
+     */
+    public function getLThreeCache(): ?LThreeCache
+    {
+        return $this->lThreeCache;
+    }
+
+    /**
+     * @param LThreeCache|null $lThreeCache
+     */
+    public function setLThreeCache(?LThreeCache $lThreeCache): void
+    {
+        $this->lThreeCache = $lThreeCache;
     }
 }
