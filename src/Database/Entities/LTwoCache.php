@@ -12,6 +12,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class LTwoCache
 {
+    const AMOUNT = "amount";
+    const CAPACITY = "capacity";
+
     /**
      * @var int
      * @Id
@@ -107,5 +110,14 @@ class LTwoCache
             $this->cpus[] = $cpu;
             $cpu->setLTwoCache($this);
         }
+    }
+
+    public function toArray(): array
+    {
+        $dataToReturn = [];
+        $dataToReturn[self::AMOUNT] = $this->amount;
+        $dataToReturn[self::CAPACITY] = $this->capacity;
+
+        return $dataToReturn;
     }
 }

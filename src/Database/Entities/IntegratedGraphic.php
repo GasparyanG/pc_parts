@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class IntegratedGraphic
 {
+    const NAME = "name";
+
     /**
      * @var int
      * @Id
@@ -85,5 +87,13 @@ class IntegratedGraphic
             $this->cpus[] = $cpu;
             $cpu->setIntegratedGraphic($this);
         }
+    }
+
+    public function toArray(): array
+    {
+        $dataToReturn = [];
+        $dataToReturn[self::NAME] = $this->name;
+
+        return $dataToReturn;
     }
 }

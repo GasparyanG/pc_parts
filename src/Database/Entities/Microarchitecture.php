@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Microarchitecture
 {
+    const NAME = "name";
+
     /**
      * @var int
      * @Id
@@ -85,5 +87,13 @@ class Microarchitecture
             $this->cpus[] = $cpu;
             $cpu->setMicroarchitecture($this);
         }
+    }
+
+    public function toArray(): array
+    {
+        $dataToReturn = [];
+        $dataToReturn[self::NAME] = $this->name;
+
+        return $dataToReturn;
     }
 }

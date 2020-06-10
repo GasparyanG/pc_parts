@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class CpuSeries
 {
+    const NAME = "name";
+
     /**
      * @var int
      * @Id
@@ -85,5 +87,13 @@ class CpuSeries
             $this->cpus[] = $cpu;
             $cpu->setCpuSeries($this);
         }
+    }
+
+    public function toArray(): array
+    {
+        $dataToReturn = [];
+        $dataToReturn[self::NAME] = $this->name;
+
+        return $dataToReturn;
     }
 }

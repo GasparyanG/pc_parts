@@ -12,6 +12,11 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class LOneCache
 {
+    const INSTRUCTION_AMOUNT = "instructionAmount";
+    const INSTRUCTION_CAPACITY = "instructionCapacity";
+    const DATA_AMOUNT = "dataAmount";
+    const DATA_CAPACITY = "dataCapacity";
+
     /**
      * @var int
      * @Id
@@ -151,5 +156,16 @@ class LOneCache
             $this->cpus[] = $cpu;
             $cpu->setLOneCache($this);
         }
+    }
+
+    public function toArray(): array
+    {
+        $dataToReturn = [];
+        $dataToReturn[self::INSTRUCTION_AMOUNT] = $this->instructionAmount;
+        $dataToReturn[self::INSTRUCTION_CAPACITY] = $this->instructionCapacity;
+        $dataToReturn[self::DATA_AMOUNT] = $this->dataAmount;
+        $dataToReturn[self::DATA_CAPACITY] = $this->dataCapacity;
+
+        return $dataToReturn;
     }
 }

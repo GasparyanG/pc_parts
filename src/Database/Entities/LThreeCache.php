@@ -12,6 +12,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class LThreeCache
 {
+    const AMOUNT = "amount";
+    const CAPACITY = "capacity";
+
     /**
      * @var int
      * @Id
@@ -107,5 +110,14 @@ class LThreeCache
             $this->cpus[] = $cpu;
             $cpu->setLThreeCache($this);
         }
+    }
+
+    public function toArray(): array
+    {
+        $dataToReturn = [];
+        $dataToReturn[self::AMOUNT] = $this->amount;
+        $dataToReturn[self::CAPACITY] = $this->capacity;
+
+        return $dataToReturn;
     }
 }
