@@ -69,6 +69,13 @@ class Storage
     private $storageFormFactor;
 
     /**
+     * @var StorageInterface|null
+     * @ManyToOne(targetEntity="StorageInterface", inversedBy="storages")
+     * @JoinColumn(name="storage_interface_id")
+     */
+    private $storageInterface;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -210,5 +217,21 @@ class Storage
     public function setStorageFormFactor(?StorageFormFactor $storageFormFactor): void
     {
         $this->storageFormFactor = $storageFormFactor;
+    }
+
+    /**
+     * @return StorageInterface|null
+     */
+    public function getStorageInterface(): ?StorageInterface
+    {
+        return $this->storageInterface;
+    }
+
+    /**
+     * @param StorageInterface|null $storageInterface
+     */
+    public function setStorageInterface(?StorageInterface $storageInterface): void
+    {
+        $this->storageInterface = $storageInterface;
     }
 }
