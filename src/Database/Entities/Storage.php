@@ -4,6 +4,8 @@
 namespace App\Database\Entities;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="storages")
@@ -74,6 +76,16 @@ class Storage
      * @JoinColumn(name="storage_interface_id")
      */
     private $storageInterface;
+
+    /**
+     * @OneToMany(targetEntity="StoragePartNumber", mappedBy="storage")
+     */
+    private $storagePartNumbers;
+
+    public function __construct()
+    {
+        $this->storagePartNumbers = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -233,5 +245,24 @@ class Storage
     public function setStorageInterface(?StorageInterface $storageInterface): void
     {
         $this->storageInterface = $storageInterface;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStoragePartNumbers()
+    {
+        return $this->storagePartNumbers;
+    }
+
+    /**
+     * @param StoragePartNumber $storagePartNumber
+     */
+    public function addStoragePartNumber(StoragePartNumber $storagePartNumber): void
+    {
+        if (!$this->storagePartNumbers->contains($storagePartNumber)) {
+            $this->storagePartNumbers[] = $storagePartNumber;
+            $storagePartNumber->setStorage($this);
+        }
     }
 }
