@@ -42,11 +42,17 @@ class Manufacturer
      */
     private $cpus;
 
+    /**
+     * @OneToMany(targetEntity="Storage", mappedBy="manufacturer")
+     */
+    private $storages;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
         $this->memories = new ArrayCollection();
         $this->cpus = new ArrayCollection();
+        $this->storages = new ArrayCollection();
     }
 
     /**
@@ -129,6 +135,25 @@ class Manufacturer
         if (!$this->cpus->contains($cpu)) {
             $this->cpus[] = $cpu;
             $cpu->setManufacturer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStorages()
+    {
+        return $this->storages;
+    }
+
+    /**
+     * @param Storage
+     */
+    public function addStorage(Storage $storage): void
+    {
+        if (!$this->storages->contains($storage)) {
+            $this->storages[] = $storage;
+            $storage->setManufacturer($this);
         }
     }
 }
