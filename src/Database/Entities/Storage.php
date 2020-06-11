@@ -55,6 +55,13 @@ class Storage
     private $manufacturer;
 
     /**
+     * @var StorageType
+     * @ManyToOne(targetEntity="StorageType", inversedBy="storages")
+     * @JoinColumn(name="storage_type_id")
+     */
+    private $storageType;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -166,4 +173,19 @@ class Storage
         $this->manufacturer = $manufacturer;
     }
 
+    /**
+     * @return StorageType
+     */
+    public function getStorageType(): StorageType
+    {
+        return $this->storageType;
+    }
+
+    /**
+     * @param StorageType $storageType
+     */
+    public function setStorageType(StorageType $storageType): void
+    {
+        $this->storageType = $storageType;
+    }
 }
