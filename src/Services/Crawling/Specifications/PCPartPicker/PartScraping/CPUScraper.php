@@ -4,6 +4,7 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
 
+use App\Services\Crawling\Specifications\PCPartPicker\PartPersisting\CPUPersistingImplementer;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\CPU;
 use GuzzleHttp\Exception\GuzzleException;
@@ -112,12 +113,10 @@ class CPUScraper extends AbstractScraping
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
 
                 $cpu = new CPU($data_from_spec_page);
-                file_put_contents(__DIR__ . "/test.txt", print_r($cpu->toArray(), true), FILE_APPEND);
-//                $memory = new Memory($data_from_spec_page);
-//
-//                // persisting
-//                $coolerPersistingImplementer = new MemoryPersistingImplementation($memory);
-//                $coolerPersistingImplementer->insert();
+
+                // persisting
+                $cpuPersistingImplementer = new CPUPersistingImplementer($cpu);
+                $cpuPersistingImplementer->insert();
             }
         } catch (GuzzleException $e) {
             echo $e->getMessage();

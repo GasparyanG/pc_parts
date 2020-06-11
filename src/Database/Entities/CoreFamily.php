@@ -29,7 +29,7 @@ class CoreFamily
     private $name;
 
     /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="CoreFamily")
+     * @OneToMany(targetEntity="Cpu", mappedBy="coreFamily")
      */
     private $cpus;
 

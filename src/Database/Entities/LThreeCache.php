@@ -36,7 +36,7 @@ class LThreeCache
     private $capacity;
 
     /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="LThreeCache")
+     * @OneToMany(targetEntity="Cpu", mappedBy="lThreeCache")
      */
     private $cpus;
 

@@ -50,7 +50,7 @@ class LOneCache
     private $dataCapacity;
 
     /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="LOneCache")
+     * @OneToMany(targetEntity="Cpu", mappedBy="lOneCache")
      */
     private $cpus;
 

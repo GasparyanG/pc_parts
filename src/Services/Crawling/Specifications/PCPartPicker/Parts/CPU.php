@@ -4,13 +4,6 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\Parts;
 
 
-use App\Database\Entities\CoreFamily;
-use App\Database\Entities\CpuSeries;
-use App\Database\Entities\IntegratedGraphic;
-use App\Database\Entities\LOneCache;
-use App\Database\Entities\LThreeCache;
-use App\Database\Entities\LTwoCache;
-use App\Database\Entities\Microarchitecture;
 use App\Services\Crawling\Specifications\PCPartPicker\ExtractionEnum\CPUExtractionEnum;
 
 class CPU
@@ -99,39 +92,44 @@ class CPU
     private $lithography = null;
 
     /**
-     * @var CpuSeries
+     * @var null|string
      */
-    private $cpuSeries;
+    private $socket = null;
 
     /**
-     * @var Microarchitecture
+     * @var string|null
      */
-    private $microarchitecture;
+    private $cpuSeries = null;
 
     /**
-     * @var IntegratedGraphic
+     * @var string|null
      */
-    private $integratedGraphic;
+    private $microarchitecture = null;
 
     /**
-     * @var CoreFamily
+     * @var string|null
      */
-    private $coreFamily;
+    private $integratedGraphic = null;
 
     /**
-     * @var LOneCache|null
+     * @var string|null
      */
-    private $lOneCache;
+    private $coreFamily = null;
 
     /**
-     * @var LTwoCache|null
+     * @var array|null
      */
-    private $lTwoCache;
+    private $lOneCache = null;
 
     /**
-     * @var LThreeCache|null
+     * @var array|null
      */
-    private $lThreeCache;
+    private $lTwoCache = null;
+
+    /**
+     * @var array|null
+     */
+    private $lThreeCache = null;
 
     public function __construct(array $scrapedData)
     {
@@ -156,6 +154,7 @@ class CPU
         $this->packaging();
         $this->maximumSupportedMemory();
         $this->lithography();
+        $this->socket();
         $this->cpuSeries();
         $this->microarchitecture();
         $this->integratedGraphic();
@@ -178,16 +177,17 @@ class CPU
         $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::TDP)] = $this->tdp;
         $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::INCLUDES_CPU_COOLER)] = $this->includesCPUCooler;
         $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::ECC_SUPPORT)] = $this->eccSupport;
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::SOCKET)] = $this->socket;
         $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::SIMULTANEOUS_MULTITHREADING)] = $this->smt;
         $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::PACKAGING)] = $this->packaging;
         $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::MAXIMUM_SUPPORTED_MEMORY)] = $this->maximumSupportedMemory;
-        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::SERIES)] = $this->cpuSeries->toArray();
-        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::MICROARCHITECTURE)] = $this->microarchitecture->toArray();
-        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::INTEGRATED_GRAPHICS)] = $this->integratedGraphic->toArray();
-        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::CORE_FAMILY)] = $this->coreFamily->toArray();
-        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::L1_CACHE)] = $this->lOneCache->toArray();
-        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::L2_CACHE)] = $this->lTwoCache->toArray();
-        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::L3_CACHE)] = $this->lThreeCache->toArray();
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::SERIES)] = $this->cpuSeries;
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::MICROARCHITECTURE)] = $this->microarchitecture;
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::INTEGRATED_GRAPHICS)] = $this->integratedGraphic;
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::CORE_FAMILY)] = $this->coreFamily;
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::L1_CACHE)] = $this->lOneCache;
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::L2_CACHE)] = $this->lTwoCache;
+        $dataToReturn[CPUExtractionEnum::get_key(CPUExtractionEnum::L3_CACHE)] = $this->lThreeCache;
 
         return $dataToReturn;
     }
@@ -327,7 +327,20 @@ class CPU
     private function maximumSupportedMemory(): void
     {
         if (isset($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::MAXIMUM_SUPPORTED_MEMORY)]))
-            $this->maximumSupportedMemory = $this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::MAXIMUM_SUPPORTED_MEMORY)];
+            $this->maximumSupportedMemory =
+                $this->prepareMaxSupportedMemory($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::MAXIMUM_SUPPORTED_MEMORY)]);
+    }
+
+    private function prepareMaxSupportedMemory(string $string): ?int
+    {
+        $pattern = "~(\d+)\s*GB~i";
+        $matches = [];
+        preg_match($pattern, $string, $matches);
+
+        if (count($matches) > 0)
+            return $matches[1];
+
+        return null;
     }
 
     private function lithography(): void
@@ -335,6 +348,12 @@ class CPU
         if (isset($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::LITHOGRAPHY)]))
             $this->lithography =
                 $this->prepareLithography($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::LITHOGRAPHY)]);
+    }
+
+    private function socket(): void
+    {
+        if (isset($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::SOCKET)]))
+            $this->socket = $this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::SOCKET)];
     }
 
     private function prepareLithography(string $lithographyString): ?string
@@ -355,10 +374,7 @@ class CPU
         if (isset($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::SERIES)])) {
             $series = $this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::SERIES)];
             if ($series) {
-                $cpuSeries = new CpuSeries();
-                $cpuSeries->setName($series);
-
-                $this->cpuSeries = $cpuSeries;
+                $this->cpuSeries = $series;
             }
         }
     }
@@ -368,10 +384,7 @@ class CPU
         if (isset($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::MICROARCHITECTURE)])) {
             $microArch = $this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::MICROARCHITECTURE)];
             if ($microArch) {
-                $microArchitecture = new Microarchitecture();
-                $microArchitecture->setName($microArch);
-
-                $this->microarchitecture = $microArchitecture;
+                $this->microarchitecture = $microArch;
             }
         }
     }
@@ -381,10 +394,7 @@ class CPU
         if (isset($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::INTEGRATED_GRAPHICS)])) {
             $inGraphic = $this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::INTEGRATED_GRAPHICS)];
             if ($inGraphic) {
-                $integratedGraphic = new IntegratedGraphic();
-                $integratedGraphic->setName($inGraphic);
-
-                $this->integratedGraphic = $integratedGraphic;
+                $this->integratedGraphic = $inGraphic;
             }
         }
     }
@@ -394,10 +404,7 @@ class CPU
         if (isset($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::CORE_FAMILY)])) {
             $family = $this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::CORE_FAMILY)];
             if ($family) {
-                $coreFamily = new CoreFamily();
-                $coreFamily->setName($family);
-
-                $this->coreFamily = $coreFamily;
+                $this->coreFamily = $family;
             }
         }
     }
@@ -409,13 +416,7 @@ class CPU
             [$i_amount, $i_capacity, $d_amount, $d_capacity] =
                 $this->prepareL1Cache($this->scrapedData[CPUExtractionEnum::get_key((CPUExtractionEnum::L1_CACHE))]);
 
-            $lOneCache = new LOneCache();
-            $lOneCache->setInstructionAmount($i_amount);
-            $lOneCache->setInstructionCapacity($i_capacity);
-            $lOneCache->setDataAmount($d_amount);
-            $lOneCache->setDataCapacity($d_capacity);
-
-            $this->lOneCache = $lOneCache;
+            $this->lOneCache = [$i_amount, $i_capacity, $d_amount, $d_capacity];
         }
     }
 
@@ -451,11 +452,7 @@ class CPU
             [$amount, $capacity] =
                 $this->prepareNTHCache($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::L2_CACHE)]);
 
-            $lTwoCache = new LTwoCache();
-            $lTwoCache->setAmount($amount);
-            $lTwoCache->setCapacity($capacity);
-
-            $this->lTwoCache = $lTwoCache;
+            $this->lTwoCache = [$amount, $capacity];
         }
     }
 
@@ -465,11 +462,7 @@ class CPU
             [$amount, $capacity] =
                 $this->prepareNTHCache($this->scrapedData[CPUExtractionEnum::get_key(CPUExtractionEnum::L2_CACHE)]);
 
-            $lThreeCache = new LThreeCache();
-            $lThreeCache->setAmount($amount);
-            $lThreeCache->setCapacity($capacity);
-
-            $this->lThreeCache = $lThreeCache;
+            $this->lThreeCache = [$amount, $capacity];
         }
     }
 
@@ -734,113 +727,129 @@ class CPU
     }
 
     /**
-     * @return CpuSeries
+     * @return string|null
      */
-    public function getCpuSeries(): CpuSeries
+    public function getSocket(): ?string
+    {
+        return $this->socket;
+    }
+
+    /**
+     * @param string|null $socket
+     */
+    public function setSocket(?string $socket): void
+    {
+        $this->socket = $socket;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCpuSeries(): ?string
     {
         return $this->cpuSeries;
     }
 
     /**
-     * @param CpuSeries $cpuSeries
+     * @param string|null $cpuSeries
      */
-    public function setCpuSeries(CpuSeries $cpuSeries): void
+    public function setCpuSeries(?string $cpuSeries): void
     {
         $this->cpuSeries = $cpuSeries;
     }
 
     /**
-     * @return Microarchitecture
+     * @return string|null
      */
-    public function getMicroarchitecture(): Microarchitecture
+    public function getMicroarchitecture(): ?string
     {
         return $this->microarchitecture;
     }
 
     /**
-     * @param Microarchitecture $microarchitecture
+     * @param string|null $microarchitecture
      */
-    public function setMicroarchitecture(Microarchitecture $microarchitecture): void
+    public function setMicroarchitecture(?string $microarchitecture): void
     {
         $this->microarchitecture = $microarchitecture;
     }
 
     /**
-     * @return IntegratedGraphic
+     * @return string|null
      */
-    public function getIntegratedGraphic(): IntegratedGraphic
+    public function getIntegratedGraphic(): ?string
     {
         return $this->integratedGraphic;
     }
 
     /**
-     * @param IntegratedGraphic $integratedGraphic
+     * @param string|null $integratedGraphic
      */
-    public function setIntegratedGraphic(IntegratedGraphic $integratedGraphic): void
+    public function setIntegratedGraphic(?string $integratedGraphic): void
     {
         $this->integratedGraphic = $integratedGraphic;
     }
 
     /**
-     * @return CoreFamily
+     * @return string|null
      */
-    public function getCoreFamily(): CoreFamily
+    public function getCoreFamily(): ?string
     {
         return $this->coreFamily;
     }
 
     /**
-     * @param CoreFamily $coreFamily
+     * @param string|null $coreFamily
      */
-    public function setCoreFamily(CoreFamily $coreFamily): void
+    public function setCoreFamily(?string $coreFamily): void
     {
         $this->coreFamily = $coreFamily;
     }
 
     /**
-     * @return LOneCache|null
+     * @return array|null
      */
-    public function getLOneCache(): ?LOneCache
+    public function getLOneCache(): ?array
     {
         return $this->lOneCache;
     }
 
     /**
-     * @param LOneCache|null $lOneCache
+     * @param array|null $lOneCache
      */
-    public function setLOneCache(?LOneCache $lOneCache): void
+    public function setLOneCache(?array $lOneCache): void
     {
         $this->lOneCache = $lOneCache;
     }
 
     /**
-     * @return LTwoCache|null
+     * @return array|null
      */
-    public function getLTwoCache(): ?LTwoCache
+    public function getLTwoCache(): ?array
     {
         return $this->lTwoCache;
     }
 
     /**
-     * @param LTwoCache|null $lTwoCache
+     * @param array|null $lTwoCache
      */
-    public function setLTwoCache(?LTwoCache $lTwoCache): void
+    public function setLTwoCache(?array $lTwoCache): void
     {
         $this->lTwoCache = $lTwoCache;
     }
 
     /**
-     * @return LThreeCache|null
+     * @return array|null
      */
-    public function getLThreeCache(): ?LThreeCache
+    public function getLThreeCache(): ?array
     {
         return $this->lThreeCache;
     }
 
     /**
-     * @param LThreeCache|null $lThreeCache
+     * @param array|null $lThreeCache
      */
-    public function setLThreeCache(?LThreeCache $lThreeCache): void
+    public function setLThreeCache(?array $lThreeCache): void
     {
         $this->lThreeCache = $lThreeCache;
     }

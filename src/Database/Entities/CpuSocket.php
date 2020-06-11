@@ -37,9 +37,15 @@ class CpuSocket
      */
     private $coolers;
 
+    /**
+     * @OneToMany(targetEntity="Cpu", mappedBy="cpuSockets")
+     */
+    private $cpus;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
+        $this->cpus = new ArrayCollection();
     }
 
     /**
@@ -87,6 +93,25 @@ class CpuSocket
         if (!$this->coolers->contains($cooler)) {
             $this->coolers[] = $cooler;
             $cooler->addCpuSocket($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCpus()
+    {
+        return $this->cpus;
+    }
+
+    /**
+     * @param Cpu $cpu
+     */
+    public function addCpu(Cpu $cpu): void
+    {
+        if (!$this->cpus->contains($cpu)) {
+            $this->cpus[] = $cpu;
+            $cpu->setCpuSocket($this);
         }
     }
 }

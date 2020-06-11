@@ -10,6 +10,9 @@ namespace App\Database\Entities;
  */
 class CpuPartNumber
 {
+    const PART_NUMBER = "partNumber";
+    const CPU = "cpu";
+
     /**
      * @var int
      * @Id
@@ -22,7 +25,7 @@ class CpuPartNumber
      * @var string
      * @Column(type="string", name="part_number")
      */
-    private $part_number;
+    private $partNumber;
 
     /**
      * @var Cpu
@@ -51,7 +54,7 @@ class CpuPartNumber
      */
     public function getPartNumber(): string
     {
-        return $this->part_number;
+        return $this->partNumber;
     }
 
     /**
@@ -59,7 +62,7 @@ class CpuPartNumber
      */
     public function setPartNumber(string $part_number): void
     {
-        $this->part_number = $part_number;
+        $this->partNumber = $part_number;
     }
 
     /**

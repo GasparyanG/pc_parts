@@ -37,10 +37,16 @@ class Manufacturer
      */
     private $memories;
 
+    /**
+     * @OneToMany(targetEntity="Cpu", mappedBy="manufacturer")
+     */
+    private $cpus;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
         $this->memories = new ArrayCollection();
+        $this->cpus = new ArrayCollection();
     }
 
     /**
@@ -104,6 +110,25 @@ class Manufacturer
         if (!$this->memories->contains($memory)) {
             $this->memories[] = $memory;
             $memory->setManufacturer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCpus()
+    {
+        return $this->cpus;
+    }
+
+    /**
+     * @param Cpu
+     */
+    public function addCpu(Cpu $cpu): void
+    {
+        if (!$this->cpus->contains($cpu)) {
+            $this->cpus[] = $cpu;
+            $cpu->setManufacturer($this);
         }
     }
 }

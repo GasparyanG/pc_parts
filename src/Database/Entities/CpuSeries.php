@@ -29,7 +29,7 @@ class CpuSeries
     private $name;
 
     /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="CpuSeries")
+     * @OneToMany(targetEntity="Cpu", mappedBy="cpuSeries")
      */
     private $cpus;
 

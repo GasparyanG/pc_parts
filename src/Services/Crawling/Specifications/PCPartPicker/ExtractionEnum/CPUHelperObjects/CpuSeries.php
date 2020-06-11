@@ -1,42 +1,22 @@
 <?php
 
 
-namespace App\Database\Entities;
+namespace App\Services\Crawling\Specifications\PCPartPicker\ExtractionEnum\CPUHelperObjects;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
-
-/**
- * @Entity
- * @Table(name="integrated_graphics")
- */
-class IntegratedGraphic
+class CpuSeries
 {
     const NAME = "name";
 
     /**
      * @var int
-     * @Id
-     * @Column(type="integer", name="id")
-     * @GeneratedValue
      */
     private $id;
 
     /**
      * @var string
-     * @Column(type="string", name="name")
      */
     private $name;
-
-    /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="integratedGraphic")
-     */
-    private $cpus;
-
-    public function __construct()
-    {
-        $this->cpus = new ArrayCollection();
-    }
 
     /**
      * @return int
@@ -76,17 +56,6 @@ class IntegratedGraphic
     public function getCpus()
     {
         return $this->cpus;
-    }
-
-    /**
-     * @param Cpu $cpu
-     */
-    public function addCpu(Cpu $cpu): void
-    {
-        if (!$this->cpus->contains($cpu)) {
-            $this->cpus[] = $cpu;
-            $cpu->setIntegratedGraphic($this);
-        }
     }
 
     public function toArray(): array

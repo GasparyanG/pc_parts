@@ -29,7 +29,7 @@ class Microarchitecture
     private $name;
 
     /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="Microarchitecture")
+     * @OneToMany(targetEntity="Cpu", mappedBy="microarchitecture")
      */
     private $cpus;
 

@@ -36,7 +36,7 @@ class LTwoCache
     private $capacity;
 
     /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="LTwoCache")
+     * @OneToMany(targetEntity="Cpu", mappedBy="lTwoCache")
      */
     private $cpus;
 

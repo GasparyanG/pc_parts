@@ -105,6 +105,13 @@ class Cpu
     private $lithography;
 
     /**
+     * @var CpuSocket|null
+     * @ManyToOne(targetEntity="CpuSocket", inversedBy="cpus")
+     * @JoinColumn(name="cpu_socket_id")
+     */
+    private $cpuSocket;
+
+    /**
      * @var CpuSeries
      * @ManyToOne(targetEntity="CpuSeries", inversedBy="cpus")
      * @JoinColumn(name="cpu_series_id")
@@ -400,6 +407,22 @@ class Cpu
     public function setLithography(?float $lithography): void
     {
         $this->lithography = $lithography;
+    }
+
+    /**
+     * @return CpuSocket|null
+     */
+    public function getCpuSocket(): ?CpuSocket
+    {
+        return $this->cpuSocket;
+    }
+
+    /**
+     * @param CpuSocket|null $cpuSocket
+     */
+    public function setCpuSocket(?CpuSocket $cpuSocket): void
+    {
+        $this->cpuSocket = $cpuSocket;
     }
 
     /**
