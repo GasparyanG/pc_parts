@@ -55,11 +55,18 @@ class Storage
     private $manufacturer;
 
     /**
-     * @var StorageType
+     * @var StorageType|null
      * @ManyToOne(targetEntity="StorageType", inversedBy="storages")
      * @JoinColumn(name="storage_type_id")
      */
     private $storageType;
+
+    /**
+     * @var StorageFormFactor|null
+     * @ManyToOne(targetEntity="StorageFormFactor", inversedBy="storages")
+     * @JoinColumn(name="storage_form_factor_id")
+     */
+    private $storageFormFactor;
 
     /**
      * @return int
@@ -174,18 +181,34 @@ class Storage
     }
 
     /**
-     * @return StorageType
+     * @return StorageType|null
      */
-    public function getStorageType(): StorageType
+    public function getStorageType(): ?StorageType
     {
         return $this->storageType;
     }
 
     /**
-     * @param StorageType $storageType
+     * @param StorageType|null $storageType
      */
-    public function setStorageType(StorageType $storageType): void
+    public function setStorageType(?StorageType $storageType): void
     {
         $this->storageType = $storageType;
+    }
+
+    /**
+     * @return StorageFormFactor|null
+     */
+    public function getStorageFormFactor(): ?StorageFormFactor
+    {
+        return $this->storageFormFactor;
+    }
+
+    /**
+     * @param StorageFormFactor|null $storageFormFactor
+     */
+    public function setStorageFormFactor(?StorageFormFactor $storageFormFactor): void
+    {
+        $this->storageFormFactor = $storageFormFactor;
     }
 }
