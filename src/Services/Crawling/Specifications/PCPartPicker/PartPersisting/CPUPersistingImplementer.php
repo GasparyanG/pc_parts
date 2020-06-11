@@ -54,31 +54,34 @@ class CPUPersistingImplementer
         $manufacturer->addCpu($cpu);
 
         if ($microarchitecture)
-        $microarchitecture->addCpu($cpu);
+            $microarchitecture->addCpu($cpu);
 
         // $cpuSeries addition
         if($cpuSeries)
-        $cpuSeries->addCpu($cpu);
+            $cpuSeries->addCpu($cpu);
 
         // $integratedGraphic addition
         if($integratedGraphic)
-        $integratedGraphic->addCpu($cpu);
+            $integratedGraphic->addCpu($cpu);
 
         // $coreFamily addition
         if($coreFamily)
-        $coreFamily->addCpu($cpu);
+            $coreFamily->addCpu($cpu);
 
         // $lOneCache addition
         if($lOneCache)
-        $lOneCache->addCpu($cpu);
+            $lOneCache->addCpu($cpu);
 
         // $lTwoCache addition
         if($lTwoCache)
-        $lTwoCache->addCpu($cpu);
+            $lTwoCache->addCpu($cpu);
 
         // $lThreeCache addition
         if($lThreeCache)
             $lThreeCache->addCpu($cpu);
+
+        if ($socket)
+            $socket->addCpu($cpu);
 
 
         $cpu->setName($this->cpuScrapedDataHolder->getName());

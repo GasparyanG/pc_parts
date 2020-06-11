@@ -38,7 +38,7 @@ class CpuSocket
     private $coolers;
 
     /**
-     * @OneToMany(targetEntity="Cpu", mappedBy="cpuSockets")
+     * @OneToMany(targetEntity="Cpu", mappedBy="cpuSocket")
      */
     private $cpus;
 

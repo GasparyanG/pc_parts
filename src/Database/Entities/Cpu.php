@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Cpu
 {
+    const NAME = "name";
+
     /**
      * @var int
      * @Id
