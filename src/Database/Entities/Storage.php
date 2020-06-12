@@ -138,7 +138,7 @@ class Storage
     /**
      * @return float
      */
-    public function getCapacity(): float
+    public function getCapacity(): ?float
     {
         return $this->capacity;
     }
@@ -146,7 +146,7 @@ class Storage
     /**
      * @param float $capacity
      */
-    public function setCapacity(float $capacity): void
+    public function setCapacity(?float $capacity): void
     {
         $this->capacity = $capacity;
     }

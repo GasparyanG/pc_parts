@@ -4,7 +4,9 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
 
+use App\Services\Crawling\Specifications\PCPartPicker\PartPersisting\StoragePersistingImplementer;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
+use App\Services\Crawling\Specifications\PCPartPicker\Parts\Storage;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
@@ -14,6 +16,7 @@ class StorageScraper extends AbstractScraping
 {
     static $collectionUrl = "https://pcpartpicker.com/products/internal-hard-drive/fetch/";
     static $XPaths = [
+        "//*[@id=\"product-page\"]/section/div[2]/section/div/div[1]/div[4]",
         "//*[@id=\"product-page\"]/section/div[2]/section[2]/div/div[1]/div[2]",
         "//*[@id=\"product-page\"]/section/div[2]/section[2]/div/div[1]/div[3]",
         "//*[@id=\"product-page\"]/section/div[2]/section/div/div[1]/div[3]"
@@ -92,7 +95,9 @@ class StorageScraper extends AbstractScraping
     public function crawl(): void
     {
         try {
-            foreach ($this->fetchCollection() as $part) {
+            $collection = $this->fetchCollection();
+            for ($i=0; $i<count($collection); ++$i) {
+                $part = $collection[$i];
                 if (!isset($part[Cooler::URL]) && !isset($part[Cooler::NAME])
                     && !filter_var($part["url"], FILTER_VALIDATE_URL)) continue;
 
@@ -105,14 +110,12 @@ class StorageScraper extends AbstractScraping
                 $data_from_spec_page[Cooler::NAME] = $part[Cooler::NAME];
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
 
-                file_put_contents(__DIR__ . "/test_storage.txt", print_r($data_from_spec_page, true), FILE_APPEND);
+                // filtering and stuff
+                $storage = new Storage($data_from_spec_page);
 
-//                // filtering and stuff
-//                $cooler = new Cooler($data_from_spec_page);
-//
-//                // persisting
-//                $coolerPersistingImplementer = new CoolerPersistingImplementer($cooler);
-//                $coolerPersistingImplementer->insert();
+                // persisting
+                $coolerPersistingImplementer = new StoragePersistingImplementer($storage);
+                $coolerPersistingImplementer->insert();
             }
         } catch (GuzzleException $e) {
             echo $e->getMessage();
