@@ -62,8 +62,10 @@ PHP;
      * @var $type
      * @Column(type="$annotationType", name="$this->filedName")\n
 PHP;
-            if ($this->extra === "auto_increment")
+            if ($this->extra === "auto_increment") {
+                $annotation .= "\t * @Id\n";
                 $annotation .= "\t * @GeneratedValue\n";
+            }
 
             $annotation .="\t */";
         }
