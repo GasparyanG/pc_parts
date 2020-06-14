@@ -47,12 +47,18 @@ class Manufacturer
      */
     private $storages;
 
+    /**
+     * @OneToMany(targetEntity="PowerSupply", mappedBy="manufacturer")
+     */
+    private $powerSupplies;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
         $this->memories = new ArrayCollection();
         $this->cpus = new ArrayCollection();
         $this->storages = new ArrayCollection();
+        $this->powerSupplies = new ArrayCollection();
     }
 
     /**
@@ -154,6 +160,25 @@ class Manufacturer
         if (!$this->storages->contains($storage)) {
             $this->storages[] = $storage;
             $storage->setManufacturer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPowerSupplies()
+    {
+        return $this->powerSupplies;
+    }
+
+    /**
+     * @param Storage
+     */
+    public function addPowerSupply(PowerSupply $powerSupply): void
+    {
+        if (!$this->powerSupplies->contains($powerSupply)) {
+            $this->powerSupplies[] = $powerSupply;
+            $powerSupply->setManufacturer($this);
         }
     }
 }
