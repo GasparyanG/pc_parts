@@ -65,10 +65,20 @@ class PowerSupply
      */
     private $psuPartNumbers;
 
+    /**
+     * @ManyToMany(targetEntity="Color", inversedBy="powerSupplies")
+     * @JoinTable(name="psus_colors",
+     *      joinColumns={@JoinColumn(name="power_supply_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="color_id", referencedColumnName="id")}
+     *      )
+     */
+    private $colors;
+
     public function __construct()
     {
         $this->psuConnectors = new ArrayCollection();
         $this->psuPartNumbers = new ArrayCollection();
+        $this->colors = new ArrayCollection();
     }
 
     /**
@@ -285,6 +295,25 @@ class PowerSupply
         if (!$this->psuPartNumbers->contains($psuPartNumber)) {
             $this->psuPartNumbers[] = $psuPartNumber;
             $psuPartNumber->setPowerSupply($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColors()
+    {
+        return $this->colors;
+    }
+
+    /**
+     * @param Color
+     */
+    public function addColor(Color $color): void
+    {
+        if (!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->addPowerSupply($this);
         }
     }
 }

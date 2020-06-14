@@ -40,10 +40,17 @@ class Color
      */
     private $memories;
 
+    /**
+     * @ManyToMany(targetEntity="PowerSupply", inversedBy="colors")
+     * @JoinTable(name="psus_colors")
+     */
+    private $powerSupplies;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
         $this->memories = new ArrayCollection();
+        $this->powerSupplies = new ArrayCollection();
     }
 
     /**
@@ -108,6 +115,22 @@ class Color
         if (!$this->memories->contains($memory)) {
             $this->memories[] = $memory;
             $memory->addColor($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPowerSupplies()
+    {
+        return $this->powerSupplies;
+    }
+
+    public function addPowerSupply(PowerSupply $powerSupply): void
+    {
+        if (!$this->powerSupplies->contains($powerSupply)) {
+            $this->powerSupplies[] = $powerSupply;
+            $powerSupply->addColor($this);
         }
     }
 }
