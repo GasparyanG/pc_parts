@@ -60,9 +60,15 @@ class PowerSupply
 	 */
 	private $psuConnectors;
 
+    /**
+     * @OneToMany(targetEntity="PsuPartNumber", mappedBy="powerSupply")
+     */
+    private $psuPartNumbers;
+
     public function __construct()
     {
         $this->psuConnectors = new ArrayCollection();
+        $this->psuPartNumbers = new ArrayCollection();
     }
 
     /**
@@ -260,6 +266,25 @@ class PowerSupply
         if (!$this->psuConnectors->contains($psuConnector)) {
             $this->psuConnectors[] = $psuConnector;
             $psuConnector->setPowerSupply($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPsuPartNumbers()
+    {
+        return $this->psuPartNumbers;
+    }
+
+    /**
+     * @param PsuPartNumber
+     */
+    public function addPsuPartNumber(PsuPartNumber $psuPartNumber): void
+    {
+        if (!$this->psuPartNumbers->contains($psuPartNumber)) {
+            $this->psuPartNumbers[] = $psuPartNumber;
+            $psuPartNumber->setPowerSupply($this);
         }
     }
 }
