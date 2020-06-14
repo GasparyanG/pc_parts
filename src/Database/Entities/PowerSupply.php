@@ -74,13 +74,6 @@ class PowerSupply
      */
     private $colors;
 
-    public function __construct()
-    {
-        $this->psuConnectors = new ArrayCollection();
-        $this->psuPartNumbers = new ArrayCollection();
-        $this->colors = new ArrayCollection();
-    }
-
     /**
      * @var float
      * @Column(type="float", name="length")
@@ -88,8 +81,8 @@ class PowerSupply
 	private $length;
 
     /**
-     * @var int
-     * @Column(type="integer", name="fanless")
+     * @var bool|null
+     * @Column(type="boolean", name="fanless")
 	 */
 	private $fanless;
 
@@ -99,6 +92,12 @@ class PowerSupply
 	 */
 	private $modular;
 
+    public function __construct()
+    {
+        $this->psuConnectors = new ArrayCollection();
+        $this->psuPartNumbers = new ArrayCollection();
+        $this->colors = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -229,17 +228,17 @@ class PowerSupply
 	}
 
     /**
-     * @return null|int
+     * @return null|bool
      */
-	public function getFanless(): ?int
+	public function getFanless(): ?bool
 	{
 		return $this->fanless;
 	}
 
     /**
-     * @param null|int
+     * @param null|bool
      */
-	public function setFanless(?int $fanless): void
+	public function setFanless(?bool $fanless): void
 	{
 		$this->fanless = $fanless;
 	}

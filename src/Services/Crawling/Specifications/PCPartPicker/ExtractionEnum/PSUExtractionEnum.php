@@ -49,4 +49,16 @@ class PSUExtractionEnum
     {
         return self::$mapping[$header] ?? null;
     }
+
+    static public function connectors(): array
+    {
+        return [
+            self::get_key(self::EPS) => "EPS",
+            self::get_key(self::PCIE_6_2) => "PCIe 6+2-Pin",
+            self::get_key(self::PCIE_6) => "PCIe 6-Pin",
+            self::get_key(self::PCIE_8) => "PCIe 8-Pin",
+            self::get_key(self::SATA) => "SATA",
+            self::get_key(self::MOLEX) => "Molex 4-Pin"
+        ];
+    }
 }

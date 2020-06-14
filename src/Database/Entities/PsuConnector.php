@@ -7,6 +7,10 @@ namespace App\Database\Entities;
  */
 class PsuConnector 
 {
+    const AMOUNT = "amount";
+    const CONNECTOR = "connector";
+    const POWER_SUPPLY = "powerSupply";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

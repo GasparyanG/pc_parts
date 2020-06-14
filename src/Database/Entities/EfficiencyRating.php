@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class EfficiencyRating 
 {
+    const RATING = "rating";
     /**
      * @var int
      * @Column(type="integer", name="id")
@@ -24,7 +25,7 @@ class EfficiencyRating
 	private $rating;
 
     /**
-     * @OneToMany(targetEntity="PowerSupply", mappedBy="manufacturer")
+     * @OneToMany(targetEntity="PowerSupply", mappedBy="efficiencyRating")
      */
     private $powerSupplies;
 

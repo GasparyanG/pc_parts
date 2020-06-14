@@ -3,7 +3,9 @@
 
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
+use App\Services\Crawling\Specifications\PCPartPicker\PartPersisting\PSUPersistingImplementer;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
+use App\Services\Crawling\Specifications\PCPartPicker\Parts\PSU;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Psr7\Request;
@@ -95,6 +97,9 @@ class PSUScraper extends AbstractScraping
             $collection = $this->fetchCollection();
             for ($i=0; $i<count($collection); ++$i) {
                 $part = $collection[$i];
+                echo $i . " is starting... \n";
+                if ($i <= 17)
+                    continue;
                 if (!isset($part[Cooler::URL]) && !isset($part[Cooler::NAME])
                     && !filter_var($part["url"], FILTER_VALIDATE_URL)) continue;
 
@@ -107,14 +112,14 @@ class PSUScraper extends AbstractScraping
                 $data_from_spec_page[Cooler::NAME] = $part[Cooler::NAME];
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
 
-                file_put_contents(__DIR__ . "/test_psu.txt", print_r($data_from_spec_page, true), FILE_APPEND);
+                // filtering and stuff
+                $psu = new PSU($data_from_spec_page);
 
-//                // filtering and stuff
-//                $storage = new Storage($data_from_spec_page);
-//
-//                // persisting
-//                $coolerPersistingImplementer = new StoragePersistingImplementer($storage);
-//                $coolerPersistingImplementer->insert();
+                // persisting
+                $psuPersistingImplementer = new PSUPersistingImplementer($psu);
+                $psuPersistingImplementer->insert();
+
+                echo $i . " is finished already!\n";
             }
         } catch (GuzzleException $e) {
             echo $e->getMessage();

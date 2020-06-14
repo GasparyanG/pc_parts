@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Connector 
 {
+    const TYPE = "type";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

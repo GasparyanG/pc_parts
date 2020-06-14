@@ -41,8 +41,11 @@ class Color
     private $memories;
 
     /**
-     * @ManyToMany(targetEntity="PowerSupply", inversedBy="colors")
-     * @JoinTable(name="psus_colors")
+     * @ManyToMany(targetEntity="PowerSupply", mappedBy="colors")
+     * @JoinTable(name="psus_colors",
+     *      joinColumns={@JoinColumn(name="power_supply_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="color_id", referencedColumnName="id")}
+     *      )
      */
     private $powerSupplies;
 

@@ -100,7 +100,7 @@ class MemoryPersistingImplementation
     {
         $formFactor = $this->em->getRepository(FormFactor::class)->findOneBy(
             [
-                FormFactor::TYPE => $this->memoryScrapedDataHolder->getManufacturer()
+                FormFactor::TYPE => $this->memoryScrapedDataHolder->getFormFactor()
             ]
         );
 
