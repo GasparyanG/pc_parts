@@ -1,6 +1,8 @@
 <?php
 namespace App\Database\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="power_supplies")
@@ -52,6 +54,16 @@ class PowerSupply
      * @JoinColumn(name="efficiency_rating_id")
      */
 	private $efficiencyRating;
+
+	/**
+     * @OneToMany(targetEntity="PsuConnector", mappedBy="powerSupply")
+	 */
+	private $psuConnectors;
+
+    public function __construct()
+    {
+        $this->psuConnectors = new ArrayCollection();
+    }
 
     /**
      * @var float
@@ -231,4 +243,23 @@ class PowerSupply
 	{
 		$this->modular = $modular;
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getPsuConnectors()
+    {
+        return $this->psuConnectors;
+    }
+
+    /**
+     * @param PsuConnector
+     */
+    public function addPsuConnector(PsuConnector $psuConnector): void
+    {
+        if (!$this->psuConnectors->contains($psuConnector)) {
+            $this->psuConnectors[] = $psuConnector;
+            $psuConnector->setPowerSupply($this);
+        }
+    }
 }
