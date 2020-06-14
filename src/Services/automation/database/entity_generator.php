@@ -5,30 +5,20 @@ use App\Services\automation\database\EntityGeneratorHelper;
 
 require_once __DIR__ . "/../../../../vendor/autoload.php";
 
+
+// colors
+$openColor = "\033";
+$closeColor = "\033[0m";
+$red = "[31m";
+$green = "[32m";
+
 if (!isset($argv[1])) {
     echo "Please provide table name\n";
     exit;
 }
 
-// CHOOSING TABLE
-$table_name = $argv[1];
-$q = mysqli_query(PlainConnection::connection(), "SHOW TABLES");
-$table_names = [];
-while($row = mysqli_fetch_array($q))
-    $table_names[] = $row[0];
+$namespace_dir = "App\Database\Entities";
 
-if (!in_array($table_name, $table_names)) {
-    echo "Table " . $table_name . " doesn't exists, please choose one of below mentioned.\n";
-    $table_number = 1;
-    foreach($table_names as $table_name) {
-        echo $table_number . ": " . $table_name . "\n";
-        ++$table_number;
-    }
-
-    exit;
-}
-
-// CHECKING ENTITY EXISTENCE
 function from_snake_to_camel($table_name): string
 {
     $explodedParts = explode('_', $table_name);
@@ -45,8 +35,34 @@ function modify_to_entity_name($camel_case_string): string
         return substr($camel_case_string, 0, strlen($camel_case_string) - 1);
 }
 
+
+// CHOOSING TABLE
+$table_name = $argv[1];
+$q = mysqli_query(PlainConnection::connection(), "SHOW TABLES");
+$table_names = [];
+while($row = mysqli_fetch_array($q))
+    $table_names[] = $row[0];
+
+if (!in_array($table_name, $table_names)) {
+    echo "$openColor$red" ."Table " . $table_name . " doesn't exists, please choose one of below mentioned.\n" . "$closeColor";
+    echo "Red ones are not created, but to be more sure please check " . $namespace_dir . ".\n\n";
+    $table_number = 1;
+    foreach($table_names as $table_name) {
+        $classNameAndNamespace = $namespace_dir . "\\" . $class_name = modify_to_entity_name(from_snake_to_camel($table_name));
+        if (class_exists($classNameAndNamespace)) {
+            echo $table_number . ": " . $table_name . "\n";
+            ++$table_number;
+        } else {
+            echo "$openColor$red" . $table_number . ": " . $table_name .  "$closeColor" . "\n";
+            ++$table_number;
+        }
+    }
+
+    exit;
+}
+
+// CHECKING ENTITY EXISTENCE
 $class_name = modify_to_entity_name(from_snake_to_camel($table_name));
-$namespace_dir = "App\Database\Entities";
 if (class_exists($namespace_dir . "\\" . $class_name)) {
     echo "Entity for " . $table_name . " already exists under " . $class_name . " class name!\n"
         . "Please choose table name which does not exists.\n";
