@@ -45,11 +45,13 @@ class PowerSupply
      * @JoinColumn(name="psu_form_factor_id")
      */
 	private $psuFormFactor;
-//
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $efficiencyRatingId;
+
+    /**
+     * @var EfficiencyRating
+     * @ManyToOne(targetEntity="EfficiencyRating", inversedBy="powerSupplies")
+     * @JoinColumn(name="efficiency_rating_id")
+     */
+	private $efficiencyRating;
 
     /**
      * @var float
@@ -135,7 +137,7 @@ class PowerSupply
 	}
 
     /**
-     * @return int
+     * @return Manufacturer
      */
 	public function getManufacturer(): Manufacturer
 	{
@@ -143,7 +145,7 @@ class PowerSupply
 	}
 
     /**
-     * @param int
+     * @param Manufacturer
      */
 	public function setManufacturer(Manufacturer $manufacturer): void
 	{
@@ -165,22 +167,22 @@ class PowerSupply
 	{
 		$this->psuFormFactor = $psuFormFactorId;
 	}
-//
-//    /**
-//     * @return null|int
-//     */
-//	public function getEfficiencyRatingId(): ?int
-//	{
-//		return $this->efficiencyRatingId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setEfficiencyRatingId(?int $efficiencyRatingId): void
-//	{
-//		$this->efficiencyRatingId = $efficiencyRatingId;
-//	}
+
+    /**
+     * @return null|EfficiencyRating
+     */
+	public function getEfficiencyRating(): ?EfficiencyRating
+	{
+		return $this->efficiencyRating;
+	}
+
+    /**
+     * @param null|EfficiencyRating
+     */
+	public function setEfficiencyRating(?EfficiencyRating $efficiencyRating): void
+	{
+		$this->efficiencyRating = $efficiencyRating;
+	}
 
     /**
      * @return null|float
