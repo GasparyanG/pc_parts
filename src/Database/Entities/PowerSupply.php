@@ -39,10 +39,12 @@ class PowerSupply
      */
 	private $manufacturer;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $psuFormFactor;
+    /**
+     * @var null|PsuFormFactor
+     * @ManyToOne(targetEntity="PsuFormFactor", inversedBy="powerSupplies")
+     * @JoinColumn(name="psu_form_factor_id")
+     */
+	private $psuFormFactor;
 //
 //    /**
 //     * @ManyToOne(targetEntity="", inversedBy="")
@@ -148,21 +150,21 @@ class PowerSupply
 		$this->manufacturer = $manufacturer;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getPsuFormFactorId(): ?int
-//	{
-//		return $this->psuFormFactorId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setPsuFormFactorId(?int $psuFormFactorId): void
-//	{
-//		$this->psuFormFactorId = $psuFormFactorId;
-//	}
+    /**
+     * @return null|PsuFormFactor
+     */
+	public function getPsuFormFactor(): ?PsuFormFactor
+	{
+		return $this->psuFormFactor;
+	}
+
+    /**
+     * @param null|PsuFormFactor
+     */
+	public function setPsuFormFactor(?PsuFormFactor $psuFormFactorId): void
+	{
+		$this->psuFormFactor = $psuFormFactorId;
+	}
 //
 //    /**
 //     * @return null|int
