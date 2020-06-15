@@ -59,10 +59,12 @@ class Motherboard
 	 */
 	private $maxMemory;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $memoryTypeId;
+    /**
+     * @var MemoryType
+     * @ManyToOne(targetEntity="MemoryType", inversedBy="motherboards")
+     * @JoinColumn(name="memory_type_id")
+     */
+	private $memoryType;
 
     /**
      * @var int
@@ -240,21 +242,21 @@ class Motherboard
 		$this->maxMemory = $maxMemory;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getMemoryTypeId(): ?int
-//	{
-//		return $this->memoryTypeId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setMemoryTypeId(?int $memoryTypeId): void
-//	{
-//		$this->memoryTypeId = $memoryTypeId;
-//	}
+    /**
+     * @return null|MemoryType
+     */
+	public function getMemoryType(): ?MemoryType
+	{
+		return $this->memoryType;
+	}
+
+    /**
+     * @param null|MemoryType
+     */
+	public function setMemoryType(?MemoryType $memoryType): void
+	{
+		$this->memoryType = $memoryType;
+	}
 
     /**
      * @return null|int
