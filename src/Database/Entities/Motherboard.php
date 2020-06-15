@@ -1,6 +1,8 @@
 <?php
 namespace App\Database\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="motherboards")
@@ -90,6 +92,11 @@ class Motherboard
 //	private $wirelessNetworkingTypeId;
 
     /**
+     * @OneToMany(targetEntity="MoboMemorySpeedType", mappedBy="motherboard")
+     */
+    private $moboMemorySpeedTypes;
+
+    /**
      * @var int
      * @Column(type="integer", name="raid_support")
 	 */
@@ -113,6 +120,10 @@ class Motherboard
 	 */
 	private $stataExpress;
 
+	public function __construct()
+    {
+        $this->moboMemorySpeedTypes = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -385,4 +396,23 @@ class Motherboard
 	{
 		$this->stataExpress = $stataExpress;
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getMoboMemorySpeedTypes()
+    {
+        return $this->moboMemorySpeedTypes;
+    }
+
+    /**
+     * @param MoboMemorySpeedType $moboMemorySpeedType
+     */
+    public function addMoboMemorySpeedType(MoboMemorySpeedType $moboMemorySpeedType): void
+    {
+        if (!$this->moboMemorySpeedTypes->contains($moboMemorySpeedType)) {
+            $this->moboMemorySpeedTypes[] = $moboMemorySpeedType;
+            $moboMemorySpeedType->setMotherboard($this);
+        }
+    }
 }

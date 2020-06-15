@@ -28,9 +28,15 @@ class MemoryType
      */
     private $motherboards;
 
+    /**
+     * @OneToMany(targetEntity="MoboMemorySpeedType", mappedBy="motherboard")
+     */
+    private $moboMemorySpeedTypes;
+
     public function __construct()
     {
         $this->motherboards = new ArrayCollection();
+        $this->moboMemorySpeedTypes = new ArrayCollection();
     }
 
     /**
@@ -81,6 +87,25 @@ class MemoryType
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
             $motherboard->setMemoryType($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMoboMemorySpeedTypes()
+    {
+        return $this->moboMemorySpeedTypes;
+    }
+
+    /**
+     * @param MoboMemorySpeedType $moboMemorySpeedType
+     */
+    public function addMoboMemorySpeedType(MoboMemorySpeedType $moboMemorySpeedType): void
+    {
+        if (!$this->moboMemorySpeedTypes->contains($moboMemorySpeedType)) {
+            $this->moboMemorySpeedTypes[] = $moboMemorySpeedType;
+            $moboMemorySpeedType->setMemoryType($this);
         }
     }
 }
