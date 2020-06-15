@@ -36,7 +36,7 @@ abstract class AbstractScraping
     /**
      * @var int
      */
-    static $delay = 4000;
+    static $delay = 8000;
 
     /**
      * @var Client
