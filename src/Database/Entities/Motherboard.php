@@ -47,10 +47,11 @@ class Motherboard
      */
 	private $moboFormFactor;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $chipsetId;
+    /**
+     * @var Chipset
+     * @ManyToOne(targetEntity="Chipset", inversedBy="motherboards")
+     */
+	private $chipset;
 
     /**
      * @var float
@@ -207,21 +208,21 @@ class Motherboard
 		$this->moboFormFactor = $moboFormFactor;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getChipsetId(): ?int
-//	{
-//		return $this->chipsetId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setChipsetId(?int $chipsetId): void
-//	{
-//		$this->chipsetId = $chipsetId;
-//	}
+    /**
+     * @return null|Chipset
+     */
+	public function getChipset(): ?Chipset
+	{
+		return $this->chipset;
+	}
+
+    /**
+     * @param null|Chipset
+     */
+	public function setChipset(?Chipset $chipset): void
+	{
+		$this->chipset = $chipset;
+	}
 
     /**
      * @return null|float
