@@ -40,11 +40,13 @@ class Motherboard
      */
 	private $cpuSocket;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $moboFormFactorId;
-//
+    /**
+     * @var MoboFormFactor
+     * @ManyToOne(targetEntity="MoboFormFactor", inversedBy="motherboards")
+     * @JoinColumn(name="mobo_form_factor_id")
+     */
+	private $moboFormFactor;
+
 //    /**
 //     * @ManyToOne(targetEntity="", inversedBy="")
 //     */
@@ -189,22 +191,22 @@ class Motherboard
 		$this->cpuSocket = $cpuSocket;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getMoboFormFactorId(): ?int
-//	{
-//		return $this->moboFormFactorId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setMoboFormFactorId(?int $moboFormFactorId): void
-//	{
-//		$this->moboFormFactorId = $moboFormFactorId;
-//	}
-//
+    /**
+     * @return null|MoboFormFactor
+     */
+	public function getMoboFormFactor(): ?MoboFormFactor
+	{
+		return $this->moboFormFactor;
+	}
+
+    /**
+     * @param null|MoboFormFactor
+     */
+	public function setMoboFormFactor(?MoboFormFactor $moboFormFactor): void
+	{
+		$this->moboFormFactor = $moboFormFactor;
+	}
+
 //    /**
 //     * @return null|int
 //     */
