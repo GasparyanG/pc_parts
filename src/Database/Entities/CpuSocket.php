@@ -42,10 +42,17 @@ class CpuSocket
      */
     private $cpus;
 
+    /**
+     * @OneToMany(targetEntity="Motherboard", mappedBy="cpuSocket")
+     */
+    private $motherboards;
+
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
         $this->cpus = new ArrayCollection();
+        $this->motherboards = new ArrayCollection();
     }
 
     /**
@@ -112,6 +119,25 @@ class CpuSocket
         if (!$this->cpus->contains($cpu)) {
             $this->cpus[] = $cpu;
             $cpu->setCpuSocket($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMotherboards()
+    {
+        return $this->motherboards;
+    }
+
+    /**
+     * @param Motherboard
+     */
+    public function addMotherboard(Motherboard $motherboard): void
+    {
+        if (!$this->motherboards->contains($motherboard)) {
+            $this->motherboards[] = $motherboard;
+            $motherboard->setCpuSocket($this);
         }
     }
 }

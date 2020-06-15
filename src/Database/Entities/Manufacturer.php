@@ -52,6 +52,11 @@ class Manufacturer
      */
     private $powerSupplies;
 
+    /**
+     * @OneToMany(targetEntity="Motherboard", mappedBy="manufacturer")
+     */
+    private $motherboards;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
@@ -59,6 +64,7 @@ class Manufacturer
         $this->cpus = new ArrayCollection();
         $this->storages = new ArrayCollection();
         $this->powerSupplies = new ArrayCollection();
+        $this->motherboards = new ArrayCollection();
     }
 
     /**
@@ -179,6 +185,25 @@ class Manufacturer
         if (!$this->powerSupplies->contains($powerSupply)) {
             $this->powerSupplies[] = $powerSupply;
             $powerSupply->setManufacturer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMotherboards()
+    {
+        return $this->motherboards;
+    }
+
+    /**
+     * @param Motherboard
+     */
+    public function addMotherboard(Motherboard $motherboard): void
+    {
+        if (!$this->motherboards->contains($motherboard)) {
+            $this->motherboards[] = $motherboard;
+            $motherboard->setManufacturer($this);
         }
     }
 }
