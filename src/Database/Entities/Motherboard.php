@@ -155,6 +155,11 @@ class Motherboard
      */
     private $colors;
 
+    /**
+     * @OneToMany(targetEntity="MotherboardSataType", mappedBy="motherboard")
+     */
+    private $motherboardSataTypes;
+
     public function __construct()
     {
         $this->moboMemorySpeedTypes = new ArrayCollection();
@@ -163,6 +168,7 @@ class Motherboard
         $this->pcies = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->usbs = new ArrayCollection();
+        $this->motherboardSataTypes = new ArrayCollection();
     }
 
     /**
@@ -533,6 +539,22 @@ class Motherboard
         if(!$this->usbs->contains($usb)) {
             $this->usbs[] = $usb;
             $usb->addMotherboard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMotherboardSataTypes()
+    {
+        return $this->motherboardSataTypes;
+    }
+
+    public function addmotherboardSataType(MotherboardSataType $motherboardSataType): void
+    {
+        if (!$this->motherboardSataTypes->contains($motherboardSataType)) {
+            $this->motherboardSataTypes[] = $motherboardSataType;
+            $motherboardSataType->setMotherboard($this);
         }
     }
 }
