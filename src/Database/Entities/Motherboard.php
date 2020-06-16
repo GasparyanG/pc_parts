@@ -108,6 +108,15 @@ class Motherboard
     private $sliCrossfireTypes;
 
     /**
+     * @ManyToMany(targetEntity="Usb", mappedBy="motherboards")
+     * @JoinTable(name="motherboards_usbs",
+     *      joinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="usb_id", referencedColumnName="id")}
+     *      )
+     */
+    private $usbs;
+
+    /**
      * @OneToMany(targetEntity="OnboardEthernetType", mappedBy="motherboard")
      */
     private $onboardEthernetTypes;
@@ -153,6 +162,7 @@ class Motherboard
         $this->onboardEthernetTypes = new ArrayCollection();
         $this->pcies = new ArrayCollection();
         $this->colors = new ArrayCollection();
+        $this->usbs = new ArrayCollection();
     }
 
     /**
@@ -507,6 +517,22 @@ class Motherboard
         if(!$this->colors->contains($color)) {
             $this->colors[] = $color;
             $color->addMotherboard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsbs()
+    {
+        return $this->usbs;
+    }
+
+    public function addUsb(Usb $usb): void
+    {
+        if(!$this->usbs->contains($usb)) {
+            $this->usbs[] = $usb;
+            $usb->addMotherboard($this);
         }
     }
 }
