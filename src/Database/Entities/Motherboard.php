@@ -113,6 +113,11 @@ class Motherboard
     private $onboardEthernetTypes;
 
     /**
+     * @OneToMany(targetEntity="Pcie", mappedBy="motherboard")
+     */
+    private $pcies;
+
+    /**
      * @var int
      * @Column(type="integer", name="raid_support")
 	 */
@@ -141,6 +146,7 @@ class Motherboard
         $this->moboMemorySpeedTypes = new ArrayCollection();
         $this->sliCrossfireTypes = new ArrayCollection();
         $this->onboardEthernetTypes = new ArrayCollection();
+        $this->pcies = new ArrayCollection();
     }
 
     /**
@@ -463,6 +469,22 @@ class Motherboard
         if (!$this->onboardEthernetTypes->contains($onboardEthernetType)) {
             $this->onboardEthernetTypes[] = $onboardEthernetType;
             $onboardEthernetType->setMotherboard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPcies()
+    {
+        return $this->pcies;
+    }
+
+    public function addPcie(Pcie $pcie): void
+    {
+        if (!$this->pcies->contains($pcie)) {
+            $this->pcies[] = $pcie;
+            $pcie->setMotherboard($this);
         }
     }
 }
