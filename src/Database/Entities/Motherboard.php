@@ -141,12 +141,18 @@ class Motherboard
 	 */
 	private $stataExpress;
 
-	public function __construct()
+    /**
+     * @ManyToMany(targetEntity="Color", mappedBy="motherboards")
+     */
+    private $colors;
+
+    public function __construct()
     {
         $this->moboMemorySpeedTypes = new ArrayCollection();
         $this->sliCrossfireTypes = new ArrayCollection();
         $this->onboardEthernetTypes = new ArrayCollection();
         $this->pcies = new ArrayCollection();
+        $this->colors = new ArrayCollection();
     }
 
     /**
@@ -485,6 +491,22 @@ class Motherboard
         if (!$this->pcies->contains($pcie)) {
             $this->pcies[] = $pcie;
             $pcie->setMotherboard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColors()
+    {
+        return $this->colors;
+    }
+
+    public function addColor(Color $color): void
+    {
+        if(!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->addMotherboard($this);
         }
     }
 }
