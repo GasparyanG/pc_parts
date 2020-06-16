@@ -108,6 +108,11 @@ class Motherboard
     private $sliCrossfireTypes;
 
     /**
+     * @OneToMany(targetEntity="OnboardEthernetType", mappedBy="motherboard")
+     */
+    private $onboardEthernetTypes;
+
+    /**
      * @var int
      * @Column(type="integer", name="raid_support")
 	 */
@@ -135,6 +140,7 @@ class Motherboard
     {
         $this->moboMemorySpeedTypes = new ArrayCollection();
         $this->sliCrossfireTypes = new ArrayCollection();
+        $this->onboardEthernetTypes = new ArrayCollection();
     }
 
     /**
@@ -441,6 +447,22 @@ class Motherboard
         if (!$this->sliCrossfireTypes->contains($sliCrossfireType)) {
             $this->sliCrossfireTypes[] = $sliCrossfireType;
             $sliCrossfireType->addMotherboard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOnboardEthernetTypes()
+    {
+        return $this->onboardEthernetTypes;
+    }
+
+    public function addOnboardEthernetType(OnboardEthernetType $onboardEthernetType): void
+    {
+        if (!$this->onboardEthernetTypes->contains($onboardEthernetType)) {
+            $this->onboardEthernetTypes[] = $onboardEthernetType;
+            $onboardEthernetType->setMotherboard($this);
         }
     }
 }
