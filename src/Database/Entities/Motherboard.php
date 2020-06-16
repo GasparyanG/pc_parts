@@ -117,6 +117,15 @@ class Motherboard
     private $usbs;
 
     /**
+     * @ManyToMany(targetEntity="MDot2Type", mappedBy="motherboards")
+     * @JoinTable(name="m_dot_2_motherboards",
+     *      joinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="m_dot_2_type_id", referencedColumnName="id")}
+     *      )
+     */
+    private $mDot2Types;
+
+    /**
      * @OneToMany(targetEntity="OnboardEthernetType", mappedBy="motherboard")
      */
     private $onboardEthernetTypes;
@@ -175,6 +184,7 @@ class Motherboard
         $this->usbs = new ArrayCollection();
         $this->motherboardSataTypes = new ArrayCollection();
         $this->motherboardPartNumbers = new ArrayCollection();
+        $this->mDot2Types = new ArrayCollection();
     }
 
     /**
@@ -577,6 +587,22 @@ class Motherboard
         if (!$this->motherboardPartNumbers->contains($motherboardPartNumber)) {
             $this->motherboardPartNumbers[] = $motherboardPartNumber;
             $motherboardPartNumber->setMotherboard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMDot2Types()
+    {
+        return $this->mDot2Types;
+    }
+
+    public function addMDot2Type(MDot2Type $mDot2Type): void
+    {
+        if(!$this->mDot2Types->contains($mDot2Type)) {
+            $this->mDot2Types[] = $mDot2Type;
+            $mDot2Type->addMotherboard($this);
         }
     }
 }
