@@ -97,6 +97,15 @@ class Motherboard
     private $moboMemorySpeedTypes;
 
     /**
+     * @ManyToMany(targetEntity="SliCrossfireType", mappedBy="motherboards")
+     * @JoinTable(name="sli_crossfire_motherboards",
+     *      joinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="sli_crossfire_type_id", referencedColumnName="id")}
+     *      )
+     */
+    private $sliCrossfireTypes;
+
+    /**
      * @var int
      * @Column(type="integer", name="raid_support")
 	 */
@@ -123,6 +132,7 @@ class Motherboard
 	public function __construct()
     {
         $this->moboMemorySpeedTypes = new ArrayCollection();
+        $this->sliCrossfireTypes = new ArrayCollection();
     }
 
     /**
@@ -413,6 +423,22 @@ class Motherboard
         if (!$this->moboMemorySpeedTypes->contains($moboMemorySpeedType)) {
             $this->moboMemorySpeedTypes[] = $moboMemorySpeedType;
             $moboMemorySpeedType->setMotherboard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSliCrossfireTypes()
+    {
+        return $this->sliCrossfireTypes;
+    }
+
+    public function addSliCrossfireType(SliCrossfireType $sliCrossfireType): void
+    {
+        if (!$this->sliCrossfireTypes->contains($sliCrossfireType)) {
+            $this->sliCrossfireTypes[] = $sliCrossfireType;
+            $sliCrossfireType->addMotherboard($this);
         }
     }
 }
