@@ -81,4 +81,32 @@ class MOBOExtractionEnum
     {
         return self::$mapping[$header] ?? null;
     }
+
+    static public function usb_headers(): array
+    {
+        return [
+            self::get_key(self::USB_2_0),
+            self::get_key(self::USB_3_2_GEN_1),
+            self::get_key(self::USB_3_2_GEN_2),
+            self::get_key(self::USB_3_2_GEN_2_x_2)
+        ];
+    }
+
+    static public function pcies(): array
+    {
+        return [
+            self::get_key(self::PCIE_1),
+            self::get_key(self::PCIE_4),
+            self::get_key(self::PCIE_8),
+            self::get_key(self::PCIE_16)
+        ];
+    }
+
+    static public function sata_types(): array
+    {
+        return [
+            self::get_key(self::SATA_3_GB),
+            self::get_key(self::SATA_6_GB)
+        ];
+    }
 }

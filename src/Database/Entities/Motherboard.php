@@ -75,8 +75,8 @@ class Motherboard
 	private $memorySlots;
 
     /**
-     * @var int
-     * @Column(type="integer", name="onboard_video")
+     * @var string|null
+     * @Column(type="string", name="onboard_video")
 	 */
 	private $onboardVideo;
 
@@ -348,33 +348,33 @@ class Motherboard
 	}
 
     /**
-     * @return null|int
+     * @return null|string
      */
-	public function getOnboardVideo(): ?int
+	public function getOnboardVideo(): ?string
 	{
 		return $this->onboardVideo;
 	}
 
     /**
-     * @param null|int
+     * @param null|string
      */
-	public function setOnboardVideo(?int $onboardVideo): void
+	public function setOnboardVideo(?string $onboardVideo): void
 	{
 		$this->onboardVideo = $onboardVideo;
 	}
 
     /**
-     * @return null|int
+     * @return null|bool
      */
-	public function getSupportsEcc(): ?int
+	public function getSupportsEcc(): ?bool
 	{
 		return $this->supportsEcc;
 	}
 
     /**
-     * @param null|int
+     * @param null|bool
      */
-	public function setSupportsEcc(?int $supportsEcc): void
+	public function setSupportsEcc(?bool $supportsEcc): void
 	{
 		$this->supportsEcc = $supportsEcc;
 	}
@@ -396,17 +396,17 @@ class Motherboard
 	}
 
     /**
-     * @return null|int
+     * @return null|bool
      */
-	public function getRaidSupport(): ?int
+	public function getRaidSupport(): ?bool
 	{
 		return $this->raidSupport;
 	}
 
     /**
-     * @param null|int
+     * @param null|bool
      */
-	public function setRaidSupport(?int $raidSupport): void
+	public function setRaidSupport(?bool $raidSupport): void
 	{
 		$this->raidSupport = $raidSupport;
 	}
