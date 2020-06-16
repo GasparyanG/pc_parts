@@ -86,10 +86,12 @@ class Motherboard
 	 */
 	private $supportsEcc;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $wirelessNetworkingTypeId;
+    /**
+     * @var WirelessNetworkingType
+     * @ManyToOne(targetEntity="WirelessNetworkingType", inversedBy="moterboards")
+     * @JoinColumn(name="wireless_networking_type_id")
+     */
+	private $wirelessNetworkingType;
 
     /**
      * @OneToMany(targetEntity="MoboMemorySpeedType", mappedBy="motherboard")
@@ -327,21 +329,21 @@ class Motherboard
 		$this->supportsEcc = $supportsEcc;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getWirelessNetworkingTypeId(): ?int
-//	{
-//		return $this->wirelessNetworkingTypeId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setWirelessNetworkingTypeId(?int $wirelessNetworkingTypeId): void
-//	{
-//		$this->wirelessNetworkingTypeId = $wirelessNetworkingTypeId;
-//	}
+    /**
+     * @return null|WirelessNetworkingType
+     */
+	public function getWirelessNetworkingType(): ?WirelessNetworkingType
+	{
+		return $this->wirelessNetworkingType;
+	}
+
+    /**
+     * @param null|WirelessNetworkingType
+     */
+	public function setWirelessNetworkingType(?WirelessNetworkingType $wirelessNetworkingType): void
+	{
+		$this->wirelessNetworkingType = $wirelessNetworkingType;
+	}
 
     /**
      * @return null|int
