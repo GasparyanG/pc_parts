@@ -26,7 +26,7 @@ class Chipset
 	private $type;
 
     /**
-     * @OneToMany(targetEntity="Motherboard", mappedBy="manufacturer")
+     * @OneToMany(targetEntity="Motherboard", mappedBy="chipset")
      */
     private $motherboards;
 
