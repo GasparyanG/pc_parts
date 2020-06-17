@@ -7,6 +7,10 @@ namespace App\Database\Entities;
  */
 class MotherboardSataType 
 {
+    const SPEED = "speed";
+    const AMOUNT = "amount";
+    const MOTHERBOARD = "motherboard";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

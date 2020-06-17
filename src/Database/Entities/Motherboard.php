@@ -99,7 +99,7 @@ class Motherboard
     private $moboMemorySpeedTypes;
 
     /**
-     * @ManyToMany(targetEntity="SliCrossfireType", mappedBy="motherboards")
+     * @ManyToMany(targetEntity="SliCrossfireType", inversedBy="motherboards")
      * @JoinTable(name="sli_crossfire_motherboards",
      *      joinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="sli_crossfire_type_id", referencedColumnName="id")}
@@ -108,16 +108,12 @@ class Motherboard
     private $sliCrossfireTypes;
 
     /**
-     * @ManyToMany(targetEntity="Usb", mappedBy="motherboards")
-     * @JoinTable(name="motherboards_usbs",
-     *      joinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="usb_id", referencedColumnName="id")}
-     *      )
+     * @OneToMany(targetEntity="MotherboardsUsb", mappedBy="motherboard")
      */
     private $usbs;
 
     /**
-     * @ManyToMany(targetEntity="MDot2Type", mappedBy="motherboards")
+     * @ManyToMany(targetEntity="MDot2Type", inversedBy="motherboards")
      * @JoinTable(name="m_dot_2_motherboards",
      *      joinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="m_dot_2_type_id", referencedColumnName="id")}
@@ -160,7 +156,11 @@ class Motherboard
 	private $stataExpress;
 
     /**
-     * @ManyToMany(targetEntity="Color", mappedBy="motherboards")
+     * @ManyToMany(targetEntity="Color", inversedBy="motherboards")
+     * @JoinTable(name="motherboards_colors",
+     *      joinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="color_id", referencedColumnName="id")}
+     *      )
      */
     private $colors;
 
@@ -550,11 +550,11 @@ class Motherboard
         return $this->usbs;
     }
 
-    public function addUsb(Usb $usb): void
+    public function addUsb(MotherboardsUsb $usb): void
     {
         if(!$this->usbs->contains($usb)) {
             $this->usbs[] = $usb;
-            $usb->addMotherboard($this);
+            $usb->setMotherboard($this);
         }
     }
 

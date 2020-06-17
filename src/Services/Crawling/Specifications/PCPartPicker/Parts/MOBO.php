@@ -516,7 +516,7 @@ class MOBO
             if (isset($this->scrapedData[$sata]))
                 $SATAs[$sata] = $this->scrapedData[$sata];
 
-        $this->motherboardSataTypes = $sata;
+        $this->motherboardSataTypes = $SATAs;
     }
 
     /**

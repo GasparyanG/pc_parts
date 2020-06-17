@@ -7,6 +7,10 @@ namespace App\Database\Entities;
  */
 class OnboardEthernetType 
 {
+    const AMOUNT = "amount";
+    const MOTHERBOARD = "motherboard";
+    const SPEED = "speed";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

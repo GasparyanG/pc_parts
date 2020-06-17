@@ -7,6 +7,9 @@ namespace App\Database\Entities;
  */
 class MotherboardPartNumber 
 {
+    const PART_NUMBER = "partNumber";
+    const MOTHERBOARD = "motherboard";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

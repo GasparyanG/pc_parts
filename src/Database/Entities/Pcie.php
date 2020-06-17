@@ -7,6 +7,10 @@ namespace App\Database\Entities;
  */
 class Pcie 
 {
+    const SLOTS_COUNT = "slotsCount";
+    const AMOUNT = "amount";
+    const MOTHERBOARD = "motherboard";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

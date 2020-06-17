@@ -77,6 +77,24 @@ class MOBOExtractionEnum
         self::RAID_SUPPORT => "raid_support"
     ];
 
+    static $sata_speed = [
+        "sata_6_gb" => 6,
+        "sata_3_gb" => 3
+    ];
+
+    static $usb_details = [
+        "usb_2_0" => ["2.0", null],
+        "usb_3_2_gen_1" => ["3.2", "1"],
+        "usb_3_2_gen_2_x_2" => ["3.2", "2x2"]
+    ];
+
+    static $pcie_slots = [
+        "pcie_16" => 16,
+        "pcie_8" => 8,
+        "pcie_4" => 4,
+        "pcie_1" => 1
+    ];
+
     static public function get_key(string $header): ?string
     {
         return self::$mapping[$header] ?? null;
@@ -108,5 +126,20 @@ class MOBOExtractionEnum
             self::get_key(self::SATA_3_GB),
             self::get_key(self::SATA_6_GB)
         ];
+    }
+
+    static public function sata_speed(string $key): ?int
+    {
+        return self::$sata_speed[$key] ?? null;
+    }
+
+    static public function usb_details(string $key): ?array
+    {
+        return self::$usb_details[$key] ?? null;
+    }
+
+    static public function pcie_slots($key): ?int
+    {
+        return self::$pcie_slots[$key] ?? null;
     }
 }

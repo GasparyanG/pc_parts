@@ -4,6 +4,7 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
 
+use App\Services\Crawling\Specifications\PCPartPicker\PartPersisting\MOBOPersistingImplementation;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\MOBO;
 use GuzzleHttp\Exception\GuzzleException;
@@ -116,12 +117,10 @@ class MOBOScraping extends AbstractScraping
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
 
                 $mobo = new MOBO($data_from_spec_page);
-                file_put_contents(__DIR__ . "/test_mobo.txt", print_r($mobo->toArray(), true), FILE_APPEND);
 
-//
-//                // persisting
-//                $coolerPersistingImplementer = new MemoryPersistingImplementation($memory);
-//                $coolerPersistingImplementer->insert();
+                // persisting
+                $moboPersistingImplementer = new MOBOPersistingImplementation($mobo);
+                $moboPersistingImplementer->insert();
 
                 echo $i . " is finished already!\n";
             }

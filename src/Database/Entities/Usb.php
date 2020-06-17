@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Usb 
 {
+    const VERSION = "version";
+    const GENERATION = "generation";
+
     /**
      * @var int
      * @Column(type="integer", name="id")
@@ -30,11 +33,7 @@ class Usb
 	private $generation;
 
     /**
-     * @ManyToMany(targetEntity="Motherboard", mappedBy="usbs")
-     * @JoinTable(name="motherboards_usbs",
-     *      joinColumns={@JoinColumn(name="usb_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="motherboard_id", referencedColumnName="id")}
-     *      )
+     * @OneToMany(targetEntity="MotherboardsUsb", mappedBy="usb")
      */
     private $motherboards;
 
@@ -99,11 +98,11 @@ class Usb
         return $this->motherboards;
     }
 
-    public function addMotherboard(Motherboard $motherboard): void
+    public function addMotherboard(MotherboardsUsb $motherboard): void
     {
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
-            $motherboard->addUsb($this);
+            $motherboard->setUsb($this);
         }
     }
 }

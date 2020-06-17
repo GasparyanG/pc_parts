@@ -7,6 +7,10 @@ namespace App\Database\Entities;
  */
 class MoboMemorySpeedType 
 {
+    const SPEED = "speed";
+    const MEMORY_TYPE = "memoryType";
+    const MOTHERBOARD = "motherboard";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

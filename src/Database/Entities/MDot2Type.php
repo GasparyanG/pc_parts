@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class MDot2Type 
 {
+    const KEY_TYPE = "keyType";
+    const SIZES = "sizes";
+
     /**
      * @var int
      * @Column(type="integer", name="id")
