@@ -81,11 +81,13 @@ class VideoCard
      * @JoinColumn(name="sli_crossfire_type_id")
      */
 	private $sliCrossfireType;
-//
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $frameSyncTypeId;
+
+    /**
+     * @var FrameSyncType
+     * @ManyToOne(targetEntity="FrameSyncType", inversedBy="videoCards")
+     * @JoinColumn(name="frame_sync_type_id")
+     */
+	private $frameSyncType;
 
     /**
      * @var float
@@ -297,22 +299,22 @@ class VideoCard
 	{
 		$this->sliCrossfireType = $sliCrossfireType;
 	}
-//
-//    /**
-//     * @return null|int
-//     */
-//	public function getFrameSyncTypeId(): ?int
-//	{
-//		return $this->frameSyncTypeId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setFrameSyncTypeId(?int $frameSyncTypeId): void
-//	{
-//		$this->frameSyncTypeId = $frameSyncTypeId;
-//	}
+
+    /**
+     * @return null|FrameSyncType
+     */
+	public function getFrameSyncType(): ?FrameSyncType
+	{
+		return $this->frameSyncType;
+	}
+
+    /**
+     * @param null|FrameSyncType
+     */
+	public function setFrameSyncType(?FrameSyncType $frameSyncType): void
+	{
+		$this->frameSyncType = $frameSyncType;
+	}
 
     /**
      * @return null|float
