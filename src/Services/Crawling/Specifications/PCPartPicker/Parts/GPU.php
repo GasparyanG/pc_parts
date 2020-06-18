@@ -339,7 +339,7 @@ class GPU
             } else
                 $sliCrossFireTypes[] = $this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)];
 
-        $this->sliCrossfireType = $sliCrossFireTypes;
+        $this->sliCrossfireTypes = $sliCrossFireTypes;
     }
 
     private function frameSyncTypes(): void
@@ -699,7 +699,7 @@ class GPU
      */
     public function setSliCrossfireType(?array $sliCrossfireType): void
     {
-        $this->sliCrossfireType = $sliCrossfireType;
+        $this->sliCrossfireTypes = $sliCrossfireType;
     }
 
     /**
