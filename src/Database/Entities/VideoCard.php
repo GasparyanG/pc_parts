@@ -1,6 +1,8 @@
 <?php
 namespace App\Database\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="video_cards")
@@ -109,6 +111,19 @@ class VideoCard
 	 */
 	private $expansionSlotWidth;
 
+    /**
+     * @ManyToMany(targetEntity="ExternalPowerType", mappedBy="videoCards")
+     * @JoinTable(name="gpus_external_power_types",
+     *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="external_power_type_id", referencedColumnName="id")}
+     *      )
+     */
+    private $externalPowerTypes;
+
+    public function __construct()
+    {
+        $this->externalPowerTypes = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -365,4 +380,23 @@ class VideoCard
 	{
 		$this->expansionSlotWidth = $expansionSlotWidth;
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getExternalPowerTypes()
+    {
+        return $this->externalPowerTypes;
+    }
+
+    /**
+     * @param VideoCard
+     */
+    public function addExternalPowerType(ExternalPowerType $externalPowerType): void
+    {
+        if (!$this->externalPowerTypes->contains($externalPowerType)) {
+            $this->externalPowerTypes[] = $externalPowerType;
+            $externalPowerType->addVideoCard($this);
+        }
+    }
 }
