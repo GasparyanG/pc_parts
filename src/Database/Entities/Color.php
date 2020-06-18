@@ -58,6 +58,14 @@ class Color
      */
     private $motherboards;
 
+    /**
+     * @ManyToMany(targetEntity="VideoCard", mappedBy="colors")
+     * @JoinTable(name="gpus_colors",
+     *      joinColumns={@JoinColumn(name="color_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")}
+     *      )
+     */
+    private $videoCards;
 
     public function __construct()
     {
@@ -65,6 +73,7 @@ class Color
         $this->memories = new ArrayCollection();
         $this->powerSupplies = new ArrayCollection();
         $this->motherboards = new ArrayCollection();
+        $this->videoCards = new ArrayCollection();
     }
 
     /**
@@ -161,6 +170,25 @@ class Color
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
             $motherboard->addColor($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoCards()
+    {
+        return $this->videoCards;
+    }
+
+    /**
+     * @param VideoCard
+     */
+    public function addVideoCard(VideoCard $videoCard): void
+    {
+        if (!$this->videoCards->contains($videoCard)) {
+            $this->videoCards[] = $videoCard;
+            $videoCard->addColor($this);
         }
     }
 }

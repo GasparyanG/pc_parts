@@ -112,7 +112,7 @@ class VideoCard
 	private $expansionSlotWidth;
 
     /**
-     * @ManyToMany(targetEntity="ExternalPowerType", mappedBy="videoCards")
+     * @ManyToMany(targetEntity="ExternalPowerType", inversedBy="videoCards")
      * @JoinTable(name="gpus_external_power_types",
      *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="external_power_type_id", referencedColumnName="id")}
@@ -121,7 +121,7 @@ class VideoCard
     private $externalPowerTypes;
 
     /**
-     * @ManyToMany(targetEntity="GpuCoolingType", mappedBy="videoCards")
+     * @ManyToMany(targetEntity="GpuCoolingType", inversedBy="videoCards")
      * @JoinTable(name="gpus_cooling_types",
      *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="gpu_cooling_type_id", referencedColumnName="id")}
@@ -130,19 +130,29 @@ class VideoCard
     private $gpuCoolingTypes;
 
     /**
-     * @ManyToMany(targetEntity="GpuPort", mappedBy="videoCards")
+     * @ManyToMany(targetEntity="GpuPort", inversedBy="videoCards")
      * @JoinTable(name="gpus_ports",
      *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="gpu_port_d", referencedColumnName="id")}
+     *      inverseJoinColumns={@JoinColumn(name="gpu_port_id", referencedColumnName="id")}
      *      )
      */
     private $gpuPorts;
+
+    /**
+     * @ManyToMany(targetEntity="Color", inversedBy="videoCards")
+     * @JoinTable(name="gpus_colors",
+     *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="color_id", referencedColumnName="id")}
+     *      )
+     */
+    private $colors;
 
     public function __construct()
     {
         $this->externalPowerTypes = new ArrayCollection();
         $this->gpuCoolingTypes = new ArrayCollection();
         $this->gpuPorts = new ArrayCollection();
+        $this->colors = new ArrayCollection();
     }
 
     /**
@@ -455,6 +465,25 @@ class VideoCard
         if (!$this->gpuPorts->contains($gpuPort)) {
             $this->gpuPorts[] = $gpuPort;
             $gpuPort->addVideoCard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColors()
+    {
+        return $this->colors;
+    }
+
+    /**
+     * @param Color $color
+     */
+    public function addColor(Color $color): void
+    {
+        if (!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->addVideoCard($this);
         }
     }
 }
