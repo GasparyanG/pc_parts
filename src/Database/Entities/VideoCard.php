@@ -147,12 +147,18 @@ class VideoCard
      */
     private $colors;
 
+    /**
+     * @OneToMany(targetEntity="GpuPartNumber", mappedBy="videoCard")
+     */
+    private $partNumbers;
+
     public function __construct()
     {
         $this->externalPowerTypes = new ArrayCollection();
         $this->gpuCoolingTypes = new ArrayCollection();
         $this->gpuPorts = new ArrayCollection();
         $this->colors = new ArrayCollection();
+        $this->partNumbers = new ArrayCollection();
     }
 
     /**
@@ -484,6 +490,25 @@ class VideoCard
         if (!$this->colors->contains($color)) {
             $this->colors[] = $color;
             $color->addVideoCard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPartNumbers()
+    {
+        return $this->partNumbers;
+    }
+
+    /**
+     * @param GpuPartNumber $partNumber
+     */
+    public function addPartNumber(GpuPartNumber $partNumber): void
+    {
+        if (!$this->partNumbers->contains($partNumber)) {
+            $this->partNumbers[] = $partNumber;
+            $partNumber->setVideoCard($this);
         }
     }
 }
