@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class GpuPort 
 {
+    const TYPE = "type";
+    const AMOUNT = "amount";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

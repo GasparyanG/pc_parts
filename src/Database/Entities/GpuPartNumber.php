@@ -7,6 +7,8 @@ namespace App\Database\Entities;
  */
 class GpuPartNumber 
 {
+    const PART_NUMBER = "partNumber";
+    const VIDEO_CARD = "videoCard";
     /**
      * @var int
      * @Column(type="integer", name="id")

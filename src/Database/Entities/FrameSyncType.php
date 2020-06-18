@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class FrameSyncType 
 {
+    const TYPE = "type";
     /**
      * @var int
      * @Column(type="integer", name="id")
@@ -24,7 +25,11 @@ class FrameSyncType
 	private $type;
 
     /**
-     * @OneToMany(targetEntity="VideoCard", mappedBy="frameSyncType")
+     * @ManyToMany(targetEntity="VideoCard", mappedBy="frameSyncTypes")
+     * @JoinTable(name="frame_sync_video_cards",
+     *      joinColumns={@JoinColumn(name="frame_sync_type_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")}
+     *      )
      */
     private $videoCards;
 
@@ -80,7 +85,7 @@ class FrameSyncType
     {
         if (!$this->videoCards->contains($videoCard)) {
             $this->videoCards[] = $videoCard;
-            $videoCard->setFrameSyncType($this);
+            $videoCard->addFrameSyncType($this);
         }
     }
 }

@@ -85,14 +85,14 @@ class GPU
     private $gpuInterface = [];
 
     /**
-     * @var string|null
+     * @var array|null
      */
-    private $sliCrossfireType = null;
+    private $sliCrossfireTypes = [];
 
     /**
-     * @var string|null
+     * @var array|null
      */
-    private $frameSyncType = null;
+    private $frameSyncTypes = [];
 
     /**
      * @var float|null
@@ -144,8 +144,8 @@ class GPU
         $this->boostClock();
         $this->effectiveMemoryClock();
         $this->gpuInterface();
-        $this->sliCrossfireType();
-        $this->frameSyncType();
+        $this->sliCrossfireTypes();
+        $this->frameSyncTypes();
         $this->length();
         $this->tdp();
         $this->expansionSlotWidth();
@@ -169,8 +169,8 @@ class GPU
         $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::BOOST_CLOCK)] = $this->boostClock;
         $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::EFFECTIVE_MEMORY_CLOCK)] = $this->effectiveMemoryClock;
         $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::INTERFACE)] = $this->gpuInterface;
-        $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)] = $this->sliCrossfireType;
-        $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::FRAME_SYNC)] = $this->frameSyncType;
+        $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)] = $this->sliCrossfireTypes;
+        $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::FRAME_SYNC)] = $this->frameSyncTypes;
         $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::LENGTH)] = $this->length;
         $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::TDP)] = $this->tdp;
         $dataToReturn[GPUExtractionEnum::get_key(GPUExtractionEnum::EXPANSION_SLOT_WIDTH)] = $this->expansionSlotWidth;
@@ -329,16 +329,30 @@ class GPU
         return $dataToReturn;
     }
 
-    private function sliCrossfireType(): void
+    private function sliCrossfireTypes(): void
     {
+        $sliCrossFireTypes = [];
         if (isset($this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)]))
-            $this->sliCrossfireType = $this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)];
+            if (is_array($this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)])) {
+                foreach ($this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)] as $speedType)
+                    $sliCrossFireTypes[] = $speedType;
+            } else
+                $sliCrossFireTypes[] = $this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::SLI_CROSSFIRE)];
+
+        $this->sliCrossfireType = $sliCrossFireTypes;
     }
 
-    private function frameSyncType(): void
+    private function frameSyncTypes(): void
     {
+        $frameSyncType = [];
         if (isset($this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::FRAME_SYNC)]))
-            $this->frameSyncType = $this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::FRAME_SYNC)];
+            if (is_array($this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::FRAME_SYNC)])) {
+                foreach ($this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::FRAME_SYNC)] as $speedType)
+                    $frameSyncType[] = $speedType;
+            } else
+                $frameSyncType[] = $this->scrapedData[GPUExtractionEnum::get_key(GPUExtractionEnum::FRAME_SYNC)];
+
+        $this->frameSyncTypes = $frameSyncType;
     }
 
     private function length(): void
@@ -673,35 +687,35 @@ class GPU
     }
 
     /**
-     * @return string|null
+     * @return array|null
      */
-    public function getSliCrossfireType(): ?string
+    public function getSliCrossfireType(): ?array
     {
-        return $this->sliCrossfireType;
+        return $this->sliCrossfireTypes;
     }
 
     /**
      * @param string|null $sliCrossfireType
      */
-    public function setSliCrossfireType(?string $sliCrossfireType): void
+    public function setSliCrossfireType(?array $sliCrossfireType): void
     {
         $this->sliCrossfireType = $sliCrossfireType;
     }
 
     /**
-     * @return string|null
+     * @return array|null
      */
-    public function getFrameSyncType(): ?string
+    public function getFrameSyncType(): ?array
     {
-        return $this->frameSyncType;
+        return $this->frameSyncTypes;
     }
 
     /**
-     * @param string|null $frameSyncType
+     * @param array|null $frameSyncType
      */
-    public function setFrameSyncType(?string $frameSyncType): void
+    public function setFrameSyncType(?array $frameSyncType): void
     {
-        $this->frameSyncType = $frameSyncType;
+        $this->frameSyncTypes = $frameSyncType;
     }
 
     /**

@@ -80,18 +80,22 @@ class VideoCard
 	private $gpuInterface;
 
     /**
-     * @var SliCrossfireType
-     * @ManyToOne(targetEntity="SliCrossfireType", inversedBy="videoCards")
-     * @JoinColumn(name="sli_crossfire_type_id")
+     * @ManyToMany(targetEntity="SliCrossfireType", inversedBy="sliCrossfireTypes")
+     * @JoinTable(name="sli_crossfire_video_cards",
+     *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="sli_crossfire_type_id", referencedColumnName="id")}
+     *      )
      */
-	private $sliCrossfireType;
+	private $sliCrossfireTypes;
 
     /**
-     * @var FrameSyncType
-     * @ManyToOne(targetEntity="FrameSyncType", inversedBy="videoCards")
-     * @JoinColumn(name="frame_sync_type_id")
+     * @ManyToMany(targetEntity="FrameSyncType", inversedBy="videoCards")
+     * @JoinTable(name="frame_sync_video_cards",
+     *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="frame_sync_type_id", referencedColumnName="id")}
+     *      )
      */
-	private $frameSyncType;
+	private $frameSyncTypes;
 
     /**
      * @var float
@@ -159,6 +163,8 @@ class VideoCard
         $this->gpuPorts = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->partNumbers = new ArrayCollection();
+        $this->sliCrossfireTypes = new ArrayCollection();
+        $this->frameSyncTypes = new ArrayCollection();
     }
 
     /**
@@ -337,36 +343,30 @@ class VideoCard
 		$this->gpuInterface = $gpuInterface;
 	}
 
-    /**
-     * @return null|SliCrossfireType
-     */
-	public function getSliCrossfireType(): ?SliCrossfireType
+	public function getSliCrossfireTypes()
 	{
-		return $this->sliCrossfireType;
+		return $this->sliCrossfireTypes;
 	}
 
-    /**
-     * @param null|SliCrossfireType
-     */
-	public function setSliCrossfireType(?SliCrossfireType $sliCrossfireType): void
+	public function addSliCrossfireType(SliCrossfireType $sliCrossfireType): void
 	{
-		$this->sliCrossfireType = $sliCrossfireType;
+        if (!$this->sliCrossfireTypes->contains($sliCrossfireType)) {
+            $this->sliCrossfireTypes[] = $sliCrossfireType;
+            $sliCrossfireType->addVideoCard($this);
+        }
 	}
 
-    /**
-     * @return null|FrameSyncType
-     */
-	public function getFrameSyncType(): ?FrameSyncType
+	public function getFrameSyncType()
 	{
-		return $this->frameSyncType;
+		return $this->frameSyncTypes;
 	}
 
-    /**
-     * @param null|FrameSyncType
-     */
-	public function setFrameSyncType(?FrameSyncType $frameSyncType): void
+	public function addFrameSyncType(FrameSyncType $frameSyncType): void
 	{
-		$this->frameSyncType = $frameSyncType;
+        if (!$this->frameSyncTypes->contains($frameSyncType)) {
+            $this->frameSyncTypes[] = $frameSyncType;
+            $frameSyncType->addVideoCard($this);
+        }
 	}
 
     /**

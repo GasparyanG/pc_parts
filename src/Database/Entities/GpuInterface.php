@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class GpuInterface 
 {
+    const TYPE = "type";
+    const SLOT_COUNT = "slotCount";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

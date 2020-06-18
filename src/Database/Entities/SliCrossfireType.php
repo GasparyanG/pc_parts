@@ -35,10 +35,13 @@ class SliCrossfireType
 	private $motherboards;
 
     /**
-     * @OneToMany(targetEntity="VideoCard", mappedBy="sliCrossfireType")
+     * @ManyToMany(targetEntity="VideoCard", mappedBy="sliCrossfireTypes")
+     * @JoinTable(name="sli_crossfire_video_cards",
+     *      joinColumns={@JoinColumn(name="sli_crossfire_type_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")}
+     *      )
      */
     private $videoCards;
-
 
     public function __construct()
     {
@@ -109,7 +112,7 @@ class SliCrossfireType
     {
         if (!$this->videoCards->contains($videoCard)) {
             $this->videoCards[] = $videoCard;
-            $videoCard->setSliCrossfireType($this);
+            $videoCard->addSliCrossfireType($this);
         }
     }
 }

@@ -4,6 +4,7 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
 
+use App\Services\Crawling\Specifications\PCPartPicker\PartPersisting\GPUPersistingImplementer;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\GPU;
 use GuzzleHttp\Exception\GuzzleException;
@@ -116,12 +117,10 @@ class GPUScraper extends AbstractScraping
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
 
                 $gpu = new GPU($data_from_spec_page);
-                file_put_contents(__DIR__ . "/test_gpu.txt", print_r($gpu->toArray(), true), FILE_APPEND);
 
-//
-//                // persisting
-//                $coolerPersistingImplementer = new MemoryPersistingImplementation($memory);
-//                $coolerPersistingImplementer->insert();
+                // persisting
+                $gpuPersistingImplementer = new GPUPersistingImplementer($gpu);
+                $gpuPersistingImplementer->insert();
 
                 echo $i . " is finished already!\n";
             }

@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class ExternalPowerType 
 {
+    const AMOUNT = "amount";
+    const TYPE = "type";
+    const PIN_AMOUNT = "pinAmount";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

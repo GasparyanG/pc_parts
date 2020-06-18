@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class GpuCoolingType 
 {
+    const TYPE = "type";
+    const MEASURE = "measure";
+
     /**
      * @var int
      * @Column(type="integer", name="id")
