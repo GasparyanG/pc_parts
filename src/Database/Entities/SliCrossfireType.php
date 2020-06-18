@@ -34,9 +34,16 @@ class SliCrossfireType
      */
 	private $motherboards;
 
-	public function __construct()
+    /**
+     * @OneToMany(targetEntity="VideoCard", mappedBy="sliCrossfireType")
+     */
+    private $videoCards;
+
+
+    public function __construct()
     {
         $this->motherboards = new ArrayCollection();
+        $this->videoCards = new ArrayCollection();
     }
 
     /**
@@ -84,6 +91,25 @@ class SliCrossfireType
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
             $motherboard->addSliCrossfireType($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoCards()
+    {
+        return $this->videoCards;
+    }
+
+    /**
+     * @param VideoCard
+     */
+    public function addVideoCard(VideoCard $videoCard): void
+    {
+        if (!$this->videoCards->contains($videoCard)) {
+            $this->videoCards[] = $videoCard;
+            $videoCard->setSliCrossfireType($this);
         }
     }
 }

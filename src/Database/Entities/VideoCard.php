@@ -75,10 +75,12 @@ class VideoCard
 //     */
 //	private $gpuInterfaceId;
 //
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $sliCrossfireTypeId;
+    /**
+     * @var SliCrossfireType
+     * @ManyToOne(targetEntity="SliCrossfireType", inversedBy="videoCards")
+     * @JoinColumn(name="sli_crossfire_type_id")
+     */
+	private $sliCrossfireType;
 //
 //    /**
 //     * @ManyToOne(targetEntity="", inversedBy="")
@@ -280,21 +282,21 @@ class VideoCard
 //		$this->gpuInterfaceId = $gpuInterfaceId;
 //	}
 //
-//    /**
-//     * @return null|int
-//     */
-//	public function getSliCrossfireTypeId(): ?int
-//	{
-//		return $this->sliCrossfireTypeId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setSliCrossfireTypeId(?int $sliCrossfireTypeId): void
-//	{
-//		$this->sliCrossfireTypeId = $sliCrossfireTypeId;
-//	}
+    /**
+     * @return null|SliCrossfireType
+     */
+	public function getSliCrossfireType(): ?SliCrossfireType
+	{
+		return $this->sliCrossfireType;
+	}
+
+    /**
+     * @param null|SliCrossfireType
+     */
+	public function setSliCrossfireType(?SliCrossfireType $sliCrossfireType): void
+	{
+		$this->sliCrossfireType = $sliCrossfireType;
+	}
 //
 //    /**
 //     * @return null|int
