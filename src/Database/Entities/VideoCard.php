@@ -129,10 +129,20 @@ class VideoCard
      */
     private $gpuCoolingTypes;
 
+    /**
+     * @ManyToMany(targetEntity="GpuPort", mappedBy="videoCards")
+     * @JoinTable(name="gpus_ports",
+     *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="gpu_port_d", referencedColumnName="id")}
+     *      )
+     */
+    private $gpuPorts;
+
     public function __construct()
     {
         $this->externalPowerTypes = new ArrayCollection();
         $this->gpuCoolingTypes = new ArrayCollection();
+        $this->gpuPorts = new ArrayCollection();
     }
 
     /**
@@ -400,7 +410,7 @@ class VideoCard
     }
 
     /**
-     * @param VideoCard
+     * @param ExternalPowerType $externalPowerType
      */
     public function addExternalPowerType(ExternalPowerType $externalPowerType): void
     {
@@ -419,13 +429,32 @@ class VideoCard
     }
 
     /**
-     * @param VideoCard
+     * @param GpuCoolingType $gpuCoolingType
      */
     public function addGpuCoolingType(GpuCoolingType $gpuCoolingType): void
     {
         if (!$this->gpuCoolingTypes->contains($gpuCoolingType)) {
             $this->gpuCoolingTypes[] = $gpuCoolingType;
             $gpuCoolingType->addVideoCard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGpuPorts()
+    {
+        return $this->gpuPorts;
+    }
+
+    /**
+     * @param GpuPort $gpuPort
+     */
+    public function addGpuPort(GpuPort $gpuPort): void
+    {
+        if (!$this->gpuPorts->contains($gpuPort)) {
+            $this->gpuPorts[] = $gpuPort;
+            $gpuPort->addVideoCard($this);
         }
     }
 }
