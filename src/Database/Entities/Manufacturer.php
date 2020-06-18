@@ -57,6 +57,11 @@ class Manufacturer
      */
     private $motherboards;
 
+    /**
+     * @OneToMany(targetEntity="VideoCard", mappedBy="manufacturer")
+     */
+    private $videoCards;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
@@ -65,6 +70,7 @@ class Manufacturer
         $this->storages = new ArrayCollection();
         $this->powerSupplies = new ArrayCollection();
         $this->motherboards = new ArrayCollection();
+        $this->videoCards = new ArrayCollection();
     }
 
     /**
@@ -204,6 +210,25 @@ class Manufacturer
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
             $motherboard->setManufacturer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoCards()
+    {
+        return $this->videoCards;
+    }
+
+    /**
+     * @param VideoCard
+     */
+    public function addVideoCard(VideoCard $videoCard): void
+    {
+        if (!$this->videoCards->contains($videoCard)) {
+            $this->videoCards[] = $videoCard;
+            $videoCard->setManufacturer($this);
         }
     }
 }
