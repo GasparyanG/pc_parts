@@ -25,19 +25,25 @@ class MemoryType
 	private $type;
 
     /**
-     * @OneToMany(targetEntity="Motherboard", mappedBy="manufacturer")
+     * @OneToMany(targetEntity="Motherboard", mappedBy="memoryType")
      */
     private $motherboards;
 
     /**
-     * @OneToMany(targetEntity="MoboMemorySpeedType", mappedBy="motherboard")
+     * @OneToMany(targetEntity="MoboMemorySpeedType", mappedBy="memoryType")
      */
     private $moboMemorySpeedTypes;
+
+    /**
+     * @OneToMany(targetEntity="VideoCard", mappedBy="memoryType")
+     */
+    private $videoCards;
 
     public function __construct()
     {
         $this->motherboards = new ArrayCollection();
         $this->moboMemorySpeedTypes = new ArrayCollection();
+        $this->videoCards = new ArrayCollection();
     }
 
     /**
@@ -107,6 +113,25 @@ class MemoryType
         if (!$this->moboMemorySpeedTypes->contains($moboMemorySpeedType)) {
             $this->moboMemorySpeedTypes[] = $moboMemorySpeedType;
             $moboMemorySpeedType->setMemoryType($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoCards()
+    {
+        return $this->videoCards;
+    }
+
+    /**
+     * @param VideoCard
+     */
+    public function addVideoCard(VideoCard $videoCard): void
+    {
+        if (!$this->videoCards->contains($videoCard)) {
+            $this->videoCards[] = $videoCard;
+            $videoCard->setMemoryType($this);
         }
     }
 }

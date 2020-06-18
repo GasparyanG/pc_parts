@@ -107,7 +107,7 @@ class Chipset
     {
         if (!$this->videoCards->contains($videoCard)) {
             $this->videoCards[] = $videoCard;
-            $videoCard->setManufacturer($this);
+            $videoCard->setChipset($this);
         }
     }
 }

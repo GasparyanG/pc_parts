@@ -45,11 +45,12 @@ class VideoCard
 	 */
 	private $memory;
 
-//    /**
-//     * @var MemoryType
-//     * @ManyToOne(targetEntity="MemoryType", inversedBy="videoCards")
-//     */
-//	private $memoryType;
+    /**
+     * @var MemoryType
+     * @ManyToOne(targetEntity="MemoryType", inversedBy="videoCards")
+     * @JoinColumn(name="memory_type_id")
+     */
+	private $memoryType;
 
     /**
      * @var float
@@ -199,21 +200,21 @@ class VideoCard
 		$this->memory = $memory;
 	}
 
-//    /**
-//     * @return null|MemoryType
-//     */
-//	public function getMemoryType(): ?MemoryType
-//	{
-//		return $this->memoryType;
-//	}
-//
-//    /**
-//     * @param null|MemoryType
-//     */
-//	public function setMemoryType(?MemoryType $memoryType): void
-//	{
-//		$this->memoryType = $memoryType;
-//	}
+    /**
+     * @return null|MemoryType
+     */
+	public function getMemoryType(): ?MemoryType
+	{
+		return $this->memoryType;
+	}
+
+    /**
+     * @param null|MemoryType
+     */
+	public function setMemoryType(?MemoryType $memoryType): void
+	{
+		$this->memoryType = $memoryType;
+	}
 
     /**
      * @return null|float
