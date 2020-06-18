@@ -63,6 +63,14 @@ class GPUExtractionEnum
         self::HDMI => "hdmi"
     ];
 
+    static $gpu_ports = [
+        "dvi_ports" => "DVI",
+        "hdmi_ports" => "HDMI",
+        "mini_hdmi_ports" => "Mini-HDMI",
+        "displayport_ports" => "DisplayPort",
+        "mini_displayport_ports" => "Mini-DisplayPort"
+    ];
+
     static public function get_key(string $header): ?string
     {
         return self::$mapping[$header] ?? null;
