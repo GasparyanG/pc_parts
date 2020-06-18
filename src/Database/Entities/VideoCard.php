@@ -70,11 +70,13 @@ class VideoCard
 	 */
 	private $effectiveMemoryClock;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $gpuInterfaceId;
-//
+    /**
+     * @var GpuInterface
+     * @ManyToOne(targetEntity="GpuInterface", inversedBy="videoCards")
+     * @JoinColumn(name="gpu_interface_id")
+     */
+	private $gpuInterface;
+
     /**
      * @var SliCrossfireType
      * @ManyToOne(targetEntity="SliCrossfireType", inversedBy="videoCards")
@@ -269,21 +271,21 @@ class VideoCard
 	}
 
     /**
-//     * @return null|int
-//     */
-//	public function getGpuInterfaceId(): ?int
-//	{
-//		return $this->gpuInterfaceId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setGpuInterfaceId(?int $gpuInterfaceId): void
-//	{
-//		$this->gpuInterfaceId = $gpuInterfaceId;
-//	}
-//
+     * @return null|GpuInterface
+     */
+	public function getGpuInterface(): ?GpuInterface
+	{
+		return $this->gpuInterface;
+	}
+
+    /**
+     * @param null|GpuInterface
+     */
+	public function setGpuInterface(?GpuInterface $gpuInterface): void
+	{
+		$this->gpuInterface = $gpuInterface;
+	}
+
     /**
      * @return null|SliCrossfireType
      */
