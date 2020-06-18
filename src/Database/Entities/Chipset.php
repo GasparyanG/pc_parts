@@ -30,9 +30,15 @@ class Chipset
      */
     private $motherboards;
 
+    /**
+     * @OneToMany(targetEntity="VideoCard", mappedBy="chipset")
+     */
+    private $videoCards;
+
     public function __construct()
     {
         $this->motherboards = new ArrayCollection();
+        $this->videoCards = new ArrayCollection();
     }
 
     /**
@@ -83,6 +89,25 @@ class Chipset
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
             $motherboard->setChipset($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoCards()
+    {
+        return $this->videoCards;
+    }
+
+    /**
+     * @param VideoCard
+     */
+    public function addVideoCard(VideoCard $videoCard): void
+    {
+        if (!$this->videoCards->contains($videoCard)) {
+            $this->videoCards[] = $videoCard;
+            $videoCard->setManufacturer($this);
         }
     }
 }

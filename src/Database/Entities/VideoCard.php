@@ -33,11 +33,11 @@ class VideoCard
      */
 	private $manufacturer;
 
-//    /**
-//     * @var Chipset
-//     * @ManyToOne(targetEntity="Chipset", inversedBy="videoCards")
-//     */
-//	private $chipset;
+    /**
+     * @var Chipset
+     * @ManyToOne(targetEntity="Chipset", inversedBy="videoCards")
+     */
+	private $chipset;
 
     /**
      * @var float
@@ -167,21 +167,21 @@ class VideoCard
 		$this->manufacturer = $manufacturer;
 	}
 
-//    /**
-//     * @return null|Chipset
-//     */
-//	public function getChipset(): ?Chipset
-//	{
-//		return $this->chipset;
-//	}
-//
-//    /**
-//     * @param null|Chipset
-//     */
-//	public function setChipset(?Chipset $chipset): void
-//	{
-//		$this->chipset = $chipset;
-//	}
+    /**
+     * @return null|Chipset
+     */
+	public function getChipset(): ?Chipset
+	{
+		return $this->chipset;
+	}
+
+    /**
+     * @param null|Chipset
+     */
+	public function setChipset(?Chipset $chipset): void
+	{
+		$this->chipset = $chipset;
+	}
 
     /**
      * @return null|float
