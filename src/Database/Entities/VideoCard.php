@@ -120,9 +120,19 @@ class VideoCard
      */
     private $externalPowerTypes;
 
+    /**
+     * @ManyToMany(targetEntity="GpuCoolingType", mappedBy="videoCards")
+     * @JoinTable(name="gpus_cooling_types",
+     *      joinColumns={@JoinColumn(name="video_card_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="gpu_cooling_type_id", referencedColumnName="id")}
+     *      )
+     */
+    private $gpuCoolingTypes;
+
     public function __construct()
     {
         $this->externalPowerTypes = new ArrayCollection();
+        $this->gpuCoolingTypes = new ArrayCollection();
     }
 
     /**
@@ -397,6 +407,25 @@ class VideoCard
         if (!$this->externalPowerTypes->contains($externalPowerType)) {
             $this->externalPowerTypes[] = $externalPowerType;
             $externalPowerType->addVideoCard($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGpuCoolingTypes()
+    {
+        return $this->gpuCoolingTypes;
+    }
+
+    /**
+     * @param VideoCard
+     */
+    public function addGpuCoolingType(GpuCoolingType $gpuCoolingType): void
+    {
+        if (!$this->gpuCoolingTypes->contains($gpuCoolingType)) {
+            $this->gpuCoolingTypes[] = $gpuCoolingType;
+            $gpuCoolingType->addVideoCard($this);
         }
     }
 }
