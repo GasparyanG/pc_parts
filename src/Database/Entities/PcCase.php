@@ -33,10 +33,12 @@ class PcCase
      */
 	private $manufacturer;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $caseTypeId;
+    /**
+     * @var CaseType
+     * @ManyToOne(targetEntity="CaseType", inversedBy="pcCases")
+     * @JoinColumn(name="case_type_id")
+     */
+	private $caseType;
 
     /**
      * @var float
@@ -125,21 +127,21 @@ class PcCase
 		$this->manufacturer = $manufacturer;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getCaseTypeId(): ?int
-//	{
-//		return $this->caseTypeId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setCaseTypeId(?int $caseTypeId): void
-//	{
-//		$this->caseTypeId = $caseTypeId;
-//	}
+    /**
+     * @return null|CaseType
+     */
+	public function getCaseType(): ?CaseType
+	{
+		return $this->caseType;
+	}
+
+    /**
+     * @param null|CaseType
+     */
+	public function setCaseType(?CaseType $caseType): void
+	{
+		$this->caseType = $caseType;
+	}
 
     /**
      * @return null|float
