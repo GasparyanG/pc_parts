@@ -1,6 +1,8 @@
 <?php
 namespace App\Database\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @Entity
  * @Table(name="pc_cases")
@@ -66,6 +68,19 @@ class PcCase
      */
 	private $caseDimension;
 
+    /**
+     * @ManyToMany(targetEntity="Usb", inversedBy="colors")
+     * @JoinTable(name="cases_usbs",
+     *      joinColumns={@JoinColumn(name="case_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="usb_id", referencedColumnName="id")}
+     *      )
+     */
+    private $usbs;
+
+    public function __construct()
+    {
+        $this->usbs = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -210,4 +225,23 @@ class PcCase
 	{
 		$this->caseDimension = $caseDimension;
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getUsbs()
+    {
+        return $this->usbs;
+    }
+
+    /**
+     * @param Usb $usb
+     */
+    public function addUsb(Usb $usb): void
+    {
+        if (!$this->usbs->contains($usb)) {
+            $this->usbs[] = $usb;
+            $usb->addCase($this);
+        }
+    }
 }

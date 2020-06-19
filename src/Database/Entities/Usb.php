@@ -11,6 +11,7 @@ class Usb
 {
     const VERSION = "version";
     const GENERATION = "generation";
+    const TYPE = "type";
 
     /**
      * @var int
@@ -32,14 +33,30 @@ class Usb
 	 */
 	private $generation;
 
+	/**
+     * @var string|null
+     * @Column(type="string", name="type")
+	 */
+	private $type;
+
     /**
      * @OneToMany(targetEntity="MotherboardsUsb", mappedBy="usb")
      */
     private $motherboards;
 
+    /**
+     * @ManyToMany(targetEntity="PcCase", mappedBy="usbs")
+     * @JoinTable(name="cases_usbs",
+     *      joinColumns={@JoinColumn(name="usb_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="case_id", referencedColumnName="id")}
+     *      )
+     */
+    private $cases;
+
     public function __construct()
     {
         $this->motherboards = new ArrayCollection();
+        $this->cases = new ArrayCollection();
     }
 
     /**
@@ -91,6 +108,22 @@ class Usb
 	}
 
     /**
+     * @return string|null
+     */
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string|null $type
+     */
+    public function setType(?string $type): void
+    {
+        $this->type = $type;
+    }
+
+    /**
      * @return mixed
      */
     public function getMotherboards()
@@ -103,6 +136,25 @@ class Usb
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
             $motherboard->setUsb($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCases()
+    {
+        return $this->cases;
+    }
+
+    /**
+     * @param PcCase $usb
+     */
+    public function addCase(PcCase $usb): void
+    {
+        if (!$this->cases->contains($usb)) {
+            $this->cases[] = $usb;
+            $usb->addUsb($this);
         }
     }
 }
