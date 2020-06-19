@@ -104,12 +104,18 @@ class PcCase
      */
     private $bays;
 
+    /**
+     * @OneToMany(targetEntity="CaseGpuLengthType", mappedBy="case")
+     */
+    private $caseGpuLengthTypes;
+
     public function __construct()
     {
         $this->usbs = new ArrayCollection();
         $this->formFactors = new ArrayCollection();
         $this->expansionSlots = new ArrayCollection();
         $this->bays = new ArrayCollection();
+        $this->caseGpuLengthTypes = new ArrayCollection();
     }
 
     /**
@@ -329,6 +335,25 @@ class PcCase
         if (!$this->bays->contains($bay)) {
             $this->bays[] = $bay;
             $bay->addCase($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCaseGpuLengthTypes()
+    {
+        return $this->caseGpuLengthTypes;
+    }
+
+    /**
+     * @param CaseGpuLengthType $caseGpuLengthType
+     */
+    public function addCaseGpuLengthTypes(CaseGpuLengthType $caseGpuLengthType): void
+    {
+        if (!$this->bays->contains($caseGpuLengthType)) {
+            $this->caseGpuLengthTypes[] = $caseGpuLengthType;
+            $caseGpuLengthType->setCase($this);
         }
     }
 }
