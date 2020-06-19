@@ -95,11 +95,21 @@ class PcCase
      */
     private $expansionSlots;
 
+    /**
+     * @ManyToMany(targetEntity="CaseBay", inversedBy="pcCases")
+     * @JoinTable(name="cases_bays",
+     *      joinColumns={@JoinColumn(name="case_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="bay_id", referencedColumnName="id")}
+     *      )
+     */
+    private $bays;
+
     public function __construct()
     {
         $this->usbs = new ArrayCollection();
         $this->formFactors = new ArrayCollection();
         $this->expansionSlots = new ArrayCollection();
+        $this->bays = new ArrayCollection();
     }
 
     /**
@@ -300,6 +310,25 @@ class PcCase
         if (!$this->expansionSlots->contains($expansionSlot)) {
             $this->expansionSlots[] = $expansionSlot;
             $expansionSlot->addCase($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBays()
+    {
+        return $this->bays;
+    }
+
+    /**
+     * @param CaseBay $bay
+     */
+    public function addBay(CaseBay $bay): void
+    {
+        if (!$this->bays->contains($bay)) {
+            $this->bays[] = $bay;
+            $bay->addCase($this);
         }
     }
 }
