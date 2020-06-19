@@ -59,10 +59,12 @@ class PcCase
 	 */
 	private $powerSupplyShroud;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $caseDimensionId;
+    /**
+     * @var CaseDimension
+     * @ManyToOne(targetEntity="CaseDimension", inversedBy="pcCases")
+     * @JoinColumn(name="case_dimension_id")
+     */
+	private $caseDimension;
 
 
     /**
@@ -193,19 +195,19 @@ class PcCase
 		$this->powerSupplyShroud = $powerSupplyShroud;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getCaseDimensionId(): ?int
-//	{
-//		return $this->caseDimensionId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setCaseDimensionId(?int $caseDimensionId): void
-//	{
-//		$this->caseDimensionId = $caseDimensionId;
-//	}
+    /**
+     * @return null|CaseDimension
+     */
+	public function getCaseDimension(): ?CaseDimension
+	{
+		return $this->caseDimension;
+	}
+
+    /**
+     * @param null|CaseDimension
+     */
+	public function setCaseDimension(?CaseDimension $caseDimension): void
+	{
+		$this->caseDimension = $caseDimension;
+	}
 }
