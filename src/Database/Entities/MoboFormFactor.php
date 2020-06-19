@@ -26,13 +26,23 @@ class MoboFormFactor
 	private $type;
 
     /**
-     * @OneToMany(targetEntity="Motherboard", mappedBy="manufacturer")
+     * @OneToMany(targetEntity="Motherboard", mappedBy="moboFormFactor")
      */
     private $motherboards;
 
-	public function __construct()
+    /**
+     * @ManyToMany(targetEntity="PcCase", mappedBy="moboFormFactors")
+     * @JoinTable(name="cases_form_factors",
+     *      joinColumns={@JoinColumn(name="mobo_form_factor_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="case_id", referencedColumnName="id")}
+     *      )
+     */
+    private $cases;
+
+    public function __construct()
     {
         $this->motherboards = new ArrayCollection();
+        $this->cases = new ArrayCollection();
     }
 
     /**
@@ -83,6 +93,25 @@ class MoboFormFactor
         if (!$this->motherboards->contains($motherboard)) {
             $this->motherboards[] = $motherboard;
             $motherboard->setMoboFormFactor($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCases()
+    {
+        return $this->cases;
+    }
+
+    /**
+     * @param PcCase $pcCase
+     */
+    public function addCase(PcCase $pcCase): void
+    {
+        if (!$this->cases->contains($pcCase)) {
+            $this->cases[] = $pcCase;
+            $pcCase->addFormFactor($this);
         }
     }
 }

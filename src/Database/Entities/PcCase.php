@@ -69,7 +69,7 @@ class PcCase
 	private $caseDimension;
 
     /**
-     * @ManyToMany(targetEntity="Usb", inversedBy="colors")
+     * @ManyToMany(targetEntity="Usb", inversedBy="pcCases")
      * @JoinTable(name="cases_usbs",
      *      joinColumns={@JoinColumn(name="case_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="usb_id", referencedColumnName="id")}
@@ -77,9 +77,19 @@ class PcCase
      */
     private $usbs;
 
+    /**
+     * @ManyToMany(targetEntity="MoboFormFactor", inversedBy="pcCases")
+     * @JoinTable(name="cases_form_factors",
+     *      joinColumns={@JoinColumn(name="case_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="mobo_form_factor_id", referencedColumnName="id")}
+     *      )
+     */
+    private $formFactors;
+
     public function __construct()
     {
         $this->usbs = new ArrayCollection();
+        $this->formFactors = new ArrayCollection();
     }
 
     /**
@@ -242,6 +252,25 @@ class PcCase
         if (!$this->usbs->contains($usb)) {
             $this->usbs[] = $usb;
             $usb->addCase($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormFactors()
+    {
+        return $this->formFactors;
+    }
+
+    /**
+     * @param MoboFormFactor $formFactor
+     */
+    public function addFormFactor(MoboFormFactor $formFactor): void
+    {
+        if (!$this->formFactors->contains($formFactor)) {
+            $this->formFactors[] = $formFactor;
+            $formFactor->addCase($this);
         }
     }
 }
