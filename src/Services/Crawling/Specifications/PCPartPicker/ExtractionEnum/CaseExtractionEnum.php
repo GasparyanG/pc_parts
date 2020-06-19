@@ -12,7 +12,7 @@ class CaseExtractionEnum
     // Headers to extract
     const MANUFACTURER = "Manufacturer";
     const PART_NUMBER = "Part #";
-    const FORM_FACTOR = "Form Factor";
+    const FORM_FACTOR = "Motherboard Form Factor";
     const TYPE = "Type";
     const COLOR = "Color";
     const POWER_SUPPLY = "Power Supply";
@@ -26,7 +26,7 @@ class CaseExtractionEnum
     const DIMENSIONS = "Dimensions";
     const INTERNAL_2_5_BAYS = "Internal 2.5\" Bays";
     const INTERNAL_3_5_BAYS = "Internal 3.5\" Bays";
-    const INTERNAL_5_2_5_BAYS = "External 5.25\" Bays";
+    const EXTERNAL_5_2_5_BAYS = "External 5.25\" Bays";
     const VOLUME = "Volume";
 
     // Keys to refer afterwards
@@ -47,8 +47,19 @@ class CaseExtractionEnum
         self::DIMENSIONS => "dimensions",
         self::INTERNAL_2_5_BAYS => "internal_2_5_bays",
         self::INTERNAL_3_5_BAYS => "internal_3_5_bays",
-        self::INTERNAL_5_2_5_BAYS => "internal_5_2_5_bays",
+        self::EXTERNAL_5_2_5_BAYS => "external_5_2_5_bays",
         self::VOLUME => "volume"
+    ];
+
+    static $expansion_types = [
+        "full_height_expansion_slots" => "Full-Height",
+        "half_height_expansion_slots" => "Half-Height"
+    ];
+
+    static $bays = [
+        "internal_2_5_bays" => ["Internal", 2.5],
+        "internal_3_5_bays" => ["Internal", 3.5],
+        "external_5_2_5_bays" => ["External", 5.25]
     ];
 
     static public function get_key(string $header): ?string

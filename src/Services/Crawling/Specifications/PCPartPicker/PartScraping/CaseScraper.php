@@ -5,6 +5,7 @@ namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
 
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
+use App\Services\Crawling\Specifications\PCPartPicker\Parts\PcCase;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
@@ -95,7 +96,12 @@ class CaseScraper extends AbstractScraping
     public function crawl(): void
     {
         try {
-            foreach ($this->fetchCollection() as $part) {
+            $collection = $this->fetchCollection();
+            for ($i=0; $i<count($collection); ++$i) {
+                $part = $collection[$i];
+
+                echo $i . " is starting... \n";
+
                 if (!isset($part[Cooler::URL]) && !isset($part[Cooler::NAME])
                     && !filter_var($part["url"], FILTER_VALIDATE_URL)) continue;
 
@@ -109,12 +115,14 @@ class CaseScraper extends AbstractScraping
                 $data_from_spec_page[Cooler::NAME] = $part[Cooler::NAME];
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
 
-                file_put_contents(__DIR__ . "/test_case.txt", print_r($data_from_spec_page, true), FILE_APPEND);
-//                $memory = new Memory($data_from_spec_page);
+                $case = new PcCase($data_from_spec_page);
+                file_put_contents(__DIR__ . "/test_case.txt", print_r($case->toArray(), true), FILE_APPEND);
 //
 //                // persisting
 //                $coolerPersistingImplementer = new MemoryPersistingImplementation($memory);
 //                $coolerPersistingImplementer->insert();
+
+                echo $i . " is finished already!\n";
             }
         } catch (GuzzleException $e) {
             echo $e->getMessage();
