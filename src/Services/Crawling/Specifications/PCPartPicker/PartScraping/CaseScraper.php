@@ -4,6 +4,7 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartScraping;
 
 
+use App\Services\Crawling\Specifications\PCPartPicker\PartPersisting\CasePersistingImplementer;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\Cooler;
 use App\Services\Crawling\Specifications\PCPartPicker\Parts\PcCase;
 use GuzzleHttp\Exception\GuzzleException;
@@ -116,11 +117,10 @@ class CaseScraper extends AbstractScraping
                 $data_from_spec_page[Cooler::URL] = $part[Cooler::URL];
 
                 $case = new PcCase($data_from_spec_page);
-                file_put_contents(__DIR__ . "/test_case.txt", print_r($case->toArray(), true), FILE_APPEND);
-//
-//                // persisting
-//                $coolerPersistingImplementer = new MemoryPersistingImplementation($memory);
-//                $coolerPersistingImplementer->insert();
+
+                // persisting
+                $casePersistingImplementer = new CasePersistingImplementer($case);
+                $casePersistingImplementer->insert();
 
                 echo $i . " is finished already!\n";
             }

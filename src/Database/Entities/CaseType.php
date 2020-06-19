@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class CaseType 
 {
+    const TYPE = "type";
     /**
      * @var int
      * @Column(type="integer", name="id")

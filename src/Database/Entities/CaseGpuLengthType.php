@@ -7,6 +7,10 @@ namespace App\Database\Entities;
  */
 class CaseGpuLengthType 
 {
+    const LENGTH = "length";
+    const CAGE = "cage";
+    const CASE = "case";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

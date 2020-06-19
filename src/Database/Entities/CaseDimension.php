@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class CaseDimension 
 {
+    const LENGTH = "length";
+    const WIDTH = "width";
+    const HEIGHT = "height";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

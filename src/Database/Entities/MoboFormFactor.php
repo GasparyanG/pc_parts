@@ -31,7 +31,7 @@ class MoboFormFactor
     private $motherboards;
 
     /**
-     * @ManyToMany(targetEntity="PcCase", mappedBy="moboFormFactors")
+     * @ManyToMany(targetEntity="PcCase", mappedBy="formFactors")
      * @JoinTable(name="cases_form_factors",
      *      joinColumns={@JoinColumn(name="mobo_form_factor_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="case_id", referencedColumnName="id")}

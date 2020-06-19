@@ -7,6 +7,9 @@ namespace App\Database\Entities;
  */
 class CasePartNumber 
 {
+    const PART_NUMBER = "partNumber";
+    const CASE = "case";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

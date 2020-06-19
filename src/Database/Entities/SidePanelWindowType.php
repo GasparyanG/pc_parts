@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class SidePanelWindowType 
 {
+    const TYPE = "type";
     /**
      * @var int
      * @Column(type="integer", name="id")

@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class CaseBay 
 {
+    const TYPE = "type";
+    const SIZE = "size";
+    const AMOUNT = "amount";
+
     /**
      * @var int
      * @Column(type="integer", name="id")
@@ -36,7 +40,7 @@ class CaseBay
 	private $amount;
 
     /**
-     * @ManyToMany(targetEntity="PcCase", mappedBy="caseBays")
+     * @ManyToMany(targetEntity="PcCase", mappedBy="bays")
      * @JoinTable(name="cases_bays",
      *      joinColumns={@JoinColumn(name="bay_id", referencedColumnName="id")},
      *      inverseJoinColumns={@JoinColumn(name="case_id", referencedColumnName="id")}
