@@ -67,6 +67,15 @@ class Color
      */
     private $videoCards;
 
+    /**
+     * @ManyToMany(targetEntity="PcCase", mappedBy="colors")
+     * @JoinTable(name="cases_colors",
+     *      joinColumns={@JoinColumn(name="color_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="case_id", referencedColumnName="id")}
+     *      )
+     */
+    private $cases;
+
     public function __construct()
     {
         $this->coolers = new ArrayCollection();
@@ -74,6 +83,7 @@ class Color
         $this->powerSupplies = new ArrayCollection();
         $this->motherboards = new ArrayCollection();
         $this->videoCards = new ArrayCollection();
+        $this->cases = new ArrayCollection();
     }
 
     /**
@@ -189,6 +199,25 @@ class Color
         if (!$this->videoCards->contains($videoCard)) {
             $this->videoCards[] = $videoCard;
             $videoCard->addColor($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCases()
+    {
+        return $this->cases;
+    }
+
+    /**
+     * @param PcCase $case
+     */
+    public function addCase(PcCase $case): void
+    {
+        if (!$this->cases->contains($case)) {
+            $this->cases[] = $case;
+            $case->addColor($this);
         }
     }
 }

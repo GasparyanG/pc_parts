@@ -109,6 +109,21 @@ class PcCase
      */
     private $caseGpuLengthTypes;
 
+    /**
+     * @var float|null
+     * @Column(type="float", name="volume")
+     */
+    private $volume;
+
+    /**
+     * @ManyToMany(targetEntity="Color", inversedBy="casses")
+     * @JoinTable(name="cases_colors",
+     *      joinColumns={@JoinColumn(name="case_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="color_id", referencedColumnName="id")}
+     *      )
+     */
+    private $colors;
+
     public function __construct()
     {
         $this->usbs = new ArrayCollection();
@@ -116,6 +131,7 @@ class PcCase
         $this->expansionSlots = new ArrayCollection();
         $this->bays = new ArrayCollection();
         $this->caseGpuLengthTypes = new ArrayCollection();
+        $this->colors = new ArrayCollection();
     }
 
     /**
@@ -354,6 +370,38 @@ class PcCase
         if (!$this->bays->contains($caseGpuLengthType)) {
             $this->caseGpuLengthTypes[] = $caseGpuLengthType;
             $caseGpuLengthType->setCase($this);
+        }
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getVolume(): ?float
+    {
+        return $this->volume;
+    }
+
+    /**
+     * @param float|null $volume
+     */
+    public function setVolume(?float $volume): void
+    {
+        $this->volume = $volume;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColors()
+    {
+        return $this->colors;
+    }
+
+    public function addColor(Color $color): void
+    {
+        if(!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+            $color->addCase($this);
         }
     }
 }
