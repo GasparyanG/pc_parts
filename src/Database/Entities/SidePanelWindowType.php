@@ -5,9 +5,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Entity
- * @Table(name="case_types")
+ * @Table(name="side_panel_window_types")
  */
-class CaseType 
+class SidePanelWindowType 
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ class CaseType
 	private $type;
 
     /**
-     * @OneToMany(targetEntity="PcCase", mappedBy="caseType")
+     * @OneToMany(targetEntity="PcCase", mappedBy="sidePanelWindowType")
      */
     private $pcCases;
 
@@ -80,7 +80,7 @@ class CaseType
     {
         if (!$this->pcCases->contains($pcCase)) {
             $this->pcCases[] = $pcCase;
-            $pcCase->setCaseType($this);
+            $pcCase->setSidePanelWindowType($this);
         }
     }
 }

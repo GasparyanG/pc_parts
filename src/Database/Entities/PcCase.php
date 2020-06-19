@@ -46,10 +46,12 @@ class PcCase
 	 */
 	private $powerSupply;
 
-//    /**
-//     * @ManyToOne(targetEntity="", inversedBy="")
-//     */
-//	private $sidePanelWindowTypeId;
+    /**
+     * @var SidePanelWindowType
+     * @ManyToOne(targetEntity="SidePanelWindowType", inversedBy="pcCases")
+     * @JoinColumn(name="side_panel_window_type_id")
+     */
+	private $sidePanelWindowType;
 
     /**
      * @var bool
@@ -159,21 +161,21 @@ class PcCase
 		$this->powerSupply = $powerSupply;
 	}
 
-//    /**
-//     * @return null|int
-//     */
-//	public function getSidePanelWindowTypeId(): ?int
-//	{
-//		return $this->sidePanelWindowTypeId;
-//	}
-//
-//    /**
-//     * @param null|int
-//     */
-//	public function setSidePanelWindowTypeId(?int $sidePanelWindowTypeId): void
-//	{
-//		$this->sidePanelWindowTypeId = $sidePanelWindowTypeId;
-//	}
+    /**
+     * @return null|SidePanelWindowType
+     */
+	public function getSidePanelWindowType(): ?SidePanelWindowType
+	{
+		return $this->sidePanelWindowType;
+	}
+
+    /**
+     * @param null|SidePanelWindowType
+     */
+	public function setSidePanelWindowType(?SidePanelWindowType $sidePanelWindowType): void
+	{
+		$this->sidePanelWindowType = $sidePanelWindowType;
+	}
 
     /**
      * @return null|bool
