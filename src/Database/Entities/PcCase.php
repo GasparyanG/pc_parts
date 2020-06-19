@@ -124,6 +124,11 @@ class PcCase
      */
     private $colors;
 
+    /**
+     * @OneToMany(targetEntity="CasePartNumber", mappedBy="case")
+     */
+    private $casePartNumbers;
+
     public function __construct()
     {
         $this->usbs = new ArrayCollection();
@@ -132,6 +137,7 @@ class PcCase
         $this->bays = new ArrayCollection();
         $this->caseGpuLengthTypes = new ArrayCollection();
         $this->colors = new ArrayCollection();
+        $this->casePartNumbers = new ArrayCollection();
     }
 
     /**
@@ -367,7 +373,7 @@ class PcCase
      */
     public function addCaseGpuLengthTypes(CaseGpuLengthType $caseGpuLengthType): void
     {
-        if (!$this->bays->contains($caseGpuLengthType)) {
+        if (!$this->caseGpuLengthTypes->contains($caseGpuLengthType)) {
             $this->caseGpuLengthTypes[] = $caseGpuLengthType;
             $caseGpuLengthType->setCase($this);
         }
@@ -402,6 +408,25 @@ class PcCase
         if(!$this->colors->contains($color)) {
             $this->colors[] = $color;
             $color->addCase($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCasePartNumbers()
+    {
+        return $this->casePartNumbers;
+    }
+
+    /**
+     * @param CasePartNumber $casePartNumber
+     */
+    public function addCasePartNumber(CasePartNumber $casePartNumber): void
+    {
+        if (!$this->casePartNumbers->contains($casePartNumber)) {
+            $this->casePartNumbers[] = $casePartNumber;
+            $casePartNumber->setCase($this);
         }
     }
 }
