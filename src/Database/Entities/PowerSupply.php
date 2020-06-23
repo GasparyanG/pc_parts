@@ -92,11 +92,17 @@ class PowerSupply
 	 */
 	private $modular;
 
+	/**
+     * @OneToMany(targetEntity="PsuPrice", mappedBy="psu")
+	 */
+	private $psuPrices;
+
     public function __construct()
     {
         $this->psuConnectors = new ArrayCollection();
         $this->psuPartNumbers = new ArrayCollection();
         $this->colors = new ArrayCollection();
+        $this->psuPrices = new ArrayCollection();
     }
 
     /**
@@ -313,6 +319,25 @@ class PowerSupply
         if (!$this->colors->contains($color)) {
             $this->colors[] = $color;
             $color->addPowerSupply($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPsuPrices()
+    {
+        return $this->psuPrices;
+    }
+
+    /**
+     * @param PsuPrice $psuPrice
+     */
+    public function addPsuPrice(PsuPrice $psuPrice): void
+    {
+        if (!$this->psuPrices->contains($psuPrice)) {
+            $this->psuPrices[] = $psuPrice;
+            $psuPrice->setPsu($this);
         }
     }
 }
