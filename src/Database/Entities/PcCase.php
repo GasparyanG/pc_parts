@@ -129,6 +129,11 @@ class PcCase
      */
     private $casePartNumbers;
 
+    /**
+     * @OneToMany(targetEntity="CasePrice", mappedBy="case")
+     */
+    private $casePrices;
+
     public function __construct()
     {
         $this->usbs = new ArrayCollection();
@@ -138,6 +143,7 @@ class PcCase
         $this->caseGpuLengthTypes = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->casePartNumbers = new ArrayCollection();
+        $this->casePrices = new ArrayCollection();
     }
 
     /**
@@ -427,6 +433,25 @@ class PcCase
         if (!$this->casePartNumbers->contains($casePartNumber)) {
             $this->casePartNumbers[] = $casePartNumber;
             $casePartNumber->setCase($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCasePrices()
+    {
+        return $this->casePrices;
+    }
+
+    /**
+     * @param CasePrice $casePrice
+     */
+    public function addCasePrice(CasePrice $casePrice): void
+    {
+        if (!$this->casePrices->contains($casePrice)) {
+            $this->casePrices[] = $casePrice;
+            $casePrice->setCase($this);
         }
     }
 }

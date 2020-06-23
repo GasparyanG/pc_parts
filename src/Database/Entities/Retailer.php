@@ -76,6 +76,11 @@ class Retailer
      */
 	private $cpuPrices;
 
+    /**
+     * @OneToMany(targetEntity="CasePrice", mappedBy="retailer")
+     */
+	private $casePrices;
+
     public function __construct()
     {
         $this->psuPrices = new ArrayCollection();
@@ -85,6 +90,7 @@ class Retailer
         $this->gpuPrices = new ArrayCollection();
         $this->coolerPrices = new ArrayCollection();
         $this->cpuPrices = new ArrayCollection();
+        $this->casePrices = new ArrayCollection();
     }
 
     /**
@@ -297,6 +303,25 @@ class Retailer
         if (!$this->cpuPrices->contains($cpuPrice)) {
             $this->cpuPrices[] = $cpuPrice;
             $cpuPrice->setRetailer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCasePrices()
+    {
+        return $this->casePrices;
+    }
+
+    /**
+     * @param CasePrice $casePrice
+     */
+    public function addCasePrice(CasePrice $casePrice): void
+    {
+        if (!$this->casePrices->contains($casePrice)) {
+            $this->casePrices[] = $casePrice;
+            $casePrice->setRetailer($this);
         }
     }
 }
