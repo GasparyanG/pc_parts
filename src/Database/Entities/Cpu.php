@@ -166,9 +166,15 @@ class Cpu
      */
     private $cpuPartNumbers;
 
+    /**
+     * @OneToMany(targetEntity="CpuPrice", mappedBy="cpu")
+     */
+    private $cpuPrices;
+
     public function __construct()
     {
         $this->cpuPartNumbers = new ArrayCollection();
+        $this->cpuPrices = new ArrayCollection();
     }
 
     /**
@@ -555,6 +561,25 @@ class Cpu
         if (!$this->cpuPartNumbers->contains($cpuPartNumbers)) {
             $this->cpuPartNumbers[] = $cpuPartNumbers;
             $cpuPartNumbers->setCooler($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCpuPrices()
+    {
+        return $this->cpuPrices;
+    }
+
+    /**
+     * @param CpuPrice $cpuPrice
+     */
+    public function addCpuPrice(CpuPrice $cpuPrice): void
+    {
+        if (!$this->cpuPrices->contains($cpuPrice)) {
+            $this->cpuPrices[] = $cpuPrice;
+            $cpuPrice->setCpu($this);
         }
     }
 }
