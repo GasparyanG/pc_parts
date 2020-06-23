@@ -114,11 +114,17 @@ class Cooler
      */
     private $coolerPartNumbers;
 
+    /**
+     * @OneToMany(targetEntity="CoolerPrice", mappedBy="cooler")
+     */
+    private $coolerPrices;
+
     public function __construct()
     {
         $this->colors = new ArrayCollection();
         $this->cpuSockets = new ArrayCollection();
         $this->coolerPartNumbers = new ArrayCollection();
+        $this->coolerPrices = new ArrayCollection();
     }
 
     /**
@@ -374,6 +380,25 @@ class Cooler
         if (!$this->coolerPartNumbers->contains($partNumber)) {
             $this->coolerPartNumbers[] = $partNumber;
             $partNumber->setCooler($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCoolerPrices()
+    {
+        return $this->coolerPrices;
+    }
+
+    /**
+     * @param CoolerPrice $coolerPrice
+     */
+    public function addCoolerPrice(CoolerPrice $coolerPrice): void
+    {
+        if (!$this->coolerPrices->contains($coolerPrice)) {
+            $this->coolerPrices[] = $coolerPrice;
+            $coolerPrice->setCooler($this);
         }
     }
 }
