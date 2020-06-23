@@ -61,12 +61,18 @@ class Retailer
      */
 	private $memoryPrices;
 
+    /**
+     * @OneToMany(targetEntity="GpuPrice", mappedBy="retailer")
+     */
+	private $gpuPrices;
+
     public function __construct()
     {
         $this->psuPrices = new ArrayCollection();
         $this->storagePrices = new ArrayCollection();
         $this->moboPrices = new ArrayCollection();
         $this->memoryPrices = new ArrayCollection();
+        $this->gpuPrices = new ArrayCollection();
     }
 
     /**
@@ -222,6 +228,25 @@ class Retailer
         if (!$this->memoryPrices->contains($memoryPrice)) {
             $this->memoryPrices[] = $memoryPrice;
             $memoryPrice->setRetailer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGpuPrices()
+    {
+        return $this->gpuPrices;
+    }
+
+    /**
+     * @param MemoryPrice $gpuPrice
+     */
+    public function addGpuPrice(MemoryPrice $gpuPrice): void
+    {
+        if (!$this->gpuPrices->contains($gpuPrice)) {
+            $this->gpuPrices[] = $gpuPrice;
+            $gpuPrice->setRetailer($this);
         }
     }
 }
