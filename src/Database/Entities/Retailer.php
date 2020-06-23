@@ -46,9 +46,15 @@ class Retailer
 	 */
 	private $psuPrices;
 
+	/**
+     * @OneToMany(targetEntity="StoragePrice", mappedBy="retailer")
+	 */
+	private $storagePrices;
+
 	public function __construct()
     {
         $this->psuPrices = new ArrayCollection();
+        $this->storagePrices = new ArrayCollection();
     }
 
     /**
@@ -147,6 +153,25 @@ class Retailer
         if (!$this->psuPrices->contains($psuPrice)) {
             $this->psuPrices[] = $psuPrice;
             $psuPrice->setRetailer($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStoragePrices()
+    {
+        return $this->storagePrices;
+    }
+
+    /**
+     * @param StoragePrice $storagePrice
+     */
+    public function addStoragePrice(StoragePrice $storagePrice): void
+    {
+        if (!$this->storagePrices->contains($storagePrice)) {
+            $this->storagePrices[] = $storagePrice;
+            $storagePrice->setRetailer($this);
         }
     }
 }

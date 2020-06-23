@@ -82,9 +82,15 @@ class Storage
      */
     private $storagePartNumbers;
 
+    /**
+     * @OneToMany(targetEntity="StoragePrice", mappedBy="storage")
+     */
+    private $storagePrices;
+
     public function __construct()
     {
         $this->storagePartNumbers = new ArrayCollection();
+        $this->storagePrices = new ArrayCollection();
     }
 
     /**
@@ -263,6 +269,25 @@ class Storage
         if (!$this->storagePartNumbers->contains($storagePartNumber)) {
             $this->storagePartNumbers[] = $storagePartNumber;
             $storagePartNumber->setStorage($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStoragePrices()
+    {
+        return $this->storagePrices;
+    }
+
+    /**
+     * @param StoragePrice $storagePrice
+     */
+    public function addStoragePrice(StoragePrice $storagePrice): void
+    {
+        if (!$this->storagePrices->contains($storagePrice)) {
+            $this->storagePrices[] = $storagePrice;
+            $storagePrice->setStorage($this);
         }
     }
 }
