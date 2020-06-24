@@ -4,7 +4,10 @@
 namespace App\Services\Crawling\RetailerSpecificData\Retailers;
 
 
+use App\Database\Entities\Retailer;
+use App\Services\Crawling\RetailerSpecificData\PersistingImplementers\AbstractPersistingImplementer;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -13,11 +16,14 @@ class Amazon extends AbstractRetailerCrawler
     const AMOUNT_OF_PRODUCTS_TO_WATCH = 4;
     const STARTING_PRODUCT = 2;
 
+    public static $name = "Amazon";
+
     /**
      * {@inheritDoc}
      */
     protected static $baseUrl = "https://www.amazon.com/";
 
+    // TODO: Search in name/title as well
     // css ids meant for searchTerm (i.e. whether it is under given ids or not)
     protected static $technicalDetailsId = "productDetails_techSpec_section_1";
     protected static $technicalDetailsId2 = "productDetails_techSpec_section_2";
@@ -84,7 +90,7 @@ class Amazon extends AbstractRetailerCrawler
         return null;
     }
 
-    public function crawl(string $searchTerm): void
+    public function crawl(string $searchTerm, int $entityId): void
     {
         $crawler = new Crawler($this->search($searchTerm)->getBody()->getContents(), self::$baseUrl);
         $xpathToSearchWith = $this->desiredXpath($crawler, self::$xPaths);
@@ -106,8 +112,6 @@ class Amazon extends AbstractRetailerCrawler
             catch (\InvalidArgumentException $e) {}
         }
 
-        var_dump($linksToCrawl);
-
         foreach($linksToCrawl as $link) {
             // change referer
             $headers = self::$headers;
@@ -115,24 +119,42 @@ class Amazon extends AbstractRetailerCrawler
 
             // make request
             $request = new Request("GET", $link["url"], $headers);
-            $response = $this->client->send($request);
+            $response = $this->client->send($request, [RequestOptions::DELAY => self::$delay]);
 
             if ($this->containsModelNumber($response, $searchTerm)) {
-                $this->crawledData = ["price" => $link["price"]];
+                $this->crawledData = [
+                    AbstractPersistingImplementer::PRICE => $link[AbstractPersistingImplementer::PRICE],
+                    AbstractPersistingImplementer::RETAILER_ID => $this->retailerId(),
+                    AbstractPersistingImplementer::ENTITY_ID => $entityId
+                ];
                 break;
             }
         }
     }
 
-    private function extractPrice(Crawler $crawler, ?string $priceXPathToSearchWith, int $i): ?string
+    private function extractPrice(Crawler $crawler, ?string $priceXPathToSearchWith, int $i): ?float
     {
         try {
-            // TODO: get rid of $ (dollar) sign
-            return $crawler->filterXPath(sprintf($priceXPathToSearchWith, $i))->text();
+
+            $price = $crawler->filterXPath(sprintf($priceXPathToSearchWith, $i))->text();
+            return $this->preparePrice($price);
         }
         catch (\InvalidArgumentException $e) {
             return null;
         }
+    }
+
+    private function preparePrice(string $priceString): ?float
+    {
+        // single quoted string is required, because $ sign will be treated as variable sign
+        // see https://stackoverflow.com/questions/5358010/regex-failing-when-pattern-involves-dollar-sign
+        $pattern = '~^\$([\d.]+)$~i';
+        $matches = [];
+        preg_match($pattern, $priceString, $matches);
+
+        if (count($matches) > 0)
+            return $matches[1];
+        return null;
     }
 
     protected function prepareSearchUrl(string $searchTerm): string
@@ -163,5 +185,16 @@ class Amazon extends AbstractRetailerCrawler
         });
 
         return $technicalDetails ?? [];
+    }
+
+    protected function retailerId(): int
+    {
+        $retailer = $this->em->getRepository(Retailer::class)->findOneBy(
+            [
+                Retailer::NAME => static::$name
+            ]
+        );
+
+        return $retailer->getId();
     }
 }

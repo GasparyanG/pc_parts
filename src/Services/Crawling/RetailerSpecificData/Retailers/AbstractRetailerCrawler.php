@@ -4,6 +4,8 @@
 namespace App\Services\Crawling\RetailerSpecificData\Retailers;
 
 
+use App\Database\Connection;
+use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Client;
 
 abstract class AbstractRetailerCrawler
@@ -31,9 +33,20 @@ abstract class AbstractRetailerCrawler
      */
     protected $client;
 
+    /**
+     * @var int
+     */
+    protected static $delay = 8;
+
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+
     public function __construct()
     {
         $this->client = new Client();
+        $this->em = Connection::getEntityManager();
     }
 
     /**

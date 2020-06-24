@@ -383,6 +383,11 @@ class Cooler
         }
     }
 
+    public function getPartNumbers()
+    {
+        return $this->coolerPartNumbers;
+    }
+
     /**
      * @return mixed
      */

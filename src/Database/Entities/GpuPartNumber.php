@@ -77,4 +77,9 @@ class GpuPartNumber
 	{
 		$this->videoCard = $videoCard;
 	}
+
+	public function getEntityId(): int
+    {
+        return $this->videoCard->getId();
+    }
 }

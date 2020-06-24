@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Retailer 
 {
+    const NAME = "name";
+
     /**
      * @var int
      * @Column(type="integer", name="id")
