@@ -80,4 +80,9 @@ class StoragePartNumber
     {
         $this->storage = $storage;
     }
+
+    public function getEntityId(): int
+    {
+        return $this->storage->getId();
+    }
 }

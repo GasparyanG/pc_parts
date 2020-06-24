@@ -272,6 +272,11 @@ class Storage
         }
     }
 
+    public function getPartNumbers()
+    {
+        return $this->storagePartNumbers;
+    }
+
     /**
      * @return mixed
      */
