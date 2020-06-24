@@ -79,4 +79,9 @@ class CasePartNumber
 	{
 		$this->case = $case;
 	}
+
+	public function getEntityId(): int
+    {
+        return $this->case->getId();
+    }
 }

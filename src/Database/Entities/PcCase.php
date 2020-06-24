@@ -436,6 +436,11 @@ class PcCase
         }
     }
 
+    public function getPartNumbers()
+    {
+        return $this->casePartNumbers;
+    }
+
     /**
      * @return mixed
      */
