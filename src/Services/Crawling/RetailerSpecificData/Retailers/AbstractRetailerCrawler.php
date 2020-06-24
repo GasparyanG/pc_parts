@@ -64,4 +64,6 @@ abstract class AbstractRetailerCrawler
     {
         $this->crawledData = $crawledData;
     }
+
+    abstract public function crawl(string $searchTerm, int $entityId): void;
 }
