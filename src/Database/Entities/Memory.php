@@ -319,6 +319,11 @@ class Memory
         }
     }
 
+    public function getPartNumbers()
+    {
+        return $this->memoryPartNumbers;
+    }
+
     /**
      * @return mixed
      */

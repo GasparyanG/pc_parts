@@ -15,7 +15,8 @@ $abstractFactories = [
     \App\Services\Crawling\RetailerSpecificData\AbstractFactories\MoboAbstractFactory::class,
     \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CoolerAbstractFactory::class,
     \App\Services\Crawling\RetailerSpecificData\AbstractFactories\StorageAbstractFactory::class,
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CaseAbstractFactory::class
+    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CaseAbstractFactory::class,
+    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\MemoryAbstractFactory::class
 ];
 
 function filterPartNumber(string $partNumber): ?string

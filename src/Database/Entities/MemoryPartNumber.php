@@ -80,4 +80,9 @@ class MemoryPartNumber
     {
         $this->memory = $memory;
     }
+
+    public function getEntityId(): int
+    {
+        return $this->memory->getId();
+    }
 }
