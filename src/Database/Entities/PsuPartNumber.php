@@ -9,6 +9,7 @@ class PsuPartNumber
 {
     const PART_NUMBER = "partNumber";
     const POWER_SUPPLY = "powerSupply";
+
     /**
      * @var int
      * @Column(type="integer", name="id")
@@ -77,4 +78,9 @@ class PsuPartNumber
 	{
 		$this->powerSupply = $powerSupply;
 	}
+
+	public function getEntityId(): int
+    {
+        return $this->powerSupply->getId();
+    }
 }

@@ -303,6 +303,11 @@ class PowerSupply
         }
     }
 
+    public function getPartNumbers()
+    {
+        return $this->psuPartNumbers;
+    }
+
     /**
      * @return mixed
      */
