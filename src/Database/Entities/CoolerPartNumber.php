@@ -80,4 +80,9 @@ class CoolerPartNumber
     {
         $this->cooler = $cooler;
     }
+
+    public function getEntityId(): int
+    {
+        return $this->cooler->getId();
+    }
 }
