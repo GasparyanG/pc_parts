@@ -80,4 +80,9 @@ class CpuPartNumber
     {
         $this->cpu = $cpu;
     }
+
+    public function getEntityId(): int
+    {
+        return $this->cpu->getId();
+    }
 }

@@ -9,7 +9,8 @@ $retailers = [
 ];
 
 $abstractFactories = [
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\GpuAbstractFactory::class
+    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\GpuAbstractFactory::class,
+    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CpuAbstractFactory::class
 ];
 
 function filterPartNumber(string $partNumber): ?string

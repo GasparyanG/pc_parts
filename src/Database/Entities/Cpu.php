@@ -564,6 +564,11 @@ class Cpu
         }
     }
 
+    public function getPartNumbers()
+    {
+        return $this->cpuPartNumbers;
+    }
+
     /**
      * @return mixed
      */

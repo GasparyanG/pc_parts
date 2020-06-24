@@ -4,23 +4,15 @@
 namespace App\Services\Crawling\RetailerSpecificData\AbstractFactories;
 
 
-use App\Services\Crawling\RetailerSpecificData\PersistingImplementers\AbstractPersistingImplementer;
-
-class GpuAbstractFactory
+class GpuAbstractFactory extends AbstractFactory
 {
     /**
-     * @var string
+     * {@inheritDoc}
      */
     protected $persistingImplementer = "App\Services\Crawling\RetailerSpecificData\PersistingImplementers\GpuPricePersistingImplementer";
+
+    /**
+     * {@inheritDoc}
+     */
     protected $entity = "App\Database\Entities\GpuPartNumber";
-
-    public function getPersistingImplementer(array $scrapedData): AbstractPersistingImplementer
-    {
-        return new $this->persistingImplementer($scrapedData);
-    }
-
-    public function getEntity()
-    {
-        return $this->entity;
-    }
 }
