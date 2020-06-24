@@ -5,6 +5,7 @@ use App\Database\Connection;
 require_once __DIR__ . "/../../../../vendor/autoload.php";
 
 $retailers = [
+    \App\Services\Crawling\RetailerSpecificData\Retailers\Walmart::class,
     \App\Services\Crawling\RetailerSpecificData\Retailers\Amazon::class
 ];
 

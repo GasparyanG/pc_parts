@@ -36,7 +36,7 @@ abstract class AbstractRetailerCrawler
     /**
      * @var int
      */
-    protected static $delay = 8;
+    protected static $delay = 0;
 
     /**
      * @var EntityManager
