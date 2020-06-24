@@ -75,12 +75,12 @@ class NewEgg extends AbstractRetailerCrawler
 
     protected static function preparePrice(string $priceString): ?float
     {
-        $pattern = '~\$([\d.]+)~i';
+        $pattern = '~\$([\d.,]+)~i';
         $matches = [];
         preg_match($pattern, $priceString, $matches);
 
         if (count($matches) > 0)
-            return $matches[1];
+            return self::tofloat($matches[1]);
         return null;
     }
 
@@ -97,7 +97,7 @@ class NewEgg extends AbstractRetailerCrawler
 
         foreach($values as $value)
             if (self::modelNumberKey($value["key"]))
-                return self::removeModel(($value["value"]));
+                return self::removeModel($value["value"]);
         return null;
     }
 
@@ -114,6 +114,8 @@ class NewEgg extends AbstractRetailerCrawler
 
     protected static function removeModel(string $modelNumberString): ?string
     {
+        echo $modelNumberString . "\n";
+
         $pattern = "~Model\s*#\s*:\s*(.+)~i";
         $matches = [];
         preg_match($pattern, $modelNumberString, $matches);
@@ -137,7 +139,4 @@ class NewEgg extends AbstractRetailerCrawler
 
         return $retailer->getId();
     }
-
-
-
 }

@@ -95,7 +95,7 @@ class Walmart extends AbstractRetailerCrawler
                 $itemData = [];
                 // TODO: declare this keys to constants
                 $itemData["url"] = $item["productPageUrl"];
-                $itemData["price"] = $item["primaryOffer"]["offerPrice"];
+                $itemData["price"] = $item["primaryOffer"]["offerPrice"] ?? null;
 
                 $dataToReturn[] = $itemData;
             } else break;
