@@ -59,6 +59,9 @@ class Walmart extends AbstractRetailerCrawler
                         AbstractPersistingImplementer::RETAILER_ID => $this->retailerId(),
                         AbstractPersistingImplementer::ENTITY_ID => $entityId
                     ];
+
+                    // Item is already found.
+                    break;
                 }
             } catch (\InvalidArgumentException $e) {
                 echo $e->getMessage() . "\n";
