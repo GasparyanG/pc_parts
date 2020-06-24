@@ -77,4 +77,9 @@ class MotherboardPartNumber
 	{
 		$this->motherboard = $motherboard;
 	}
+
+	public function getEntityId(): int
+    {
+        return $this->motherboard->getId();
+    }
 }

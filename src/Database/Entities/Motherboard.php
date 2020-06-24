@@ -596,6 +596,11 @@ class Motherboard
         }
     }
 
+    public function getPartNumbers()
+    {
+        return $this->motherboardPartNumbers;
+    }
+
     /**
      * @return mixed
      */
