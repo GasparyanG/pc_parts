@@ -179,6 +179,11 @@ class Motherboard
      */
     private $moboPrices;
 
+    /**
+     * @OneToMany(targetEntity="MoboImage", mappedBy="mobo")
+     */
+    private $moboImages;
+
     public function __construct()
     {
         $this->moboMemorySpeedTypes = new ArrayCollection();
@@ -191,6 +196,7 @@ class Motherboard
         $this->motherboardPartNumbers = new ArrayCollection();
         $this->mDot2Types = new ArrayCollection();
         $this->moboPrices = new ArrayCollection();
+        $this->moboImages = new ArrayCollection();
     }
 
     /**
@@ -626,13 +632,32 @@ class Motherboard
     }
 
     /**
-     * @param StoragePrice $storagePrice
+     * @param MoboPrice $moboPrice
      */
     public function addMoboPrice(MoboPrice $moboPrice): void
     {
         if (!$this->moboPrices->contains($moboPrice)) {
             $this->moboPrices[] = $moboPrice;
             $moboPrice->setMobo($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMoboImages()
+    {
+        return $this->moboImages;
+    }
+
+    /**
+     * @param MoboImage $moboImage
+     */
+    public function addMoboImage(MoboImage $moboImage): void
+    {
+        if (!$this->moboImages->contains($moboImage)) {
+            $this->moboImages[] = $moboImage;
+            $moboImage->setMobo($this);
         }
     }
 }
