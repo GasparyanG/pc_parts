@@ -150,6 +150,7 @@ class BAndH extends AbstractRetailerCrawler
 
     protected function addFloatingPoint(string $integerPart, ?string $floatingPointPart): ?float
     {
+        $integerPart = str_replace('.', '', $integerPart);
         $length = strlen($integerPart);
         $lengthFloat = strlen($floatingPointPart);
 
