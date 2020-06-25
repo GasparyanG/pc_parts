@@ -68,10 +68,11 @@ class Amazon extends AbstractRetailerCrawler
 
     protected static $xPaths = [
         "//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[2]/div[%d]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a"
+            => "//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[2]/div[%d]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span"
     ];
 
     protected static $priceXPaths = [
-        "//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[2]/div[%d]/div/span/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/a/span/span[1]"
+        "//*[@id=\"search\"]/div[1]/div[2]/div/span[3]/div[2]/div[%d]/div/span/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div[1]/div[2]/div/a/span/span[1]" => null
     ];
 
     protected function search(string $searchTerm): ResponseInterface
@@ -80,21 +81,22 @@ class Amazon extends AbstractRetailerCrawler
         return $this->client->send($request);
     }
 
-    protected function desiredXpath(Crawler $crawler, array $xPaths): ?string
+    protected function desiredXpath(Crawler $crawler, array $xPaths): array
     {
-        foreach ($xPaths as $xPath)
+        $xPathToReturn = [null, null];
+        foreach ($xPaths as $xPath => $titleXPath)
             for ($i = self::STARTING_PRODUCT; $i < self::AMOUNT_OF_PRODUCTS_TO_WATCH; ++$i) {
                 if ($crawler->filterXPath(sprintf($xPath, $i)))
-                    return $xPath;
+                    return [$xPath, $titleXPath];
             }
-        return null;
+        return $xPathToReturn;
     }
 
     public function crawl(string $searchTerm, int $entityId): void
     {
         $crawler = new Crawler($this->search($searchTerm)->getBody()->getContents(), self::$baseUrl);
-        $xpathToSearchWith = $this->desiredXpath($crawler, self::$xPaths);
-        $priceXpathToSearchWith = $this->desiredXpath($crawler, self::$priceXPaths);
+        [$xpathToSearchWith, $titleXPath] = $this->desiredXpath($crawler, self::$xPaths);
+        [$priceXpathToSearchWith, $null] = $this->desiredXpath($crawler, self::$priceXPaths);
 
         // TODO: notify (Logger Interface - PSR-3) about self::$xPaths and $searchTerm
         if (!$xpathToSearchWith) return;
@@ -105,6 +107,7 @@ class Amazon extends AbstractRetailerCrawler
                 if ($crawler->filterXPath(sprintf($xpathToSearchWith, $i))) {
                     $data["url"] = $crawler->filterXPath(sprintf($xpathToSearchWith, $i))->link()->getUri();
                     $data["price"] = $this->extractPrice($crawler, $priceXpathToSearchWith, $i);
+                    $data["title_x_path"] = sprintf($titleXPath, $i);
 
                     $linksToCrawl[] = $data;
                 }
@@ -116,6 +119,17 @@ class Amazon extends AbstractRetailerCrawler
             // change referer
             $headers = self::$headers;
             $headers["referer"] = $this->prepareSearchUrl($searchTerm);
+
+            if ($this->titleContainsModelNumber($crawler, $link["title_x_path"], $searchTerm)) {
+                $this->crawledData = [
+                    AbstractPersistingImplementer::PRICE => $link[AbstractPersistingImplementer::PRICE],
+                    AbstractPersistingImplementer::RETAILER_ID => $this->retailerId(),
+                    AbstractPersistingImplementer::ENTITY_ID => $entityId
+                ];
+
+                // Item is already found.
+                break;
+            }
 
             // make request
             $request = new Request("GET", $link["url"], $headers);
@@ -162,6 +176,17 @@ class Amazon extends AbstractRetailerCrawler
     protected function prepareSearchUrl(string $searchTerm): string
     {
         return self::$baseUrl . "s?k=" . $searchTerm . "&i=electronics";
+    }
+
+    private function titleContainsModelNumber(Crawler $crawler, string $title_x_path, string $searchTerm): bool
+    {
+        $crawler = $crawler->filterXPath($title_x_path);
+        try {
+            return strpos($crawler->text(), $searchTerm) !== false ? true: false;
+        } catch (\InvalidArgumentException $e) {
+            echo self::$name . ": not found in title\n";
+            return false;
+        }
     }
 
     private function containsModelNumber(ResponseInterface $response, string $searchTerm): bool

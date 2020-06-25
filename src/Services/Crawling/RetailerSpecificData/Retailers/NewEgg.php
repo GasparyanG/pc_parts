@@ -114,8 +114,6 @@ class NewEgg extends AbstractRetailerCrawler
 
     protected static function removeModel(string $modelNumberString): ?string
     {
-        echo $modelNumberString . "\n";
-
         $pattern = "~Model\s*#\s*:\s*(.+)~i";
         $matches = [];
         preg_match($pattern, $modelNumberString, $matches);
