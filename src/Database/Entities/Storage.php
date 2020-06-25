@@ -87,10 +87,16 @@ class Storage
      */
     private $storagePrices;
 
+    /**
+     * @OneToMany(targetEntity="StorageImage", mappedBy="storage")
+     */
+    private $storageImages;
+
     public function __construct()
     {
         $this->storagePartNumbers = new ArrayCollection();
         $this->storagePrices = new ArrayCollection();
+        $this->storageImages = new ArrayCollection();
     }
 
     /**
@@ -293,6 +299,25 @@ class Storage
         if (!$this->storagePrices->contains($storagePrice)) {
             $this->storagePrices[] = $storagePrice;
             $storagePrice->setStorage($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStorageImages()
+    {
+        return $this->storageImages;
+    }
+
+    /**
+     * @param StorageImage $storageImage
+     */
+    public function addStorageImage(StorageImage $storageImage): void
+    {
+        if (!$this->storageImages->contains($storageImage)) {
+            $this->storageImages[] = $storageImage;
+            $storageImage->setStorage($this);
         }
     }
 }
