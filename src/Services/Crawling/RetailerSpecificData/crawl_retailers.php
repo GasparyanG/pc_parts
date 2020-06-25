@@ -45,7 +45,11 @@ foreach ($abstractFactories as $abstractFactoryName) {
         if (!$partNumber) continue;
         foreach ($retailers as $retailerName) {
             $retailer = new $retailerName();
-            $retailer->crawl($partNumber, $partNumberEntity->getEntityId());
+            try {
+                $retailer->crawl($partNumber, $partNumberEntity->getEntityId());
+            } catch (\GuzzleHttp\Exception\ClientException $e) {
+                echo $e->getMessage() . "\n";
+            }
 
             $persistingImplementer = $abstractFactory->getPersistingImplementer($retailer->getCrawledData());
             $persistingImplementer->persist();
