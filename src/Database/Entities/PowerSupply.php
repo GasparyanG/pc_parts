@@ -97,12 +97,18 @@ class PowerSupply
 	 */
 	private $psuPrices;
 
+    /**
+     * @OneToMany(targetEntity="PsuImage", mappedBy="psu")
+     */
+    private $psuImages;
+
     public function __construct()
     {
         $this->psuConnectors = new ArrayCollection();
         $this->psuPartNumbers = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->psuPrices = new ArrayCollection();
+        $this->psuImages = new ArrayCollection();
     }
 
     /**
@@ -343,6 +349,25 @@ class PowerSupply
         if (!$this->psuPrices->contains($psuPrice)) {
             $this->psuPrices[] = $psuPrice;
             $psuPrice->setPsu($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPsuImages()
+    {
+        return $this->psuImages;
+    }
+
+    /**
+     * @param PsuImage $psuImage
+     */
+    public function addPsuImage(PsuImage $psuImage): void
+    {
+        if (!$this->psuImages->contains($psuImage)) {
+            $this->psuImages[] = $psuImage;
+            $psuImage->setPsu($this);
         }
     }
 }
