@@ -161,6 +161,11 @@ class VideoCard
      */
     private $gpuPrices;
 
+    /**
+     * @OneToMany(targetEntity="GpuImage", mappedBy="gpu")
+     */
+    private $gpuImages;
+
     public function __construct()
     {
         $this->externalPowerTypes = new ArrayCollection();
@@ -171,6 +176,7 @@ class VideoCard
         $this->sliCrossfireTypes = new ArrayCollection();
         $this->frameSyncTypes = new ArrayCollection();
         $this->gpuPrices = new ArrayCollection();
+        $this->gpuImages = new ArrayCollection();
     }
 
     /**
@@ -534,6 +540,25 @@ class VideoCard
         if (!$this->gpuPrices->contains($gpuPrice)) {
             $this->gpuPrices[] = $gpuPrice;
             $gpuPrice->setGpu($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGpuImages()
+    {
+        return $this->gpuImages;
+    }
+
+    /**
+     * @param GpuImage $gpuImage
+     */
+    public function addGpuImage(GpuImage $gpuImage): void
+    {
+        if (!$this->gpuImages->contains($gpuImage)) {
+            $this->gpuImages[] = $gpuImage;
+            $gpuImage->setGpu($this);
         }
     }
 }
