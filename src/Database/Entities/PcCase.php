@@ -134,6 +134,11 @@ class PcCase
      */
     private $casePrices;
 
+    /**
+     * @OneToMany(targetEntity="CaseImage", mappedBy="case")
+     */
+    private $caseImages;
+
     public function __construct()
     {
         $this->usbs = new ArrayCollection();
@@ -144,6 +149,7 @@ class PcCase
         $this->colors = new ArrayCollection();
         $this->casePartNumbers = new ArrayCollection();
         $this->casePrices = new ArrayCollection();
+        $this->caseImages = new ArrayCollection();
     }
 
     /**
@@ -457,6 +463,25 @@ class PcCase
         if (!$this->casePrices->contains($casePrice)) {
             $this->casePrices[] = $casePrice;
             $casePrice->setCase($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCaseImages()
+    {
+        return $this->caseImages;
+    }
+
+    /**
+     * @param CaseImage $caseImage
+     */
+    public function addCaseImage(CaseImage $caseImage): void
+    {
+        if (!$this->caseImages->contains($caseImage)) {
+            $this->caseImages[] = $caseImage;
+            $caseImage->setCase($this);
         }
     }
 }
