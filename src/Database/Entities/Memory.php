@@ -104,11 +104,18 @@ class Memory
      */
     private $memoryPrices;
 
+    /**
+     * @OneToMany(targetEntity="MemoryImage", mappedBy="memory")
+     */
+    private $memoryImages;
+
+
     public function __construct()
     {
         $this->memoryPartNumbers = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->memoryPrices = new ArrayCollection();
+        $this->memoryImages = new ArrayCollection();
     }
 
     /**
@@ -349,13 +356,32 @@ class Memory
     }
 
     /**
-     * @param StoragePrice $storagePrice
+     * @param MemoryPrice $memoryPrice
      */
     public function addMemoryPrice(MemoryPrice $memoryPrice): void
     {
         if (!$this->memoryPrices->contains($memoryPrice)) {
             $this->memoryPrices[] = $memoryPrice;
             $memoryPrice->setMemory($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMemoryImages()
+    {
+        return $this->memoryImages;
+    }
+
+    /**
+     * @param MemoryImage $memoryImage
+     */
+    public function addMemoryImage(MemoryImage $memoryImage): void
+    {
+        if (!$this->memoryImages->contains($memoryImage)) {
+            $this->memoryImages[] = $memoryImage;
+            $memoryImage->setMemory($this);
         }
     }
 }
