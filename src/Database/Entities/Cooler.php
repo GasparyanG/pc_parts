@@ -119,12 +119,18 @@ class Cooler
      */
     private $coolerPrices;
 
+    /**
+     * @OneToMany(targetEntity="CoolerImage", mappedBy="cooler")
+     */
+    private $coolerImages;
+
     public function __construct()
     {
         $this->colors = new ArrayCollection();
         $this->cpuSockets = new ArrayCollection();
         $this->coolerPartNumbers = new ArrayCollection();
         $this->coolerPrices = new ArrayCollection();
+        $this->coolerImages = new ArrayCollection();
     }
 
     /**
@@ -404,6 +410,25 @@ class Cooler
         if (!$this->coolerPrices->contains($coolerPrice)) {
             $this->coolerPrices[] = $coolerPrice;
             $coolerPrice->setCooler($this);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCoolerImages()
+    {
+        return $this->coolerImages;
+    }
+
+    /**
+     * @param CoolerImage $coolerImage
+     */
+    public function addCoolerImage(CoolerImage $coolerImage): void
+    {
+        if (!$this->coolerImages->contains($coolerImage)) {
+            $this->coolerImages[] = $coolerImage;
+            $coolerImage->setCooler($this);
         }
     }
 }
