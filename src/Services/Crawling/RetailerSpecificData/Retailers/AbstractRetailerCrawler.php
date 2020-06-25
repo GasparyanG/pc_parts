@@ -83,5 +83,5 @@ abstract class AbstractRetailerCrawler
     }
 
 
-abstract public function crawl(string $searchTerm, int $entityId): void;
+    abstract public function crawl(string $searchTerm, int $entityId): void;
 }

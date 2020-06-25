@@ -7,9 +7,8 @@ require_once __DIR__ . "/../../../../vendor/autoload.php";
 $retailers = [
     \App\Services\Crawling\RetailerSpecificData\Retailers\Walmart::class,
     \App\Services\Crawling\RetailerSpecificData\Retailers\Amazon::class,
-    \App\Services\Crawling\RetailerSpecificData\Retailers\NewEgg::class
-    // [] BestBuy
-    // [] B&H
+    \App\Services\Crawling\RetailerSpecificData\Retailers\NewEgg::class,
+    \App\Services\Crawling\RetailerSpecificData\Retailers\BAndH::class
 ];
 
 $abstractFactories = [
