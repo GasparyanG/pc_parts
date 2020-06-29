@@ -90,7 +90,7 @@ abstract class ImageAbstractScraper
         return self::$productsUrl . static::$referer;
     }
 
-    public function isUsed(string $part)
+    public function isUsed(string $part): bool
     {
         return $part === static::$name;
     }

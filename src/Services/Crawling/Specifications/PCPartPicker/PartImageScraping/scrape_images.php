@@ -31,7 +31,7 @@ $entitiesNames = [
 $em = Connection::getEntityManager();
 
 foreach ($entitiesNames as $entityName) {
-    $entities = $this->em->getRepository($entityName)->findAll();
+    $entities = $em->getRepository($entityName)->findAll();
     $scraper = ImageScraperFactory::create($entityName);
 
     foreach ($entities as $entity)
