@@ -11,5 +11,4 @@ $cases = $em->getRepository(PcCase::class)->findAll();
 
 foreach ($cases as $case) {
     (new CaseImageScraper())->crawl($case->getUrl(), $case->getId());
-    break;
 }

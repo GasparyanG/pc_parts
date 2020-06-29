@@ -4,6 +4,8 @@
 namespace App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping;
 
 
+use App\Database\Connection;
+use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
@@ -14,10 +16,22 @@ abstract class ImageAbstractScraper
     const REFERER = "referer";
 
     /**
+     * Images directory
+     * @var string
+     */
+    public static $image_directory = __DIR__ . "/../../../../../../public/photos/product";
+
+    /**
      * Delay between requests
-     * @var int
+     * @var int     in milliseconds
      */
     protected static $delay = 8000;
+
+    /**
+     * Delay between image download
+     * @var int     in seconds
+     */
+    protected static $imageDelay = 5;
 
     /**
      * Meant for single resource.
@@ -60,6 +74,11 @@ abstract class ImageAbstractScraper
      */
     protected $client;
 
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+
     protected static $selectors = [
         "#single_image_gallery_box img",
         "#gallery_box .gallery__images .gallery__image .gallery__imageWrapper img",
@@ -70,6 +89,7 @@ abstract class ImageAbstractScraper
     public function __construct()
     {
         $this->client = new Client();
+        $this->em = Connection::getEntityManager();
     }
 
     protected static function getReferer(): string
@@ -87,19 +107,53 @@ abstract class ImageAbstractScraper
         $urls = $this->urls($url);
 
         foreach ($urls as $imageUrl) {
+            // Imitate human interaction
+            sleep(self::$imageDelay);
+            // file preparation
             $fileName = $this->download($imageUrl);
+            if (!$fileName) continue;
+            // persisting to database
             $this->persist($fileName, $id);
         }
     }
 
-    protected function download(string $imageUrl): string
+    protected function download(string $imageUrl): ?string
     {
+        $fileName = $this->fileName($imageUrl);
+        if (!$fileName) return null;
 
+        // download
+        // there are some urls, which contain https prefix
+        $urlToDownload = "https:" . str_replace(["https:", '"https', '"'], "", $imageUrl);
+        file_put_contents(self::$image_directory . "/" . $fileName, file_get_contents($urlToDownload));
+
+        return $fileName;
     }
 
-    protected function fileName(string $imageUrl): string
+    protected function fileName(string $imageUrl): ?string
     {
+        [$crawledFileName, $extension] = $this->extractFileName($imageUrl);
+        if (!$crawledFileName || !$extension) return null;
 
+        $withoutHash = $crawledFileName . "_" . time();
+
+        // hashing
+        $hashedName = hash("md5", $withoutHash);
+
+        // Name with extension
+        // Extension contains dot (.)
+        return $hashedName . $extension;
+    }
+
+    protected function extractFileName(string $imageUrl): array
+    {
+        $pattern = "~.+/images/product/(.+)(\.jpg|\.png|.\jpeg)~i";
+        $matches = [];
+
+        preg_match($pattern, $imageUrl, $matches);
+        if ($matches)
+            return [$matches[1], $matches[2]];
+        return [null, null];
     }
 
     protected function urls($url): array
