@@ -3,12 +3,37 @@
 require_once __DIR__ . "/../../../../../../vendor/autoload.php";
 
 use App\Database\Connection;
-use App\Database\Entities\PcCase;
-use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\CaseImageScraper;
+use App\Database\Entities\
+{
+    Cooler,
+    Cpu,
+    Memory,
+    Motherboard,
+    PcCase,
+    PowerSupply,
+    Storage,
+    VideoCard
+};
+use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageScraperFactory;
+
+// TODO: uncomment PcCase
+$entitiesNames = [
+//    PcCase::class,
+    PowerSupply::class,
+    VideoCard::class,
+    Cpu::class,
+    Cooler::class,
+    Storage::class,
+    Memory::class,
+    Motherboard::class
+];
 
 $em = Connection::getEntityManager();
-$cases = $em->getRepository(PcCase::class)->findAll();
 
-foreach ($cases as $case) {
-    (new CaseImageScraper())->crawl($case->getUrl(), $case->getId());
+foreach ($entitiesNames as $entityName) {
+    $entities = $this->em->getRepository($entityName)->findAll();
+    $scraper = ImageScraperFactory::create($entityName);
+
+    foreach ($entities as $entity)
+        $scraper->crawl($entity->getUrl(), $entity->getId());
 }

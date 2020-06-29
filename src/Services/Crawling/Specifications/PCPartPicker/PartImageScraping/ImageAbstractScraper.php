@@ -79,13 +79,6 @@ abstract class ImageAbstractScraper
      */
     protected $em;
 
-    protected static $selectors = [
-        "#single_image_gallery_box img",
-        "#gallery_box .gallery__images .gallery__image .gallery__imageWrapper img",
-        "#gallery_box .gallery__image .gallery__imageWrapper img",
-        "#gallery_box .gallery__image img",
-    ];
-
     public function __construct()
     {
         $this->client = new Client();
@@ -99,7 +92,7 @@ abstract class ImageAbstractScraper
 
     public function isUsed(string $part)
     {
-        return $part === self::$name;
+        return $part === static::$name;
     }
 
     public function crawl(string $url, int $id): void
@@ -196,14 +189,6 @@ abstract class ImageAbstractScraper
         if (isset($matches[1]) && $matches[1])
             return $matches[1];
         return [];
-    }
-
-    protected function desiredSelector(Crawler $crawler): ?string
-    {
-        foreach(self::$selectors as $selector)
-            if ($crawler->matches($selector))
-                return $selector;
-        return null;
     }
 
     abstract public function persist(string $imageFileName, int $id): void;
