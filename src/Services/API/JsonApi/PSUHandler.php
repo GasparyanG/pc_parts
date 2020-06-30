@@ -4,7 +4,9 @@
 namespace App\Services\API\JsonApi;
 
 
+use App\Database\Entities\Color;
 use App\Database\Entities\PowerSupply;
+use App\Database\Entities\PsuConnector;
 use App\Database\Entities\PsuImage;
 use App\Database\Entities\PsuPartNumber;
 use App\Database\Entities\PsuPrice;
@@ -22,7 +24,9 @@ class PSUHandler extends ResourceHandler
     protected static $relationshipProperties = [
         PsuImage::class => "getPsuImages",
         PsuPrice::class => "getPsuPrices",
-        PsuPartNumber::class => "getPartNumbers"
+        PsuPartNumber::class => "getPartNumbers",
+        Color::class => "getColors",
+        PsuConnector::class => "getPsuConnectors"
     ];
 
     public function included(?string $relToInclude, int $id): array
