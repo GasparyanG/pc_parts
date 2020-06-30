@@ -4,7 +4,9 @@
 namespace App\Services\API\JsonApi\Specification;
 
 
+use App\Database\Connection;
 use App\Services\API\JsonApi\ResourceHandler;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 abstract class ResourceComposer
@@ -12,7 +14,7 @@ abstract class ResourceComposer
     /**
      * @var null|string
      */
-    protected static $tableName;
+    protected static $entityName;
 
     /**
      * @var ParameterBag
@@ -34,8 +36,14 @@ abstract class ResourceComposer
      */
     protected $resourceHandler;
 
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+
     public function __construct(ResourceHandler $resourceHandler, ParameterBag $queryBag, int $id = null)
     {
+        $this->em = Connection::getEntityManager();
         $this->queryBag = $queryBag;
         $this->id = $id;
         $this->resourceHandler = $resourceHandler;
@@ -56,7 +64,7 @@ abstract class ResourceComposer
         // Build $resource object
         $resource->setAttributes($this->resourceHandler->attributes($this->id));
         $resource->setId($this->id);
-        $resource->setType(static::$tableName);
+        $resource->setType($this->em->getClassMetadata(static::$entityName)->getTableName());
         $resource->setRelationships($this->resourceHandler->relationships($this->id));
         $resource->setIncluded($this->resourceHandler->included($this->queryBag->get(Resource::INCLUDED), $this->id));
 

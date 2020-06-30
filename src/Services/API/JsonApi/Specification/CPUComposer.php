@@ -4,12 +4,12 @@
 namespace App\Services\API\JsonApi\Specification;
 
 
-use App\Database\Repositories\CpuRepository;
+use App\Database\Entities\Cpu;
 
 class CPUComposer extends ResourceComposer
 {
     /**
      * {@inheritDoc}
      */
-    protected static $tableName = CpuRepository::TABLE_NAME;
+    protected static $entityName = Cpu::class;
 }
