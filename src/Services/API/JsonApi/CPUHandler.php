@@ -8,8 +8,6 @@ use App\Database\Entities\Cpu;
 use App\Database\Entities\CpuImage;
 use App\Database\Entities\CpuPartNumber;
 use App\Database\Entities\CpuPrice;
-use App\Services\API\JsonApi\Specification\Relationship;
-use App\Services\API\JsonApi\Specification\Resource;
 
 class CPUHandler extends ResourceHandler
 {
@@ -35,24 +33,5 @@ class CPUHandler extends ResourceHandler
     {
         // TODO: Implement included() method.
         return [];
-    }
-
-    private function relationshipWith($cpu, string $className, string $methodName): array
-    {
-        $relationship = new Relationship();
-        $tableName = $this->em->getClassMetadata($className)->getTableName();
-        $relationship->setType($tableName);
-
-        $data = [];
-        foreach ($cpu->$methodName() as $cpuImage) {
-            $singleItemData = [];
-            $singleItemData[Resource::TYPE] = $tableName;
-            $singleItemData[Resource::ID] = $cpuImage->getId();
-            $data[] = $singleItemData;
-        }
-
-        $relationship->setData($data);
-        $relationship->arrayRepresentation();
-        return $relationship->getRepresentation();
     }
 }

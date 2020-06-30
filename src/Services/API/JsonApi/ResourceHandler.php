@@ -5,6 +5,8 @@ namespace App\Services\API\JsonApi;
 
 
 use App\Database\Connection;
+use App\Services\API\JsonApi\Specification\Relationship;
+use App\Services\API\JsonApi\Specification\Resource;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
@@ -52,4 +54,23 @@ abstract class ResourceHandler
      * @return array
      */
     abstract public function included(?string $relToInclude, int $id): array;
+
+    protected function relationshipWith($entity, string $className, string $methodName): array
+    {
+        $relationship = new Relationship();
+        $tableName = $this->em->getClassMetadata($className)->getTableName();
+        $relationship->setType($tableName);
+
+        $data = [];
+        foreach ($entity->$methodName() as $entityImage) {
+            $singleItemData = [];
+            $singleItemData[Resource::TYPE] = $tableName;
+            $singleItemData[Resource::ID] = $entityImage->getId();
+            $data[] = $singleItemData;
+        }
+
+        $relationship->setData($data);
+        $relationship->arrayRepresentation();
+        return $relationship->getRepresentation();
+    }
 }
