@@ -18,9 +18,10 @@ use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageScr
 
 // TODO: uncomment PcCase
 $entitiesNames = [
-//    PcCase::class,
+    PcCase::class,
     PowerSupply::class,
     VideoCard::class,
+    // TODO: crawl below part images!
     Cpu::class,
     Cooler::class,
     Storage::class,
