@@ -23,6 +23,9 @@ class RoutingMiddleware implements MiddlewareInterface
 
 		    // GPU
 		    $r->addRoute(Request::METHOD_GET, "/gpu/{id}", ["Gpu", "get"]);
+
+		    // PSU
+		    $r->addRoute(Request::METHOD_GET, "/psu/{id}", ["Psu", "get"]);
 		});
 
 		$httpMethod = $request->getMethod();
