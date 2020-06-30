@@ -5,6 +5,7 @@ namespace App\Services\API\JsonApi;
 
 
 use App\Database\Connection;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 
 abstract class ResourceHandler
@@ -19,6 +20,11 @@ abstract class ResourceHandler
      */
     protected $repo;
 
+    /**
+     * @var EntityManager
+     */
+    protected $em;
+
     public function __construct()
     {
         $this->em = Connection::getEntityManager();
@@ -29,7 +35,10 @@ abstract class ResourceHandler
      * @param int $id
      * @return array
      */
-    abstract public function attributes(int $id): array;
+    public function attributes(int $id): array
+    {
+        return $this->repo->findAsArray($id);
+    }
 
     /**
      * @param int $id
