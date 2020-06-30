@@ -26,6 +26,9 @@ class RoutingMiddleware implements MiddlewareInterface
 
 		    // PSU
 		    $r->addRoute(Request::METHOD_GET, "/psu/{id}", ["Psu", "get"]);
+
+            // STORAGE
+            $r->addRoute(Request::METHOD_GET, "/storage/{id}", ["Storage", "get"]);
 		});
 
 		$httpMethod = $request->getMethod();

@@ -7,7 +7,7 @@ namespace App\Database\Entities;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="App\Database\Repositories\VideoCardRepository")
  * @Table(name="storages")
  */
 class Storage
