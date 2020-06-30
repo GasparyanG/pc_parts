@@ -18,6 +18,11 @@ abstract class ResourceHandler
     public static $entityName = null;
 
     /**
+     * @var array
+     */
+    protected static $relationshipProperties = [];
+
+    /**
      * @var EntityRepository
      */
     protected $repo;
@@ -46,7 +51,17 @@ abstract class ResourceHandler
      * @param int $id
      * @return array
      */
-    abstract public function relationships(int $id): array;
+    public function relationships(int $id): array
+    {
+        $entity = $this->em->getRepository(static::$entityName)->find($id);
+        if (!$entity) return [];
+
+        $relationships = [];
+        foreach (static::$relationshipProperties as $entityName => $methodName)
+            $relationships[] = $this->relationshipWith($entity, $entityName, $methodName);
+
+        return $relationships;
+    }
 
     /**
      * @param string|null $relToInclude

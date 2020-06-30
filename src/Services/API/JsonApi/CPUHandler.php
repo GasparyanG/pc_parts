@@ -16,18 +16,14 @@ class CPUHandler extends ResourceHandler
      */
     public static $entityName = Cpu::class;
 
-    public function relationships(int $id): array
-    {
-        $cpu = $this->em->getRepository(self::$entityName)->find($id);
-        if (!$cpu) return [];
-
-        $relationships = [];
-        $relationships[] = $this->relationshipWith($cpu, CpuImage::class, "getCpuImages");
-        $relationships[] = $this->relationshipWith($cpu, CpuPrice::class, "getCpuPrices");
-        $relationships[] = $this->relationshipWith($cpu, CpuPartNumber::class, "getPartNumbers");
-
-        return $relationships;
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected static $relationshipProperties = [
+        CpuImage::class => "getCpuImages",
+        CpuPrice::class => "getCpuPrices",
+        CpuPartNumber::class => "getPartNumbers"
+    ];
 
     public function included(?string $relToInclude, int $id): array
     {
