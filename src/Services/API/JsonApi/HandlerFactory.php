@@ -51,7 +51,12 @@ class HandlerFactory
         CaseGpuLengthTypeHandler::class,
         CaseBayHandler::class,
         ExpansionSlotHandler::class,
-        MoboFormFactorHandler::class
+        MoboFormFactorHandler::class,
+        CoolerImageHandler::class,
+        CoolerPriceHandler::class,
+        CoolerPartNumberHandler::class,
+        CpuSocketHandler::class,
+        CoolerHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler

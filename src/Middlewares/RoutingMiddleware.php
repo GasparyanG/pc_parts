@@ -38,6 +38,9 @@ class RoutingMiddleware implements MiddlewareInterface
 
             // PcCASE
             $r->addRoute(Request::METHOD_GET, "/pc_case/{id}", ["PcCase", "get"]);
+
+            // COOLER
+            $r->addRoute(Request::METHOD_GET, "/cooler/{id}", ["Cooler", "get"]);
 		});
 
 		$httpMethod = $request->getMethod();
