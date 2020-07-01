@@ -71,7 +71,10 @@ class HandlerFactory
         WaterCooledTypeHandler::class,
         PsuFormFactorHandler::class,
         EfficiencyRatingHandler::class,
-        WirelessNetworkingTypeHandler::class
+        WirelessNetworkingTypeHandler::class,
+        CaseTypeHandler::class,
+        SidePanelWindowTypeHandler::class,
+        CaseDimensionHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler
