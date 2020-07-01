@@ -64,7 +64,9 @@ class HandlerFactory
         CoreFamilyHandler::class,
         LOneCacheHandler::class,
         LTwoCacheHandler::class,
-        LThreeCacheHandler::class
+        LThreeCacheHandler::class,
+        MemoryTypeHandler::class,
+        GpuInterfaceHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler

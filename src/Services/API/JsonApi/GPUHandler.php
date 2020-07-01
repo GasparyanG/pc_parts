@@ -9,9 +9,12 @@ use App\Database\Entities\ExternalPowerType;
 use App\Database\Entities\FrameSyncType;
 use App\Database\Entities\GpuCoolingType;
 use App\Database\Entities\GpuImage;
+use App\Database\Entities\GpuInterface;
 use App\Database\Entities\GpuPartNumber;
 use App\Database\Entities\GpuPort;
 use App\Database\Entities\GpuPrice;
+use App\Database\Entities\Manufacturer;
+use App\Database\Entities\MemoryType;
 use App\Database\Entities\SliCrossfireType;
 use App\Database\Entities\VideoCard;
 
@@ -34,6 +37,9 @@ class GPUHandler extends ResourceHandler
         ExternalPowerType::class => "getExternalPowerTypes",
         GpuCoolingType::class => "getGpuCoolingTypes",
         GpuPort::class => "getGpuPorts",
-        Color::class => "getColors"
+        Color::class => "getColors",
+        Manufacturer::class => "getManufacturer",
+        MemoryType::class => "getMemoryType",
+        GpuInterface::class => "getGpuInterface"
     ];
 }
