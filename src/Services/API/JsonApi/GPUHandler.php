@@ -36,10 +36,4 @@ class GPUHandler extends ResourceHandler
         GpuPort::class => "getGpuPorts",
         Color::class => "getColors"
     ];
-
-    public function included(?string $relToInclude, int $id): array
-    {
-        // TODO: Implement included() method.
-        return [];
-    }
 }

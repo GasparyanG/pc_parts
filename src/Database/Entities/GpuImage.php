@@ -2,7 +2,7 @@
 namespace App\Database\Entities;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="App\Database\Repositories\GpuImageRepository")
  * @Table(name="gpu_images")
  */
 class GpuImage 

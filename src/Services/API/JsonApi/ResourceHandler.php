@@ -38,6 +38,11 @@ abstract class ResourceHandler
         $this->repo = $this->em->getRepository(static::$entityName);
     }
 
+    public function isUsed(string $entityName): bool
+    {
+        return static::$entityName === $entityName;
+    }
+
     /**
      * @param int $id
      * @return array
@@ -63,13 +68,6 @@ abstract class ResourceHandler
         return $relationships;
     }
 
-    /**
-     * @param string|null $relToInclude
-     * @param int $id
-     * @return array
-     */
-    abstract public function included(?string $relToInclude, int $id): array;
-
     protected function relationshipWith($entity, string $className, string $methodName): array
     {
         $relationship = new Relationship();
@@ -87,5 +85,42 @@ abstract class ResourceHandler
         $relationship->setData($data);
         $relationship->arrayRepresentation();
         return $relationship->getRepresentation();
+    }
+
+    protected function tableName(string $entity): ?string
+    {
+        return $this->em->getClassMetadata($entity)->getTableName();
+    }
+
+    public function included(?string $relToInclude, int $id): array
+    {
+        $relToIncludeArr = explode(',', $relToInclude);
+        $entity = $this->em->getRepository(static::$entityName)->find($id);
+
+        $dataToReturn = [];
+
+        foreach ($relToIncludeArr as $rel) {
+            [$methodName, $relEntity] = $this->getMethodName($rel);
+            // TODO: notify somehow
+            // user may request for not existing relationship
+            if (!$methodName) continue;
+            $relationshipResults = $entity->$methodName();
+            $handler = HandlerFactory::create($relEntity);
+
+            foreach ($relationshipResults as $relationshipResult) {
+                $dataToReturn = $handler->attributes($relationshipResult->getId());
+            }
+        }
+
+        return $dataToReturn;
+    }
+
+    protected function getMethodName(string $relName): array
+    {
+        foreach (static::$relationshipProperties as $entityName => $methodName)
+            if ($relName === $this->tableName($entityName))
+                return [$methodName, $entityName];
+
+        return [null, null];
     }
 }
