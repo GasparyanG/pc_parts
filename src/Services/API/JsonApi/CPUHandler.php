@@ -4,11 +4,19 @@
 namespace App\Services\API\JsonApi;
 
 
+use App\Database\Entities\CoreFamily;
 use App\Database\Entities\Cpu;
 use App\Database\Entities\CpuImage;
 use App\Database\Entities\CpuPartNumber;
 use App\Database\Entities\CpuPrice;
+use App\Database\Entities\CpuSeries;
+use App\Database\Entities\CpuSocket;
+use App\Database\Entities\IntegratedGraphic;
+use App\Database\Entities\LOneCache;
+use App\Database\Entities\LThreeCache;
+use App\Database\Entities\LTwoCache;
 use App\Database\Entities\Manufacturer;
+use App\Database\Entities\Microarchitecture;
 
 class CPUHandler extends ResourceHandler
 {
@@ -24,6 +32,14 @@ class CPUHandler extends ResourceHandler
         CpuImage::class => "getCpuImages",
         CpuPrice::class => "getCpuPrices",
         CpuPartNumber::class => "getPartNumbers",
-        Manufacturer::class => "getManufacturer"
+        Manufacturer::class => "getManufacturer",
+        CpuSocket::class => "getCpuSocket",
+        CpuSeries::class => "getCpuSeries",
+        Microarchitecture::class => "getMicroarchitecture",
+        IntegratedGraphic::class => "getIntegratedGraphic",
+        CoreFamily::class => "getCoreFamily",
+        LOneCache::class => "getLOneCache",
+        LTwoCache::class => "getLTwoCache",
+        LThreeCache::class => "getLThreeCache"
     ];
 }

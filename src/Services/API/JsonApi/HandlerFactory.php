@@ -57,7 +57,14 @@ class HandlerFactory
         CoolerPartNumberHandler::class,
         CpuSocketHandler::class,
         CoolerHandler::class,
-        ManufacturerHandler::class
+        ManufacturerHandler::class,
+        CpuSeriesHandler::class,
+        MicroarchitectureHandler::class,
+        IntegratedGraphicHandler::class,
+        CoreFamilyHandler::class,
+        LOneCacheHandler::class,
+        LTwoCacheHandler::class,
+        LThreeCacheHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler
