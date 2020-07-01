@@ -10,7 +10,8 @@ $handlers = [
     \App\Services\API\JsonApi\PSUHandler::class,
     \App\Services\API\JsonApi\GpuImageHandler::class,
     \App\Services\API\JsonApi\MemoryHandler::class,
-    \App\Services\API\JsonApi\MoboHandler::class
+    \App\Services\API\JsonApi\MoboHandler::class,
+    \App\Services\API\JsonApi\PcCaseHandler::class
 ];
 
 

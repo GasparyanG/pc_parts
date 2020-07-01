@@ -44,7 +44,14 @@ class HandlerFactory
         UsbHandler::class,
         MotherboardsUsbHandler::class,
         MDot2TypeHandler::class,
-        OnboardEthernetTypeHandler::class
+        OnboardEthernetTypeHandler::class,
+        CaseImageHandler::class,
+        CasePriceHandler::class,
+        CasePartNumberHandler::class,
+        CaseGpuLengthTypeHandler::class,
+        CaseBayHandler::class,
+        ExpansionSlotHandler::class,
+        MoboFormFactorHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler
