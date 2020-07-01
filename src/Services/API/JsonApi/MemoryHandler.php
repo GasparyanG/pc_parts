@@ -5,10 +5,15 @@ namespace App\Services\API\JsonApi;
 
 
 use App\Database\Entities\Color;
+use App\Database\Entities\EccRegister;
+use App\Database\Entities\FormFactor;
+use App\Database\Entities\Manufacturer;
 use App\Database\Entities\Memory;
 use App\Database\Entities\MemoryImage;
 use App\Database\Entities\MemoryPartNumber;
 use App\Database\Entities\MemoryPrice;
+use App\Database\Entities\Module;
+use App\Database\Entities\Timing;
 
 class MemoryHandler extends ResourceHandler
 {
@@ -24,6 +29,11 @@ class MemoryHandler extends ResourceHandler
         MemoryImage::class => "getMemoryImages",
         MemoryPrice::class => "getMemoryPrices",
         MemoryPartNumber::class => "getPartNumbers",
-        Color::class => "getColors"
+        Color::class => "getColors",
+        Manufacturer::class => "getManufacturer",
+        FormFactor::class => "getFormFactor",
+        Module::class => "getModule",
+        Timing::class => "getTiming",
+        ECCRegister::class => "getECCRegister"
     ];
 }

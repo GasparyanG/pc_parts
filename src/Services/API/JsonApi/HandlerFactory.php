@@ -74,7 +74,11 @@ class HandlerFactory
         WirelessNetworkingTypeHandler::class,
         CaseTypeHandler::class,
         SidePanelWindowTypeHandler::class,
-        CaseDimensionHandler::class
+        CaseDimensionHandler::class,
+        FormFactorHandler::class,
+        ModuleHandler::class,
+        TimingHandler::class,
+        EccRegisterHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler
