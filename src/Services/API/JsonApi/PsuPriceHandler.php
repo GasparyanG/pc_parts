@@ -3,15 +3,14 @@
 
 namespace App\Services\API\JsonApi;
 
+use App\Database\Entities\PsuPrice;
 
-use App\Database\Entities\GpuImage;
-
-class GpuImageHandler extends ResourceHandler
+class PsuPriceHandler extends ResourceHandler
 {
     /**
      * {@inheritDoc}
      */
-    public static $entityName = GpuImage::class;
+    public static $entityName = PsuPrice::class;
 
     /**
      * {@inheritDoc}

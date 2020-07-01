@@ -3,15 +3,14 @@
 
 namespace App\Services\API\JsonApi;
 
+use App\Database\Entities\GpuPort;
 
-use App\Database\Entities\GpuImage;
-
-class GpuImageHandler extends ResourceHandler
+class GpuPortHandler extends ResourceHandler
 {
     /**
      * {@inheritDoc}
      */
-    public static $entityName = GpuImage::class;
+    public static $entityName = GpuPort::class;
 
     /**
      * {@inheritDoc}

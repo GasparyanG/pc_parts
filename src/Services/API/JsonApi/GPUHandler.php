@@ -25,7 +25,7 @@ class GPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
-    protected static $relationshipProperties = [
+    public static $relationshipProperties = [
         GpuImage::class => "getGpuImages",
         GpuPrice::class => "getGpuPrices",
         GpuPartNumber::class => "getPartNumbers",

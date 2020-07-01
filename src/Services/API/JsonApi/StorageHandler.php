@@ -19,15 +19,9 @@ class StorageHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
-    protected static $relationshipProperties = [
+    public static $relationshipProperties = [
         StorageImage::class => "getStorageImages",
         StoragePrice::class => "getStoragePrices",
         StoragePartNumber::class => "getPartNumbers"
     ];
-
-    public function included(?string $relToInclude, int $id): array
-    {
-        // TODO: Implement included() method.
-        return [];
-    }
 }

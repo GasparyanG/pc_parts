@@ -3,15 +3,14 @@
 
 namespace App\Services\API\JsonApi;
 
+use App\Database\Entities\ExternalPowerType;
 
-use App\Database\Entities\GpuImage;
-
-class GpuImageHandler extends ResourceHandler
+class ExternalPowerTypeHandler extends ResourceHandler
 {
     /**
      * {@inheritDoc}
      */
-    public static $entityName = GpuImage::class;
+    public static $entityName = ExternalPowerType::class;
 
     /**
      * {@inheritDoc}

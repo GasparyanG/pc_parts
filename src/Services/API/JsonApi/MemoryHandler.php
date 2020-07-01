@@ -20,16 +20,10 @@ class MemoryHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
-    protected static $relationshipProperties = [
+    public static $relationshipProperties = [
         MemoryImage::class => "getMemoryImages",
         MemoryPrice::class => "getMemoryPrices",
         MemoryPartNumber::class => "getPartNumbers",
         Color::class => "getColors"
     ];
-
-    public function included(?string $relToInclude, int $id): array
-    {
-        // TODO: Implement included() method.
-        return [];
-    }
 }

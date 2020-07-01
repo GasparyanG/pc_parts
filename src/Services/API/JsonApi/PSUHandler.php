@@ -21,17 +21,11 @@ class PSUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
-    protected static $relationshipProperties = [
+    public static $relationshipProperties = [
         PsuImage::class => "getPsuImages",
         PsuPrice::class => "getPsuPrices",
         PsuPartNumber::class => "getPartNumbers",
         Color::class => "getColors",
         PsuConnector::class => "getPsuConnectors"
     ];
-
-    public function included(?string $relToInclude, int $id): array
-    {
-        // TODO: Implement included() method.
-        return [];
-    }
 }

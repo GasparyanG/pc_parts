@@ -4,14 +4,14 @@
 namespace App\Services\API\JsonApi;
 
 
-use App\Database\Entities\GpuImage;
+use App\Database\Entities\CpuImage;
 
-class GpuImageHandler extends ResourceHandler
+class CpuImageHandler extends ResourceHandler
 {
     /**
      * {@inheritDoc}
      */
-    public static $entityName = GpuImage::class;
+    public static $entityName = CpuImage::class;
 
     /**
      * {@inheritDoc}

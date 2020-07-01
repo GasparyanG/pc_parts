@@ -19,15 +19,9 @@ class CPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
-    protected static $relationshipProperties = [
+    public static $relationshipProperties = [
         CpuImage::class => "getCpuImages",
         CpuPrice::class => "getCpuPrices",
         CpuPartNumber::class => "getPartNumbers"
     ];
-
-    public function included(?string $relToInclude, int $id): array
-    {
-        // TODO: Implement included() method.
-        return [];
-    }
 }
