@@ -9,7 +9,8 @@ $handlers = [
     \App\Services\API\JsonApi\StorageHandler::class,
     \App\Services\API\JsonApi\PSUHandler::class,
     \App\Services\API\JsonApi\GpuImageHandler::class,
-    \App\Services\API\JsonApi\MemoryHandler::class
+    \App\Services\API\JsonApi\MemoryHandler::class,
+    \App\Services\API\JsonApi\MoboHandler::class
 ];
 
 
@@ -26,7 +27,7 @@ foreach($handlers as $handler) {
 $uniqueRelationships = array_unique($relationships);
 
 // returns handlers, which are absent from HandlerFactory
-if ($argv[1] == "factory") {
+if (isset($argv[1]) && $argv[1] == "factory") {
     $notInArray = [];
     foreach ($uniqueRelationships as $entityName) {
         // prepare handler name
@@ -35,13 +36,16 @@ if ($argv[1] == "factory") {
             : null;
 
         if (!$handlerName || !class_exists($handlerNamespace . $handlerName)) continue;
-        if (!in_array($handlerName, \App\Services\API\JsonApi\HandlerFactory::$handlerNames))
+        if (!in_array(ltrim($handlerNamespace, '\\') . $handlerName, \App\Services\API\JsonApi\HandlerFactory::$handlerNames))
             $notInArray[] = $handlerName;
     }
 
-    echo "Entities which are not in HandlerFactory:\n";
-    foreach ($notInArray as $entityName)
-        echo $entityName . "\n";
+    if (count($notInArray)) {
+        echo "Entities which are not in HandlerFactory:\n";
+        foreach ($notInArray as $entityName)
+            echo $entityName . "\n";
+    } else
+        echo "All handler names are included.\n";
     exit;
 }
 

@@ -35,7 +35,16 @@ class HandlerFactory
         PsuConnectorHandler::class,
         MemoryImageHandler::class,
         MemoryPriceHandler::class,
-        MemoryPartNumberHandler::class
+        MemoryPartNumberHandler::class,
+        MoboHandler::class,
+        MoboImageHandler::class,
+        MoboPriceHandler::class,
+        MotherboardPartNumberHandler::class,
+        MoboMemorySpeedTypeHandler::class,
+        UsbHandler::class,
+        MotherboardsUsbHandler::class,
+        MDot2TypeHandler::class,
+        OnboardEthernetTypeHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler
