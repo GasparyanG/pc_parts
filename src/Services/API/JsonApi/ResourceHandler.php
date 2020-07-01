@@ -70,6 +70,8 @@ abstract class ResourceHandler
 
     protected function relationshipWith($entity, string $className, string $methodName): array
     {
+        if (!$entity) return [];
+
         $relationship = new Relationship();
         $tableName = $this->em->getClassMetadata($className)->getTableName();
         $relationship->setType($tableName);
@@ -105,6 +107,8 @@ abstract class ResourceHandler
     {
         $relToIncludeArr = explode(',', $relToInclude);
         $entity = $this->em->getRepository(static::$entityName)->find($id);
+
+        if (!$entity) return [];
 
         $dataToReturn = [];
 
