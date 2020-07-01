@@ -68,7 +68,9 @@ class HandlerFactory
         MemoryTypeHandler::class,
         GpuInterfaceHandler::class,
         BearingTypeHandler::class,
-        WaterCooledTypeHandler::class
+        WaterCooledTypeHandler::class,
+        PsuFormFactorHandler::class,
+        EfficiencyRatingHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler
