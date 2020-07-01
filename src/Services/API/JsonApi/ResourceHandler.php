@@ -75,16 +75,25 @@ abstract class ResourceHandler
         $relationship->setType($tableName);
 
         $data = [];
-        foreach ($entity->$methodName() as $entityImage) {
-            $singleItemData = [];
-            $singleItemData[Resource::TYPE] = $tableName;
-            $singleItemData[Resource::ID] = $entityImage->getId();
-            $data[] = $singleItemData;
-        }
+
+        $relationships = $entity->$methodName();
+        if (is_iterable($relationships))
+            foreach ($relationships as $relEntity)
+                $this->prepareRelData($relEntity, $data, $tableName);
+        else if ($relationships)
+            $this->prepareRelData($relationships, $data, $tableName);
 
         $relationship->setData($data);
         $relationship->arrayRepresentation();
         return $relationship->getRepresentation();
+    }
+
+    protected function prepareRelData($relEntity, array& $container, string $tableName): void
+    {
+        $singleItemData = [];
+        $singleItemData[Resource::TYPE] = $tableName;
+        $singleItemData[Resource::ID] = $relEntity->getId();
+        $container[] = $singleItemData;
     }
 
     protected function tableName(string $entity): ?string
@@ -102,23 +111,30 @@ abstract class ResourceHandler
         foreach ($relToIncludeArr as $rel) {
             [$methodName, $relEntity] = $this->getMethodName($rel);
             // TODO: notify somehow
-            // user may request for not existing relationship
+            // user may request for non-existing relationship
             if (!$methodName) continue;
             $relationshipResults = $entity->$methodName();
             $handler = HandlerFactory::create($relEntity);
 
-            foreach ($relationshipResults as $relationshipResult) {
-                $resourceToInclude = [];
-                // relation resource preparation
-                $resourceToInclude[Resource::ID] = $relationshipResult->getId();
-                $resourceToInclude[Resource::TYPE] = $this->tableName(get_class($relationshipResult));
-                $resourceToInclude[Resource::ATTRIBUTES] = $handler->attributes($relationshipResult->getId());
-
-                $dataToReturn[] = $resourceToInclude;
-            }
+            if (is_iterable($relationshipResults))
+                foreach ($relationshipResults as $relationshipResult)
+                    $this->prepareRelationship($relationshipResult, $dataToReturn, $handler);
+            else if ($relationshipResults)
+                $this->prepareRelationship($relationshipResults, $dataToReturn, $handler);
         }
 
         return $dataToReturn;
+    }
+
+    protected function prepareRelationship($relationship, array& $container, ResourceHandler $handler): void
+    {
+        $resourceToInclude = [];
+        // resource preparation
+        $resourceToInclude[Resource::ID] = $relationship->getId();
+        $resourceToInclude[Resource::TYPE] = $this->tableName(get_class($relationship));
+        $resourceToInclude[Resource::ATTRIBUTES] = $handler->attributes($relationship->getId());
+
+        $container[] = $resourceToInclude;
     }
 
     protected function getMethodName(string $relName): array
