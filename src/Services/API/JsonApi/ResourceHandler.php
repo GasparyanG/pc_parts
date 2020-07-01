@@ -108,7 +108,13 @@ abstract class ResourceHandler
             $handler = HandlerFactory::create($relEntity);
 
             foreach ($relationshipResults as $relationshipResult) {
-                $dataToReturn = $handler->attributes($relationshipResult->getId());
+                $resourceToInclude = [];
+                // relation resource preparation
+                $resourceToInclude[Resource::ID] = $relationshipResult->getId();
+                $resourceToInclude[Resource::TYPE] = $this->tableName(get_class($relationshipResult));
+                $resourceToInclude[Resource::ATTRIBUTES] = $handler->attributes($relationshipResult->getId());
+
+                $dataToReturn[] = $resourceToInclude;
             }
         }
 
