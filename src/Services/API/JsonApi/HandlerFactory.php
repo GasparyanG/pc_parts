@@ -70,7 +70,8 @@ class HandlerFactory
         BearingTypeHandler::class,
         WaterCooledTypeHandler::class,
         PsuFormFactorHandler::class,
-        EfficiencyRatingHandler::class
+        EfficiencyRatingHandler::class,
+        WirelessNetworkingTypeHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler

@@ -4,7 +4,11 @@
 namespace App\Services\API\JsonApi;
 
 
+use App\Database\Entities\CpuSocket;
+use App\Database\Entities\Manufacturer;
 use App\Database\Entities\MDot2Type;
+use App\Database\Entities\MemoryType;
+use App\Database\Entities\MoboFormFactor;
 use App\Database\Entities\MoboImage;
 use App\Database\Entities\MoboMemorySpeedType;
 use App\Database\Entities\MoboPrice;
@@ -13,6 +17,7 @@ use App\Database\Entities\MotherboardPartNumber;
 use App\Database\Entities\MotherboardsUsb;
 use App\Database\Entities\OnboardEthernetType;
 use App\Database\Entities\SliCrossfireType;
+use App\Database\Entities\WirelessNetworkingType;
 
 class MoboHandler extends ResourceHandler
 {
@@ -32,6 +37,11 @@ class MoboHandler extends ResourceHandler
         SliCrossfireType::class => "getSliCrossfireTypes",
         MotherboardsUsb::class => "getUsbs",
         MDot2Type::class => "getMDot2Types",
-        OnboardEthernetType::class => "getOnboardEthernetTypes"
+        OnboardEthernetType::class => "getOnboardEthernetTypes",
+        Manufacturer::class => "getManufacturer",
+        CpuSocket::class => "getCpuSocket",
+        MoboFormFactor::class => "getMoboFormFactor",
+        MemoryType::class => "getMemoryType",
+        WirelessNetworkingType::class => "getWirelessNetworkingType"
     ];
 }
