@@ -78,7 +78,10 @@ class HandlerFactory
         FormFactorHandler::class,
         ModuleHandler::class,
         TimingHandler::class,
-        EccRegisterHandler::class
+        EccRegisterHandler::class,
+        StorageTypeHandler::class,
+        StorageFormFactorHandler::class,
+        StorageInterfaceHandler::class
     ];
 
     public static function create(string $entityName): ?ResourceHandler

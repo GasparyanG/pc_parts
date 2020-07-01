@@ -4,10 +4,14 @@
 namespace App\Services\API\JsonApi;
 
 
+use App\Database\Entities\Manufacturer;
 use App\Database\Entities\Storage;
+use App\Database\Entities\StorageFormFactor;
 use App\Database\Entities\StorageImage;
+use App\Database\Entities\StorageInterface;
 use App\Database\Entities\StoragePartNumber;
 use App\Database\Entities\StoragePrice;
+use App\Database\Entities\StorageType;
 
 class StorageHandler extends ResourceHandler
 {
@@ -22,6 +26,10 @@ class StorageHandler extends ResourceHandler
     public static $relationshipProperties = [
         StorageImage::class => "getStorageImages",
         StoragePrice::class => "getStoragePrices",
-        StoragePartNumber::class => "getPartNumbers"
+        StoragePartNumber::class => "getPartNumbers",
+        Manufacturer::class => "getManufacturer",
+        StorageType::class => "getStorageType",
+        StorageFormFactor::class => "getStorageFormFactor",
+        StorageInterface::class => "getStorageInterface"
     ];
 }
