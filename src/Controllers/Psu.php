@@ -4,19 +4,18 @@
 namespace App\Controllers;
 
 
-use App\Services\API\JsonApi\PSUHandler;
-use App\Services\API\JsonApi\Specification\PSUComposer;
-use App\Services\API\JsonApi\Specification\Response as JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use App\Services\API\JsonApi\PsuHandler;
+use App\Services\API\JsonApi\Specification\PsuComposer;
 
-class Psu
+class Psu extends AbstractController
 {
-    public function get(Request $req, array $placeholders): Response
-    {
-        $cpuComposer = new PSUComposer(new PSUHandler(), $req->query, $placeholders['id']);
-        $cpuComposer->assemble();
+    /**
+     * {@inheritDoc}
+     */
+    protected static $composer = PsuComposer::class;
 
-        return JsonResponse::success($cpuComposer->getResource());
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected  static $handler = PsuHandler::class;
 }
