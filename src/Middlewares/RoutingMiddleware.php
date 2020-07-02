@@ -28,6 +28,7 @@ class RoutingMiddleware implements MiddlewareInterface
 
 		    // PSU
 		    $r->addRoute(Request::METHOD_GET, "/psu/{id}", ["Psu", "get"]);
+		    $r->addRoute(Request::METHOD_GET, "/psu", ["Psu", "getCollection"]);
 
             // STORAGE
             $r->addRoute(Request::METHOD_GET, "/storage/{id}", ["Storage", "get"]);
@@ -43,6 +44,7 @@ class RoutingMiddleware implements MiddlewareInterface
 
             // PcCASE
             $r->addRoute(Request::METHOD_GET, "/pc_case/{id}", ["PcCase", "get"]);
+            $r->addRoute(Request::METHOD_GET, "/pc_case", ["PcCase", "getCollection"]);
 
             // COOLER
             $r->addRoute(Request::METHOD_GET, "/cooler/{id}", ["Cooler", "get"]);
