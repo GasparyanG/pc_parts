@@ -73,15 +73,22 @@ abstract class ResourceComposer
         $entities = $this->em->getRepository(static::$entityName)
             ->findViaPagination($links->getOffset(), $links->getSize());
 
-
         // there may be no entity at all
         if (!$entities) return;
 
+        // add links
+        $links->arrayRepresentation();
+        $this->resource[Links::LINKS] = $links->getRepresentation();
+
+        $data = [];
         foreach($entities as $entity) {
             $resource = $this->buildResource($entity->getId());
             $resource->arrayRepresentation();
-            $this->resource[] = $resource->getRepresentation();
+            $data[] = $resource->getRepresentation();
         }
+
+        // key mentioning
+        $this->resource[Resource::DATA] = $data;
     }
 
     protected function buildResource(int $id): Resource

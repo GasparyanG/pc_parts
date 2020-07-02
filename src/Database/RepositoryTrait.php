@@ -25,4 +25,12 @@ trait RepositoryTrait
             ->getQuery()
             ->getResult();
     }
+
+    public function total(): int
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
