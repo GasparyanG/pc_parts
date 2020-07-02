@@ -5,6 +5,7 @@ namespace App\Services\API\JsonApi\Specification;
 
 
 use App\Database\Connection;
+use App\Services\API\JsonApi\DataFetching\Fetcher;
 use App\Services\API\JsonApi\ResourceHandler;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -70,8 +71,8 @@ abstract class ResourceComposer
     {
         // get entities
         $links = new Links(static::$entityName, $this->queryBag);
-        $entities = $this->em->getRepository(static::$entityName)
-            ->findViaPagination($links->getOffset(), $links->getSize());
+        $fetcher = new Fetcher(static::$entityName, $this->queryBag);
+        $entities = $fetcher->getEntities();
 
         // there may be no entity at all
         if (!$entities) return;
