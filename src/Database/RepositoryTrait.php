@@ -16,4 +16,13 @@ trait RepositoryTrait
         if (!isset($query->getResult(Query::HYDRATE_ARRAY)[0])) return [];
         return $query->getResult(Query::HYDRATE_ARRAY)[0];
     }
+
+    public function findViaPagination(int $offset, int $limit): ?iterable
+    {
+        return $this->createQueryBuilder('c')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 }
