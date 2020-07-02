@@ -59,17 +59,35 @@ abstract class ResourceComposer
 
     public function assemble(): void
     {
-        $resource = new Resource();
-
-        // Build $resource object
-        $resource->setAttributes($this->resourceHandler->attributes($this->id));
-        $resource->setId($this->id);
-        $resource->setType($this->em->getClassMetadata(static::$entityName)->getTableName());
-        $resource->setRelationships($this->resourceHandler->relationships($this->id));
-        $resource->setIncluded($this->resourceHandler->included($this->queryBag->get(Resource::INCLUDED), $this->id));
+        $resource = $this->buildResource($this->id);
 
         // Prepare $this->resource for callers.
         $resource->arrayRepresentation();
         $this->resource = $resource->getRepresentation();
+    }
+
+    public function assembleCollection(): void
+    {
+        // get entities
+        $entities = $this->em->getRepository(static::$entityName)->findAll();
+        foreach($entities as $entity) {
+            $resource = $this->buildResource($entity->getId());
+            $resource->arrayRepresentation();
+            $this->resource[] = $resource->getRepresentation();
+        }
+    }
+
+    protected function buildResource(int $id): Resource
+    {
+        $resource = new Resource();
+
+        // Build $resource object
+        $resource->setAttributes($this->resourceHandler->attributes($id));
+        $resource->setId($id);
+        $resource->setType($this->em->getClassMetadata(static::$entityName)->getTableName());
+        $resource->setRelationships($this->resourceHandler->relationships($id));
+        $resource->setIncluded($this->resourceHandler->included($this->queryBag->get(Resource::INCLUDED), $id));
+
+        return $resource;
     }
 }
