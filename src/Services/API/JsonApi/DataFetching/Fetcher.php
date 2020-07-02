@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class Fetcher
 {
+    const ALIAS = 'a';
+
     /**
      * @var EntityManager
      */
@@ -53,18 +55,19 @@ class Fetcher
     private function select(): void
     {
         $this->queryBuilder
-            ->select('c')
-            ->from($this->entityName, 'c');
+            ->select(self::ALIAS)
+            ->from($this->entityName, self::ALIAS);
     }
 
     private function order(): void
     {
-
+        $orderImp = new OrderImplementer($this->queryBuilder, $this->queryBag);
+        $orderImp->order();
     }
 
     private function filter(): void
     {
-
+        // TODO: implement filter method
     }
 
     private function limit(): void
@@ -78,6 +81,12 @@ class Fetcher
 
     private function find(): iterable
     {
-        return $this->queryBuilder->getQuery()->getResult();
+        try {
+            return $this->queryBuilder->getQuery()->getResult();
+        } catch (\Exception $e) {
+            // TODO: return exception to caller
+            echo $e->getMessage() . "\n";
+            return [];
+        }
     }
 }
