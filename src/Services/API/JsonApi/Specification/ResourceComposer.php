@@ -17,16 +17,6 @@ abstract class ResourceComposer
     protected static $entityName;
 
     /**
-     * @var int
-     */
-    protected static $defaultPage = 0;
-
-    /**
-     * @var int
-     */
-    protected static $defaultLimit = 25;
-
-    /**
      * @var ParameterBag
      */
     protected $queryBag;
@@ -79,7 +69,11 @@ abstract class ResourceComposer
     public function assembleCollection(): void
     {
         // get entities
-        $entities = $this->idsForCollection();
+        $links = new Links(static::$entityName, $this->queryBag);
+        $entities = $this->em->getRepository(static::$entityName)
+            ->findViaPagination($links->getOffset(), $links->getSize());
+
+
         // there may be no entity at all
         if (!$entities) return;
 
@@ -88,18 +82,6 @@ abstract class ResourceComposer
             $resource->arrayRepresentation();
             $this->resource[] = $resource->getRepresentation();
         }
-    }
-
-    public function idsForCollection(): ?iterable
-    {
-        $this->prepareOffsetAndLimit();
-
-        // preparing offset and limit for pagination
-        $offset = self::$defaultPage * self::$defaultLimit;
-        $limit = self::$defaultLimit;
-
-        return $this->em->getRepository(static::$entityName)
-            ->findViaPagination($offset, $limit);
     }
 
     protected function buildResource(int $id): Resource
@@ -114,24 +96,5 @@ abstract class ResourceComposer
         $resource->setIncluded($this->resourceHandler->included($this->queryBag->get(Resource::INCLUDED), $id));
 
         return $resource;
-    }
-
-    protected function prepareOffsetAndLimit(): void
-    {
-        $pagination = $this->queryBag->get(Resource::PAGE);
-
-        if (!$pagination ||
-            (!isset($pagination[Resource::PAGE_NUMBER])
-                && !isset($pagination[Resource::PAGE_SIZE]))) return;
-
-        if (isset($pagination[Resource::PAGE_SIZE])
-            && is_numeric($pagination[Resource::PAGE_SIZE])
-            && $pagination[Resource::PAGE_SIZE] > 0)
-            self::$defaultLimit = $pagination[Resource::PAGE_SIZE];
-
-        if (isset($pagination[Resource::PAGE_NUMBER])
-            && is_numeric($pagination[Resource::PAGE_NUMBER])
-            && $pagination[Resource::PAGE_NUMBER] > 0)
-            self::$defaultPage = $pagination[Resource::PAGE_NUMBER];
     }
 }

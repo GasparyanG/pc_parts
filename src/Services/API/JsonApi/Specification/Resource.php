@@ -7,7 +7,7 @@ namespace App\Services\API\JsonApi\Specification;
  * Resource implementation is based on JSON:API Specification (v1.0)
  * for more info see https://jsonapi.org/format/
  *
- * @author Garnik Gasparyan <gasp.garnik@gmail.com>
+ * @author Garnik Gasparyan <gasp.garnik+resource.author@gmail.com>
  */
 class Resource
 {
