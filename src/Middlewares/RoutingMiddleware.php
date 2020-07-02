@@ -35,6 +35,7 @@ class RoutingMiddleware implements MiddlewareInterface
 
             // MEMORY
             $r->addRoute(Request::METHOD_GET, "/memory/{id}", ["Memory", "get"]);
+            $r->addRoute(Request::METHOD_GET, "/memory", ["Memory", "getCollection"]);
 
             // MOTHERBOARD
             $r->addRoute(Request::METHOD_GET, "/motherboard/{id}", ["Mobo", "get"]);
