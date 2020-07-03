@@ -2,9 +2,12 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use App\Services\Crawling\RetailerSpecificData\Retailers\Amazon;
+use App\Services\Crawling\RetailerSpecificData\Retailers\BAndH;
 
-$am = new Amazon();
-$am->crawl("G166SVXSC");
+//$am = new BAndH();
+//$am->crawl("ROG-STRIX-RTX2080TI-O11G", 1);
 
-var_dump($am->getCrawledData());
+for ($i = 88; $i < 171; ++$i)
+    echo $i . ',';
+
+//var_dump($am->getCrawledData());

@@ -68,40 +68,22 @@ class FilterImplementer
         if (!$filterParams) return;
 
         foreach ($filterParams as $key => $value)
-            if (in_array($key, self::$conjunction)) {
-                if ($this->isValidForConjunction())
-                    $this->filterString .= " " . self::AND . " ";
-                $this->filterString .= "(";
-                $this->withConjunction($key, $value);
-                $this->filterString .= ")";
-            } else {
-                if ($this->isValidForConjunction())
-                    $this->filterString .= " " . self::AND . " ";
-                $this->filterString .= "(";
-                $this->filterField($key, $value);
-                $this->filterString .= ")";
-            }
+            if (in_array($key, self::$conjunction))
+                $this->combination($key, $value, "withConjunction", self::AND, false);
+            else
+                $this->combination($key, $value, "filterField", self::AND, false);
 
-         echo $this->filterString;
+        echo $this->filterString;
         $this->queryBuilder->andWhere($this->filterString);
     }
 
     private function withConjunction(string $cnj, array $expression): void
     {
         foreach($expression as $key => $value)
-            if (in_array($key, self::$conjunction)) {
-                if ($this->isValidForConjunction())
-                    $this->filterString .= " $cnj ";
-                $this->filterString .= "(";
-                $this->withConjunction($key, $value);
-                $this->filterString .= ")";
-            } else {
-                if ($this->isValidForConjunction())
-                    $this->filterString .= " $cnj ";
-                $this->filterString .= "(";
-                $this->filterField($key, $value, $cnj);
-                $this->filterString .= ")";
-            }
+            if (in_array($key, self::$conjunction))
+                $this->combination($key, $value, "withConjunction", $cnj, false);
+            else
+                $this->combination($key, $value, "filterField", $cnj, true);
     }
 
     private function filterField(string $field, array $expression, string $cnj = null): void
@@ -119,6 +101,23 @@ class FilterImplementer
                     . $cnj . " ";
             ++$cycle;
         }
+    }
+
+    private function combination(
+        $key,
+        $value,
+        string $methodName,
+        string $cnj,
+        bool $isCnj)
+    {
+        if ($this->isValidForConjunction())
+            $this->filterString .= " $cnj ";
+        $this->filterString .= "(";
+        if ($isCnj)
+            $this->$methodName($key, $value, $cnj);
+        else
+            $this->$methodName($key, $value);
+        $this->filterString .= ")";
     }
 
     private function preparedValue(string $key, string $value): string
