@@ -67,7 +67,8 @@ class Fetcher
 
     private function filter(): void
     {
-        // TODO: implement filter method
+        $filterImp = new FilterImplementer($this->queryBuilder, $this->queryBag);
+        $filterImp->filter();
     }
 
     private function limit(): void
