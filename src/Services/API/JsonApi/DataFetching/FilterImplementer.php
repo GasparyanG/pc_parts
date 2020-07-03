@@ -68,12 +68,18 @@ class FilterImplementer
         if (!$filterParams) return;
 
         foreach ($filterParams as $key => $value)
-            if (in_array($key, self::$conjunction))
-                $this->withConjunction($key, $value);
-            else {
-                if ($this->filterString)
+            if (in_array($key, self::$conjunction)) {
+                if ($this->isValidForConjunction())
                     $this->filterString .= " " . self::AND . " ";
+                $this->filterString .= "(";
+                $this->withConjunction($key, $value);
+                $this->filterString .= ")";
+            } else {
+                if ($this->isValidForConjunction())
+                    $this->filterString .= " " . self::AND . " ";
+                $this->filterString .= "(";
                 $this->filterField($key, $value);
+                $this->filterString .= ")";
             }
 
          echo $this->filterString;
@@ -83,10 +89,14 @@ class FilterImplementer
     private function withConjunction(string $cnj, array $expression): void
     {
         foreach($expression as $key => $value)
-            if (in_array($key, self::$conjunction))
+            if (in_array($key, self::$conjunction)) {
+                if ($this->isValidForConjunction())
+                    $this->filterString .= " $cnj ";
+                $this->filterString .= "(";
                 $this->withConjunction($key, $value);
-            else {
-                if ($this->filterString)
+                $this->filterString .= ")";
+            } else {
+                if ($this->isValidForConjunction())
                     $this->filterString .= " $cnj ";
                 $this->filterString .= "(";
                 $this->filterField($key, $value, $cnj);
@@ -121,5 +131,12 @@ class FilterImplementer
 
         // keep distance
         return " $value ";
+    }
+
+    private function isValidForConjunction(): bool
+    {
+        if (!$this->filterString) return false;
+        $pattern = '~(.+)?\(\s*$~i';
+        return !preg_match($pattern, $this->filterString);
     }
 }
