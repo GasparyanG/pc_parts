@@ -49,7 +49,10 @@ class RoutingMiddleware implements MiddlewareInterface
             // COOLER
             $r->addRoute(Request::METHOD_GET, "/cooler/{id}", ["Cooler", "get"]);
             $r->addRoute(Request::METHOD_GET, "/cooler", ["Cooler", "getCollection"]);
-		});
+
+            // HOME
+            $r->addRoute(Request::METHOD_GET, "/home", ["HOME", "get"]);
+        });
 
 		$httpMethod = $request->getMethod();
 		$uri = $request->getBaseUrl().$request->getPathInfo();
