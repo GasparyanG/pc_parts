@@ -1,4 +1,40 @@
 #home_page {
   height: calc(100vh - #{$navigation_height});
   background-color: $dark_mode;
+  color: $light_mode;
+  // meant for margin of page_hint_message
+  overflow: auto;
+}
+
+#home_page .parts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin-left: 15%;
+}
+
+#home_page .parts a {
+  text-decoration: none;
+}
+
+#home_page .parts .part_repr {
+  margin: 1rem;
+  background: #323549;
+  text-align: center;
+  width: 260px;
+  height: 260px;
+  border: 2px solid #323549;
+}
+
+#home_page .parts .part_repr:hover {
+  @extend .border_and_transition;
+}
+
+#home_page .parts .part_name {
+  color: $light_mode;
+  font-weight: 500;
+  font-size: 18px;
 }

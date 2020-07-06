@@ -1,3 +1,7 @@
+.border_and_transition, #home_page .parts .part_repr:hover {
+  transition: 3ms;
+  border: 2px solid beige; }
+
 #navigation {
   height: 100px;
   background-color: #191b2b;
@@ -6,6 +10,11 @@
 body {
   margin: 0;
   font-family: "sf pro display","segoe ui","Roboto","Oxygen-Sans","Ubuntu","Cantarell","helvetica neue", "sans-serif"; }
+
+.page_hint_message {
+  text-align: center;
+  font-size: 25px;
+  margin: 2rem; }
 
 .nav-logo {
   color: #fff;
@@ -16,6 +25,33 @@ body {
 
 #home_page {
   height: calc(100vh - 100px);
-  background-color: #282838; }
+  background-color: #282838;
+  color: #fff;
+  overflow: auto; }
+
+#home_page .parts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin-left: 15%; }
+
+#home_page .parts a {
+  text-decoration: none; }
+
+#home_page .parts .part_repr {
+  margin: 1rem;
+  background: #323549;
+  text-align: center;
+  width: 260px;
+  height: 260px;
+  border: 2px solid #323549; }
+
+#home_page .parts .part_name {
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px; }
 
 /*# sourceMappingURL=main.css.map */
