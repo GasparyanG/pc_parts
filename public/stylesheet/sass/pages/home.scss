@@ -1,0 +1,4 @@
+#home_page {
+  height: calc(100vh - #{$navigation_height});
+  background-color: $dark_mode;
+}

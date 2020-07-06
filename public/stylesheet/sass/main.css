@@ -1,8 +1,21 @@
 #navigation {
   height: 100px;
-  background-color: #191b2b; }
+  background-color: #191b2b;
+  display: flex; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: "sf pro display","segoe ui","Roboto","Oxygen-Sans","Ubuntu","Cantarell","helvetica neue", "sans-serif"; }
+
+.nav-logo {
+  color: #fff;
+  font-weight: 700;
+  font-size: 25px;
+  align-self: center;
+  margin-left: 3rem; }
+
+#home_page {
+  height: calc(100vh - 100px);
+  background-color: #282838; }
 
 /*# sourceMappingURL=main.css.map */
