@@ -1,22 +1,4 @@
-class Resource {
-    constructor(resrouce) {
-        this.data = resrouce["data"];
-    }
-
-    repr() {
-        return JSON.stringify(this.data);
-    }
-}
-
-class Link {
-    constructor(resource) {
-        this.links = resource["links"];
-    }
-
-    repr() {
-        return JSON.stringify(this.links);
-    }
-}
+import {Resource, Link} from "/public/js/collection_of_part/Resource.js";
 
 class FilterablePartTable extends React.Component {
     constructor(props) {
