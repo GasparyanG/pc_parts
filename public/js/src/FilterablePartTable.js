@@ -1,4 +1,4 @@
-import {Resource, Link} from "/public/js/collection_of_part/Resource.js";
+import {TopLevelResource, Resource, Link} from "/public/js/collection_of_part/Resource.js";
 
 class FilterablePartTable extends React.Component {
     constructor(props) {
@@ -6,7 +6,7 @@ class FilterablePartTable extends React.Component {
 
         // state of table
         this.state = {
-            collection: new Resource([]),
+            collection: new TopLevelResource([]),
             links: new Link([])
         }
     }
@@ -19,22 +19,21 @@ class FilterablePartTable extends React.Component {
             method: "GET",
             success: function(result) {
                 self.setState({
-                    collection: new Resource(result),
+                    collection: new TopLevelResource(result),
                     links: new Link(result)
                 });
             }
         });
     }
 
-    componentWillUnmount() {
-
-    }
+    componentWillUnmount() { }
 
     render() {
         return (<div>
             <div className="filtration">
             </div>
             <div className="part_collection">
+                <PartCollection collection={this.state.collection.data}/>
             </div>
             <div className="pagination">
                 <Pagination value={this.state.links.first} name="First" />
@@ -54,6 +53,35 @@ class Pagination extends React.Component {
 
     render() {
         return (<div><a href={this.props.value}>{this.props.name}</a></div>)
+    }
+}
+
+class PartCollection extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        if (this.props.collection) {
+            // TODO: change 'i' with actual id of given resource
+            let i=0;
+            const tableRows = this.props.collection.map((part) => <PcPart key={++i} res_obj={part} />);
+            return <div>{tableRows}</div>;
+        }
+
+        return <div>Empty</div>;
+    }
+}
+
+class PcPart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        let resource = new Resource(this.props.res_obj);
+        // TODO: render single resource
+        return  <div>{resource.type}</div>;
     }
 }
 

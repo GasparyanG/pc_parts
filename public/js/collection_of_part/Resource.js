@@ -1,15 +1,47 @@
-class Resource {
+// Meant for collection of objects as well as for metadata, exception, etc.
+class TopLevelResource {
+    // Key to access api result
+    static data_key = "data";
+
     constructor(resource) {
-        this.data = resource["data"];
+        this._data = resource[TopLevelResource.data_key];
     }
 
-    repr() {
-        return JSON.stringify(this.data);
-    }
+    get data() { return this._data; }
+
+    // TODO: get metadata and top level components
 }
 
+// Meant for single object
+class Resource {
+    // keys to access api result
+    static relationships_key = "relationships";
+    static included_key = "included";
+    static id_key = "id";
+    static type_key = "type";
+    static attributes_key = "attributes";
+
+    constructor(resource) {
+        let data = resource[TopLevelResource.data_key];
+
+        this._id = data[Resource.id_key];
+        this._relationships = data[Resource.relationships_key];
+        this._type = data[Resource.type_key];
+        this._included = data[Resource.included_key];
+        this._attributes = data[Resource.attributes_key];
+    }
+
+    get id () { return this._id; }
+    get relationships () { return this._relationships; }
+    get type () { return this._type; }
+    get included () { return this._included; }
+    get attributes () { return this._attributes; }
+}
+
+
+// Mostly meant for pagination
 class Link {
-    // Key to access values of api result
+    // Keys to access values of api result
     static links_key = "links";
     static first_key = "first";
     static prev_key = "prev";
@@ -37,4 +69,4 @@ class Link {
 }
 
 // export resource handlers to be able to import
-export { Resource, Link };
+export { TopLevelResource, Resource, Link };

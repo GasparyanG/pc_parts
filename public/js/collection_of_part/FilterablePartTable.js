@@ -6,7 +6,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import { Resource, Link } from "/public/js/collection_of_part/Resource.js";
+import { TopLevelResource, Resource, Link } from "/public/js/collection_of_part/Resource.js";
 
 var FilterablePartTable = function (_React$Component) {
     _inherits(FilterablePartTable, _React$Component);
@@ -18,7 +18,7 @@ var FilterablePartTable = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (FilterablePartTable.__proto__ || Object.getPrototypeOf(FilterablePartTable)).call(this, props));
 
         _this.state = {
-            collection: new Resource([]),
+            collection: new TopLevelResource([]),
             links: new Link([])
         };
         return _this;
@@ -36,7 +36,7 @@ var FilterablePartTable = function (_React$Component) {
                 method: "GET",
                 success: function success(result) {
                     self.setState({
-                        collection: new Resource(result),
+                        collection: new TopLevelResource(result),
                         links: new Link(result)
                     });
                 }
@@ -52,7 +52,11 @@ var FilterablePartTable = function (_React$Component) {
                 "div",
                 null,
                 React.createElement("div", { className: "filtration" }),
-                React.createElement("div", { className: "part_collection" }),
+                React.createElement(
+                    "div",
+                    { className: "part_collection" },
+                    React.createElement(PartCollection, { collection: this.state.collection.data })
+                ),
                 React.createElement(
                     "div",
                     { className: "pagination" },
@@ -94,6 +98,67 @@ var Pagination = function (_React$Component2) {
     }]);
 
     return Pagination;
+}(React.Component);
+
+var PartCollection = function (_React$Component3) {
+    _inherits(PartCollection, _React$Component3);
+
+    function PartCollection(props) {
+        _classCallCheck(this, PartCollection);
+
+        return _possibleConstructorReturn(this, (PartCollection.__proto__ || Object.getPrototypeOf(PartCollection)).call(this, props));
+    }
+
+    _createClass(PartCollection, [{
+        key: "render",
+        value: function render() {
+            if (this.props.collection) {
+                // TODO: change 'i' with actual id of given resource
+                var i = 0;
+                var tableRows = this.props.collection.map(function (part) {
+                    return React.createElement(PcPart, { key: ++i, res_obj: part });
+                });
+                return React.createElement(
+                    "div",
+                    null,
+                    tableRows
+                );
+            }
+
+            return React.createElement(
+                "div",
+                null,
+                "Empty"
+            );
+        }
+    }]);
+
+    return PartCollection;
+}(React.Component);
+
+var PcPart = function (_React$Component4) {
+    _inherits(PcPart, _React$Component4);
+
+    function PcPart(props) {
+        _classCallCheck(this, PcPart);
+
+        return _possibleConstructorReturn(this, (PcPart.__proto__ || Object.getPrototypeOf(PcPart)).call(this, props));
+    }
+
+    _createClass(PcPart, [{
+        key: "render",
+        value: function render() {
+            var resource = new Resource(this.props.res_obj);
+            // TODO: render single resource
+            return React.createElement(
+                "div",
+                null,
+                resource.type
+            );
+        }
+    }]);
+
+    return PcPart;
 }(React.Component);
 
 var element = React.createElement(FilterablePartTable, null);
