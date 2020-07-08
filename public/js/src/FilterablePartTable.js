@@ -1,12 +1,47 @@
+class Resource {
+    constructor(resrouce) {
+        this.data = resrouce["data"];
+    }
+
+    repr() {
+        return JSON.stringify(this.data);
+    }
+}
+
+class Link {
+    constructor(resource) {
+        this.links = resource["links"];
+    }
+
+    repr() {
+        return JSON.stringify(this.links);
+    }
+}
+
 class FilterablePartTable extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {collection: null}
+
+        // state of table
+        this.state = {
+            collection: new Resource([]),
+            links: new Link([])
+        }
     }
 
     // lifecycle components
     componentDidMount() {
-
+        var self = this;
+        $.ajax({
+            url: "/gpu?api=true&included=gpu_images",
+            method: "GET",
+            success: function(result) {
+                self.setState({
+                    collection: new Resource(result),
+                    links: new Link(result)
+                });
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -14,7 +49,17 @@ class FilterablePartTable extends React.Component {
     }
 
     render() {
-        return (<h1>Hello, {this.state.collection}</h1>);
+        return (<div>
+            <div className="filtration">
+                {this.state.collection.repr()}
+            </div>
+            <div className="part_collection">
+
+            </div>
+            <div className="pagination">
+                {this.state.links.repr()}
+            </div>
+        </div>);
     }
 }
 
