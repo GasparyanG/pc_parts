@@ -51,22 +51,49 @@ var FilterablePartTable = function (_React$Component) {
             return React.createElement(
                 "div",
                 null,
-                React.createElement(
-                    "div",
-                    { className: "filtration" },
-                    this.state.collection.repr()
-                ),
+                React.createElement("div", { className: "filtration" }),
                 React.createElement("div", { className: "part_collection" }),
                 React.createElement(
                     "div",
                     { className: "pagination" },
-                    this.state.links.repr()
+                    React.createElement(Pagination, { value: this.state.links.first, name: "First" }),
+                    React.createElement(Pagination, { value: this.state.links.prev, name: "Previous" }),
+                    React.createElement(Pagination, { value: this.state.links.self, name: "Current Page" }),
+                    React.createElement(Pagination, { value: this.state.links.next, name: "Next" }),
+                    React.createElement(Pagination, { value: this.state.links.last, name: "Last" })
                 )
             );
         }
     }]);
 
     return FilterablePartTable;
+}(React.Component);
+
+var Pagination = function (_React$Component2) {
+    _inherits(Pagination, _React$Component2);
+
+    function Pagination(props) {
+        _classCallCheck(this, Pagination);
+
+        return _possibleConstructorReturn(this, (Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call(this, props));
+    }
+
+    _createClass(Pagination, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "a",
+                    { href: this.props.value },
+                    this.props.name
+                )
+            );
+        }
+    }]);
+
+    return Pagination;
 }(React.Component);
 
 var element = React.createElement(FilterablePartTable, null);

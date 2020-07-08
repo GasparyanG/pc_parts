@@ -33,15 +33,27 @@ class FilterablePartTable extends React.Component {
     render() {
         return (<div>
             <div className="filtration">
-                {this.state.collection.repr()}
             </div>
             <div className="part_collection">
-
             </div>
             <div className="pagination">
-                {this.state.links.repr()}
+                <Pagination value={this.state.links.first} name="First" />
+                <Pagination value={this.state.links.prev} name="Previous" />
+                <Pagination value={this.state.links.self} name="Current Page" />
+                <Pagination value={this.state.links.next} name="Next" />
+                <Pagination value={this.state.links.last} name="Last" />
             </div>
         </div>);
+    }
+}
+
+class Pagination extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (<div><a href={this.props.value}>{this.props.name}</a></div>)
     }
 }
 
