@@ -25,6 +25,21 @@ class MemoryHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = MemoryPrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $imageEntityName = MemoryImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "memory";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         MemoryImage::class => "getMemoryImages",
         MemoryPrice::class => "getMemoryPrices",
