@@ -102,6 +102,7 @@ abstract class ResourceComposer
         $resource->setType($this->em->getClassMetadata(static::$entityName)->getTableName());
         $resource->setRelationships($this->resourceHandler->relationships($id));
         $resource->setIncluded($this->resourceHandler->included($this->queryBag->get(Resource::INCLUDED), $id));
+        $resource->setMeta($this->resourceHandler->meta());
 
         return $resource;
     }

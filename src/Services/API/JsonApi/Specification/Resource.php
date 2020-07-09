@@ -19,6 +19,7 @@ class Resource
     // TOP LEVEL
     const DATA = 'data';
     const INCLUDED = 'included';
+    const META = "meta";
 
     // DATA LEVEL
     const ID = 'id';
@@ -57,6 +58,11 @@ class Resource
      */
     private $included = [];
 
+    /**
+     * @var array
+     */
+    private $meta;
+
     public function arrayRepresentation(): void
     {
         $this->dataLevel();
@@ -74,6 +80,7 @@ class Resource
     private function includedLevel(): void
     {
         $this->representation[self::INCLUDED] = $this->included;
+        $this->representation[self::META] = $this->meta;
     }
 
     /**
@@ -162,5 +169,21 @@ class Resource
     public function getRepresentation(): array
     {
         return $this->representation;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMeta(): array
+    {
+        return $this->meta;
+    }
+
+    /**
+     * @param array $meta
+     */
+    public function setMeta(array $meta): void
+    {
+        $this->meta = $meta;
     }
 }

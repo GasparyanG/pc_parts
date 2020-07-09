@@ -177,6 +177,11 @@ abstract class ResourceHandler
         return $dataToReturn;
     }
 
+    public function meta(): array
+    {
+        return [];
+    }
+
     protected function prepareRelationship($relationship, array& $container, ResourceHandler $handler): void
     {
         $resourceToInclude = [];
