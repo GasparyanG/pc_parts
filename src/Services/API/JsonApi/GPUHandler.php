@@ -33,6 +33,11 @@ class GPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $imageEntityName = GpuImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
     public static $assocName = "gpu";
 
     /**

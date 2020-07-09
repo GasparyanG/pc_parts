@@ -39,6 +39,7 @@ trait RepositoryTrait
         $startDate = time() - $timeInterval;
         $endDate = time();
 
+        $res = null;
         try {
             $res = $this->createQueryBuilder('c')
                 ->select("c.price")
@@ -54,8 +55,19 @@ trait RepositoryTrait
         return $res;
     }
 
-    public function findImageName(int $id): ?string
+    public function findImageName(int $id, string $name): ?string
     {
+        $res = null;
+        try {
+            $res = $this->createQueryBuilder('c')
+                ->select("c.fileName")
+                ->where('c.' . $name . '= ' . $id)
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (\Exception $e) {}
 
+        if (!$res) return null;
+        return $res;
     }
 }

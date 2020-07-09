@@ -92,7 +92,7 @@ abstract class ResourceHandler
         // image
         if (static::$imageEntityName) {
             $imageRepo = $this->em->getRepository(static::$imageEntityName);
-            $imageFileName = $imageRepo->findImageName($id);
+            $imageFileName = $imageRepo->findImageName($id, static::$assocName);
             $attr[self::IMAGE] = $imageFileName ? self::$partImageDirectory . "/" . $imageFileName: null;
         }
 
