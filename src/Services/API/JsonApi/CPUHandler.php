@@ -28,6 +28,21 @@ class CPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = CpuPrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $imageEntityName = CpuImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "cpu";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         CpuImage::class => "getCpuImages",
         CpuPrice::class => "getCpuPrices",
