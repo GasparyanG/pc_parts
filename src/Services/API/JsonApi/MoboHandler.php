@@ -44,6 +44,15 @@ class MoboHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Price" => ResourceHandler::PRICE
+    ];
+
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         MoboImage::class => "getMoboImages",
         MoboPrice::class => "getMoboPrices",

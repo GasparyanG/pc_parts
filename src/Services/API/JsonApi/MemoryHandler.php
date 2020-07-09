@@ -40,6 +40,14 @@ class MemoryHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Price" => ResourceHandler::PRICE
+    ];
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         MemoryImage::class => "getMemoryImages",
         MemoryPrice::class => "getMemoryPrices",

@@ -39,6 +39,15 @@ class PSUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Price" => ResourceHandler::PRICE
+    ];
+
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         PsuImage::class => "getPsuImages",
         PsuPrice::class => "getPsuPrices",

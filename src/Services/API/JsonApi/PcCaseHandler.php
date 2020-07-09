@@ -47,10 +47,6 @@ class PcCaseHandler extends ResourceHandler
     public static $essentialFields = [
         "Name" => "name",
         "Price" => ResourceHandler::PRICE
-        // TODO
-        // "Chipset" => "chipset",
-        // "Color" => "color,
-        // "Interface" => "interface"
     ];
 
     /**

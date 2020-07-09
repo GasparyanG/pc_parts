@@ -43,6 +43,15 @@ class CPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Price" => ResourceHandler::PRICE
+    ];
+
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         CpuImage::class => "getCpuImages",
         CpuPrice::class => "getCpuPrices",

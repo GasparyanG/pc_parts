@@ -39,6 +39,15 @@ class CoolerHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Price" => ResourceHandler::PRICE
+    ];
+
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         CoolerImage::class => "getCoolerImages",
         CoolerPrice::class => "getCoolerPrices",

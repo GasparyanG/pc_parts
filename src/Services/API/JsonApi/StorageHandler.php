@@ -38,6 +38,15 @@ class StorageHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Price" => ResourceHandler::PRICE
+    ];
+
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         StorageImage::class => "getStorageImages",
         StoragePrice::class => "getStoragePrices",
