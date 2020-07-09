@@ -5,6 +5,7 @@ namespace App\Services\API\JsonApi;
 
 
 use App\Database\Connection;
+use App\Services\API\JsonApi\Specification\Metadata;
 use App\Services\API\JsonApi\Specification\Relationship;
 use App\Services\API\JsonApi\Specification\Resource;
 use Doctrine\ORM\EntityManager;
@@ -45,6 +46,12 @@ abstract class ResourceHandler
      * @var int
      */
     private static $priceTimeInterval = 60 * 60 * 24;
+
+    /**
+     * Meant for metadata
+     * @var array
+     */
+    public static $essentialFields = [];
 
     /**
      * @var array
@@ -179,7 +186,11 @@ abstract class ResourceHandler
 
     public function meta(): array
     {
-        return [];
+        $meta = new Metadata();
+        $meta->setEssentialFields(static::$essentialFields);
+
+        $meta->arrayRepresentation();
+        return $meta->getRepresentation();
     }
 
     protected function prepareRelationship($relationship, array& $container, ResourceHandler $handler): void

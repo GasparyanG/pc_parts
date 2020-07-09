@@ -43,6 +43,20 @@ class GPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Memory" => "memory",
+        "Core Clock" => "coreClock",
+        "Boost Clock" => "boostClock",
+        "Price" => ResourceHandler::PRICE
+        // "Chipset" => "chipset",
+        // "Color" => "color,
+        // "Interface" => "interface"
+    ];
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         GpuImage::class => "getGpuImages",
         GpuPrice::class => "getGpuPrices",
