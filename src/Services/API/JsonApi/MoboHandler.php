@@ -29,6 +29,21 @@ class MoboHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = MoboPrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $imageEntityName = MoboImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "mobo";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         MoboImage::class => "getMoboImages",
         MoboPrice::class => "getMoboPrices",
