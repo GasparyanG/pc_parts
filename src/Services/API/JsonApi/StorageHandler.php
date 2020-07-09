@@ -23,6 +23,21 @@ class StorageHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = StoragePrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $imageEntityName = StorageImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "storage";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         StorageImage::class => "getStorageImages",
         StoragePrice::class => "getStoragePrices",
