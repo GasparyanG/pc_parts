@@ -44,6 +44,18 @@ class PcCaseHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $essentialFields = [
+        "Name" => "name",
+        "Price" => ResourceHandler::PRICE
+        // TODO
+        // "Chipset" => "chipset",
+        // "Color" => "color,
+        // "Interface" => "interface"
+    ];
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         CaseImage::class => "getCaseImages",
         CasePrice::class => "getCasePrices",

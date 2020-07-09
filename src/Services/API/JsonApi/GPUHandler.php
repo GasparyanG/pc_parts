@@ -49,6 +49,7 @@ class GPUHandler extends ResourceHandler
         "Core Clock" => "coreClock",
         "Boost Clock" => "boostClock",
         "Price" => ResourceHandler::PRICE
+        // TODO
         // "Chipset" => "chipset",
         // "Color" => "color,
         // "Interface" => "interface"
