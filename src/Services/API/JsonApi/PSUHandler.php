@@ -24,6 +24,21 @@ class PSUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = PsuPrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $imageEntityName = PsuImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "psu";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         PsuImage::class => "getPsuImages",
         PsuPrice::class => "getPsuPrices",
