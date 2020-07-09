@@ -28,6 +28,16 @@ class GPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = GpuPrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "gpu";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         GpuImage::class => "getGpuImages",
         GpuPrice::class => "getGpuPrices",

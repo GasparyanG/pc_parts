@@ -33,4 +33,29 @@ trait RepositoryTrait
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findLastLowestPrice(int $id, int $timeInterval, string $name): ?float
+    {
+        $startDate = time() - $timeInterval;
+        $endDate = time();
+
+        try {
+            $res = $this->createQueryBuilder('c')
+                ->select("c.price")
+                ->where('c.' . $name . '= ' . $id)
+                ->andWhere("c.date between " . $startDate . " AND " . $endDate)
+                ->orderBy("c.price")
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (\Exception $e) {}
+
+        if (!$res) return null;
+        return $res;
+    }
+
+    public function findImageName(int $id): ?string
+    {
+
+    }
 }

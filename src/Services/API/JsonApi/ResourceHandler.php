@@ -12,10 +12,39 @@ use Doctrine\ORM\EntityRepository;
 
 abstract class ResourceHandler
 {
+    const PRICE = "price";
+    const IMAGE = "image";
+
     /**
      * @var null|string
      */
     public static $entityName = null;
+
+    /**
+     * @var null|string
+     */
+    public static $imageEntityName = null;
+
+    /**
+     * @var string
+     */
+    public static $partImageDirectory = "/public/photos/product";
+
+    /**
+     * @var null|string
+     */
+    public static $priceEntityName = null;
+
+    /**
+     * @var null|string
+     */
+    public static $assocName = null;
+
+    /**
+     * One Day
+     * @var int
+     */
+    private static $priceTimeInterval = 60 * 60 * 24;
 
     /**
      * @var array
@@ -49,7 +78,25 @@ abstract class ResourceHandler
      */
     public function attributes(int $id): array
     {
-        return $this->repo->findAsArray($id);
+        $attr = $this->repo->findAsArray($id);
+
+        // add essential attributes as well
+        // price
+        if (static::$priceEntityName) {
+            $priceRepo = $this->em->getRepository(static::$priceEntityName);
+            $price = $priceRepo->findLastLowestPrice($id, self::$priceTimeInterval, static::$assocName);
+
+            $attr[self::PRICE] = $price ? $price: null ;
+        }
+
+        // image
+        if (static::$imageEntityName) {
+            $imageRepo = $this->em->getRepository(static::$imageEntityName);
+            $imageFileName = $imageRepo->findImageName($id);
+            $attr[self::IMAGE] = $imageFileName ? self::$partImageDirectory . "/" . $imageFileName: null;
+        }
+
+        return $attr;
     }
 
     /**
