@@ -53,6 +53,8 @@ foreach ($abstractFactories as $abstractFactoryName) {
                 echo $e->getMessage() . "\n";
             } catch (\GuzzleHttp\Exception\ConnectException $e) {
                 echo $e->getMessage() . "\n";
+            } catch (\GuzzleHttp\Exception\RequestException $e) {
+                echo $e->getMessage() . "\n";
             }
 
             $persistingImplementer = $abstractFactory->getPersistingImplementer($retailer->getCrawledData());
