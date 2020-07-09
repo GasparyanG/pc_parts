@@ -24,6 +24,21 @@ class CoolerHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = CoolerPrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $imageEntityName = CoolerImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "cooler";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         CoolerImage::class => "getCoolerImages",
         CoolerPrice::class => "getCoolerPrices",
