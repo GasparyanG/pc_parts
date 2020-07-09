@@ -29,6 +29,21 @@ class PcCaseHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    public static $priceEntityName = CasePrice::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $imageEntityName = CaseImage::class;
+
+    /**
+     * {@inheritDoc}
+     */
+    public static $assocName = "case";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $relationshipProperties = [
         CaseImage::class => "getCaseImages",
         CasePrice::class => "getCasePrices",
