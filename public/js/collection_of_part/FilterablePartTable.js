@@ -32,8 +32,9 @@ var FilterablePartTable = function (_React$Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             var self = this;
+            var path = window.location.pathname;
             $.ajax({
-                url: "/gpu?api=true&included=gpu_images",
+                url: path + "?api=true&included=gpu_images",
                 method: "GET",
                 success: function success(result) {
                     self.setState({

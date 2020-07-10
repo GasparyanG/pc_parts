@@ -15,8 +15,9 @@ class FilterablePartTable extends React.Component {
     // lifecycle components
     componentDidMount() {
         var self = this;
+        var path = window.location.pathname;
         $.ajax({
-            url: "/gpu?api=true&included=gpu_images",
+            url: path + "?api=true&included=gpu_images",
             method: "GET",
             success: function(result) {
                 self.setState({
