@@ -41,7 +41,11 @@ class CoolerHandler extends ResourceHandler
      */
     public static $essentialFields = [
         "Name" => "name",
-        "Price" => ResourceHandler::PRICE
+        "Price" => ResourceHandler::PRICE,
+        "RPM L" => "rpm_start",
+        "RPM H" => "rpm_end",
+        "Noise L" => "noise_start",
+        "Noise H" => "noise_end",
     ];
 
 

@@ -39,8 +39,9 @@ class StorageHandler extends ResourceHandler
      * {@inheritDoc}
      */
     public static $essentialFields = [
-        "Name" => "name",
-        "Price" => ResourceHandler::PRICE
+        "Price" => ResourceHandler::PRICE,
+        "Capacity" => "capacity",
+        "Cache" => "cache"
     ];
 
 

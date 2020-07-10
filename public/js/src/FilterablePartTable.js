@@ -93,7 +93,7 @@ class PcPart extends React.Component {
         return  (
             <tr>
                 <td className="product_name">
-                    <img src={resource.attributes[TopLevelResource.image_key]} alt=""/>
+                    {/*<img src={resource.attributes[TopLevelResource.image_key]} alt=""/>*/}
                     {resource.attributes[TopLevelResource.name_key]}
                 </td>
                 <Fields etl_fields={resource}/>

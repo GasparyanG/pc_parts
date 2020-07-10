@@ -163,7 +163,6 @@ var PcPart = function (_React$Component4) {
                 React.createElement(
                     "td",
                     { className: "product_name" },
-                    React.createElement("img", { src: resource.attributes[TopLevelResource.image_key], alt: "" }),
                     resource.attributes[TopLevelResource.name_key]
                 ),
                 React.createElement(Fields, { etl_fields: resource })

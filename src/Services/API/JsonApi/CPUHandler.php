@@ -44,8 +44,12 @@ class CPUHandler extends ResourceHandler
      * {@inheritDoc}
      */
     public static $essentialFields = [
-        "Name" => "name",
-        "Price" => ResourceHandler::PRICE
+        "Price" => ResourceHandler::PRICE,
+        "Core Count" => "coreCount",
+        "Core Clock" => "coreClock",
+        "Boost Clock" => "boostClock",
+        "TDP" => "tdp",
+        "SMT" => "smt"
     ];
 
 
