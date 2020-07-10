@@ -3,3 +3,4 @@
 .idea/
 /public/photos
 /node_modules
+.sass-cache/
