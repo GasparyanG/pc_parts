@@ -57,7 +57,7 @@ var FilterablePartTable = function (_React$Component) {
                 React.createElement(
                     "div",
                     { className: "part_collection" },
-                    React.createElement(PartCollection, { collection: this.state.collection.data })
+                    React.createElement(PartCollection, { collection: this.state.collection })
                 ),
                 React.createElement(
                     "div",
@@ -114,10 +114,10 @@ var PartCollection = function (_React$Component3) {
     _createClass(PartCollection, [{
         key: "render",
         value: function render() {
-            if (this.props.collection) {
+            if (this.props.collection.data) {
                 // TODO: change 'i' with actual id of given resource
                 var i = 0;
-                var tableRows = this.props.collection.map(function (part) {
+                var tableRows = this.props.collection.data.map(function (part) {
                     return React.createElement(PcPart, { key: ++i, res_obj: part });
                 });
                 return React.createElement(

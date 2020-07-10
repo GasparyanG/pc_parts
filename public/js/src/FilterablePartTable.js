@@ -35,7 +35,7 @@ class FilterablePartTable extends React.Component {
             <div className="filtration">
             </div>
             <div className="part_collection">
-                <PartCollection collection={this.state.collection.data}/>
+                <PartCollection collection={this.state.collection}/>
             </div>
             <div className="pagination">
                 <Pagination value={this.state.links.first} name="First" />
@@ -64,10 +64,10 @@ class PartCollection extends React.Component {
     }
 
     render() {
-        if (this.props.collection) {
+        if (this.props.collection.data) {
             // TODO: change 'i' with actual id of given resource
             let i=0;
-            const tableRows = this.props.collection.map((part) => <PcPart key={++i} res_obj={part} />);
+            const tableRows = this.props.collection.data.map((part) => <PcPart key={++i} res_obj={part} />);
             return (
                 <table>
                     <tbody>
