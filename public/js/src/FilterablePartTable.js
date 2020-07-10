@@ -112,8 +112,9 @@ class TableHeader extends React.Component {
         const meta = this.props.header_data;
         var keys = [];
         var values = [];
+        var essentialFields = [];
         if (meta) {
-            const essentialFields = meta[TopLevelResource.essential_fields_key];
+            essentialFields = meta[TopLevelResource.essential_fields_key];
             keys = Object.keys(essentialFields);
             values = Object.values(essentialFields);
         } else {
@@ -123,7 +124,7 @@ class TableHeader extends React.Component {
 
         let i=0;
         const headers = keys.map((key) =>
-            <th className="product-table-header" key={++i} data-attr={values[key]}>{key}</th>);
+            <th className="product-table-header" key={++i} data-attr={essentialFields[key]}>{key}</th>);
 
         return (<tr>{headers}</tr>);
     }
@@ -139,6 +140,9 @@ class Fields extends React.Component {
         const meta = resource.meta;
 
         const values = Object.values(meta[TopLevelResource.essential_fields_key]);
+
+        delete values[0];
+
         let i=0;
         const rowData = values.map((key) => <td key={++i}>{resource.attributes[key]}</td>);
 

@@ -189,8 +189,9 @@ var TableHeader = function (_React$Component5) {
             var meta = this.props.header_data;
             var keys = [];
             var values = [];
+            var essentialFields = [];
             if (meta) {
-                var essentialFields = meta[TopLevelResource.essential_fields_key];
+                essentialFields = meta[TopLevelResource.essential_fields_key];
                 keys = Object.keys(essentialFields);
                 values = Object.values(essentialFields);
             } else {
@@ -202,7 +203,7 @@ var TableHeader = function (_React$Component5) {
             var headers = keys.map(function (key) {
                 return React.createElement(
                     "th",
-                    { className: "product-table-header", key: ++i, "data-attr": values[key] },
+                    { className: "product-table-header", key: ++i, "data-attr": essentialFields[key] },
                     key
                 );
             });
@@ -234,6 +235,9 @@ var Fields = function (_React$Component6) {
             var meta = resource.meta;
 
             var values = Object.values(meta[TopLevelResource.essential_fields_key]);
+
+            delete values[0];
+
             var i = 0;
             var rowData = values.map(function (key) {
                 return React.createElement(

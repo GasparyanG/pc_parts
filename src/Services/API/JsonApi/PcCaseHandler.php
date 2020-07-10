@@ -45,6 +45,7 @@ class PcCaseHandler extends ResourceHandler
      * {@inheritDoc}
      */
     public static $essentialFields = [
+        "Name" => "name",
         "Price" => ResourceHandler::PRICE
     ];
 
