@@ -9,7 +9,9 @@
 
 body {
   margin: 0;
-  font-family: "sf pro display","segoe ui","Roboto","Oxygen-Sans","Ubuntu","Cantarell","helvetica neue", "sans-serif"; }
+  font-family: "sf pro display","segoe ui","Roboto","Oxygen-Sans","Ubuntu","Cantarell","helvetica neue", "sans-serif";
+  background-color: #fff;
+  color: #282838; }
 
 .page_hint_message {
   text-align: center;
@@ -53,5 +55,48 @@ body {
   color: #fff;
   font-weight: 500;
   font-size: 18px; }
+
+#collection-of-part .product-name {
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+  font-weight: 500; }
+
+#collection-of-part .product-name img {
+  width: 70px;
+  margin-right: 1rem;
+  margin-left: 1rem; }
+
+#collection-of-part .product-table .product-row td {
+  border-bottom: 1px solid #282838; }
+
+#collection-of-part .product-table .product-table-header {
+  border-bottom: 1px solid #282838;
+  padding-bottom: 1rem;
+  color: rgba(0, 0, 0, 0.5); }
+
+#collection-of-part .product-table .product-table-header:hover {
+  border-bottom: 1px solid blue;
+  cursor: pointer;
+  color: #282838; }
+
+#collection-of-part .product-data {
+  margin-right: 1rem; }
+
+#collection-of-part .product-table {
+  width: 100%; }
+
+#collection-of-part .product-table th {
+  text-align: left; }
+
+#collection-of-part .table-and-filtration {
+  margin-top: 1rem;
+  display: flex; }
+
+#collection-of-part .table-and-filtration .filtration {
+  flex: 2; }
+
+#collection-of-part .table-and-filtration .part-collection {
+  flex: 5; }
 
 /*# sourceMappingURL=main.css.map */

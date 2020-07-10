@@ -32,18 +32,11 @@ class FilterablePartTable extends React.Component {
     componentWillUnmount() { }
 
     render() {
-        return (<div>
+        return (<div className="table-and-filtration">
             <div className="filtration">
             </div>
-            <div className="part_collection">
+            <div className="part-collection">
                 <PartCollection collection={this.state.collection}/>
-            </div>
-            <div className="pagination">
-                <Pagination value={this.state.links.first} name="First" />
-                <Pagination value={this.state.links.prev} name="Previous" />
-                <Pagination value={this.state.links.self} name="Current Page" />
-                <Pagination value={this.state.links.next} name="Next" />
-                <Pagination value={this.state.links.last} name="Last" />
             </div>
         </div>);
     }
@@ -70,7 +63,7 @@ class PartCollection extends React.Component {
             let i=0;
             const tableRows = this.props.collection.data.map((part) => <PcPart key={++i} res_obj={part} />);
             return (
-                <table>
+                <table className="product-table">
                     <tbody>
                         <TableHeader header_data={this.props.collection.meta}/>
                         {tableRows}
@@ -92,9 +85,9 @@ class PcPart extends React.Component {
         let resource = new Resource(this.props.res_obj);
         // TODO: render single resource
         return  (
-            <tr>
-                <td className="product_name">
-                    {/*<img src={resource.attributes[TopLevelResource.image_key]} alt=""/>*/}
+            <tr className="product-row">
+                <td className="product-name">
+                    <img src={resource.attributes[TopLevelResource.image_key]} alt=""/>
                     {resource.attributes[TopLevelResource.name_key]}
                 </td>
                 <Fields etl_fields={resource}/>
@@ -124,7 +117,7 @@ class TableHeader extends React.Component {
 
         let i=0;
         const headers = keys.map((key) =>
-            <th className="product-table-header" key={++i} data-attr={essentialFields[key]}>{key}</th>);
+            <th className="product-table-header product-data" key={++i} data-attr={essentialFields[key]}>{key}</th>);
 
         return (<tr>{headers}</tr>);
     }
@@ -152,4 +145,4 @@ class Fields extends React.Component {
 }
 
 const element = <FilterablePartTable />;
-ReactDOM.render(element, document.getElementById("collection_of_part"));
+ReactDOM.render(element, document.getElementById("collection-of-part"));

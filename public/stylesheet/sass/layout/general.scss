@@ -1,6 +1,8 @@
 body {
   margin:0;
   font-family: "sf pro display","segoe ui","Roboto","Oxygen-Sans","Ubuntu","Cantarell","helvetica neue", "sans-serif";
+  background-color: $light_mode;
+  color: $dark_mode;
 }
 
 .page_hint_message {

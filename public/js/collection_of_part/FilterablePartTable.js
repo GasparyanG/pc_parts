@@ -53,21 +53,12 @@ var FilterablePartTable = function (_React$Component) {
         value: function render() {
             return React.createElement(
                 "div",
-                null,
+                { className: "table-and-filtration" },
                 React.createElement("div", { className: "filtration" }),
                 React.createElement(
                     "div",
-                    { className: "part_collection" },
+                    { className: "part-collection" },
                     React.createElement(PartCollection, { collection: this.state.collection })
-                ),
-                React.createElement(
-                    "div",
-                    { className: "pagination" },
-                    React.createElement(Pagination, { value: this.state.links.first, name: "First" }),
-                    React.createElement(Pagination, { value: this.state.links.prev, name: "Previous" }),
-                    React.createElement(Pagination, { value: this.state.links.self, name: "Current Page" }),
-                    React.createElement(Pagination, { value: this.state.links.next, name: "Next" }),
-                    React.createElement(Pagination, { value: this.state.links.last, name: "Last" })
                 )
             );
         }
@@ -123,7 +114,7 @@ var PartCollection = function (_React$Component3) {
                 });
                 return React.createElement(
                     "table",
-                    null,
+                    { className: "product-table" },
                     React.createElement(
                         "tbody",
                         null,
@@ -160,10 +151,11 @@ var PcPart = function (_React$Component4) {
             // TODO: render single resource
             return React.createElement(
                 "tr",
-                null,
+                { className: "product-row" },
                 React.createElement(
                     "td",
-                    { className: "product_name" },
+                    { className: "product-name" },
+                    React.createElement("img", { src: resource.attributes[TopLevelResource.image_key], alt: "" }),
                     resource.attributes[TopLevelResource.name_key]
                 ),
                 React.createElement(Fields, { etl_fields: resource })
@@ -203,7 +195,7 @@ var TableHeader = function (_React$Component5) {
             var headers = keys.map(function (key) {
                 return React.createElement(
                     "th",
-                    { className: "product-table-header", key: ++i, "data-attr": essentialFields[key] },
+                    { className: "product-table-header product-data", key: ++i, "data-attr": essentialFields[key] },
                     key
                 );
             });
@@ -256,4 +248,4 @@ var Fields = function (_React$Component6) {
 }(React.Component);
 
 var element = React.createElement(FilterablePartTable, null);
-ReactDOM.render(element, document.getElementById("collection_of_part"));
+ReactDOM.render(element, document.getElementById("collection-of-part"));
