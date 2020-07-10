@@ -18,6 +18,7 @@ var FilterablePartTable = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (FilterablePartTable.__proto__ || Object.getPrototypeOf(FilterablePartTable)).call(this, props));
 
         _this.state = {
+            status: false,
             collection: new TopLevelResource([]),
             links: new Link([])
         };
@@ -36,6 +37,7 @@ var FilterablePartTable = function (_React$Component) {
                 method: "GET",
                 success: function success(result) {
                     self.setState({
+                        status: true,
                         collection: new TopLevelResource(result),
                         links: new Link(result)
                     });
@@ -119,9 +121,14 @@ var PartCollection = function (_React$Component3) {
                     return React.createElement(PcPart, { key: ++i, res_obj: part });
                 });
                 return React.createElement(
-                    "div",
+                    "table",
                     null,
-                    tableRows
+                    React.createElement(
+                        "tbody",
+                        null,
+                        React.createElement(TableHeader, { header_data: this.props.collection.meta }),
+                        tableRows
+                    )
                 );
             }
 
@@ -151,14 +158,97 @@ var PcPart = function (_React$Component4) {
             var resource = new Resource(this.props.res_obj);
             // TODO: render single resource
             return React.createElement(
-                "div",
+                "tr",
                 null,
-                resource.type
+                React.createElement(
+                    "td",
+                    { className: "product_name" },
+                    React.createElement("img", { src: resource.attributes[TopLevelResource.image_key], alt: "" }),
+                    resource.attributes[TopLevelResource.name_key]
+                ),
+                React.createElement(Fields, { etl_fields: resource })
             );
         }
     }]);
 
     return PcPart;
+}(React.Component);
+
+var TableHeader = function (_React$Component5) {
+    _inherits(TableHeader, _React$Component5);
+
+    function TableHeader(props) {
+        _classCallCheck(this, TableHeader);
+
+        return _possibleConstructorReturn(this, (TableHeader.__proto__ || Object.getPrototypeOf(TableHeader)).call(this, props));
+    }
+
+    _createClass(TableHeader, [{
+        key: "render",
+        value: function render() {
+            var meta = this.props.header_data;
+            var keys = [];
+            var values = [];
+            if (meta) {
+                var essentialFields = meta[TopLevelResource.essential_fields_key];
+                keys = Object.keys(essentialFields);
+                values = Object.values(essentialFields);
+            } else {
+                keys = [];
+                values = [];
+            }
+
+            var i = 0;
+            var headers = keys.map(function (key) {
+                return React.createElement(
+                    "th",
+                    { className: "product-table-header", key: ++i, "data-attr": values[key] },
+                    key
+                );
+            });
+
+            return React.createElement(
+                "tr",
+                null,
+                headers
+            );
+        }
+    }]);
+
+    return TableHeader;
+}(React.Component);
+
+var Fields = function (_React$Component6) {
+    _inherits(Fields, _React$Component6);
+
+    function Fields(props) {
+        _classCallCheck(this, Fields);
+
+        return _possibleConstructorReturn(this, (Fields.__proto__ || Object.getPrototypeOf(Fields)).call(this, props));
+    }
+
+    _createClass(Fields, [{
+        key: "render",
+        value: function render() {
+            var resource = this.props.etl_fields;
+            var meta = resource.meta;
+
+            var values = Object.values(meta[TopLevelResource.essential_fields_key]);
+            var i = 0;
+            var rowData = values.map(function (key) {
+                return React.createElement(
+                    "td",
+                    { key: ++i },
+                    resource.attributes[key]
+                );
+            });
+
+            // to render children just use array
+            return [rowData];
+        }
+    }]);
+
+    return Fields;
 }(React.Component);
 
 var element = React.createElement(FilterablePartTable, null);

@@ -80,6 +80,7 @@ abstract class ResourceComposer
         // add links
         $links->arrayRepresentation();
         $this->resource[Links::LINKS] = $links->getRepresentation();
+        $this->resource[Resource::META] = $this->resourceHandler->meta();
 
         $data = [];
         foreach($entities as $entity) {

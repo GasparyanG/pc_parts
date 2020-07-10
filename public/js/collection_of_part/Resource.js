@@ -2,14 +2,22 @@
 class TopLevelResource {
     // Key to access api result
     static data_key = "data";
+    static meta_key = "meta";
+
+    static essential_fields_key = "essential_fields";
+    // Set of essential fields
+    static image_key = "image";
+    static name_key = "name";
 
     constructor(resource) {
         this._data = resource[TopLevelResource.data_key];
+        this._meta = resource[TopLevelResource.meta_key];
     }
 
     get data() { return this._data; }
+    get meta() { return this._meta; }
 
-    // TODO: get metadata and top level components
+    // TODO: get top level components
 }
 
 // Meant for single object
@@ -27,8 +35,9 @@ class Resource {
         this._id = data[Resource.id_key];
         this._relationships = data[Resource.relationships_key];
         this._type = data[Resource.type_key];
-        this._included = data[Resource.included_key];
         this._attributes = data[Resource.attributes_key];
+        this._included = resource[Resource.included_key];
+        this._meta = resource[TopLevelResource.meta_key];
     }
 
     get id () { return this._id; }
@@ -36,6 +45,7 @@ class Resource {
     get type () { return this._type; }
     get included () { return this._included; }
     get attributes () { return this._attributes; }
+    get meta() { return this._meta; }
 }
 
 

@@ -45,7 +45,7 @@ abstract class ResourceHandler
      * One Day
      * @var int
      */
-    private static $priceTimeInterval = 60 * 60 * 24;
+    private static $priceTimeInterval = 60 * 60 * 48;
 
     /**
      * Meant for metadata

@@ -6,8 +6,9 @@ class FilterablePartTable extends React.Component {
 
         // state of table
         this.state = {
+            status: false,
             collection: new TopLevelResource([]),
-            links: new Link([])
+            links: new Link([]),
         }
     }
 
@@ -19,6 +20,7 @@ class FilterablePartTable extends React.Component {
             method: "GET",
             success: function(result) {
                 self.setState({
+                    status: true,
                     collection: new TopLevelResource(result),
                     links: new Link(result)
                 });
@@ -66,7 +68,14 @@ class PartCollection extends React.Component {
             // TODO: change 'i' with actual id of given resource
             let i=0;
             const tableRows = this.props.collection.map((part) => <PcPart key={++i} res_obj={part} />);
-            return <div>{tableRows}</div>;
+            return (
+                <table>
+                    <tbody>
+                        <TableHeader header_data={this.props.collection.meta}/>
+                        {tableRows}
+                    </tbody>
+                </table>
+            );
         }
 
         return <div>Empty</div>;
@@ -81,7 +90,59 @@ class PcPart extends React.Component {
     render() {
         let resource = new Resource(this.props.res_obj);
         // TODO: render single resource
-        return  <div>{resource.type}</div>;
+        return  (
+            <tr>
+                <td className="product_name">
+                    <img src={resource.attributes[TopLevelResource.image_key]} alt=""/>
+                    {resource.attributes[TopLevelResource.name_key]}
+                </td>
+                <Fields etl_fields={resource}/>
+            </tr>
+        );
+    }
+}
+
+class TableHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const meta = this.props.header_data;
+        var keys = [];
+        var values = [];
+        if (meta) {
+            const essentialFields = meta[TopLevelResource.essential_fields_key];
+            keys = Object.keys(essentialFields);
+            values = Object.values(essentialFields);
+        } else {
+            keys = [];
+            values = [];
+        }
+
+        let i=0;
+        const headers = keys.map((key) =>
+            <th className="product-table-header" key={++i} data-attr={values[key]}>{key}</th>);
+
+        return (<tr>{headers}</tr>);
+    }
+}
+
+class Fields extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const resource = this.props.etl_fields;
+        const meta = resource.meta;
+
+        const values = Object.values(meta[TopLevelResource.essential_fields_key]);
+        let i=0;
+        const rowData = values.map((key) => <td key={++i}>{resource.attributes[key]}</td>);
+
+        // to render children just use array
+        return [rowData];
     }
 }
 
