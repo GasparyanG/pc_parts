@@ -90,7 +90,7 @@ body {
   text-align: left; }
 
 #collection-of-part .table-and-filtration {
-  margin-top: 1rem;
+  margin: 2rem;
   display: flex; }
 
 #collection-of-part .table-and-filtration .filtration {
