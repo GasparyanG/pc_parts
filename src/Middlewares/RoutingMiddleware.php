@@ -52,6 +52,9 @@ class RoutingMiddleware implements MiddlewareInterface
 
             // HOME
             $r->addRoute(Request::METHOD_GET, "/home", ["HOME", "get"]);
+
+            // Redux Test
+            $r->addRoute(Request::METHOD_GET, "/redux", ["Redux", "get"]);
         });
 
 		$httpMethod = $request->getMethod();
