@@ -5,7 +5,9 @@ import { Provider } from "react-redux"
 import { createStore } from "redux"
 
 // root reducer configuration
-const initial_state = {url_query: "?api=true&included=gpu_images"}
+const initial_state = { url_query: {
+    included : "gpu_images"
+}}
 function reducer(state = initial_state) {
     return state;
 }

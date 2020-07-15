@@ -3,6 +3,7 @@ import React from "react"
 import { connect } from "react-redux"
 import Pagination from "./Pagination"
 import PartCollection from "./PartCollection"
+import QueryHandler from "./QueryHandler"
 
 class FilterablePartTable extends React.Component {
     constructor(props) {
@@ -20,8 +21,9 @@ class FilterablePartTable extends React.Component {
     componentDidMount() {
         var self = this;
         var path = window.location.pathname;
+        let queryHandler = new QueryHandler(this.props.url_query);
         $.ajax({
-            url: path + this.props.url_query,
+            url: path + queryHandler.composeQueryString(),
             method: "GET",
             success: function(result) {
                 self.setState({
