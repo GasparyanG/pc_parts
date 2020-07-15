@@ -14,7 +14,7 @@ class PartCollection extends React.Component {
             return (
                 <table className="product-table">
                     <tbody>
-                    <TableHeader header_data={this.props.collection.meta}/>
+                    <TableHeader header_data={this.props.collection.meta} dispatch={this.props.dispatch}/>
                     {tableRows}
                     </tbody>
                 </table>
@@ -50,6 +50,10 @@ class TableHeader extends React.Component {
         super(props);
     }
 
+    order = (orderKey) => {
+        this.props.dispatch({type: "ORDER", key: orderKey});
+    }
+
     render() {
         const meta = this.props.header_data;
         var keys = [];
@@ -66,7 +70,10 @@ class TableHeader extends React.Component {
 
         let i=0;
         const headers = keys.map((key) =>
-            <th className="product-table-header product-data" key={++i} data-attr={essentialFields[key]}>{key}</th>);
+            <th onClick={() => this.order(essentialFields[key])}
+                className="product-table-header product-data" key={++i}
+                data-attr={essentialFields[key]}>{key}
+            </th>);
 
         return (<tr>{headers}</tr>);
     }

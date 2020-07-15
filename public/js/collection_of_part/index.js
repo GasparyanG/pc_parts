@@ -8,8 +8,19 @@ import { createStore } from "redux"
 const initial_state = { url_query: {
     included : "gpu_images"
 }}
-function reducer(state = initial_state) {
-    return state;
+
+function reducer(state = initial_state, action) {
+    switch(action.type) {
+        case "ORDER":
+            return {
+                url_query: {
+                    included: "gpu_images",
+                    order: action.key
+                }
+            }
+        default:
+            return state;
+    }
 }
 
 // store configuration

@@ -18,7 +18,11 @@ class FilterablePartTable extends React.Component {
     }
 
     // lifecycle components
-    componentDidMount() {
+    componentDidMount() { }
+
+    componentWillUnmount() { }
+
+    getData() {
         var self = this;
         var path = window.location.pathname;
         let queryHandler = new QueryHandler(this.props.url_query);
@@ -35,14 +39,14 @@ class FilterablePartTable extends React.Component {
         });
     }
 
-    componentWillUnmount() { }
-
     render() {
+        this.getData();
+
         return (<div className="table-and-filtration">
             <div className="filtration">
             </div>
             <div className="part-collection">
-                <PartCollection collection={this.state.collection}/>
+                <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
             </div>
         </div>);
     }
