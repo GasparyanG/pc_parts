@@ -1,13 +1,7 @@
 {% extends "base_components/base_layout.html.twig" %}
 
 {% block payload %}
-    <div id="collection-of-part">
-    </div>
+    <div id="collection-of-part"></div>
 
-    {# MODULES #}
-    <script type="module" src="/public/js/src/Resource.js"></script>
-
-    {# REACT COMPONENTS #}
-    <script type="module" src="/public/js/collection_of_part/FilterablePartTable.js"></script>
-
+    <script src="/public/js/collection_of_part/bundle.js"></script>
 {% endblock %}

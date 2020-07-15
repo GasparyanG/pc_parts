@@ -1,251 +1,148 @@
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+import {TopLevelResource, Resource, Link} from "./Resource";
+import React from "react"
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-import { TopLevelResource, Resource, Link } from "/public/js/collection_of_part/Resource.js";
-
-var FilterablePartTable = function (_React$Component) {
-    _inherits(FilterablePartTable, _React$Component);
-
-    function FilterablePartTable(props) {
-        _classCallCheck(this, FilterablePartTable);
+class FilterablePartTable extends React.Component {
+    constructor(props) {
+        super(props);
 
         // state of table
-        var _this = _possibleConstructorReturn(this, (FilterablePartTable.__proto__ || Object.getPrototypeOf(FilterablePartTable)).call(this, props));
-
-        _this.state = {
+        this.state = {
             status: false,
             collection: new TopLevelResource([]),
-            links: new Link([])
-        };
-        return _this;
+            links: new Link([]),
+        }
     }
 
     // lifecycle components
-
-
-    _createClass(FilterablePartTable, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            var self = this;
-            var path = window.location.pathname;
-            $.ajax({
-                url: path + "?api=true&included=gpu_images",
-                method: "GET",
-                success: function success(result) {
-                    self.setState({
-                        status: true,
-                        collection: new TopLevelResource(result),
-                        links: new Link(result)
-                    });
-                }
-            });
-        }
-    }, {
-        key: "componentWillUnmount",
-        value: function componentWillUnmount() {}
-    }, {
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                { className: "table-and-filtration" },
-                React.createElement("div", { className: "filtration" }),
-                React.createElement(
-                    "div",
-                    { className: "part-collection" },
-                    React.createElement(PartCollection, { collection: this.state.collection })
-                )
-            );
-        }
-    }]);
-
-    return FilterablePartTable;
-}(React.Component);
-
-var Pagination = function (_React$Component2) {
-    _inherits(Pagination, _React$Component2);
-
-    function Pagination(props) {
-        _classCallCheck(this, Pagination);
-
-        return _possibleConstructorReturn(this, (Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call(this, props));
-    }
-
-    _createClass(Pagination, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(
-                    "a",
-                    { href: this.props.value },
-                    this.props.name
-                )
-            );
-        }
-    }]);
-
-    return Pagination;
-}(React.Component);
-
-var PartCollection = function (_React$Component3) {
-    _inherits(PartCollection, _React$Component3);
-
-    function PartCollection(props) {
-        _classCallCheck(this, PartCollection);
-
-        return _possibleConstructorReturn(this, (PartCollection.__proto__ || Object.getPrototypeOf(PartCollection)).call(this, props));
-    }
-
-    _createClass(PartCollection, [{
-        key: "render",
-        value: function render() {
-            if (this.props.collection.data) {
-                // TODO: change 'i' with actual id of given resource
-                var i = 0;
-                var tableRows = this.props.collection.data.map(function (part) {
-                    return React.createElement(PcPart, { key: ++i, res_obj: part });
+    componentDidMount() {
+        var self = this;
+        var path = window.location.pathname;
+        $.ajax({
+            url: path + "?api=true&included=gpu_images",
+            method: "GET",
+            success: function(result) {
+                self.setState({
+                    status: true,
+                    collection: new TopLevelResource(result),
+                    links: new Link(result)
                 });
-                return React.createElement(
-                    "table",
-                    { className: "product-table" },
-                    React.createElement(
-                        "tbody",
-                        null,
-                        React.createElement(TableHeader, { header_data: this.props.collection.meta }),
-                        tableRows
-                    )
-                );
             }
-
-            return React.createElement(
-                "div",
-                null,
-                "Empty"
-            );
-        }
-    }]);
-
-    return PartCollection;
-}(React.Component);
-
-var PcPart = function (_React$Component4) {
-    _inherits(PcPart, _React$Component4);
-
-    function PcPart(props) {
-        _classCallCheck(this, PcPart);
-
-        return _possibleConstructorReturn(this, (PcPart.__proto__ || Object.getPrototypeOf(PcPart)).call(this, props));
+        });
     }
 
-    _createClass(PcPart, [{
-        key: "render",
-        value: function render() {
-            var resource = new Resource(this.props.res_obj);
-            // TODO: render single resource
-            return React.createElement(
-                "tr",
-                { className: "product-row" },
-                React.createElement(
-                    "td",
-                    { className: "product-name" },
-                    React.createElement("img", { src: resource.attributes[TopLevelResource.image_key], alt: "" }),
-                    resource.attributes[TopLevelResource.name_key]
-                ),
-                React.createElement(Fields, { etl_fields: resource })
-            );
-        }
-    }]);
+    componentWillUnmount() { }
 
-    return PcPart;
-}(React.Component);
+    render() {
+        return (<div className="table-and-filtration">
+            <div className="filtration">
+            </div>
+            <div className="part-collection">
+                <PartCollection collection={this.state.collection}/>
+            </div>
+        </div>);
+    }
+}
 
-var TableHeader = function (_React$Component5) {
-    _inherits(TableHeader, _React$Component5);
-
-    function TableHeader(props) {
-        _classCallCheck(this, TableHeader);
-
-        return _possibleConstructorReturn(this, (TableHeader.__proto__ || Object.getPrototypeOf(TableHeader)).call(this, props));
+class Pagination extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
-    _createClass(TableHeader, [{
-        key: "render",
-        value: function render() {
-            var meta = this.props.header_data;
-            var keys = [];
-            var values = [];
-            var essentialFields = [];
-            if (meta) {
-                essentialFields = meta[TopLevelResource.essential_fields_key];
-                keys = Object.keys(essentialFields);
-                values = Object.values(essentialFields);
-            } else {
-                keys = [];
-                values = [];
-            }
+    render() {
+        return (<div><a href={this.props.value}>{this.props.name}</a></div>)
+    }
+}
 
-            var i = 0;
-            var headers = keys.map(function (key) {
-                return React.createElement(
-                    "th",
-                    { className: "product-table-header product-data", key: ++i, "data-attr": essentialFields[key] },
-                    key
-                );
-            });
-
-            return React.createElement(
-                "tr",
-                null,
-                headers
-            );
-        }
-    }]);
-
-    return TableHeader;
-}(React.Component);
-
-var Fields = function (_React$Component6) {
-    _inherits(Fields, _React$Component6);
-
-    function Fields(props) {
-        _classCallCheck(this, Fields);
-
-        return _possibleConstructorReturn(this, (Fields.__proto__ || Object.getPrototypeOf(Fields)).call(this, props));
+class PartCollection extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
-    _createClass(Fields, [{
-        key: "render",
-        value: function render() {
-            var resource = this.props.etl_fields;
-            var meta = resource.meta;
-
-            var values = Object.values(meta[TopLevelResource.essential_fields_key]);
-
-            delete values[0];
-
-            var i = 0;
-            var rowData = values.map(function (key) {
-                return React.createElement(
-                    "td",
-                    { key: ++i },
-                    resource.attributes[key]
-                );
-            });
-
-            // to render children just use array
-            return [rowData];
+    render() {
+        if (this.props.collection.data) {
+            // TODO: change 'i' with actual id of given resource
+            let i=0;
+            const tableRows = this.props.collection.data.map((part) => <PcPart key={++i} res_obj={part} />);
+            return (
+                <table className="product-table">
+                    <tbody>
+                    <TableHeader header_data={this.props.collection.meta}/>
+                    {tableRows}
+                    </tbody>
+                </table>
+            );
         }
-    }]);
 
-    return Fields;
-}(React.Component);
+        return <div>Empty</div>;
+    }
+}
 
-var element = React.createElement(FilterablePartTable, null);
-ReactDOM.render(element, document.getElementById("collection-of-part"));
+class PcPart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        let resource = new Resource(this.props.res_obj);
+        // TODO: render single resource
+        return  (
+            <tr className="product-row">
+                <td className="product-name">
+                    <img src={resource.attributes[TopLevelResource.image_key]} alt=""/>
+                    {resource.attributes[TopLevelResource.name_key]}
+                </td>
+                <Fields etl_fields={resource}/>
+            </tr>
+        );
+    }
+}
+
+class TableHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const meta = this.props.header_data;
+        var keys = [];
+        var values = [];
+        var essentialFields = [];
+        if (meta) {
+            essentialFields = meta[TopLevelResource.essential_fields_key];
+            keys = Object.keys(essentialFields);
+            values = Object.values(essentialFields);
+        } else {
+            keys = [];
+            values = [];
+        }
+
+        let i=0;
+        const headers = keys.map((key) =>
+            <th className="product-table-header product-data" key={++i} data-attr={essentialFields[key]}>{key}</th>);
+
+        return (<tr>{headers}</tr>);
+    }
+}
+
+class Fields extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const resource = this.props.etl_fields;
+        const meta = resource.meta;
+
+        const values = Object.values(meta[TopLevelResource.essential_fields_key]);
+
+        delete values[0];
+
+        let i=0;
+        const rowData = values.map((key) => <td key={++i}>{resource.attributes[key]}</td>);
+
+        // to render children just use array
+        return [rowData];
+    }
+}
+
+export default FilterablePartTable;
