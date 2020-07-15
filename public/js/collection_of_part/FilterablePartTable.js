@@ -21,7 +21,7 @@ class FilterablePartTable extends React.Component {
         var self = this;
         var path = window.location.pathname;
         $.ajax({
-            url: path + "?api=true&included=gpu_images",
+            url: path + this.props.url_query,
             method: "GET",
             success: function(result) {
                 self.setState({
@@ -47,7 +47,7 @@ class FilterablePartTable extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return { value: state.value };
+    return { url_query: state.url_query };
 }
 
 export default connect(mapStateToProps)(FilterablePartTable);

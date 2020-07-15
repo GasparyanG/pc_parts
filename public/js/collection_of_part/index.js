@@ -4,10 +4,13 @@ import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { createStore } from "redux"
 
-function reducer() {
-    return {value: 75}
+// root reducer configuration
+const initial_state = {url_query: "?api=true&included=gpu_images"}
+function reducer(state = initial_state) {
+    return state;
 }
 
+// store configuration
 const store = createStore(reducer);
 const App = () => (
     <Provider store={store}>
@@ -15,6 +18,7 @@ const App = () => (
     </Provider>
 )
 
+// rendering
 ReactDOM.render(
     <App />,
     document.getElementById("collection-of-part")
