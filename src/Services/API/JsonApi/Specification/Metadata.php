@@ -7,6 +7,7 @@ namespace App\Services\API\JsonApi\Specification;
 class Metadata
 {
     const ESSENTIAL_FIELDS = "essential_fields";
+    const FILTRATION = "filtration";
 
     /**
      * @var array
@@ -16,11 +17,23 @@ class Metadata
     /**
      * @var array
      */
+    private $filtration = [];
+
+    /**
+     * @var array
+     */
     private $representation = [];
 
     public function arrayRepresentation(): void
     {
         $this->representation[self::ESSENTIAL_FIELDS] = $this->essentialFields;
+        $this->representation[self::FILTRATION] = $this->filtration;
+    }
+
+    public function addFiltrationData(array $fData): void
+    {
+        // TODO: check for uniqueness
+        $this->filtration[] = $fData;
     }
 
     /**

@@ -42,7 +42,8 @@ abstract class ResourceHandler
     public static $assocName = null;
 
     /**
-     * One Day
+     * TODO: change to last known price date
+     * Two Day
      * @var int
      */
     private static $priceTimeInterval = 60 * 60 * 48;
@@ -189,6 +190,9 @@ abstract class ResourceHandler
         $meta = new Metadata();
         $meta->setEssentialFields(static::$essentialFields);
 
+        // filtration preparation
+        $this->filtrationData($meta);
+
         $meta->arrayRepresentation();
         return $meta->getRepresentation();
     }
@@ -211,5 +215,22 @@ abstract class ResourceHandler
                 return [$methodName, $entityName];
 
         return [null, null];
+    }
+
+    protected function filtrationData(Metadata $meta): void
+    {
+        // Manufacturer
+        $this->manufacturerFilter($meta);
+    }
+
+    protected function manufacturerFilter(Metadata $meta): void
+    {
+        $manufacturers = $this->repo->findPartManufacturers();
+
+        $meta->addFiltrationData([
+            "collection" => $manufacturers,
+            "type" => "checkbox",
+            "name" => "Manufacturer"
+        ]);
     }
 }

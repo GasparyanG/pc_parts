@@ -70,4 +70,17 @@ trait RepositoryTrait
         if (!$res) return null;
         return $res;
     }
+
+    public function findPartManufacturers(): array
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('m.id, m.name')
+            ->leftJoin("App\Database\Entities\Manufacturer", 'm', 'WITH', 'm=a.manufacturer')
+            ->groupBy('m.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
 }
