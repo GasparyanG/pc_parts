@@ -46,7 +46,7 @@ class FilterablePartTable extends React.Component {
 
         return (<div className="table-and-filtration">
             <div className="filtration">
-                <PartFiltration filtrationData={new Filtration(this.state.collection.meta)} dispatch={this.props.dispatch}/>
+                <PartFiltration meta={this.state.collection.meta} dispatch={this.props.dispatch}/>
             </div>
             <div className="part-collection">
                 <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
