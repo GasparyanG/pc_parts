@@ -20,6 +20,43 @@ class TopLevelResource {
     // TODO: get top level components
 }
 
+class Filtration {
+    static filtration_key = "filtration";
+
+    // types
+    static checkbox_key = "checkbox";
+    static range_key = "range";
+
+    // common fields
+    static type_key = "type";
+    static name_key = "name";
+
+    // for colleciton type
+    static collection_key = "collection";
+
+    // for range type
+    static min_key = "min";
+    static max_key = "max";
+
+    construct(meta) {
+        this._type = meta[Filtration.type_key];
+        this._name = meta[Filtration.name_key];
+
+        if (meta[Filtration.type_key] === Filtration.range_key) {
+            this._min = meta[Filtration.min_key];
+            this._max = meta[Filtration.max_key];
+        } else {
+            this._collection = meta[Filtration.collection_key];
+        }
+    }
+
+    get type() { return this._type; }
+    get name() { return this._name; }
+    get min() { return this._min; }
+    get max() { return this._max; }
+    get collection() { return this._collection; }
+}
+
 // Meant for single object
 class Resource {
     // keys to access api result
@@ -79,4 +116,4 @@ class Link {
 }
 
 // export resource handlers to be able to import
-export { TopLevelResource, Resource, Link };
+export { TopLevelResource, Resource, Link, Filtration };

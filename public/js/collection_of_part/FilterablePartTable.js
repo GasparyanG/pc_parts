@@ -1,9 +1,10 @@
-import {TopLevelResource, Resource, Link} from "./Resource";
+import {TopLevelResource, Resource, Link, Filtration} from "./Resource";
 import React from "react"
 import { connect } from "react-redux"
 import Pagination from "./Pagination"
 import PartCollection from "./PartCollection"
 import QueryHandler from "./QueryHandler"
+import PartFiltration from "./PartFiltration"
 
 class FilterablePartTable extends React.Component {
     constructor(props) {
@@ -45,6 +46,7 @@ class FilterablePartTable extends React.Component {
 
         return (<div className="table-and-filtration">
             <div className="filtration">
+                <PartFiltration filtrationData={new Filtration(this.state.collection.meta)} dispatch={this.props.dispatch}/>
             </div>
             <div className="part-collection">
                 <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
