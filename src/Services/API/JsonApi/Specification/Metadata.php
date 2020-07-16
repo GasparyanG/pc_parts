@@ -9,6 +9,15 @@ class Metadata
     const ESSENTIAL_FIELDS = "essential_fields";
     const FILTRATION = "filtration";
 
+    // Meant for filtration
+    const COLLECTION = "collection";
+    const TYPE = "type";
+    const NAME = "name";
+
+    // Types
+    const CHECKBOX = "checkbox";
+    const RANGE = "range";
+
     /**
      * @var array
      */

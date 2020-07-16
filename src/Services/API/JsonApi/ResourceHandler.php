@@ -228,9 +228,9 @@ abstract class ResourceHandler
         $manufacturers = $this->repo->findPartManufacturers();
 
         $meta->addFiltrationData([
-            "collection" => $manufacturers,
-            "type" => "checkbox",
-            "name" => "Manufacturer"
+            Metadata::COLLECTION => $manufacturers,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::NAME => "Manufacturer"
         ]);
     }
 }
