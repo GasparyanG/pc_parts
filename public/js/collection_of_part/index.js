@@ -4,6 +4,14 @@ import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { createStore } from "redux"
 
+
+function orderPreparation(state, key)
+{
+    if (key==state.url_query.order)
+        return "-" + key;
+    return key;
+}
+
 // root reducer configuration
 const initial_state = { url_query: {
     included : "gpu_images"
@@ -15,7 +23,7 @@ function reducer(state = initial_state, action) {
             return {
                 url_query: {
                     included: "gpu_images",
-                    order: action.key
+                    order: orderPreparation(state, action.key)
                 }
             }
         default:

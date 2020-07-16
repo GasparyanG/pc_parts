@@ -11,7 +11,6 @@ class FilterablePartTable extends React.Component {
 
         // state of table
         this.state = {
-            status: false,
             collection: new TopLevelResource([]),
             links: new Link([]),
         }
@@ -31,7 +30,6 @@ class FilterablePartTable extends React.Component {
             method: "GET",
             success: function(result) {
                 self.setState({
-                    status: true,
                     collection: new TopLevelResource(result),
                     links: new Link(result)
                 });
