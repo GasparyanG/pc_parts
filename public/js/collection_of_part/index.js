@@ -4,7 +4,8 @@ import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { createStore } from "redux"
 
-
+// deal with DESC order
+// TODO: move to separate file
 function orderPreparation(state, key)
 {
     if (key==state.url_query.order)
@@ -17,6 +18,8 @@ const initial_state = { url_query: {
     included : "gpu_images"
 }}
 
+
+// TODO: move to separate file
 function reducer(state = initial_state, action) {
     switch(action.type) {
         case "ORDER":

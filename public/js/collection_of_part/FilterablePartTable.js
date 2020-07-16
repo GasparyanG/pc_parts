@@ -29,10 +29,13 @@ class FilterablePartTable extends React.Component {
             url: path + queryHandler.composeQueryString(),
             method: "GET",
             success: function(result) {
-                self.setState({
-                    collection: new TopLevelResource(result),
-                    links: new Link(result)
-                });
+                // Don't rerender already fetched data
+                var newLinks = new Link(result);
+                if (self.state.links.self !== newLinks.self)
+                    self.setState({
+                        collection: new TopLevelResource(result),
+                        links: newLinks
+                    });
             }
         });
     }
