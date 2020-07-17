@@ -38,7 +38,7 @@ class Filtration {
     static min_key = "min";
     static max_key = "max";
 
-    construct(meta) {
+    constructor(meta) {
         this._type = meta[Filtration.type_key];
         this._name = meta[Filtration.name_key];
 

@@ -13,6 +13,12 @@ function orderPreparation(state, key)
     return key;
 }
 
+function filterPreparation(state, id, type)
+{
+    // TODO: cahnge filter representation
+    return "[manufacturer][in]="+id;
+}
+
 // root reducer configuration
 const initial_state = { url_query: {
     included : "gpu_images"
@@ -29,6 +35,14 @@ function reducer(state = initial_state, action) {
                     order: orderPreparation(state, action.key)
                 }
             }
+        case "FILTER":
+          return {
+            url_query: {
+                included: state.url_query.included,
+                order: state.url_query.order,
+                filter: filterPreparation(state, action.id, action.filter_type)
+            }
+        }
         default:
             return state;
     }

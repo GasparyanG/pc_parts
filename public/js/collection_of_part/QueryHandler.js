@@ -23,6 +23,7 @@ class QueryHandler {
         // included fields
         qs += this.includedQS();
         // TODO: filtration
+        qs += this.filterQS();
 
         return qs;
     }
@@ -35,6 +36,11 @@ class QueryHandler {
     includedQS() {
         if (!this._included) return "";
         return "&included=" + this._included;
+    }
+
+    filterQS() {
+        if (!this._filter) return "";
+        return "&filter" + this._filter;
     }
 }
 

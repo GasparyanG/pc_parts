@@ -37,6 +37,9 @@ class FilterablePartTable extends React.Component {
                         collection: new TopLevelResource(result),
                         links: newLinks
                     });
+            },
+            error: function(er) {
+                console.log("Something went wrong");
             }
         });
     }

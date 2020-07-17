@@ -73,7 +73,6 @@ class FilterImplementer
             else
                 $this->combination($key, $value, "filterField", self::AND, false);
 
-        echo $this->filterString;
         $this->queryBuilder->andWhere($this->filterString);
     }
 
