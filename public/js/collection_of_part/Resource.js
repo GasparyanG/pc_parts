@@ -22,6 +22,8 @@ class TopLevelResource {
 
 class Filtration {
     static filtration_key = "filtration";
+    static filter_key = "filter";
+    static value_key = "value";
 
     // types
     static checkbox_key = "checkbox";
@@ -39,6 +41,7 @@ class Filtration {
     static grouping_key = "grouping";
     static checkbox_grouping_key = "or";
     static range_grouping_key = "and";
+    static operator_key = "operator";
 
     // for range type
     static min_key = "min";
@@ -49,6 +52,7 @@ class Filtration {
         this._name = meta[Filtration.name_key];
         this._grouping = meta[Filtration.grouping_key];
         this._field = meta[Filtration.field_key];
+        this._operator = meta[Filtration.operator_key];
 
         if (meta[Filtration.type_key] === Filtration.range_key) {
             this._min = meta[Filtration.min_key];
@@ -65,6 +69,7 @@ class Filtration {
     get collection() { return this._collection; }
     get grouping() { return this._grouping; }
     get field() { return this._field; }
+    get operator() { return this._operator; }
 }
 
 // Meant for single object

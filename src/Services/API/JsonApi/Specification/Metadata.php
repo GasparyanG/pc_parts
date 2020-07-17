@@ -24,6 +24,9 @@ class Metadata
     const CHECKBOX_GROUPING = "or";
     const RANGE_GROUPING = "and";
 
+    // Operators
+    const OPERATOR = "operator";
+
     /**
      * @var array
      */

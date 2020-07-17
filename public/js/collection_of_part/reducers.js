@@ -1,5 +1,6 @@
+import FilterHandler from "./ResourceHandlers"
+
 // deal with DESC order
-// TODO: move to separate file
 function orderPreparation(state, key)
 {
     if (key==state.url_query.order)
@@ -7,10 +8,11 @@ function orderPreparation(state, key)
     return key;
 }
 
-function filterPreparation(state, id, type)
+function filterPreparation(state, value, data)
 {
-    // TODO: cahnge filter representation
-    return `[${type}][in]=${id}`;
+    let filterHandler = new FilterHandler(state.filter);
+    filterHandler.changeFilter(data, value);
+    return filterHandler.filterState;
 }
 
 // root reducer configuration
@@ -35,7 +37,7 @@ function reducer(state = initial_state, action) {
                 url_query: {
                     included: state.url_query.included,
                     order: state.url_query.order,
-                    filter: filterPreparation(state, action.id, action.filter_type)
+                    filter: filterPreparation(state, action.id, action.filter_data)
                 }
             }
         default:

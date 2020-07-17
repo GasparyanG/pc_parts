@@ -39,8 +39,10 @@ class QueryHandler {
     }
 
     filterQS() {
+        console.log("Info about filter");
+        console.log(this._filter);
         if (!this._filter) return "";
-        return "&filter" + this._filter;
+        // return "&filter" + this._filter;
     }
 }
 
