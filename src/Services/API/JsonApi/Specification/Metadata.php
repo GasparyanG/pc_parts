@@ -13,10 +13,16 @@ class Metadata
     const COLLECTION = "collection";
     const TYPE = "type";
     const NAME = "name";
+    const FIELD = "field";
 
     // Types
     const CHECKBOX = "checkbox";
     const RANGE = "range";
+
+    // Grouping
+    const GROUPING = "grouping";
+    const CHECKBOX_GROUPING = "or";
+    const RANGE_GROUPING = "and";
 
     /**
      * @var array

@@ -39,7 +39,7 @@ class CheckboxFilter extends React.Component {
         const checkboxes = this.props.filter.collection.map(filterMeta => {
             return (
                 <div>
-                    <input onClick={() => this.filter(filterMeta.id, this.props.filter.name)} key={filterMeta.id}
+                    <input onClick={() => this.filter(filterMeta.id, this.props.filter.field)} key={filterMeta.id}
                            id={this.props.filter.type + "_" + filterMeta.id} type="checkbox" value={filterMeta.id}/>
                     <label htmlFor={this.props.filter.type + "_" + filterMeta.id}>{filterMeta.name}</label>
                 </div>

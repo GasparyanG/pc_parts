@@ -30,9 +30,15 @@ class Filtration {
     // common fields
     static type_key = "type";
     static name_key = "name";
+    static field_key = "field";
 
     // for colleciton type
     static collection_key = "collection";
+
+    // Grouping
+    static grouping_key = "grouping";
+    static checkbox_grouping_key = "or";
+    static range_grouping_key = "and";
 
     // for range type
     static min_key = "min";
@@ -41,6 +47,8 @@ class Filtration {
     constructor(meta) {
         this._type = meta[Filtration.type_key];
         this._name = meta[Filtration.name_key];
+        this._grouping = meta[Filtration.grouping_key];
+        this._field = meta[Filtration.field_key];
 
         if (meta[Filtration.type_key] === Filtration.range_key) {
             this._min = meta[Filtration.min_key];
@@ -55,6 +63,8 @@ class Filtration {
     get min() { return this._min; }
     get max() { return this._max; }
     get collection() { return this._collection; }
+    get grouping() { return this._grouping; }
+    get field() { return this._field; }
 }
 
 // Meant for single object

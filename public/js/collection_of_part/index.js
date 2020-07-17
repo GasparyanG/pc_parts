@@ -16,7 +16,7 @@ function orderPreparation(state, key)
 function filterPreparation(state, id, type)
 {
     // TODO: cahnge filter representation
-    return "[manufacturer][in]="+id;
+    return `[${type}][in]=${id}`;
 }
 
 // root reducer configuration

@@ -230,7 +230,9 @@ abstract class ResourceHandler
         $meta->addFiltrationData([
             Metadata::COLLECTION => $manufacturers,
             Metadata::TYPE => Metadata::CHECKBOX,
-            Metadata::NAME => "Manufacturer"
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Manufacturer",
+            Metadata::FIELD => "manufacturer"
         ]);
     }
 }
