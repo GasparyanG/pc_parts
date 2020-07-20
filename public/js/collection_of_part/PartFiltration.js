@@ -61,8 +61,27 @@ class RangeFilter extends React.Component {
         super(props);
     }
 
+    filter = (filterData) => {
+        let min_val = document.getElementById(filterData.field + "_min").value;
+        let max_val = document.getElementById(filterData.field + "_max").value;
+
+        this.props.dispatch({type: "FILTER", id: {min: min_val, max: max_val}, filter_data: filterData})
+    }
+
     render() {
-        return <div>Range</div>
+        return (
+            <div>
+                <h3 className="filter-name">{this.props.filter.name}</h3>
+                <div>
+                    <label htmlFor={this.props.filter.field + "_min" }>Min</label>
+                    <input onChange={() => this.filter(this.props.filter)} id={this.props.filter.field + "_min" }
+                           type="text" defaultValue={this.props.filter.min}/>
+                    <label htmlFor={this.props.filter.field + "_max" }>Max</label>
+                    <input onChange={() => this.filter(this.props.filter)} id={this.props.filter.field + "_max" }
+                           type="text" defaultValue={this.props.filter.max}/>
+                </div>
+            </div>
+        );
     }
 }
 

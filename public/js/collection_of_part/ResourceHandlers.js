@@ -2,6 +2,7 @@ import { Filtration } from "./Resource"
 
 class FilterHandler {
     static in_operator = "in";
+    static between_operator = "between";
 
     constructor(filterState) {
         this._filterState = filterState ? filterState: [];
@@ -13,6 +14,9 @@ class FilterHandler {
             case FilterHandler.in_operator:
                 this.in_case(filterData, value);
                 break;
+            case FilterHandler.between_operator:
+                this.between_case(filterData, value);
+                break;
         }
     }
 
@@ -23,13 +27,11 @@ class FilterHandler {
                 let arrayOfValues = this.prepareArray(filter[Filtration.value_key]);
 
                 // remove if contains
-                console.log(value);
                 if (arrayOfValues.includes(value.toString())) {
                     // remove value
                     let newValue = this.composeValue(arrayOfValues, value.toString());
                     // remove filter if there is no value left
                     if (newValue == "") {
-                        console.log(index);
                         this._filterState.splice(index, 1);
                     }
                     // update value
@@ -71,6 +73,33 @@ class FilterHandler {
         }
 
         return arrayOfValues.join(',');
+    }
+
+    between_case(filterData, value) {
+        for (let index in this._filterState) {
+            let filter = this._filterState[index];
+            if (filter[Filtration.filter_key] === filterData.field) {
+                filter[Filtration.value_key] = this.composeBetween(value);
+                return;
+            }
+        }
+
+        // If we are here that means filter in not created yet, so create one.
+        const newFilter = {
+            "filter" : filterData[Filtration.field_key],
+            "value" : this.composeBetween(value),
+            "grouping" : filterData[Filtration.grouping_key],
+            "type" : filterData[Filtration.type_key],
+            "operator" : filterData[Filtration.operator_key]
+        };
+
+        // Update filter state.
+        this._filterState.push(newFilter);
+    }
+
+    // value should be of this format: {min: value, max: value}
+    composeBetween(value) {
+        return value.min + ',' + value.max;
     }
 
     get filterState() { return this._filterState; }
