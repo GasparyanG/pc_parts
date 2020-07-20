@@ -39,10 +39,21 @@ class QueryHandler {
     }
 
     filterQS() {
-        console.log("Info about filter");
-        console.log(this._filter);
         if (!this._filter) return "";
-        // return "&filter" + this._filter;
+        let qs = "";
+        for (let index in this._filter) {
+            let filter = this._filter[index];
+            // grouping
+            qs += "&filter[" + filter["grouping"] + "]";
+            // field name
+            qs += "[" + filter["filter"] + "]";
+            // operator
+            qs += "[" + filter["operator"] + "]";
+            // value
+            qs += "=" + filter["value"];
+        }
+
+        return qs;
     }
 }
 

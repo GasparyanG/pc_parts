@@ -17,15 +17,25 @@ class FilterHandler {
     }
 
     in_case(filterData, value) {
-        for (let filter in this._filterState) {
-            filter = this._filterState[filter];
+        for (let index in this._filterState) {
+            let filter = this._filterState[index];
             if (filter[Filtration.filter_key] === filterData.field) {
                 let arrayOfValues = this.prepareArray(filter[Filtration.value_key]);
 
                 // remove if contains
-                // TODO: Remove filter if set is empty
-                if (arrayOfValues.includes(value.toString()))
-                    filter[Filtration.value_key] = this.composeValue(arrayOfValues, value.toString());
+                console.log(value);
+                if (arrayOfValues.includes(value.toString())) {
+                    // remove value
+                    let newValue = this.composeValue(arrayOfValues, value.toString());
+                    // remove filter if there is no value left
+                    if (newValue == "") {
+                        console.log(index);
+                        this._filterState.splice(index, 1);
+                    }
+                    // update value
+                    else
+                        filter[Filtration.value_key] = newValue;
+                }
                 // add otherwise
                 else {
                     arrayOfValues.push(value);
