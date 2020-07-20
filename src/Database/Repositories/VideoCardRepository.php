@@ -37,4 +37,28 @@ class VideoCardRepository extends EntityRepository
         if ($res) return $res;
         return [];
     }
+
+//    public function findInterfaces()
+//    {
+//        $res = $this->createQueryBuilder('a')
+//            ->select('i.id, i.type as name')
+//            ->leftJoin("App\Database\Entities\GpuInterface", 'i', 'WITH', 'i=a.gpuInterface')
+//            ->groupBy('i.id')
+//            ->getQuery()
+//            ->getArrayResult();
+//
+//        if ($res) return $res;
+//        return [];
+//    }
+
+    public function findLengthMinANdMax()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select("MIN(a.length) as min, MAX(a.length) as max")
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res[0];
+        return [];
+    }
 }

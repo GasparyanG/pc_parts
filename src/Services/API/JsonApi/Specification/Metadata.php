@@ -18,12 +18,14 @@ class Metadata
     // Types
     const CHECKBOX = "checkbox";
     const RANGE = "range";
+    const MIN = "min";
+    const MAX = "max";
 
     // Grouping
     const GROUPING = "grouping";
     const CHECKBOX_GROUPING = "or";
-    const RANGE_GROUPING = "and";
 
+    const RANGE_GROUPING = "and";
     // Operators
     const OPERATOR = "operator";
 
