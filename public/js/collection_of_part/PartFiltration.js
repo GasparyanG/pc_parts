@@ -13,12 +13,11 @@ class PartFiltration extends React.Component {
             filtrationData = this.props.meta[Filtration.filtration_key];
 
         const filters = filtrationData.map(filterMeta => {
-            const filter = new Filtration(filterMeta);
-            var i=0;
+            var filter = new Filtration(filterMeta);
             if (filter.type === Filtration.checkbox_key)
-                return <CheckboxFilter key={++i} filter={filter} dispatch={this.props.dispatch}/>
+                return <CheckboxFilter filter={filter} dispatch={this.props.dispatch}/>
             else if(filter.type == Filtration.range_key)
-                return <RangeFilter key={++i} filter={filter} dispatch={this.props.dispatch}/>
+                return <RangeFilter filter={filter} dispatch={this.props.dispatch}/>
         });
 
         return (<div>{filters}</div>);
@@ -39,9 +38,9 @@ class CheckboxFilter extends React.Component {
         const checkboxes = this.props.filter.collection.map(filterMeta => {
             return (
                 <div>
-                    <input onClick={() => this.filter(filterMeta.id, this.props.filter)} key={filterMeta.id}
-                           id={this.props.filter.type + "_" + filterMeta.id} type="checkbox" value={filterMeta.id}/>
-                    <label htmlFor={this.props.filter.type + "_" + filterMeta.id}>{filterMeta.name}</label>
+                    <input onClick={() => this.filter(filterMeta.id, this.props.filter)}
+                           id={this.props.filter.field + "_" + filterMeta.id} type="checkbox" value={filterMeta.id}/>
+                    <label htmlFor={this.props.filter.field + "_" + filterMeta.id}>{filterMeta.name}</label>
                 </div>
             );
         })

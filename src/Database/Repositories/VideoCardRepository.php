@@ -11,4 +11,17 @@ class VideoCardRepository extends EntityRepository
 {
     const TABLE_NAME = "video_cards";
     use RepositoryTrait;
+
+    public function findChipsets()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('ch.id, ch.type as name')
+            ->leftJoin("App\Database\Entities\Chipset", 'ch', 'WITH', 'ch=a.chipset')
+            ->groupBy('ch.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
 }

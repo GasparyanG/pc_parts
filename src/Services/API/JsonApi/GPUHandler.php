@@ -17,6 +17,7 @@ use App\Database\Entities\Manufacturer;
 use App\Database\Entities\MemoryType;
 use App\Database\Entities\SliCrossfireType;
 use App\Database\Entities\VideoCard;
+use App\Services\API\JsonApi\Specification\Metadata;
 
 class GPUHandler extends ResourceHandler
 {
@@ -72,4 +73,24 @@ class GPUHandler extends ResourceHandler
         MemoryType::class => "getMemoryType",
         GpuInterface::class => "getGpuInterface"
     ];
+
+    protected function filtrationData(Metadata $meta): void
+    {
+        parent::filtrationData($meta);
+        $this->chipsetFilter($meta);
+    }
+
+    protected function chipsetFilter(Metadata $meta)
+    {
+        $chipsets = $this->repo->findChipsets();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $chipsets,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Chipset",
+            Metadata::FIELD => "chipset",
+            Metadata::OPERATOR => "in"
+        ]);
+    }
 }
