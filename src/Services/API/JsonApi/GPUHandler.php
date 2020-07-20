@@ -78,6 +78,7 @@ class GPUHandler extends ResourceHandler
     {
         parent::filtrationData($meta);
         $this->chipsetFilter($meta);
+        $this->memoryTypeFilter($meta);
     }
 
     protected function chipsetFilter(Metadata $meta)
@@ -90,6 +91,20 @@ class GPUHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Chipset",
             Metadata::FIELD => "chipset",
+            Metadata::OPERATOR => "in"
+        ]);
+    }
+
+    protected function memoryTypeFilter(Metadata $meta)
+    {
+        $memoryTypes = $this->repo->findMemoryTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $memoryTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Memory Type",
+            Metadata::FIELD => "memoryType",
             Metadata::OPERATOR => "in"
         ]);
     }
