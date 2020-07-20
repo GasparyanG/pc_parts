@@ -10,7 +10,7 @@ function orderPreparation(state, key)
 
 function filterPreparation(state, value, data)
 {
-    let filterHandler = new FilterHandler(state.filter);
+    let filterHandler = new FilterHandler(state.url_query.filter);
     filterHandler.changeFilter(data, value);
     return filterHandler.filterState;
 }

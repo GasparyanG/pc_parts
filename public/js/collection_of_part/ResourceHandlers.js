@@ -8,7 +8,7 @@ class FilterHandler {
     }
 
     changeFilter(filterData, value) {
-        let operator = filterData[Filtration.operator_key];
+        let operator = filterData.operator;
         switch(operator) {
             case FilterHandler.in_operator:
                 this.in_case(filterData, value);
@@ -17,17 +17,19 @@ class FilterHandler {
     }
 
     in_case(filterData, value) {
-        for (filter in this._filterState) {
-            if (filter[Filtration.field_key] === filterData[Filtration.field_key]) {
+        for (let filter in this._filterState) {
+            filter = this._filterState[filter];
+            if (filter[Filtration.filter_key] === filterData.field) {
                 let arrayOfValues = this.prepareArray(filter[Filtration.value_key]);
 
                 // remove if contains
-                if (arrayOfValues.includes(value))
-                    filter[Filtration.value_key] = composeValue(arrayOfValues, value);
+                // TODO: Remove filter if set is empty
+                if (arrayOfValues.includes(value.toString()))
+                    filter[Filtration.value_key] = this.composeValue(arrayOfValues, value.toString());
                 // add otherwise
                 else {
                     arrayOfValues.push(value);
-                    filter[Filtration.value_key] = composeValue(arrayOfValues);
+                    filter[Filtration.value_key] = this.composeValue(arrayOfValues);
                 }
 
                 // At this moment filter will be handeld, so termminate.
@@ -49,12 +51,12 @@ class FilterHandler {
     }
 
     prepareArray(commSepString) {
-        return commSepString.split(',');
+        return commSepString.toString().split(',');
     }
 
     composeValue(arrayOfValues, valueToRemove = null) {
         if (valueToRemove) {
-            let index = arrayOfValues.findIndex(valueToRemove);
+            let index = arrayOfValues.indexOf(valueToRemove);
             arrayOfValues.splice(index, 1);
         }
 
