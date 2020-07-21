@@ -77,6 +77,9 @@ class MoboHandler extends ResourceHandler
     {
         parent::filtrationData($meta);
         $this->memoryTypeFilter($meta);
+        $this->maxMemoryFilter($meta);
+        $this->memorySlotsFilter($meta);
+        $this->wirelessNetworkingTypeFilter($meta);
     }
 
     protected function memoryTypeFilter(Metadata $meta): void
@@ -89,6 +92,50 @@ class MoboHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Memory Type",
             Metadata::FIELD => "memoryType",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function maxMemoryFilter(Metadata $meta): void
+    {
+        $memoryMinAndMax = $this->repo->findMemoryMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $memoryMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $memoryMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Memory Max",
+            Metadata::FIELD => "maxMemory",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function memorySlotsFilter(Metadata $meta): void
+    {
+        $memorySlotsMinAndMax = $this->repo->findMemorySlotsMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $memorySlotsMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $memorySlotsMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Memory Slots",
+            Metadata::FIELD => "memorySlots",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function wirelessNetworkingTypeFilter(Metadata $meta): void
+    {
+        $wirelessNetworkingTypes = $this->repo->findWirelessNetworkingTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $wirelessNetworkingTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Wireless Networking",
+            Metadata::FIELD => "wirelessNetworkingType",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
