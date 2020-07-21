@@ -14,6 +14,8 @@ use App\Database\Entities\MemoryPartNumber;
 use App\Database\Entities\MemoryPrice;
 use App\Database\Entities\Module;
 use App\Database\Entities\Timing;
+use App\Services\API\JsonApi\DataFetching\FilterImplementer;
+use App\Services\API\JsonApi\Specification\Metadata;
 
 class MemoryHandler extends ResourceHandler
 {
@@ -60,4 +62,24 @@ class MemoryHandler extends ResourceHandler
         Timing::class => "getTiming",
         ECCRegister::class => "getECCRegister"
     ];
+
+    protected function filtrationData(Metadata $meta): void
+    {
+        parent::filtrationData($meta);
+        $this->formFactorFilter($meta);
+    }
+
+    protected function formFactorFilter(Metadata $meta): void
+    {
+        $formFactors = $this->repo->findFormFactors();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $formFactors,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Form Factor",
+            Metadata::FIELD => "formFactor",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
 }
