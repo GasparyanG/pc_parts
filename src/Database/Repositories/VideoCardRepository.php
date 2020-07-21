@@ -51,10 +51,21 @@ class VideoCardRepository extends EntityRepository
 //        return [];
 //    }
 
-    public function findLengthMinANdMax()
+    public function findLengthMinAndMax()
     {
         $res = $this->createQueryBuilder('a')
             ->select("MIN(a.length) as min, MAX(a.length) as max")
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res[0];
+        return [];
+    }
+
+    public function findMemoryMinAndMax()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select("MIN(a.memory) as min, MAX(a.memory) as max")
             ->getQuery()
             ->getArrayResult();
 

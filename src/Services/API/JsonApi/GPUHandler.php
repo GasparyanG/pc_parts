@@ -81,6 +81,7 @@ class GPUHandler extends ResourceHandler
         $this->chipsetFilter($meta);
         $this->memoryTypeFilter($meta);
         $this->lengthFilter($meta);
+        $this->memoryFilter($meta);
     }
 
     protected function chipsetFilter(Metadata $meta): void
@@ -113,7 +114,7 @@ class GPUHandler extends ResourceHandler
 
     protected function lengthFilter(Metadata $meta): void
     {
-        $lengthMinAndMax = $this->repo->findLengthMinANdMax();
+        $lengthMinAndMax = $this->repo->findLengthMinAndMax();
 
         $meta->addFiltrationData([
             Metadata::MIN => $lengthMinAndMax[Metadata::MIN] ?? 0,
@@ -122,6 +123,21 @@ class GPUHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Length",
             Metadata::FIELD => "length",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function memoryFilter(Metadata $meta): void
+    {
+        $memoryMinAndMax = $this->repo->findMemoryMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $memoryMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $memoryMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Memory",
+            Metadata::FIELD => "memory",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
