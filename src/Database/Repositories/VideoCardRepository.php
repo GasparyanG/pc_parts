@@ -72,4 +72,37 @@ class VideoCardRepository extends EntityRepository
         if ($res) return $res[0];
         return [];
     }
+
+    public function findCoreClockMinAndMax()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select("MIN(a.coreClock) as min, MAX(a.coreClock) as max")
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res[0];
+        return [];
+    }
+
+    public function findBoostClockMinAndMax()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select("MIN(a.boostClock) as min, MAX(a.boostClock) as max")
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res[0];
+        return [];
+    }
+
+    public function findTdpMinAndMax()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select("MIN(a.tdp) as min, MAX(a.tdp) as max")
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res[0];
+        return [];
+    }
 }

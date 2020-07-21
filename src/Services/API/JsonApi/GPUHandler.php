@@ -82,6 +82,9 @@ class GPUHandler extends ResourceHandler
         $this->memoryTypeFilter($meta);
         $this->lengthFilter($meta);
         $this->memoryFilter($meta);
+        $this->coreClockFilter($meta);
+        $this->boostClockFilter($meta);
+        $this->tdpFilter($meta);
     }
 
     protected function chipsetFilter(Metadata $meta): void
@@ -142,17 +145,48 @@ class GPUHandler extends ResourceHandler
         ]);
     }
 
-//    protected function interface(Metadata $meta)
-//    {
-//        $interfaces = $this->repo->findInterfaces();
-//
-//        $meta->addFiltrationData([
-//            Metadata::COLLECTION => $interfaces,
-//            Metadata::TYPE => Metadata::CHECKBOX,
-//            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
-//            Metadata::NAME => "Interface",
-//            Metadata::FIELD => "gpuInterface",
-//            Metadata::OPERATOR => FilterImplementer::strtolower(self::IN)
-//        ]);
-//    }
+    protected function coreClockFilter(Metadata $meta): void
+    {
+        $coreClockMinAndMax = $this->repo->findCoreClockMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $coreClockMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $coreClockMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Core Clock",
+            Metadata::FIELD => "coreClock",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function boostClockFilter(Metadata $meta): void
+    {
+        $boostClockMinAndMax = $this->repo->findBoostClockMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $boostClockMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $boostClockMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Boost Clock",
+            Metadata::FIELD => "boostClock",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function tdpFilter(Metadata $meta): void
+    {
+        $tdpMinAndMax = $this->repo->findTdpMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $tdpMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $tdpMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "TDP",
+            Metadata::FIELD => "tdp",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
 }
