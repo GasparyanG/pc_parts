@@ -20,4 +20,17 @@ class CoolerRepository extends EntityRepository
         if ($res) return $res;
         return [];
     }
+
+    public function findWaterCooledTypes()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('wct.id, wct.type as name')
+            ->leftJoin("App\Database\Entities\WaterCooledType", 'wct', 'WITH', 'wct=a.waterCooledType')
+            ->groupBy('wct.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
 }

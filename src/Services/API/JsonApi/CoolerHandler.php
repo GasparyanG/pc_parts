@@ -69,6 +69,7 @@ class CoolerHandler extends ResourceHandler
     {
         parent::filtrationData($meta);
         $this->bearingTypeFilter($meta);
+        $this->waterCooledTypeFilter($meta);
     }
 
     protected function bearingTypeFilter(Metadata $meta): void
@@ -81,6 +82,20 @@ class CoolerHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Bearing Type",
             Metadata::FIELD => "bearingType",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function waterCooledTypeFilter(Metadata $meta)
+    {
+        $waterCooledTypes = $this->repo->findWaterCooledTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $waterCooledTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Water Cooled",
+            Metadata::FIELD => "waterCooledType",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
