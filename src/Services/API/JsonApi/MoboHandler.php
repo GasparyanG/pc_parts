@@ -80,6 +80,9 @@ class MoboHandler extends ResourceHandler
         $this->maxMemoryFilter($meta);
         $this->memorySlotsFilter($meta);
         $this->wirelessNetworkingTypeFilter($meta);
+        $this->chipsetFilter($meta);
+        $this->moboFormFactorFilter($meta);
+        $this->cpuSocketFilter($meta);
     }
 
     protected function memoryTypeFilter(Metadata $meta): void
@@ -136,6 +139,48 @@ class MoboHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Wireless Networking",
             Metadata::FIELD => "wirelessNetworkingType",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function chipsetFilter(Metadata $meta): void
+    {
+        $chipsets = $this->repo->findChipsets();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $chipsets,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Chipset",
+            Metadata::FIELD => "chipset",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function moboFormFactorFilter(Metadata $meta)
+    {
+        $moboFormFactors = $this->repo->findFormFactors();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $moboFormFactors,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Form Factor",
+            Metadata::FIELD => "moboFormFactor",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function cpuSocketFilter(Metadata $meta)
+    {
+        $cpuSockets = $this->repo->findCpuSockets();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $cpuSockets,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Socket / CPU",
+            Metadata::FIELD => "cpuSocket",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

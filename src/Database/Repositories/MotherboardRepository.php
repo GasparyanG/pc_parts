@@ -55,4 +55,43 @@ class MotherboardRepository extends EntityRepository
         if ($res) return $res;
         return [];
     }
+
+    public function findChipsets()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('cs.id, cs.type as name')
+            ->leftJoin("App\Database\Entities\Chipset", 'cs', 'WITH', 'cs=a.chipset')
+            ->groupBy('cs.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
+
+    public function findFormFactors()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('mff.id, mff.type as name')
+            ->leftJoin("App\Database\Entities\MoboFormFactor", 'mff', 'WITH', 'mff=a.moboFormFactor')
+            ->groupBy('mff.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
+
+    public function findCpuSockets()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('cs.id, cs.type as name')
+            ->leftJoin("App\Database\Entities\CpuSocket", 'cs', 'WITH', 'cs=a.cpuSocket')
+            ->groupBy('cs.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
 }
