@@ -70,4 +70,17 @@ class CpuRepository extends EntityRepository
         if ($res) return $res;
         return [];
     }
+
+    public function findCoreFamilyTypes()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('cf.id, cf.name')
+            ->leftJoin("App\Database\Entities\CoreFamily", 'cf', 'WITH', 'cf=a.coreFamily')
+            ->groupBy('cf.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
 }

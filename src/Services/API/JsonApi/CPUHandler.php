@@ -82,6 +82,7 @@ class CPUHandler extends ResourceHandler
         $this->tdpFilter($meta);
         $this->cpuSeriesFilter($meta);
         $this->cpuMicroarchitectureFilter($meta);
+        $this->coreFamilyFilter($meta);
     }
 
     protected function coreClockFilter(Metadata $meta): void
@@ -153,6 +154,20 @@ class CPUHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Microarchitecture",
             Metadata::FIELD => "microarchitecture",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function coreFamilyFilter(Metadata $meta): void
+    {
+        $coreFamilies = $this->repo->findCoreFamilyTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $coreFamilies,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Core Family",
+            Metadata::FIELD => "coreFamily",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
