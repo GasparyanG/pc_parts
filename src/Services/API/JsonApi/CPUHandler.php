@@ -83,6 +83,7 @@ class CPUHandler extends ResourceHandler
         $this->cpuSeriesFilter($meta);
         $this->cpuMicroarchitectureFilter($meta);
         $this->coreFamilyFilter($meta);
+        $this->integratedGraphicFilter($meta);
     }
 
     protected function coreClockFilter(Metadata $meta): void
@@ -168,6 +169,20 @@ class CPUHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Core Family",
             Metadata::FIELD => "coreFamily",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function integratedGraphicFilter(Metadata $meta): void
+    {
+        $integratedGraphics = $this->repo->findIntegratedGraphicsTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $integratedGraphics,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Integrated Graphics",
+            Metadata::FIELD => "integratedGraphic",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

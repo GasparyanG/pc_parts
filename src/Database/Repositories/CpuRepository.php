@@ -83,4 +83,17 @@ class CpuRepository extends EntityRepository
         if ($res) return $res;
         return [];
     }
+
+    public function findIntegratedGraphicsTypes()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select('ig.id, ig.name')
+            ->leftJoin("App\Database\Entities\IntegratedGraphic", 'ig', 'WITH', 'ig=a.integratedGraphic')
+            ->groupBy('ig.id')
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res;
+        return [];
+    }
 }
