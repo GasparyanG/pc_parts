@@ -13,6 +13,8 @@ use App\Database\Entities\CpuSocket;
 use App\Database\Entities\Cooler;
 use App\Database\Entities\Manufacturer;
 use App\Database\Entities\WaterCooledType;
+use App\Services\API\JsonApi\DataFetching\FilterImplementer;
+use App\Services\API\JsonApi\Specification\Metadata;
 
 class CoolerHandler extends ResourceHandler
 {
@@ -62,4 +64,24 @@ class CoolerHandler extends ResourceHandler
         BearingType::class => "getBearingType",
         WaterCooledType::class => "getWaterCooledType"
     ];
+
+    protected function filtrationData(Metadata $meta): void
+    {
+        parent::filtrationData($meta);
+        $this->bearingTypeFilter($meta);
+    }
+
+    protected function bearingTypeFilter(Metadata $meta): void
+    {
+        $bearingTypes = $this->repo->findBearingTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $bearingTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Bearing Type",
+            Metadata::FIELD => "bearingType",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
 }
