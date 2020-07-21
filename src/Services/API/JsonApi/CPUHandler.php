@@ -17,6 +17,8 @@ use App\Database\Entities\LThreeCache;
 use App\Database\Entities\LTwoCache;
 use App\Database\Entities\Manufacturer;
 use App\Database\Entities\Microarchitecture;
+use App\Services\API\JsonApi\DataFetching\FilterImplementer;
+use App\Services\API\JsonApi\Specification\Metadata;
 
 class CPUHandler extends ResourceHandler
 {
@@ -71,4 +73,87 @@ class CPUHandler extends ResourceHandler
         LTwoCache::class => "getLTwoCache",
         LThreeCache::class => "getLThreeCache"
     ];
+
+    protected function filtrationData(Metadata $meta): void
+    {
+        parent::filtrationData($meta);
+        $this->coreClockFilter($meta);
+        $this->coreCountFilter($meta);
+        $this->tdpFilter($meta);
+        $this->cpuSeriesFilter($meta);
+        $this->cpuMicroarchitectureFilter($meta);
+    }
+
+    protected function coreClockFilter(Metadata $meta): void
+    {
+        $coreClockMinAndMax = $this->repo->findCoreClockMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => floor($coreClockMinAndMax[Metadata::MIN]) ?? 0,
+            Metadata::MAX => round($coreClockMinAndMax[Metadata::MAX]) ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Core Clock",
+            Metadata::FIELD => "coreClock",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function coreCountFilter(Metadata $meta): void
+    {
+        $coreCountMinAndMax = $this->repo->findCoreCountMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $coreCountMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $coreCountMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Core Count",
+            Metadata::FIELD => "coreCount",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function tdpFilter(Metadata $meta): void
+    {
+        $tdpMinAndMax = $this->repo->findTdpMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $tdpMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $tdpMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "TDP",
+            Metadata::FIELD => "tdp",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function cpuSeriesFilter(Metadata $meta): void
+    {
+        $series = $this->repo->findSeriesTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $series,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Series",
+            Metadata::FIELD => "cpuSeries",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function cpuMicroarchitectureFilter(Metadata $meta): void
+    {
+        $microarchitectures = $this->repo->findMicroarchitectureTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $microarchitectures,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Microarchitecture",
+            Metadata::FIELD => "microarchitecture",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
 }
