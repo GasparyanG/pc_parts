@@ -105,4 +105,15 @@ class VideoCardRepository extends EntityRepository
         if ($res) return $res[0];
         return [];
     }
+
+    public function findExpansionSLotWidthMinAndMax()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select("MIN(a.expansionSlotWidth) as min, MAX(a.expansionSlotWidth) as max")
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res[0];
+        return [];
+    }
 }

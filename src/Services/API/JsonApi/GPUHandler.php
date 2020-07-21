@@ -85,6 +85,7 @@ class GPUHandler extends ResourceHandler
         $this->coreClockFilter($meta);
         $this->boostClockFilter($meta);
         $this->tdpFilter($meta);
+        $this->expansionSlotWidthFilter($meta);
     }
 
     protected function chipsetFilter(Metadata $meta): void
@@ -186,6 +187,21 @@ class GPUHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "TDP",
             Metadata::FIELD => "tdp",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function expansionSlotWidthFilter(Metadata $meta): void
+    {
+        $eswMinAndMax = $this->repo->findExpansionSLotWidthMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $eswMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $eswMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Expansion Slot Width",
+            Metadata::FIELD => "expansionSlotWidth",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
