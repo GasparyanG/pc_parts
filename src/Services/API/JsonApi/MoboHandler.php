@@ -18,6 +18,8 @@ use App\Database\Entities\MotherboardsUsb;
 use App\Database\Entities\OnboardEthernetType;
 use App\Database\Entities\SliCrossfireType;
 use App\Database\Entities\WirelessNetworkingType;
+use App\Services\API\JsonApi\DataFetching\FilterImplementer;
+use App\Services\API\JsonApi\Specification\Metadata;
 
 class MoboHandler extends ResourceHandler
 {
@@ -70,4 +72,24 @@ class MoboHandler extends ResourceHandler
         MemoryType::class => "getMemoryType",
         WirelessNetworkingType::class => "getWirelessNetworkingType"
     ];
+
+    protected function filtrationData(Metadata $meta): void
+    {
+        parent::filtrationData($meta);
+        $this->memoryTypeFilter($meta);
+    }
+
+    protected function memoryTypeFilter(Metadata $meta): void
+    {
+        $memoryTypes = $this->repo->findMemoryTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $memoryTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Memory Type",
+            Metadata::FIELD => "memoryType",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
 }
