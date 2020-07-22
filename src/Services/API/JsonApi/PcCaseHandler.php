@@ -18,6 +18,8 @@ use App\Database\Entities\MoboFormFactor;
 use App\Database\Entities\PcCase;
 use App\Database\Entities\SidePanelWindowType;
 use App\Database\Entities\Usb;
+use App\Services\API\JsonApi\DataFetching\FilterImplementer;
+use App\Services\API\JsonApi\Specification\Metadata;
 
 class PcCaseHandler extends ResourceHandler
 {
@@ -67,4 +69,39 @@ class PcCaseHandler extends ResourceHandler
         SidePanelWindowType::class => "getSidePanelWindowType",
         CaseDimension::class => "getCaseDimension"
     ];
+
+    protected function filtrationData(Metadata $meta): void
+    {
+        parent::filtrationData($meta);
+        $this->typeFilter($meta);
+        $this->sidePanelWindowFilter($meta);
+    }
+
+    protected function typeFilter(Metadata $meta)
+    {
+        $types = $this->repo->findTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $types,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Type",
+            Metadata::FIELD => "caseType",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function sidePanelWindowFilter(Metadata $meta): void
+    {
+        $types = $this->repo->findSidePanelWindowTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $types,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Side Panel Window",
+            Metadata::FIELD => "sidePanelWindowType",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
 }
