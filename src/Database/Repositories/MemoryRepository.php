@@ -24,4 +24,15 @@ class MemoryRepository extends EntityRepository
         if ($res) return $res;
         return [];
     }
+
+    public function findSpeedMinAndMax()
+    {
+        $res = $this->createQueryBuilder('a')
+            ->select("MIN(a.speed) as min, MAX(a.speed) as max")
+            ->getQuery()
+            ->getArrayResult();
+
+        if ($res) return $res[0];
+        return [];
+    }
 }

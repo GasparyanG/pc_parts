@@ -67,6 +67,7 @@ class MemoryHandler extends ResourceHandler
     {
         parent::filtrationData($meta);
         $this->formFactorFilter($meta);
+        $this->speedFilter($meta);
     }
 
     protected function formFactorFilter(Metadata $meta): void
@@ -80,6 +81,21 @@ class MemoryHandler extends ResourceHandler
             Metadata::NAME => "Form Factor",
             Metadata::FIELD => "formFactor",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function speedFilter(Metadata $meta)
+    {
+        $speedMinAndMax = $this->repo->findSpeedMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $speedMinAndMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $speedMinAndMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Speed",
+            Metadata::FIELD => "speed",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
 }
