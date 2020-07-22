@@ -34,17 +34,14 @@ trait RepositoryTrait
             ->getSingleScalarResult();
     }
 
-    public function findLastLowestPrice(int $id, int $timeInterval, string $name): ?float
+    public function findLastLowestPrice(int $id, string $name): ?float
     {
-        $startDate = time() - $timeInterval;
-        $endDate = time();
-
         $res = null;
         try {
             $res = $this->createQueryBuilder('c')
                 ->select("c.price")
                 ->where('c.' . $name . '= ' . $id)
-                ->andWhere("c.date between " . $startDate . " AND " . $endDate)
+                ->orderBy("c.date DESC")
                 ->orderBy("c.price")
                 ->setMaxResults(1)
                 ->getQuery()

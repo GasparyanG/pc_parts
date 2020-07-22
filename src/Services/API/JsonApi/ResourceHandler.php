@@ -92,7 +92,7 @@ abstract class ResourceHandler
         // price
         if (static::$priceEntityName) {
             $priceRepo = $this->em->getRepository(static::$priceEntityName);
-            $price = $priceRepo->findLastLowestPrice($id, self::$priceTimeInterval, static::$assocName);
+            $price = $priceRepo->findLastLowestPrice($id, static::$assocName);
 
             $attr[self::PRICE] = $price ? $price: null ;
         }
