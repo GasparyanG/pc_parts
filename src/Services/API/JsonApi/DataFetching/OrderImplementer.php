@@ -6,7 +6,7 @@ namespace App\Services\API\JsonApi\DataFetching;
 
 use App\Database\Connection;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -88,24 +88,45 @@ class OrderImplementer
      */
     private function priceOrdering(string $order, string $column): void
     {
-        $orderedPricesSubSelect = $this->em->createQueryBuilder()
-            ->select("g")
-            ->from("App\Database\Entities\GpuPrice", "g")
-            ->orderBy("g.$column");
+//        $orderedPricesSubSelect = $this->em->createQueryBuilder()
+//            ->select("g")
+//            ->from("App\Database\Entities\GpuPrice", "g")
+//            ->orderBy("g.$column");
+//
+//        $minPriceSubSelect = $this->em->createQueryBuilder()
+//            ->select(
+//                "min(c.$column) as price, IDENTITY(c.gpu) as gpu"
+//                . " from App\Database\Entities\GpuPrice as c"
+//                . " where c.id in (" . $orderedPricesSubSelect->getDQL() . ")"
+//                . " group by gpu"
+//            );
+//
+//        $this->queryBuilder
+//            ->leftJoin(sprintf('(%s)',
+//                $minPriceSubSelect->getDQL()), "g",
+//                Join::WITH,
+//                "g.gpu=" . Fetcher::ALIAS . ".id")
+//            ->orderBy("g.$column", $order);
 
-        $minPriceSubSelect = $this->em->createQueryBuilder()
-            ->select(
-                "min(c.$column) as price, IDENTITY(c.gpu) as gpu"
-                . " from App\Database\Entities\GpuPrice as c"
-                . " where c.id in (" . $orderedPricesSubSelect->getDQL() . ")"
-                . " group by gpu"
-            );
+        $sql = <<<SQL
+select vc.* from video_cards vc
+left join (
+      select min(price) as price, gpu_id
+      from (
+          select *
+          from gpu_prices
+          order by date desc
+      ) as a
+group by gpu_id
+) as a on a.gpu_id=vc.id
+order by a.price;
+SQL;
 
-        $this->queryBuilder
-            ->leftJoin(sprintf('(%s)',
-                $minPriceSubSelect->getDQL()), "g",
-                Join::WITH,
-                "g.gpu=" . Fetcher::ALIAS . ".id")
-            ->orderBy("g.$column", $order);
+        $rsm = new ResultSetMappingBuilder($this->em);
+        $rsm->addRootEntityFromClassMetadata("App\Database\Entities\VideoCard", "vc");
+
+        $query = $this->em->CreateNativeQuery($sql, $rsm);
+
+        $res = $query->getResult();
     }
 }

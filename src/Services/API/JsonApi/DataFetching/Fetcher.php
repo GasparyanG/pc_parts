@@ -7,6 +7,7 @@ namespace App\Services\API\JsonApi\DataFetching;
 use App\Database\Connection;
 use App\Services\API\JsonApi\Specification\Links;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -45,11 +46,73 @@ class Fetcher
 
     public function getEntities(): iterable
     {
-        $this->select();
-        $this->order();
-        $this->filter();
-        $this->limit();
-        return $this->find();
+        if (!$this->native()) {
+            $this->select();
+            $this->order();
+            $this->filter();
+            $this->limit();
+            return $this->find();
+        } else
+            return $this->nativeQuery();
+    }
+
+    public function native(): bool
+    {
+        if ($this->nativeQueryValues()) return true;
+        return false;
+    }
+
+    public function nativeQuery(): iterable
+    {
+        $sql = <<<SQL
+select vc.* from video_cards vc
+left join (
+      select min(price) as price, gpu_id
+      from (
+          select *
+          from gpu_prices
+          order by date desc
+      ) as a
+group by gpu_id
+) as a on a.gpu_id=vc.id
+order by a.price desc;
+SQL;
+
+        $rsm = new ResultSetMappingBuilder($this->em);
+        $rsm->addRootEntityFromClassMetadata("App\Database\Entities\VideoCard", "vc");
+
+        $query = $this->em->CreateNativeQuery($sql, $rsm);
+        return $query->getResult();
+    }
+
+    public function nativeQueryValues(): bool
+    {
+        foreach ($this->orderingPreparation() as $order => $column) {
+            switch ($column) {
+                case OrderImplementer::PRICE:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        return false;
+    }
+
+    private function orderingPreparation(): array
+    {
+        $explodedOrderParams = explode(',', $this->queryBag->get(OrderImplementer::ORDER));
+        $orderingAssoc = [];
+
+        if(isset($explodedOrderParams[0]) && !$explodedOrderParams[0]) return $orderingAssoc;
+
+        foreach ($explodedOrderParams as $param)
+            if ($param[0] === OrderImplementer::DESC_CHAR)
+                $orderingAssoc[OrderImplementer::DESC] = ltrim($param, OrderImplementer::DESC_CHAR);
+            else
+                $orderingAssoc[OrderImplementer::ASC] = $param;
+
+        return $orderingAssoc;
     }
 
     private function select(): void
