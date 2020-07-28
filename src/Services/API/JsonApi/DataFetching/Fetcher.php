@@ -35,6 +35,11 @@ class Fetcher
      */
     private $queryBuilder;
 
+    /**
+     * @var string
+     */
+    private $query;
+
     public function __construct(string $entityName, ParameterBag $queryBag)
     {
         $this->em = Connection::getEntityManager();
@@ -42,6 +47,7 @@ class Fetcher
         $this->queryBag = $queryBag;
 
         $this->queryBuilder = $this->em->createQueryBuilder();
+        $this->query = "";
     }
 
     public function getEntities(): iterable
@@ -117,15 +123,16 @@ SQL;
 
     private function select(): void
     {
-        $this->queryBuilder
-            ->select(self::ALIAS)
-            ->from($this->entityName, self::ALIAS);
+        $this->query .= "select " . self::ALIAS . ".* from "
+            . $this->em->getClassMetadata($this->entityName)->getTableName()
+            . " as " . self::ALIAS;
     }
 
     private function order(): void
     {
-        $orderImp = new OrderImplementer($this->queryBuilder, $this->queryBag);
+        $orderImp = new NativeOrderImplementer($this->query, $this->queryBag);
         $orderImp->order();
+        $this->query = $orderImp->getQuery();
     }
 
     private function filter(): void
@@ -138,15 +145,22 @@ SQL;
     {
         $links = new Links($this->entityName, $this->queryBag);
 
-        $this->queryBuilder
-            ->setFirstResult($links->getOffset())
-            ->setMaxResults($links->getSize());
+        $this->query .= " limit ";
+        if ($links->getOffset())
+            $this->query .= $links->getOffset();
+        $this->query .= $links->getSize();
     }
 
     private function find(): iterable
     {
         try {
-            return $this->queryBuilder->getQuery()->getResult();
+            echo $this->query;
+
+            $rsm = new ResultSetMappingBuilder($this->em);
+            $rsm->addRootEntityFromClassMetadata($this->entityName, self::ALIAS);
+
+            $query = $this->em->CreateNativeQuery($this->query, $rsm);
+            return $query->getResult();
         } catch (\Exception $e) {
             // TODO: return exception to caller
             echo $e->getMessage() . "\n";
