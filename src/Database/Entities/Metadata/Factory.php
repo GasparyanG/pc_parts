@@ -9,7 +9,12 @@ class Factory
     private static $entities = [
         GPUMeta::class,
         CPUMeta::class,
-        MemoryMeta::class
+        MemoryMeta::class,
+        CaseMeta::class,
+        StorageMeta::class,
+        MOBOMeta::class,
+        CoolerMeta::class,
+        PSUMeta::class
     ];
 
     public static function create(string $entityName): ?AbstractMeta
