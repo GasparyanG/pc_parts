@@ -54,8 +54,8 @@ class Fetcher
     {
         if (!$this->native()) {
             $this->select();
-            $this->order();
             $this->filter();
+            $this->order();
             $this->limit();
             return $this->find();
         } else
@@ -137,8 +137,9 @@ SQL;
 
     private function filter(): void
     {
-        $filterImp = new FilterImplementer($this->queryBuilder, $this->queryBag);
+        $filterImp = new NativeFilterImplementer($this->query, $this->queryBag);
         $filterImp->filter();
+        $this->query = $filterImp->getQuery();
     }
 
     private function limit(): void
@@ -147,7 +148,7 @@ SQL;
 
         $this->query .= " limit ";
         if ($links->getOffset())
-            $this->query .= $links->getOffset();
+            $this->query .= $links->getOffset() . ',';
         $this->query .= $links->getSize();
     }
 
