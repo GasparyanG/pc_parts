@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 class Fetcher
 {
     const ALIAS = 'a';
+    const JOIN_ALIAS = 'j';
 
     /**
      * @var EntityManager
@@ -52,73 +53,12 @@ class Fetcher
 
     public function getEntities(): iterable
     {
-        if (!$this->native()) {
-            $this->select();
-            $this->filter();
-            $this->order();
-            $this->limit();
-            return $this->find();
-        } else
-            return $this->nativeQuery();
-    }
-
-    public function native(): bool
-    {
-        if ($this->nativeQueryValues()) return true;
-        return false;
-    }
-
-    public function nativeQuery(): iterable
-    {
-        $sql = <<<SQL
-select vc.* from video_cards vc
-left join (
-      select min(price) as price, gpu_id
-      from (
-          select *
-          from gpu_prices
-          order by date desc
-      ) as a
-group by gpu_id
-) as a on a.gpu_id=vc.id
-order by a.price desc;
-SQL;
-
-        $rsm = new ResultSetMappingBuilder($this->em);
-        $rsm->addRootEntityFromClassMetadata("App\Database\Entities\VideoCard", "vc");
-
-        $query = $this->em->CreateNativeQuery($sql, $rsm);
-        return $query->getResult();
-    }
-
-    public function nativeQueryValues(): bool
-    {
-        foreach ($this->orderingPreparation() as $order => $column) {
-            switch ($column) {
-                case OrderImplementer::PRICE:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-
-        return false;
-    }
-
-    private function orderingPreparation(): array
-    {
-        $explodedOrderParams = explode(',', $this->queryBag->get(OrderImplementer::ORDER));
-        $orderingAssoc = [];
-
-        if(isset($explodedOrderParams[0]) && !$explodedOrderParams[0]) return $orderingAssoc;
-
-        foreach ($explodedOrderParams as $param)
-            if ($param[0] === OrderImplementer::DESC_CHAR)
-                $orderingAssoc[OrderImplementer::DESC] = ltrim($param, OrderImplementer::DESC_CHAR);
-            else
-                $orderingAssoc[OrderImplementer::ASC] = $param;
-
-        return $orderingAssoc;
+        $this->select();
+        $this->joins();
+        $this->filter();
+        $this->order();
+        $this->limit();
+        return $this->find();
     }
 
     private function select(): void
@@ -126,6 +66,13 @@ SQL;
         $this->query .= "select " . self::ALIAS . ".* from "
             . $this->em->getClassMetadata($this->entityName)->getTableName()
             . " as " . self::ALIAS;
+    }
+
+    private function joins(): void
+    {
+        $joinImp = new JoinImplementer($this->query, $this->queryBag);
+        $joinImp->join();
+        $this->query = $joinImp->getQuery();
     }
 
     private function order(): void
@@ -155,8 +102,6 @@ SQL;
     private function find(): iterable
     {
         try {
-            echo $this->query;
-
             $rsm = new ResultSetMappingBuilder($this->em);
             $rsm->addRootEntityFromClassMetadata($this->entityName, self::ALIAS);
 
