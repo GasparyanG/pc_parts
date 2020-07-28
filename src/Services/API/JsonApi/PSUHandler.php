@@ -42,10 +42,10 @@ class PSUHandler extends ResourceHandler
      * {@inheritDoc}
      */
     public static $essentialFields = [
-        "Name" => "name",
-        "Price" => ResourceHandler::PRICE,
-        "Wattage" => "wattage",
-        "Modular" => "modular"
+        "Name" => ["name","name"],
+        "Wattage" => ["wattage","wattage"],
+        "Modular" => ["modular","modular"],
+        "Price" => [ResourceHandler::PRICE,ResourceHandler::PRICE]
     ];
 
 

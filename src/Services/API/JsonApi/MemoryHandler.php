@@ -43,9 +43,9 @@ class MemoryHandler extends ResourceHandler
      * {@inheritDoc}
      */
     public static $essentialFields = [
-        "Name" => "name",
-        "Price" => ResourceHandler::PRICE,
-        "Speed" => "speed"
+        "Name" => ["name", "name"],
+        "Speed" => ["speed", "speed"],
+        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE]
     ];
 
     /**
