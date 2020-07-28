@@ -48,7 +48,7 @@ class PcCaseHandler extends ResourceHandler
      */
     public static $essentialFields = [
         "Name" => ["name", "name"],
-        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE]
+        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
     /**

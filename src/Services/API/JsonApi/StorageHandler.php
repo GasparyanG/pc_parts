@@ -42,9 +42,9 @@ class StorageHandler extends ResourceHandler
      */
     public static $essentialFields = [
         "Name" => ["name", "name"],
-        "Capacity" => ["capacity","capacity"],
-        "Cache" => ["cache","cache"],
-        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE]
+        "Capacity" => ["capacity","capacity", "GB"],
+        "Cache" => ["cache","cache", "MB"],
+        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"],
     ];
 
 

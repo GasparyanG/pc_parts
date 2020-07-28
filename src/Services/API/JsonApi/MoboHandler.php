@@ -48,9 +48,9 @@ class MoboHandler extends ResourceHandler
      */
     public static $essentialFields = [
         "Name" => ["name", "name"],
-        "Memory Max" => ["mexMemory", "mex_memory"],
+        "Memory Max" => ["mexMemory", "mex_memory", "GB"],
         "Memory Slots" => ["memorySlots", "memory_slots"],
-        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE]
+        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
 
