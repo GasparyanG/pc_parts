@@ -75,7 +75,7 @@ class JoinImplementer
 
         $sql = <<<SQL
 left join (
-      select min(price) as price, gpu_id
+      select min(price) as price, $foreignKey
       from (
           select *
           from $tableName

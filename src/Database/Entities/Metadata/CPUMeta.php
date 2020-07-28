@@ -4,19 +4,19 @@
 namespace App\Database\Entities\Metadata;
 
 
-use App\Database\Entities\VideoCard;
+use App\Database\Entities\Cpu;
 
-class GPUMeta extends AbstractMeta
+class CPUMeta extends AbstractMeta
 {
     /**
      * {@inheritDoc}
      */
     protected $meta = [
-        "price" => ["gpu_id", "gpu_prices"]
+        "price" => ["cpu_id", "cpu_prices"]
     ];
 
     /**
      * {@inheritDoc}
      */
-    protected $name = VideoCard::class;
+    protected $name = Cpu::class;
 }

@@ -7,10 +7,11 @@ namespace App\Database\Entities\Metadata;
 class Factory
 {
     private static $entities = [
-        GPUMeta::class
+        GPUMeta::class,
+        CPUMeta::class
     ];
 
-    public static function create(string $entityName): ?MetaInterface
+    public static function create(string $entityName): ?AbstractMeta
     {
         foreach (self::$entities as $entityMeta) {
             if ((new $entityMeta())->isUsed($entityName))
