@@ -8,7 +8,8 @@ class Factory
 {
     private static $entities = [
         GPUMeta::class,
-        CPUMeta::class
+        CPUMeta::class,
+        MemoryMeta::class
     ];
 
     public static function create(string $entityName): ?AbstractMeta
