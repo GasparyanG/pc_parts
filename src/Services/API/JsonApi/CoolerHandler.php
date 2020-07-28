@@ -81,7 +81,7 @@ class CoolerHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Bearing Type",
-            Metadata::FIELD => "bearingType",
+            Metadata::FIELD => "bearing_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -95,7 +95,7 @@ class CoolerHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Water Cooled",
-            Metadata::FIELD => "waterCooledType",
+            Metadata::FIELD => "water_cooled_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

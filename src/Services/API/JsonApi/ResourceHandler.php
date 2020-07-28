@@ -232,7 +232,7 @@ abstract class ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Manufacturer",
-            Metadata::FIELD => "manufacturer",
+            Metadata::FIELD => "manufacturer_id",
             Metadata::OPERATOR => "in"
         ]);
     }

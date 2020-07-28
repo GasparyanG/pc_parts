@@ -79,7 +79,7 @@ class MemoryHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Form Factor",
-            Metadata::FIELD => "formFactor",
+            Metadata::FIELD => "form_factor_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

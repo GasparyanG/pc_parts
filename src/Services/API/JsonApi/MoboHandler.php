@@ -94,7 +94,7 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Memory Type",
-            Metadata::FIELD => "memoryType",
+            Metadata::FIELD => "memory_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -109,7 +109,7 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Memory Max",
-            Metadata::FIELD => "maxMemory",
+            Metadata::FIELD => "max_memory",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
@@ -124,7 +124,7 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Memory Slots",
-            Metadata::FIELD => "memorySlots",
+            Metadata::FIELD => "memory_slots",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
@@ -138,7 +138,7 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Wireless Networking",
-            Metadata::FIELD => "wirelessNetworkingType",
+            Metadata::FIELD => "wireless_networking_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -152,7 +152,7 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Chipset",
-            Metadata::FIELD => "chipset",
+            Metadata::FIELD => "chipset_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -166,7 +166,7 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Form Factor",
-            Metadata::FIELD => "moboFormFactor",
+            Metadata::FIELD => "mobo_form_factor_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -180,7 +180,7 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Socket / CPU",
-            Metadata::FIELD => "cpuSocket",
+            Metadata::FIELD => "cpu_socket_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

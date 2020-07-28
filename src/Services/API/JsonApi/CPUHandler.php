@@ -96,7 +96,7 @@ class CPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Core Clock",
-            Metadata::FIELD => "coreClock",
+            Metadata::FIELD => "core_clock",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
@@ -111,7 +111,7 @@ class CPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Core Count",
-            Metadata::FIELD => "coreCount",
+            Metadata::FIELD => "core_count",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
@@ -140,7 +140,7 @@ class CPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Series",
-            Metadata::FIELD => "cpuSeries",
+            Metadata::FIELD => "cpu_series_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -154,7 +154,7 @@ class CPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Microarchitecture",
-            Metadata::FIELD => "microarchitecture",
+            Metadata::FIELD => "microarchitecture_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -168,7 +168,7 @@ class CPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Core Family",
-            Metadata::FIELD => "coreFamily",
+            Metadata::FIELD => "core_family_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -182,7 +182,7 @@ class CPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Integrated Graphics",
-            Metadata::FIELD => "integratedGraphic",
+            Metadata::FIELD => "integrated_graphic_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

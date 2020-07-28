@@ -80,7 +80,7 @@ class PSUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Efficiency Rating",
-            Metadata::FIELD => "efficiencyRating",
+            Metadata::FIELD => "efficiency_rating_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

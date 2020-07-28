@@ -86,7 +86,7 @@ class PcCaseHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Type",
-            Metadata::FIELD => "caseType",
+            Metadata::FIELD => "case_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -100,7 +100,7 @@ class PcCaseHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Side Panel Window",
-            Metadata::FIELD => "sidePanelWindowType",
+            Metadata::FIELD => "side_panel_window_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

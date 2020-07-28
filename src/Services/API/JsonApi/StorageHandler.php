@@ -80,7 +80,7 @@ class StorageHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Type",
-            Metadata::FIELD => "storageType",
+            Metadata::FIELD => "storage_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -124,7 +124,7 @@ class StorageHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Form Factor",
-            Metadata::FIELD => "storageFormFactor",
+            Metadata::FIELD => "storage_form_factor_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -138,7 +138,7 @@ class StorageHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Interface",
-            Metadata::FIELD => "storageInterface",
+            Metadata::FIELD => "storage_interface_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

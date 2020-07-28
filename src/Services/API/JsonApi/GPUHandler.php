@@ -97,7 +97,7 @@ class GPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Chipset",
-            Metadata::FIELD => "chipset",
+            Metadata::FIELD => "chipset_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -111,7 +111,7 @@ class GPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::CHECKBOX,
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Memory Type",
-            Metadata::FIELD => "memoryType",
+            Metadata::FIELD => "memory_type_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
@@ -156,7 +156,7 @@ class GPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Core Clock",
-            Metadata::FIELD => "coreClock",
+            Metadata::FIELD => "core_clock",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
@@ -171,7 +171,7 @@ class GPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Boost Clock",
-            Metadata::FIELD => "boostClock",
+            Metadata::FIELD => "boost_clock",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
@@ -201,7 +201,7 @@ class GPUHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Expansion Slot Width",
-            Metadata::FIELD => "expansionSlotWidth",
+            Metadata::FIELD => "expansion_slot_width",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
