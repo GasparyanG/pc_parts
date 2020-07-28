@@ -92,7 +92,17 @@ class Fields extends React.Component {
         delete values[0];
 
         let i=0;
-        const rowData = values.map((key) => <td key={++i}>{resource.attributes[key[Resource.entity_attribute_key]]}</td>);
+        const rowData = values.map(function(key) {
+            if (key[Resource.sql_query_key] === Resource.price_value) {
+                return (<td key={++i}>
+                    {key[Resource.unit_key]}{resource.attributes[key[Resource.entity_attribute_key]] }
+                </td>);
+            } else {
+                return (<td key={++i}>
+                    {resource.attributes[key[Resource.entity_attribute_key]] } {key[Resource.unit_key]}
+                </td>);
+            }
+        });
 
         // to render children just use array
         return [rowData];

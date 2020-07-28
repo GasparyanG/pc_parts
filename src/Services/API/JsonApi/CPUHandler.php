@@ -48,11 +48,11 @@ class CPUHandler extends ResourceHandler
     public static $essentialFields = [
         "Name" => ["name", "name"],
         "Core Count" => ["coreCount", "core_count"],
-        "Core Clock" => ["coreClock", "core_clock"],
-        "Boost Clock" => ["boostClock", "boost_clock"],
-        "TDP" => ["tdp", "tdp"],
+        "Core Clock" => ["coreClock", "core_clock", "GHz"],
+        "Boost Clock" => ["boostClock", "boost_clock", "GHz"],
+        "TDP" => ["tdp", "tdp", "W"],
         "SMT" => ["smt", "smt"],
-        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE]
+        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
 

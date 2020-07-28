@@ -77,6 +77,10 @@ class Resource {
     // essential field's array keys
     static entity_attribute_key = 0;
     static sql_query_key = 1;
+    static unit_key = 2;
+
+    // Essential fields
+    static price_value = "price";
 
     // keys to access api result
     static relationships_key = "relationships";
