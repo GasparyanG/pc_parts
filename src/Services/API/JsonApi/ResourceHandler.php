@@ -42,7 +42,6 @@ abstract class ResourceHandler
     public static $assocName = null;
 
     /**
-     * TODO: change to last known price date
      * Two Day
      * @var int
      */

@@ -70,9 +70,8 @@ class TableHeader extends React.Component {
 
         let i=0;
         const headers = keys.map((key) =>
-            <th onClick={() => this.order(essentialFields[key])}
-                className="product-table-header product-data" key={++i}
-                data-attr={essentialFields[key]}>{key}
+            <th onClick={() => this.order(essentialFields[key][Resource.sql_query_key])}
+                className="product-table-header product-data" key={++i}>{key}
             </th>);
 
         return (<tr>{headers}</tr>);
@@ -93,7 +92,7 @@ class Fields extends React.Component {
         delete values[0];
 
         let i=0;
-        const rowData = values.map((key) => <td key={++i}>{resource.attributes[key]}</td>);
+        const rowData = values.map((key) => <td key={++i}>{resource.attributes[key[Resource.entity_attribute_key]]}</td>);
 
         // to render children just use array
         return [rowData];

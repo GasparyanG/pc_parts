@@ -74,6 +74,10 @@ class Filtration {
 
 // Meant for single object
 class Resource {
+    // essential field's array keys
+    static entity_attribute_key = 0;
+    static sql_query_key = 1;
+
     // keys to access api result
     static relationships_key = "relationships";
     static included_key = "included";

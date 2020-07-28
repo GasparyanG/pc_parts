@@ -46,11 +46,11 @@ class GPUHandler extends ResourceHandler
      * {@inheritDoc}
      */
     public static $essentialFields = [
-        "Name" => "name",
-        "Memory" => "memory",
-        "Core Clock" => "coreClock",
-        "Boost Clock" => "boostClock",
-        "Price" => ResourceHandler::PRICE
+        "Name" => ["name", "name"],
+        "Memory" => ["memory", "memory"],
+        "Core Clock" => ["coreClock", "core_clock"],
+        "Boost Clock" => ["boostClock", "boost_clock"],
+        "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE]
         // TODO
         // "Chipset" => "chipset",
         // "Color" => "color,
