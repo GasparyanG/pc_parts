@@ -4,6 +4,7 @@
 namespace App\Services\API\JsonApi\DataFetching;
 
 
+use App\Database\Entities\Metadata\Factory;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class JoinImplementer
@@ -19,14 +20,21 @@ class JoinImplementer
     private $queryBag;
 
     /**
+     * @var string
+     */
+    private $entityName;
+
+    /**
      * JoinImplementer constructor.
      * @param string $query
      * @param ParameterBag $queryBag
+     * @param string $entityName
      */
-    public function __construct(string $query, ParameterBag $queryBag)
+    public function __construct(string $query, ParameterBag $queryBag, string $entityName)
     {
         $this->query = $query;
         $this->queryBag = $queryBag;
+        $this->entityName = $entityName;
     }
 
     public function join(): void
@@ -58,16 +66,23 @@ class JoinImplementer
 
     private function priceOrdering(string $order, string $column): void
     {
+        $meta = Factory::create($this->entityName);
+        if (!$meta) return;
+
+        [$foreignKey, $tableName] = $meta->get($column);
+
+        if (!$foreignKey || !$tableName) return;
+
         $sql = <<<SQL
 left join (
       select min(price) as price, gpu_id
       from (
           select *
-          from gpu_prices
+          from $tableName
           order by date desc
       ) as j
-group by gpu_id
-) as j on j.gpu_id=a.id
+group by $foreignKey
+) as j on j.$foreignKey=a.id
 SQL;
 
         $this->query .= " " . $sql;

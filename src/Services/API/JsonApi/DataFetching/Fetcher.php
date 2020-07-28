@@ -70,7 +70,7 @@ class Fetcher
 
     private function joins(): void
     {
-        $joinImp = new JoinImplementer($this->query, $this->queryBag);
+        $joinImp = new JoinImplementer($this->query, $this->queryBag, $this->entityName);
         $joinImp->join();
         $this->query = $joinImp->getQuery();
     }
