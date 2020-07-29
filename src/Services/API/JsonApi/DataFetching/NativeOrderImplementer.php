@@ -27,6 +27,7 @@ class NativeOrderImplementer
     const CAS_LATENCY = "cas_latency";
     const TYPE = "type";
     const INTERFACE = "interface";
+    const EFFICIENCY_RATING = "efficiency_rating";
 
     /**
      * @var string
@@ -50,7 +51,8 @@ class NativeOrderImplementer
         self::CHIPSET => "type",
         self::INTEGRATED_GRAPHICS => "name",
         self::MODULES => "total",   // total = amount * capacity
-        self::INTERFACE => "type"
+        self::INTERFACE => "type",
+        self::EFFICIENCY_RATING => "rating"
     ];
 
     public function __construct(string $query, ParameterBag $queryBag)
@@ -78,6 +80,7 @@ class NativeOrderImplementer
                     case self::CAS_LATENCY:
                     case self::TYPE:
                     case self::INTERFACE:
+                    case self::EFFICIENCY_RATING:
                     {
                         $column = self::$actualFieldNames[$column] ?? $column;
                         $this->query .= Fetcher::JOIN_ALIAS . '.' . $column . ' ' . $order;

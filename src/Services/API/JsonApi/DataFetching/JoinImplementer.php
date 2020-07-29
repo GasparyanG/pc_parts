@@ -52,6 +52,7 @@ class JoinImplementer
                 case NativeOrderImplementer::CAS_LATENCY:
                 case NativeOrderImplementer::TYPE:
                 case NativeOrderImplementer::INTERFACE:
+                case NativeOrderImplementer::EFFICIENCY_RATING:
                     $this->generalOrderingWIthJoin($order, $column);
                     break;
                 case NativeOrderImplementer::COLOR:

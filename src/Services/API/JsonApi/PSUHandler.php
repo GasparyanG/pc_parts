@@ -45,9 +45,27 @@ class PSUHandler extends ResourceHandler
         "Name" => ["name","name"],
         "Wattage" => ["wattage","wattage", "W"],
         "Modular" => ["modular","modular"],
+        "Form Factor" => ["formFactor", "form_factor"],
+        "Color" => ["color", "color"],
+        "Efficiency Rating" => ["efficiencyRating", "efficiency_rating"],
         "Price" => [ResourceHandler::PRICE,ResourceHandler::PRICE, "$"]
     ];
 
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        $psu = $this->em->getRepository(self::$entityName)->find($id);
+        if ($psu) {
+            $attr["color"] = $this->prepareColors($psu);
+            if ($psu->getPsuFormFactor())
+                $attr["formFactor"] = $psu->getPsuFormFactor()->getType();
+            if ($psu->getEfficiencyRating())
+                $attr["efficiencyRating"] = $psu->getEfficiencyRating()->getRating();
+        }
+
+        return $attr;
+    }
 
     /**
      * {@inheritDoc}
