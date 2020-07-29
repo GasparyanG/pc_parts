@@ -4,6 +4,7 @@
 namespace App\Services\API\JsonApi\DataFetching;
 
 
+use App\Database\Connection;
 use App\Database\Entities\Metadata\Factory;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -116,13 +117,17 @@ SQL;
         $meta = Factory::create($this->entityName);
         if (!$meta) return;
 
+        // table name
+        $em = Connection::getEntityManager();
+        $mainTableName = $em->getClassMetadata($this->entityName)->getTableName();
+
         [$foreignKey, $tableName] = $meta->get($column);
 
         $sql = <<<SQL
 left join
 (select mb.id, group_concat(c.name) as name
 from $tableName as mc
-         left join motherboards as mb on mc.$foreignKey = mb.id
+         left join $mainTableName as mb on mc.$foreignKey = mb.id
          left join colors as c on c.id = mc.color_id
 group by mb.id) as j on j.id = a.id
 SQL;

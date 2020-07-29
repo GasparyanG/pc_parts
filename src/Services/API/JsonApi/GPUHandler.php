@@ -68,7 +68,6 @@ class GPUHandler extends ResourceHandler
         }
 
         return $attr;
-
     }
 
     /**

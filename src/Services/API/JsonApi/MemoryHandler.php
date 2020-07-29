@@ -45,8 +45,21 @@ class MemoryHandler extends ResourceHandler
     public static $essentialFields = [
         "Name" => ["name", "name"],
         "Speed" => ["speed", "speed"],
+        "Color" => ["color", "color"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
+
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        $cpu = $this->em->getRepository(self::$entityName)->find($id);
+        if ($cpu) {
+            $attr["color"] = $this->prepareColors($cpu);
+        }
+
+        return $attr;
+    }
 
     /**
      * {@inheritDoc}

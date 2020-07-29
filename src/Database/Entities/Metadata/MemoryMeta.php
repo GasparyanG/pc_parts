@@ -12,7 +12,8 @@ class MemoryMeta extends AbstractMeta
      * {@inheritDoc}
      */
     protected $meta = [
-        "price" => ["memory_id", "memory_prices"]
+        "price" => ["memory_id", "memory_prices"],
+        "color" => ["memory_id", "memories_colors"]
     ];
 
     /**
