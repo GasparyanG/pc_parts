@@ -54,6 +54,9 @@ class JoinImplementer
                 case NativeOrderImplementer::COLOR:
                     $this->colorOrdering($order, $column);
                     break;
+                case NativeOrderImplementer::MODULES:
+                    $this->modulesOrdering($order, $column);
+                    break;
             }
         }
     }
@@ -134,6 +137,20 @@ SQL;
 
         $this->query .= " " . $sql;
 
+    }
+
+    private function modulesOrdering($order, $column): void
+    {
+        $meta = Factory::create($this->entityName);
+        if (!$meta) return;
+
+        [$foreignKey, $tableName] = $meta->get($column);
+
+        $sql = <<<SQL
+left join (select amount*capacity as total, id from $tableName) as j on j.id=a.$foreignKey
+SQL;
+
+        $this->query .= " " . $sql;
     }
 
     /**

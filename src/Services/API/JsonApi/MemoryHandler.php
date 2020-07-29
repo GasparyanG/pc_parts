@@ -46,6 +46,7 @@ class MemoryHandler extends ResourceHandler
         "Name" => ["name", "name"],
         "Speed" => ["speed", "speed"],
         "Color" => ["color", "color"],
+        "Modules" => ["modules", "modules", "GB"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
@@ -53,12 +54,27 @@ class MemoryHandler extends ResourceHandler
     {
         $attr = parent::attributes($id);
 
-        $cpu = $this->em->getRepository(self::$entityName)->find($id);
-        if ($cpu) {
-            $attr["color"] = $this->prepareColors($cpu);
+        $memory = $this->em->getRepository(self::$entityName)->find($id);
+        if ($memory) {
+            $attr["color"] = $this->prepareColors($memory);
+            $attr["modules"] = $this->prepareModules($memory);
         }
 
         return $attr;
+    }
+
+    private function prepareModules(Memory $memory): ?string
+    {
+        $modulesRepr="";
+        $module = $memory->getModule();
+        if ($module) {
+            $amount = $module->getAmount();
+            $capacity = $module->getCapacity();
+
+            $modulesRepr .= $amount . " x " .$capacity;
+        }
+
+        return $modulesRepr;
     }
 
     /**

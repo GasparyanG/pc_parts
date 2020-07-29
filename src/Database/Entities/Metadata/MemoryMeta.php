@@ -13,7 +13,8 @@ class MemoryMeta extends AbstractMeta
      */
     protected $meta = [
         "price" => ["memory_id", "memory_prices"],
-        "color" => ["memory_id", "memories_colors"]
+        "color" => ["memory_id", "memories_colors"],
+        "modules" => ["modules_id", "modules"]
     ];
 
     /**
