@@ -22,6 +22,7 @@ class NativeOrderImplementer
     const FORM_FACTOR = "form_factor";
     const COLOR = "color";
     const CHIPSET = "chipset";
+    const INTEGRATED_GRAPHICS = "integrated_graphics";
 
     /**
      * @var string
@@ -42,7 +43,8 @@ class NativeOrderImplementer
         self::CPU_SOCKET => "type",
         self::FORM_FACTOR => "type",
         self::COLOR => "name",
-        self::CHIPSET => "type"
+        self::CHIPSET => "type",
+        self::INTEGRATED_GRAPHICS => "name"
     ];
 
     public function __construct(string $query, ParameterBag $queryBag)
@@ -65,6 +67,7 @@ class NativeOrderImplementer
                     case self::CPU_SOCKET:
                     case self::COLOR:
                     case self::CHIPSET:
+                    case self::INTEGRATED_GRAPHICS:
                     {
                         $column = self::$actualFieldNames[$column] ?? $column;
                         $this->query .= Fetcher::JOIN_ALIAS . '.' . $column . ' ' . $order;

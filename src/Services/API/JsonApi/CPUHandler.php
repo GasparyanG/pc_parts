@@ -51,10 +51,24 @@ class CPUHandler extends ResourceHandler
         "Core Clock" => ["coreClock", "core_clock", "GHz"],
         "Boost Clock" => ["boostClock", "boost_clock", "GHz"],
         "TDP" => ["tdp", "tdp", "W"],
+        "Integrated Graphics" => ["integratedGraphics", "integrated_graphics"],
         "SMT" => ["smt", "smt"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
+
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        $cpu = $this->em->getRepository(self::$entityName)->find($id);
+        if ($cpu) {
+            $attr["integratedGraphics"] = $cpu->getIntegratedGraphic()->getName();
+        }
+
+        return $attr;
+
+    }
 
     /**
      * {@inheritDoc}

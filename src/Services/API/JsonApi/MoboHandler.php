@@ -69,7 +69,6 @@ class MoboHandler extends ResourceHandler
         }
 
         return $attr;
-
     }
 
     /**
