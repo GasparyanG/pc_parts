@@ -12,7 +12,8 @@ class CoolerMeta extends AbstractMeta
      * {@inheritDoc}
      */
     protected $meta = [
-        "price" => ["cooler_id", "cooler_prices"]
+        "price" => ["cooler_id", "cooler_prices"],
+        "color" => ["cooler_id", "coolers_colors"]
     ];
 
     /**

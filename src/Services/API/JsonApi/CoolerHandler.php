@@ -47,9 +47,21 @@ class CoolerHandler extends ResourceHandler
         "RPM H" => ["rpm_end", "rpm_end", "RPM"],
         "Noise L" => ["noise_start", "noise_start", "dB"],
         "Noise H" => ["noise_end", "noise_end", "dB"],
+        "Color" => ["color", "color"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        $gpu = $this->em->getRepository(self::$entityName)->find($id);
+        if ($gpu) {
+            $attr["color"] = $this->prepareColors($gpu);
+        }
+
+        return $attr;
+    }
 
     /**
      * {@inheritDoc}
