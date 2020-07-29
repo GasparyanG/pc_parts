@@ -44,9 +44,28 @@ class StorageHandler extends ResourceHandler
         "Name" => ["name", "name"],
         "Capacity" => ["capacity","capacity", "GB"],
         "Cache" => ["cache","cache", "MB"],
+        "Form Factor" => ["formFactor", "form_factor"],
+        "Type" => ["type", "type"],
+        "Interface" => ["interface", "interface"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"],
     ];
 
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        $storage = $this->em->getRepository(self::$entityName)->find($id);
+        if ($storage) {
+            if ($storage->getStorageFormFactor())
+                $attr["formFactor"] = $storage->getStorageFormFactor()->getType();
+            if ($storage->getStorageType())
+                $attr["type"] = $storage->getStorageType()->getType();
+            if ($storage->getStorageInterface())
+                $attr["interface"] = $storage->getStorageInterface()->getType();
+        }
+
+        return $attr;
+    }
 
     /**
      * {@inheritDoc}

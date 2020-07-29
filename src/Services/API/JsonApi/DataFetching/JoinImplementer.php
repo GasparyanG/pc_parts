@@ -50,6 +50,8 @@ class JoinImplementer
                 case NativeOrderImplementer::CHIPSET:
                 case NativeOrderImplementer::INTEGRATED_GRAPHICS:
                 case NativeOrderImplementer::CAS_LATENCY:
+                case NativeOrderImplementer::TYPE:
+                case NativeOrderImplementer::INTERFACE:
                     $this->generalOrderingWIthJoin($order, $column);
                     break;
                 case NativeOrderImplementer::COLOR:
