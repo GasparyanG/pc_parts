@@ -51,6 +51,7 @@ class PcCaseHandler extends ResourceHandler
         "Type" => ["type", "type"],
         "Color" => ["color", "color"],
         "Power Supply" => ["powerSupply", "power_supply", "W", "None"],
+        "Side Panel Window" => ["sidePanelWindowType", "side_panel_window_type"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
@@ -63,6 +64,8 @@ class PcCaseHandler extends ResourceHandler
             $attr["color"] = $this->prepareColors($pcCase);
             if ($pcCase->getCaseType())
                 $attr["type"] = $pcCase->getCaseType()->getType();
+            if ($pcCase->getSidePanelWindowType())
+                $attr["sidePanelWindowType"] = $pcCase->getSidePanelWindowType()->getType();
         }
 
         return $attr;

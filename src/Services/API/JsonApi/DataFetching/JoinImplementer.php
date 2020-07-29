@@ -53,6 +53,7 @@ class JoinImplementer
                 case NativeOrderImplementer::TYPE:
                 case NativeOrderImplementer::INTERFACE:
                 case NativeOrderImplementer::EFFICIENCY_RATING:
+                case NativeOrderImplementer::SIDE_PANEL_WINDOW_TYPE:
                     $this->generalOrderingWIthJoin($order, $column);
                     break;
                 case NativeOrderImplementer::COLOR:

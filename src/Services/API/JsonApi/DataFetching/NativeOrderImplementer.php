@@ -28,6 +28,7 @@ class NativeOrderImplementer
     const TYPE = "type";
     const INTERFACE = "interface";
     const EFFICIENCY_RATING = "efficiency_rating";
+    const SIDE_PANEL_WINDOW_TYPE = "side_panel_window_type";
 
     /**
      * @var string
@@ -52,7 +53,8 @@ class NativeOrderImplementer
         self::INTEGRATED_GRAPHICS => "name",
         self::MODULES => "total",   // total = amount * capacity
         self::INTERFACE => "type",
-        self::EFFICIENCY_RATING => "rating"
+        self::EFFICIENCY_RATING => "rating",
+        self::SIDE_PANEL_WINDOW_TYPE => "type"
     ];
 
     public function __construct(string $query, ParameterBag $queryBag)
@@ -81,6 +83,7 @@ class NativeOrderImplementer
                     case self::TYPE:
                     case self::INTERFACE:
                     case self::EFFICIENCY_RATING:
+                    case self::SIDE_PANEL_WINDOW_TYPE:
                     {
                         $column = self::$actualFieldNames[$column] ?? $column;
                         $this->query .= Fetcher::JOIN_ALIAS . '.' . $column . ' ' . $order;
