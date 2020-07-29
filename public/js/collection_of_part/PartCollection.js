@@ -93,7 +93,17 @@ class Fields extends React.Component {
 
         let i=0;
         const rowData = values.map(function(key) {
-            if (key[Resource.sql_query_key] === Resource.price_value) {
+            if (!resource.attributes[key[Resource.entity_attribute_key]]) {
+                if (key[Resource.default_key]) {
+                    return (<td key={++i}>
+                        {key[Resource.default_key]}
+                    </td>);
+                } else {
+                    return (<td key={++i}>
+                        ---
+                    </td>);
+                }
+            } else if (key[Resource.sql_query_key] === Resource.price_value) {
                 return (<td key={++i}>
                     {key[Resource.unit_key]}{resource.attributes[key[Resource.entity_attribute_key]] }
                 </td>);

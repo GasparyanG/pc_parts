@@ -48,8 +48,25 @@ class PcCaseHandler extends ResourceHandler
      */
     public static $essentialFields = [
         "Name" => ["name", "name"],
+        "Type" => ["type", "type"],
+        "Color" => ["color", "color"],
+        "Power Supply" => ["powerSupply", "power_supply", "W", "None"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
+
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        $pcCase = $this->em->getRepository(self::$entityName)->find($id);
+        if ($pcCase) {
+            $attr["color"] = $this->prepareColors($pcCase);
+            if ($pcCase->getCaseType())
+                $attr["type"] = $pcCase->getCaseType()->getType();
+        }
+
+        return $attr;
+    }
 
     /**
      * {@inheritDoc}

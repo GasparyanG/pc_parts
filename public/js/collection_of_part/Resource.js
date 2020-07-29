@@ -78,6 +78,7 @@ class Resource {
     static entity_attribute_key = 0;
     static sql_query_key = 1;
     static unit_key = 2;
+    static default_key = 3;
 
     // Essential fields
     static price_value = "price";
