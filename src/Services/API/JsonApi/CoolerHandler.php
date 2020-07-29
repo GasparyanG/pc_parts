@@ -43,10 +43,8 @@ class CoolerHandler extends ResourceHandler
      */
     public static $essentialFields = [
         "Name" => ["name", "name"],
-        "RPM L" => ["rpm_start", "rpm_start", "RPM"],
-        "RPM H" => ["rpm_end", "rpm_end", "RPM"],
-        "Noise L" => ["noise_start", "noise_start", "dB"],
-        "Noise H" => ["noise_end", "noise_end", "dB"],
+        "RPM" => ["rpm", "rpm_end", "RPM"],
+        "Noise" => ["noise", "noise_end", "dB"],
         "Color" => ["color", "color"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
@@ -55,12 +53,40 @@ class CoolerHandler extends ResourceHandler
     {
         $attr = parent::attributes($id);
 
-        $gpu = $this->em->getRepository(self::$entityName)->find($id);
-        if ($gpu) {
-            $attr["color"] = $this->prepareColors($gpu);
+        $cooler = $this->em->getRepository(self::$entityName)->find($id);
+        if ($cooler) {
+            $attr["color"] = $this->prepareColors($cooler);
+            $attr["rpm"] = $this->prepareRPM($cooler);
+            $attr["noise"] = $this->prepareNoise($cooler);
         }
 
         return $attr;
+    }
+
+    private function prepareRPM(Cooler $cooler): ?string
+    {
+        $rpm = "";
+        if ($cooler->getRmpStart() && $cooler->getRpmEnd())
+            $rpm .= $cooler->getRmpStart() . " - " . $cooler->getRpmEnd();
+        else if ($cooler->getRmpStart())
+            $rpm .= $cooler->getRmpStart();
+        else if ($cooler->getRpmEnd())
+            $rpm .= $cooler->getRpmEnd();
+
+        return $rpm;
+    }
+
+    private function prepareNoise(Cooler $cooler): ?string
+    {
+        $noise = "";
+        if ($cooler->getNoiseStart() && $cooler->getNoiseEnd())
+            $noise .= $cooler->getNoiseStart() . " - " . $cooler->getNoiseEnd();
+        else if ($cooler->getNoiseStart())
+            $noise .= $cooler->getNoiseStart();
+        else if ($cooler->getNoiseEnd())
+            $noise .= $cooler->getNoiseEnd();
+
+        return $noise;
     }
 
     /**
