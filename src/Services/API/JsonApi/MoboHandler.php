@@ -48,11 +48,44 @@ class MoboHandler extends ResourceHandler
      */
     public static $essentialFields = [
         "Name" => ["name", "name"],
+        "Socket / CPU" => ["cpuSocket", "cpu_socket"],
+        "Form Factor" => ["formFactor", "form_factor"],
         "Memory Max" => ["mexMemory", "mex_memory", "GB"],
+        "Color" => ["color", "color"],
         "Memory Slots" => ["memorySlots", "memory_slots"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
+
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        // CPU Socket
+        $mobo = $this->em->getRepository(self::$entityName)->find($id);
+        if ($mobo) {
+            $attr["cpuSocket"] = $mobo->getCpuSocket()->getType();
+            $attr["formFactor"] = $mobo->getMoboFormFactor()->getType();
+            $attr["color"] = $this->prepareColors($mobo);
+        }
+
+        return $attr;
+
+    }
+
+    protected function prepareColors(Motherboard $mobo): ?string
+    {
+        $colors = "";
+        $cycle = 0;
+        foreach ($mobo->getColors() as $color) {
+            if ($cycle)
+                $colors .= " / " . $color->getName();
+            else
+                $colors .= $color->getName();
+            ++$cycle;
+        }
+        return $colors;
+    }
 
     /**
      * {@inheritDoc}
