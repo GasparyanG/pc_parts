@@ -44,6 +44,9 @@ class JoinImplementer
                 case NativeOrderImplementer::PRICE:
                     $this->priceOrdering($order, $column);
                     break;
+                case NativeOrderImplementer::CPU_SOCKET:
+                case NativeOrderImplementer::FORM_FACTOR:
+                    $this->generalOrderingWIthJoin($order, $column);
             }
         }
     }
@@ -86,6 +89,20 @@ group by $foreignKey
 SQL;
 
         $this->query .= " " . $sql;
+    }
+
+    private function generalOrderingWIthJoin($order, $column): void
+    {
+        $meta = Factory::create($this->entityName);
+        if (!$meta) return;
+
+        [$foreignKey, $tableName] = $meta->get($column);
+
+        $sql = <<<SQL
+left join $tableName as j on j.id = a.$foreignKey 
+SQL;
+        $this->query .= " " . $sql;
+
     }
 
     /**

@@ -18,6 +18,8 @@ class NativeOrderImplementer
 
     // fields to order
     const PRICE = "price";
+    const CPU_SOCKET = "cpu_socket";
+    const FORM_FACTOR = "form_factor";
 
     /**
      * @var string
@@ -33,6 +35,11 @@ class NativeOrderImplementer
      * @var EntityManager
      */
     private $em;
+
+    private static $actualFieldNames = [
+        self::CPU_SOCKET => "type",
+        self::FORM_FACTOR => "type"
+    ];
 
     public function __construct(string $query, ParameterBag $queryBag)
     {
@@ -50,8 +57,13 @@ class NativeOrderImplementer
             foreach ($this->orderingPreparation() as $order => $column) {
                 switch($column) {
                     case self::PRICE:
+                    case self::FORM_FACTOR:
+                    case self::CPU_SOCKET:
+                    {
+                        $column = self::$actualFieldNames[$column] ?? $column;
                         $this->query .= Fetcher::JOIN_ALIAS . '.' . $column . ' ' . $order;
                         break;
+                    }
                     default:
                         $this->query .= Fetcher::ALIAS . '.' . $column . ' ' . $order;
                         break;

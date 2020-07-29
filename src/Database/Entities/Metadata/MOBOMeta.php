@@ -12,7 +12,9 @@ class MOBOMeta extends AbstractMeta
      * {@inheritDoc}
      */
     protected $meta = [
-        "price" => ["mobo_id", "mobo_prices"]
+        "price" => ["mobo_id", "mobo_prices"],
+        "cpu_socket" => ["cpu_socket_id", "cpu_sockets"],
+        "form_factor" => ["mobo_form_factor_id","mobo_form_factors"]
     ];
 
     /**

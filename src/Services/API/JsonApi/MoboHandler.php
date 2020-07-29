@@ -61,7 +61,6 @@ class MoboHandler extends ResourceHandler
     {
         $attr = parent::attributes($id);
 
-        // CPU Socket
         $mobo = $this->em->getRepository(self::$entityName)->find($id);
         if ($mobo) {
             $attr["cpuSocket"] = $mobo->getCpuSocket()->getType();
