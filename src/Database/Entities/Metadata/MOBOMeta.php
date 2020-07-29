@@ -14,7 +14,8 @@ class MOBOMeta extends AbstractMeta
     protected $meta = [
         "price" => ["mobo_id", "mobo_prices"],
         "cpu_socket" => ["cpu_socket_id", "cpu_sockets"],
-        "form_factor" => ["mobo_form_factor_id","mobo_form_factors"]
+        "form_factor" => ["mobo_form_factor_id","mobo_form_factors"],
+        "color" => ["motherboard_id", "motherboards_colors"]
     ];
 
     /**

@@ -47,6 +47,8 @@ class JoinImplementer
                 case NativeOrderImplementer::CPU_SOCKET:
                 case NativeOrderImplementer::FORM_FACTOR:
                     $this->generalOrderingWIthJoin($order, $column);
+                case NativeOrderImplementer::COLOR:
+                    $this->colorOrdering($order, $column);
             }
         }
     }
@@ -101,6 +103,26 @@ SQL;
         $sql = <<<SQL
 left join $tableName as j on j.id = a.$foreignKey 
 SQL;
+        $this->query .= " " . $sql;
+
+    }
+
+    private function colorOrdering($order, $column): void
+    {
+        $meta = Factory::create($this->entityName);
+        if (!$meta) return;
+
+        [$foreignKey, $tableName] = $meta->get($column);
+
+        $sql = <<<SQL
+left join
+(select mb.id, group_concat(c.name) as name
+from $tableName as mc
+         left join motherboards as mb on mc.$foreignKey = mb.id
+         left join colors as c on c.id = mc.color_id
+group by mb.id) as j on j.id = a.id
+SQL;
+
         $this->query .= " " . $sql;
 
     }
