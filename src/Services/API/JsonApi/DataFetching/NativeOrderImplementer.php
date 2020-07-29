@@ -24,6 +24,7 @@ class NativeOrderImplementer
     const CHIPSET = "chipset";
     const INTEGRATED_GRAPHICS = "integrated_graphics";
     const MODULES = "modules";
+    const CAS_LATENCY = "cas_latency";
 
     /**
      * @var string
@@ -46,7 +47,7 @@ class NativeOrderImplementer
         self::COLOR => "name",
         self::CHIPSET => "type",
         self::INTEGRATED_GRAPHICS => "name",
-        self::MODULES => "total"    // total = amount * capacity
+        self::MODULES => "total"   // total = amount * capacity
     ];
 
     public function __construct(string $query, ParameterBag $queryBag)
@@ -71,6 +72,7 @@ class NativeOrderImplementer
                     case self::CHIPSET:
                     case self::INTEGRATED_GRAPHICS:
                     case self::MODULES:
+                    case self::CAS_LATENCY:
                     {
                         $column = self::$actualFieldNames[$column] ?? $column;
                         $this->query .= Fetcher::JOIN_ALIAS . '.' . $column . ' ' . $order;

@@ -47,6 +47,7 @@ class MemoryHandler extends ResourceHandler
         "Speed" => ["speed", "speed"],
         "Color" => ["color", "color"],
         "Modules" => ["modules", "modules", "GB"],
+        "Cas Latency" => ["casLatency", "cas_latency"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
     ];
 
@@ -58,6 +59,8 @@ class MemoryHandler extends ResourceHandler
         if ($memory) {
             $attr["color"] = $this->prepareColors($memory);
             $attr["modules"] = $this->prepareModules($memory);
+            if ($memory->getTiming())
+                $attr["casLatency"] = $memory->getTiming()->getCasLatency();
         }
 
         return $attr;
