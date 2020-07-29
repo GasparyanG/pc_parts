@@ -106,6 +106,20 @@ abstract class ResourceHandler
         return $attr;
     }
 
+    protected function prepareColors($entity): ?string
+    {
+        $colors = "";
+        $cycle = 0;
+        foreach ($entity->getColors() as $color) {
+            if ($cycle)
+                $colors .= " / " . $color->getName();
+            else
+                $colors .= $color->getName();
+            ++$cycle;
+        }
+        return $colors;
+    }
+
     /**
      * @param int $id
      * @return array

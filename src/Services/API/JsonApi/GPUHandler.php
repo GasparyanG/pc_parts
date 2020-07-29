@@ -50,12 +50,26 @@ class GPUHandler extends ResourceHandler
         "Memory" => ["memory", "memory", "GB"],
         "Core Clock" => ["coreClock", "core_clock", "MHz"],
         "Boost Clock" => ["boostClock", "boost_clock", "MHz"],
+//        "Interface" => ["interface", "interface"],
+        "Chipset" => ["chipset", "chipset"],
+        "Color" => ["color", "color"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
-        // TODO
-        // "Chipset" => "chipset",
-        // "Color" => "color,
-        // "Interface" => "interface"
     ];
+
+    public function attributes(int $id): array
+    {
+        $attr = parent::attributes($id);
+
+        $gpu = $this->em->getRepository(self::$entityName)->find($id);
+        if ($gpu) {
+            if ($gpu->getChipset())
+                $attr["chipset"] = $gpu->getChipset()->getType();
+            $attr["color"] = $this->prepareColors($gpu);
+        }
+
+        return $attr;
+
+    }
 
     /**
      * {@inheritDoc}

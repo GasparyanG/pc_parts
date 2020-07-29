@@ -72,20 +72,6 @@ class MoboHandler extends ResourceHandler
 
     }
 
-    protected function prepareColors(Motherboard $mobo): ?string
-    {
-        $colors = "";
-        $cycle = 0;
-        foreach ($mobo->getColors() as $color) {
-            if ($cycle)
-                $colors .= " / " . $color->getName();
-            else
-                $colors .= $color->getName();
-            ++$cycle;
-        }
-        return $colors;
-    }
-
     /**
      * {@inheritDoc}
      */
