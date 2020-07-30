@@ -70,6 +70,11 @@ class FetcherHelper
         return self::ALIAS . $index;
     }
 
+    public function actualFieldName(string $field): string
+    {
+        return NativeOrderImplementer::$actualFieldNames[$field] ?? $field;
+    }
+
     private function order(): void
     {
         $orderQueryParam = $this->queryBag->get(OrderImplementer::ORDER);

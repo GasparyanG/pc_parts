@@ -45,7 +45,7 @@ class NativeOrderImplementer
      */
     private $em;
 
-    private static $actualFieldNames = [
+    public static $actualFieldNames = [
         self::CPU_SOCKET => "type",
         self::FORM_FACTOR => "type",
         self::COLOR => "name",

@@ -56,6 +56,11 @@ class NativeFilterImplementer
     private $em;
 
     /**
+     * @var FetcherHelper
+     */
+    private $fetcherHelper;
+
+    /**
      * FilterImplementer constructor.
      * @param string $query
      * @param ParameterBag $queryBag
@@ -64,6 +69,10 @@ class NativeFilterImplementer
     {
         $this->query = $query;
         $this->queryBag = $queryBag;
+
+        // FetcherHelper preparation
+        $this->fetcherHelper = new FetcherHelper();
+        $this->fetcherHelper->prepareFieldsForJoin();
 
         $this->filterString = "";
         $this->em = Connection::getEntityManager();
@@ -103,7 +112,7 @@ class NativeFilterImplementer
             else
                 if ($cycle === count($expression) - 1) $cnj = "";
             $this->filterString
-                .= Fetcher::ALIAS . ".$field "
+                .= $this->fetcherHelper->alias($field) . "." . $this->fetcherHelper->actualFieldName($field) . " "
                 . self::$operators[$key]
                 . $this->preparedValue($key, $value)
                 . $cnj . " ";

@@ -99,14 +99,15 @@ class FilterImplementer
         $cycle = 0;
         foreach ($expression as $key => $value) {
             if (in_array($key, self::$conjunction))
-                $this->withConjunction($key, $value);
+            $this->withConjunction($key, $value);
             else
                 if ($cycle === count($expression) - 1) $cnj = "";
-                $this->filterString
-                    .= $this->fetcherHelper->alias($field) . ".$field "
-                    . self::$operators[$key]
-                    . $this->preparedValue($key, $value)
-                    . $cnj . " ";
+            $this->filterString
+                .= $this->fetcherHelper->alias($field) . "." . $this->fetcherHelper->actualFieldName($field)
+                . self::$operators[$key]
+                . $this->preparedValue($key, $value)
+                . $cnj . " ";
+
             ++$cycle;
         }
     }
