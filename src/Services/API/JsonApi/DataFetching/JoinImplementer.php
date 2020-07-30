@@ -100,6 +100,8 @@ class JoinImplementer
 
         if (!$foreignKey || !$tableName) return;
 
+        $alias = $this->fetcherHelper->alias($column);
+
         $sql = <<<SQL
 left join (
       select min(price) as price, $foreignKey
@@ -109,7 +111,7 @@ left join (
           order by date desc
       ) as j
 group by $foreignKey
-) as j on j.$foreignKey=a.id
+) as $alias on $alias.$foreignKey=a.id
 SQL;
 
         $this->query .= " " . $sql;
@@ -121,9 +123,10 @@ SQL;
         if (!$meta) return;
 
         [$foreignKey, $tableName] = $meta->get($column);
+        $alias = $this->fetcherHelper->alias($column);
 
         $sql = <<<SQL
-left join $tableName as j on j.id = a.$foreignKey 
+left join $tableName as $alias on $alias.id = a.$foreignKey 
 SQL;
         $this->query .= " " . $sql;
 
@@ -140,13 +143,15 @@ SQL;
 
         [$foreignKey, $tableName] = $meta->get($column);
 
+        $alias = $this->fetcherHelper->alias($column);
+
         $sql = <<<SQL
 left join
 (select mb.id, group_concat(c.name) as name
 from $tableName as mc
          left join $mainTableName as mb on mc.$foreignKey = mb.id
          left join colors as c on c.id = mc.color_id
-group by mb.id) as j on j.id = a.id
+group by mb.id) as $alias on $alias.id = a.id
 SQL;
 
         $this->query .= " " . $sql;
@@ -160,8 +165,10 @@ SQL;
 
         [$foreignKey, $tableName] = $meta->get($column);
 
+        $alias = $this->fetcherHelper->alias($column);
+
         $sql = <<<SQL
-left join (select amount*capacity as total, id from $tableName) as j on j.id=a.$foreignKey
+left join (select amount*capacity as total, id from $tableName) as $alias on $alias.id=a.$foreignKey
 SQL;
 
         $this->query .= " " . $sql;

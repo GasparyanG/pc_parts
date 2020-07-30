@@ -57,11 +57,20 @@ class NativeOrderImplementer
         self::SIDE_PANEL_WINDOW_TYPE => "type"
     ];
 
+    /**
+     * @var FetcherHelper
+     */
+    private $fetcherHelper;
+
     public function __construct(string $query, ParameterBag $queryBag)
     {
         $this->query = $query;
         $this->queryBag = $queryBag;
         $this->em = Connection::getEntityManager();
+
+        // FetcherHelper preparation
+        $this->fetcherHelper = new FetcherHelper();
+        $this->fetcherHelper->prepareFieldsForJoin();
     }
 
     public function order(): void
@@ -85,8 +94,8 @@ class NativeOrderImplementer
                     case self::EFFICIENCY_RATING:
                     case self::SIDE_PANEL_WINDOW_TYPE:
                     {
-                        $column = self::$actualFieldNames[$column] ?? $column;
-                        $this->query .= Fetcher::JOIN_ALIAS . '.' . $column . ' ' . $order;
+                        $joinColumn = self::$actualFieldNames[$column] ?? $column;
+                        $this->query .= $this->fetcherHelper->alias($column) . '.' . $joinColumn . ' ' . $order;
                         break;
                     }
                     default:

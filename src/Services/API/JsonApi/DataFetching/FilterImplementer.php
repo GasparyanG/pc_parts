@@ -49,6 +49,11 @@ class FilterImplementer
     private $filterString = null;
 
     /**
+     * @var FetcherHelper
+     */
+    private $fetcherHelper;
+
+    /**
      * FilterImplementer constructor.
      * @param QueryBuilder $queryBuilder
      * @param ParameterBag $queryBag
@@ -57,6 +62,10 @@ class FilterImplementer
     {
         $this->queryBuilder = $queryBuilder;
         $this->queryBag = $queryBag;
+
+        // FetcherHelper preparation
+        $this->fetcherHelper = new FetcherHelper();
+        $this->fetcherHelper->prepareFieldsForJoin();
 
         $this->filterString = "";
     }
@@ -94,7 +103,7 @@ class FilterImplementer
             else
                 if ($cycle === count($expression) - 1) $cnj = "";
                 $this->filterString
-                    .= Fetcher::ALIAS . ".$field "
+                    .= $this->fetcherHelper->alias($field) . ".$field "
                     . self::$operators[$key]
                     . $this->preparedValue($key, $value)
                     . $cnj . " ";

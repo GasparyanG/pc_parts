@@ -23,6 +23,21 @@ class FetcherHelper
      */
     private $fields = [];
 
+    private static $fieldsToJoin = [
+        NativeOrderImplementer::PRICE,
+        NativeOrderImplementer::CPU_SOCKET,
+        NativeOrderImplementer::FORM_FACTOR,
+        NativeOrderImplementer::COLOR,
+        NativeOrderImplementer::CHIPSET,
+        NativeOrderImplementer::INTEGRATED_GRAPHICS,
+        NativeOrderImplementer::MODULES,
+        NativeOrderImplementer::CAS_LATENCY,
+        NativeOrderImplementer::TYPE,
+        NativeOrderImplementer::INTERFACE,
+        NativeOrderImplementer::EFFICIENCY_RATING,
+        NativeOrderImplementer::SIDE_PANEL_WINDOW_TYPE
+    ];
+
     public function __construct()
     {
         $request = Request::createFromGlobals();
@@ -46,6 +61,10 @@ class FetcherHelper
      */
     public function alias(string $field): ?string
     {
+        // Make sure, that field do not belong to main table (i.e. it is from joined table)
+        if (!in_array($field, self::$fieldsToJoin))
+            return Fetcher::ALIAS;
+
         $index = array_search($field, $this->fields);
         if ($index === false) return null;
         return self::ALIAS . $index;
