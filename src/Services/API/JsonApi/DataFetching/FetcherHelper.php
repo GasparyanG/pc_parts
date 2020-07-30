@@ -47,7 +47,7 @@ class FetcherHelper
     public function alias(string $field): ?string
     {
         $index = array_search($field, $this->fields);
-        if (!$index) return null;
+        if ($index === false) return null;
         return self::ALIAS . $index;
     }
 
