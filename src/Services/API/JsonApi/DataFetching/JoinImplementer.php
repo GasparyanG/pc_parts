@@ -6,6 +6,7 @@ namespace App\Services\API\JsonApi\DataFetching;
 
 use App\Database\Connection;
 use App\Database\Entities\Metadata\Factory;
+use App\Database\Repositories\ColorRepository;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class JoinImplementer
@@ -144,10 +145,11 @@ SQL;
         [$foreignKey, $tableName] = $meta->get($column);
 
         $alias = $this->fetcherHelper->alias($column);
+        $colorSeparator = ColorRepository::COLOR_SEPARATOR;
 
         $sql = <<<SQL
 left join
-(select mb.id, group_concat(c.name) as name
+(select mb.id, group_concat(distinct c.name order by c.name separator $colorSeparator) as name
 from $tableName as mc
          left join $mainTableName as mb on mc.$foreignKey = mb.id
          left join colors as c on c.id = mc.color_id

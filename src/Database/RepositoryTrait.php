@@ -4,6 +4,8 @@
 namespace App\Database;
 
 
+use App\Database\Entities\Metadata\Factory;
+use App\Database\Repositories\ColorRepository;
 use Doctrine\ORM\Query;
 
 trait RepositoryTrait
@@ -79,5 +81,30 @@ trait RepositoryTrait
 
         if ($res) return $res;
         return [];
+    }
+
+    public function findPartColors(): array
+    {
+        $meta = Factory::create($this->_entityName);
+        [$foreignKey, $tableName] = $meta->get("color");
+        $mainTableName = $this->_em->getClassMetadata($this->_entityName)->getTableName();
+
+        $colorSeparator = ColorRepository::COLOR_SEPARATOR;
+
+        $sql = <<<SQL
+select QUOTE(j.name) as id, j.name as name
+from $mainTableName as a
+         left join (select mb.id, group_concat(distinct c.name order by c.name separator $colorSeparator) as name
+                    from $tableName as mc
+                             left join $mainTableName as mb on mc.$foreignKey = mb.id
+                             left join colors as c on c.id = mc.color_id
+                    group by mb.id) as j on j.id = a.id
+group by j.name;
+SQL;
+
+
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $res->fetchAll();
     }
 }

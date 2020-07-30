@@ -100,6 +100,7 @@ class MemoryHandler extends ResourceHandler
         parent::filtrationData($meta);
         $this->formFactorFilter($meta);
         $this->speedFilter($meta);
+        $this->colorFilter($meta);
     }
 
     protected function formFactorFilter(Metadata $meta): void

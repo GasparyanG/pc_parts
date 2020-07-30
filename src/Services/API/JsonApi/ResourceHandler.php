@@ -249,4 +249,18 @@ abstract class ResourceHandler
             Metadata::OPERATOR => "in"
         ]);
     }
+
+    protected function colorFilter(Metadata $meta): void
+    {
+        $colors = $this->repo->findPartColors();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $colors,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Color",
+            Metadata::FIELD => "color",
+            Metadata::OPERATOR => "in"
+        ]);
+    }
 }
