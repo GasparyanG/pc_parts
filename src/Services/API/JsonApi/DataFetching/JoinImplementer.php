@@ -26,6 +26,11 @@ class JoinImplementer
     private $entityName;
 
     /**
+     * @var FetcherHelper
+     */
+    private $fetcherHelper;
+
+    /**
      * JoinImplementer constructor.
      * @param string $query
      * @param ParameterBag $queryBag
@@ -36,14 +41,18 @@ class JoinImplementer
         $this->query = $query;
         $this->queryBag = $queryBag;
         $this->entityName = $entityName;
+
+        // prepare fetcher helper
+        $this->fetcherHelper = new FetcherHelper();
+        $this->fetcherHelper->prepareFieldsForJoin();
     }
 
     public function join(): void
     {
-        foreach ($this->orderingPreparation() as $order => $column) {
+        foreach ($this->fetcherHelper->getFields() as $column) {
             switch ($column) {
                 case NativeOrderImplementer::PRICE:
-                    $this->priceOrdering($order, $column);
+                    $this->priceOrdering($column);
                     break;
                 case NativeOrderImplementer::CPU_SOCKET:
                 case NativeOrderImplementer::FORM_FACTOR:
@@ -54,13 +63,13 @@ class JoinImplementer
                 case NativeOrderImplementer::INTERFACE:
                 case NativeOrderImplementer::EFFICIENCY_RATING:
                 case NativeOrderImplementer::SIDE_PANEL_WINDOW_TYPE:
-                    $this->generalOrderingWIthJoin($order, $column);
+                    $this->generalOrderingWIthJoin($column);
                     break;
                 case NativeOrderImplementer::COLOR:
-                    $this->colorOrdering($order, $column);
+                    $this->colorOrdering($column);
                     break;
                 case NativeOrderImplementer::MODULES:
-                    $this->modulesOrdering($order, $column);
+                    $this->modulesOrdering($column);
                     break;
             }
         }
@@ -82,7 +91,7 @@ class JoinImplementer
         return $orderingAssoc;
     }
 
-    private function priceOrdering(string $order, string $column): void
+    private function priceOrdering(string $column): void
     {
         $meta = Factory::create($this->entityName);
         if (!$meta) return;
@@ -106,7 +115,7 @@ SQL;
         $this->query .= " " . $sql;
     }
 
-    private function generalOrderingWIthJoin($order, $column): void
+    private function generalOrderingWIthJoin($column): void
     {
         $meta = Factory::create($this->entityName);
         if (!$meta) return;
@@ -120,7 +129,7 @@ SQL;
 
     }
 
-    private function colorOrdering($order, $column): void
+    private function colorOrdering($column): void
     {
         $meta = Factory::create($this->entityName);
         if (!$meta) return;
@@ -144,7 +153,7 @@ SQL;
 
     }
 
-    private function modulesOrdering($order, $column): void
+    private function modulesOrdering($column): void
     {
         $meta = Factory::create($this->entityName);
         if (!$meta) return;
