@@ -99,6 +99,7 @@ class GPUHandler extends ResourceHandler
         $this->boostClockFilter($meta);
         $this->tdpFilter($meta);
         $this->expansionSlotWidthFilter($meta);
+        $this->colorFilter($meta);
     }
 
     protected function chipsetFilter(Metadata $meta): void

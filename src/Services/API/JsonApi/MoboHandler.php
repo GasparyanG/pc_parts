@@ -100,6 +100,7 @@ class MoboHandler extends ResourceHandler
         $this->chipsetFilter($meta);
         $this->moboFormFactorFilter($meta);
         $this->cpuSocketFilter($meta);
+        $this->colorFilter($meta);
     }
 
     protected function memoryTypeFilter(Metadata $meta): void

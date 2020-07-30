@@ -108,6 +108,7 @@ class CoolerHandler extends ResourceHandler
         parent::filtrationData($meta);
         $this->bearingTypeFilter($meta);
         $this->waterCooledTypeFilter($meta);
+        $this->colorFilter($meta);
     }
 
     protected function bearingTypeFilter(Metadata $meta): void

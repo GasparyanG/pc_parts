@@ -87,6 +87,7 @@ class PSUHandler extends ResourceHandler
         $this->efficiencyRatingFilter($meta);
         $this->wattageFilter($meta);
         $this->lengthFilter($meta);
+        $this->colorFilter($meta);
     }
 
     protected function efficiencyRatingFilter(Metadata $meta)

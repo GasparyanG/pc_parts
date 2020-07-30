@@ -95,6 +95,7 @@ class PcCaseHandler extends ResourceHandler
         parent::filtrationData($meta);
         $this->typeFilter($meta);
         $this->sidePanelWindowFilter($meta);
+        $this->colorFilter($meta);
     }
 
     protected function typeFilter(Metadata $meta)
