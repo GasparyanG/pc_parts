@@ -30,6 +30,7 @@ class NativeOrderImplementer
     const EFFICIENCY_RATING = "efficiency_rating";
     const SIDE_PANEL_WINDOW_TYPE = "side_panel_window_type";
     const SLI_CROSSFIRE_TYPE = "sli_crossfire";
+    const FRAME_SYNC_TYPE = "frame_sync";
 
     /**
      * @var string
@@ -56,7 +57,8 @@ class NativeOrderImplementer
         self::INTERFACE => "type",
         self::EFFICIENCY_RATING => "rating",
         self::SIDE_PANEL_WINDOW_TYPE => "type",
-        self::SLI_CROSSFIRE_TYPE => "type"
+        self::SLI_CROSSFIRE_TYPE => "type",
+        self::FRAME_SYNC_TYPE => "type"
     ];
 
     /**
@@ -96,6 +98,7 @@ class NativeOrderImplementer
                     case self::EFFICIENCY_RATING:
                     case self::SIDE_PANEL_WINDOW_TYPE:
                     case self::SLI_CROSSFIRE_TYPE:
+                    case self::FRAME_SYNC_TYPE:
                     {
                         $joinColumn = self::$actualFieldNames[$column] ?? $column;
                         $this->query .= $this->fetcherHelper->alias($column) . '.' . $joinColumn . ' ' . $order;

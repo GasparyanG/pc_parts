@@ -101,6 +101,7 @@ class GPUHandler extends ResourceHandler
         $this->expansionSlotWidthFilter($meta);
         $this->colorFilter($meta);
         $this->sliCrossfireFilter($meta);
+        $this->frameSyncFilter($meta);
     }
 
     protected function chipsetFilter(Metadata $meta): void
@@ -218,6 +219,20 @@ class GPUHandler extends ResourceHandler
             Metadata::NAME => "Expansion Slot Width",
             Metadata::FIELD => "expansion_slot_width",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function frameSyncFilter(Metadata $meta): void
+    {
+        $frameSyncTypes = $this->repo->findFrameSyncTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $frameSyncTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Frame Sync",
+            Metadata::FIELD => "frame_sync",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
 }

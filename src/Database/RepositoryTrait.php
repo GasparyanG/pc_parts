@@ -122,4 +122,19 @@ SQL;
         if (!$res) return [];
         return $res->fetchAll();
     }
+
+    public function findFrameSyncTypes(): array
+    {
+        $meta = Factory::create($this->_entityName);
+        [$foreignKey, $tableName] = $meta->get("frame_sync");
+
+        $sql = <<<SQL
+select distinct QUOTE(fst.type) as id, fst.type as name from frame_sync_types as fst left join $tableName as fsvc on fsvc.frame_sync_type_id = fst.id;
+SQL;
+
+
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $res->fetchAll();
+    }
 }

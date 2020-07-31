@@ -75,6 +75,9 @@ class JoinImplementer
                 case NativeOrderImplementer::SLI_CROSSFIRE_TYPE:
                     $this->sliCrossfireJoin($column);
                     break;
+                case NativeOrderImplementer::FRAME_SYNC_TYPE:
+                    $this->frameSyncJoin($column);
+                    break;
             }
         }
     }
@@ -196,6 +199,28 @@ left join (select vc.id, sct.type
     from $tableName scvc
              left join $mainTableName as vc on vc.id = scvc.$foreignKey
              left join sli_crossfire_types as sct on sct.id = scvc.sli_crossfire_type_id) as $alias on $alias.id = a.id
+SQL;
+
+        $this->query .= " " . $sql;
+    }
+
+    private function frameSyncJoin($column): void
+    {
+        $meta = Factory::create($this->entityName);
+        if (!$meta) return;
+
+        [$foreignKey, $tableName] = $meta->get($column);
+
+        $em = Connection::getEntityManager();
+        $mainTableName = $em->getClassMetadata($this->entityName)->getTableName();
+
+        $alias = $this->fetcherHelper->alias($column);
+
+        $sql = <<<SQL
+left join (select vc.id, sct.type
+    from $tableName fsvc
+             left join $mainTableName as vc on vc.id = fsvc.$foreignKey
+             left join frame_sync_types as sct on sct.id = fsvc.frame_sync_type_id) as $alias on $alias.id = a.id
 SQL;
 
         $this->query .= " " . $sql;

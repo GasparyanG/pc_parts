@@ -15,7 +15,8 @@ class GPUMeta extends AbstractMeta
         "price" => ["gpu_id", "gpu_prices"],
         "color" => ["video_card_id", "gpus_colors"],
         "chipset" => ["chipset_id", "chipsets"],
-        "sli_crossfire" => ["video_card_id", "sli_crossfire_video_cards"]
+        "sli_crossfire" => ["video_card_id", "sli_crossfire_video_cards"],
+        "frame_sync" => ["video_card_id", "frame_sync_video_cards"]
     ];
 
     /**
