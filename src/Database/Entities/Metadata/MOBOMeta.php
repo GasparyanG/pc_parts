@@ -15,7 +15,8 @@ class MOBOMeta extends AbstractMeta
         "price" => ["mobo_id", "mobo_prices"],
         "cpu_socket" => ["cpu_socket_id", "cpu_sockets"],
         "form_factor" => ["mobo_form_factor_id","mobo_form_factors"],
-        "color" => ["motherboard_id", "motherboards_colors"]
+        "color" => ["motherboard_id", "motherboards_colors"],
+        "sli_crossfire" => ["motherboard_id", "sli_crossfire_motherboards"]
     ];
 
     /**

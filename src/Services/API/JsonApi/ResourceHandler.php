@@ -5,6 +5,7 @@ namespace App\Services\API\JsonApi;
 
 
 use App\Database\Connection;
+use App\Services\API\JsonApi\DataFetching\FilterImplementer;
 use App\Services\API\JsonApi\Specification\Metadata;
 use App\Services\API\JsonApi\Specification\Relationship;
 use App\Services\API\JsonApi\Specification\Resource;
@@ -261,6 +262,20 @@ abstract class ResourceHandler
             Metadata::NAME => "Color",
             Metadata::FIELD => "color",
             Metadata::OPERATOR => "in"
+        ]);
+    }
+
+    protected function sliCrossfireFilter(Metadata $meta): void
+    {
+        $sliCrossfireTypes = $this->repo->findSliCrossfireTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $sliCrossfireTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "SLI/Crossfire",
+            Metadata::FIELD => "sli_crossfire",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
 }

@@ -220,18 +220,4 @@ class GPUHandler extends ResourceHandler
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
-
-    protected function sliCrossfireFilter(Metadata $meta): void
-    {
-        $sliCrossfireTypes = $this->repo->findSliCrossfireTypes();
-
-        $meta->addFiltrationData([
-            Metadata::COLLECTION => $sliCrossfireTypes,
-            Metadata::TYPE => Metadata::CHECKBOX,
-            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
-            Metadata::NAME => "SLI/Crossfire",
-            Metadata::FIELD => "sli_crossfire",
-            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
-        ]);
-    }
 }
