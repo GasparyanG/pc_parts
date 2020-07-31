@@ -109,6 +109,7 @@ class CoolerHandler extends ResourceHandler
         $this->bearingTypeFilter($meta);
         $this->waterCooledTypeFilter($meta);
         $this->colorFilter($meta);
+        $this->cpuSocketFilter($meta);
     }
 
     protected function bearingTypeFilter(Metadata $meta): void
@@ -135,6 +136,20 @@ class CoolerHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Water Cooled",
             Metadata::FIELD => "water_cooled_type_id",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function cpuSocketFilter(Metadata $meta): void
+    {
+        $cpuSocketTypes = $this->repo->findCPUSocketFilterTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $cpuSocketTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "CPU Socket",
+            Metadata::FIELD => "cpu_socket_filter",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

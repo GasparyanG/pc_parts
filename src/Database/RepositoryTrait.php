@@ -137,4 +137,18 @@ SQL;
         if (!$res) return [];
         return $res->fetchAll();
     }
+
+    public function findCPUSocketFilterTypes(): array
+    {
+        $meta = Factory::create($this->_entityName);
+        [$foreignKey, $tableName] = $meta->get("cpu_socket_filter");
+
+        $sql = <<<SQL
+select distinct QUOTE(cs.type) as id, cs.type as name from cpu_sockets cs join $tableName as ccs on ccs.cpu_socket_id=cs.id;
+SQL;
+
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $res->fetchAll();
+    }
 }

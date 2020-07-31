@@ -13,7 +13,8 @@ class CoolerMeta extends AbstractMeta
      */
     protected $meta = [
         "price" => ["cooler_id", "cooler_prices"],
-        "color" => ["cooler_id", "coolers_colors"]
+        "color" => ["cooler_id", "coolers_colors"],
+        "cpu_socket_filter" => ["cooler_id", "coolers_cpu_sockets"]
     ];
 
     /**

@@ -37,7 +37,8 @@ class FetcherHelper
         NativeOrderImplementer::EFFICIENCY_RATING,
         NativeOrderImplementer::SIDE_PANEL_WINDOW_TYPE,
         NativeOrderImplementer::SLI_CROSSFIRE_TYPE,
-        NativeOrderImplementer::FRAME_SYNC_TYPE
+        NativeOrderImplementer::FRAME_SYNC_TYPE,
+        NativeOrderImplementer::CPU_SOCKET_FILTER
     ];
 
     public function __construct()
