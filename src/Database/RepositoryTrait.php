@@ -94,12 +94,27 @@ trait RepositoryTrait
         $sql = <<<SQL
 select QUOTE(j.name) as id, j.name as name
 from $mainTableName as a
-         left join (select mb.id, group_concat(distinct c.name order by c.name separator $colorSeparator) as name
+         left join (select mb.id, group_concat(distinct  c.name order by c.name separator $colorSeparator) as name
                     from $tableName as mc
                              left join $mainTableName as mb on mc.$foreignKey = mb.id
                              left join colors as c on c.id = mc.color_id
                     group by mb.id) as j on j.id = a.id
 group by j.name;
+SQL;
+
+
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $res->fetchAll();
+    }
+
+    public function findSliCrossfireTypes(): array
+    {
+        $meta = Factory::create($this->_entityName);
+        [$foreignKey, $tableName] = $meta->get("sli_crossfire");
+
+        $sql = <<<SQL
+select distinct sct.id as id, sct.type as name from sli_crossfire_types sct join $tableName scvc on sct.id=scvc.sli_crossfire_type_id;
 SQL;
 
 
