@@ -114,7 +114,7 @@ SQL;
         [$foreignKey, $tableName] = $meta->get("sli_crossfire");
 
         $sql = <<<SQL
-select distinct sct.id as id, sct.type as name from sli_crossfire_types sct join $tableName scvc on sct.id=scvc.sli_crossfire_type_id;
+select distinct QUOTE(sct.type) as id, sct.type as name from sli_crossfire_types sct join $tableName scvc on sct.id=scvc.sli_crossfire_type_id;
 SQL;
 
 
