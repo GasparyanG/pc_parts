@@ -98,6 +98,7 @@ class PcCaseHandler extends ResourceHandler
         $this->colorFilter($meta);
         $this->psuShroudFilter($meta);
         $this->frontUsbFilter($meta);
+        $this->moboFormFactorFilter($meta);
     }
 
     protected function typeFilter(Metadata $meta)
@@ -150,6 +151,20 @@ class PcCaseHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Front Panel USB",
             Metadata::FIELD => "front_usb_filter",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function moboFormFactorFilter(Metadata $meta): void
+    {
+        $types = $this->repo->findMoboFormFactorTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $types,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Motherboard Form Factor",
+            Metadata::FIELD => "mobo_form_factor_filter",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

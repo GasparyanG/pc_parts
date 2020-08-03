@@ -84,6 +84,9 @@ class JoinImplementer
                 case NativeOrderImplementer::FRONT_USB_FILTER:
                     $this->frontUSBFilter($column);
                     break;
+                case NativeOrderImplementer::MOBO_FORM_FACTOR_FILTER:
+                    $this->moboFormFactorFilter($column);
+                    break;
             }
         }
     }
@@ -264,7 +267,23 @@ SQL;
         $alias = $this->fetcherHelper->alias($column);
 
         $sql = <<<SQL
-join $tableName as $alias on a.id=$alias.$foreignKey;
+join $tableName as $alias on a.id=$alias.$foreignKey
+SQL;
+
+        $this->query .= " " . $sql;
+    }
+
+    private function moboFormFactorFilter($column): void
+    {
+        $meta = Factory::create($this->entityName);
+        if (!$meta) return;
+
+        [$foreignKey, $tableName] = $meta->get($column);
+
+        $alias = $this->fetcherHelper->alias($column);
+
+        $sql = <<<SQL
+join $tableName as $alias on a.id=$alias.$foreignKey
 SQL;
 
         $this->query .= " " . $sql;

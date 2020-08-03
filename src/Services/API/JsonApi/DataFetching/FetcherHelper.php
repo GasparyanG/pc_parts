@@ -39,7 +39,8 @@ class FetcherHelper
         NativeOrderImplementer::SLI_CROSSFIRE_TYPE,
         NativeOrderImplementer::FRAME_SYNC_TYPE,
         NativeOrderImplementer::CPU_SOCKET_FILTER,
-        NativeOrderImplementer::FRONT_USB_FILTER
+        NativeOrderImplementer::FRONT_USB_FILTER,
+        NativeOrderImplementer::MOBO_FORM_FACTOR_FILTER
     ];
 
     public function __construct()

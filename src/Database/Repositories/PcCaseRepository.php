@@ -37,18 +37,18 @@ class PcCaseRepository extends EntityRepository
 
     public function findFontPanelUsbTypes(): array
     {
-            $meta = Factory::create($this->_entityName);
-            [$foreignKey, $tableName] = $meta->get("front_usb_filter");
+        $meta = Factory::create($this->_entityName);
+        [$foreignKey, $tableName] = $meta->get("front_usb_filter");
 
-            $mainTableName = $this->_em->getClassMetadata($this->_entityName)->getTableName();
+        $mainTableName = $this->_em->getClassMetadata($this->_entityName)->getTableName();
 
-            $sql = <<<SQL
+        $sql = <<<SQL
 select distinct u.* from $tableName as cu join usbs as u on u.id=cu.usb_id join $mainTableName as pc on pc.id=cu.$foreignKey;
 SQL;
 
-            $res = $this->_em->getConnection()->query($sql);
-            if (!$res) return [];
-            return $this->prepareUsbs($res->fetchAll());
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $this->prepareUsbs($res->fetchAll());
     }
 
     private function prepareUsbs(array $usbs): array
@@ -80,5 +80,24 @@ SQL;
             return "None";
 
         return $name;
+    }
+
+    public function findMoboFormFactorTypes(): array
+    {
+        $meta = Factory::create($this->_entityName);
+        [$foreignKey, $tableName] = $meta->get("mobo_form_factor_filter");
+
+        $mainTableName = $this->_em->getClassMetadata($this->_entityName)->getTableName();
+
+        $sql = <<<SQL
+select distinct u.id, u.type as name 
+  from $tableName as cu 
+    join mobo_form_factors as u on u.id=cu.mobo_form_factor_id 
+    join $mainTableName as pc on pc.id=cu.$foreignKey;
+SQL;
+
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $res->fetchAll();
     }
 }
