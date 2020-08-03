@@ -96,6 +96,7 @@ class PcCaseHandler extends ResourceHandler
         $this->typeFilter($meta);
         $this->sidePanelWindowFilter($meta);
         $this->colorFilter($meta);
+        $this->psuShroudFilter($meta);
     }
 
     protected function typeFilter(Metadata $meta)
@@ -122,6 +123,18 @@ class PcCaseHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Side Panel Window",
             Metadata::FIELD => "side_panel_window_type_id",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function psuShroudFilter(Metadata $meta): void
+    {
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => [["id" => 0, "name" => "No"], ["id" => 1, "name" => "Yes"]],
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "PSU Shroud",
+            Metadata::FIELD => "power_supply_shroud",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }

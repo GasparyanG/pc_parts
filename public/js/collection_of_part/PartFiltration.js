@@ -36,7 +36,7 @@ class CheckboxFilter extends React.Component {
     render() {
         // create checkbox
         const checkboxes = this.props.filter.collection.map(filterMeta => {
-            if (filterMeta.id && filterMeta.name)
+            if ((filterMeta.id || filterMeta.id === 0) && filterMeta.name)
                 return (
                     <div>
                         <input onClick={() => this.filter(filterMeta.id, this.props.filter)}
