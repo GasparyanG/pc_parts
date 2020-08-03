@@ -88,6 +88,7 @@ class StorageHandler extends ResourceHandler
         $this->cacheFilter($meta);
         $this->formFactorFilter($meta);
         $this->interfaceFilter($meta);
+        $this->nvmeFilter($meta);
     }
 
     protected function typeFilter(Metadata $meta): void
@@ -158,6 +159,18 @@ class StorageHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Interface",
             Metadata::FIELD => "storage_interface_id",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function nvmeFilter(Metadata $meta): void
+    {
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => [["id" => 0, "name" => "No"], ["id" => 1, "name" => "Yes"]],
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "NVME",
+            Metadata::FIELD => "nvme",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
