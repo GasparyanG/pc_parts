@@ -102,6 +102,9 @@ class MemoryHandler extends ResourceHandler
         $this->speedFilter($meta);
         $this->colorFilter($meta);
         $this->modulesFilter($meta);
+        $this->voltageFilter($meta);
+        $this->timingFilter($meta);
+        $this->eccRegistersFilter($meta);
     }
 
     protected function formFactorFilter(Metadata $meta): void
@@ -143,6 +146,49 @@ class MemoryHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "Modules",
             Metadata::FIELD => "modules_id",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function timingFilter(Metadata $meta): void
+    {
+        $timings = $this->repo->findTimingTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $timings,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Timing",
+            Metadata::FIELD => "timing_id",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function voltageFilter(Metadata $meta)
+    {
+        $voltageMinANdMax = $this->repo->findVoltageMinAndMax();
+
+        $meta->addFiltrationData([
+            Metadata::MIN => $voltageMinANdMax[Metadata::MIN] ?? 0,
+            Metadata::MAX => $voltageMinANdMax[Metadata::MAX] ?? 0,
+            Metadata::TYPE => Metadata::RANGE,
+            Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::NAME => "Voltage",
+            Metadata::FIELD => "voltage",
+            Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function eccRegistersFilter(Metadata $meta): void
+    {
+        $eccRegTypes = $this->repo->eccRegisterTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $eccRegTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "ECC / Registered",
+            Metadata::FIELD => "ecc_register_id",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
