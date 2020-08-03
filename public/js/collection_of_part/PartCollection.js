@@ -21,7 +21,7 @@ class PartCollection extends React.Component {
             );
         }
 
-        return <div>Empty</div>;
+        return <div></div>;
     }
 }
 

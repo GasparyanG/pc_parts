@@ -29,7 +29,7 @@ function reducer(state = initial_state, action) {
                 url_query: {
                     included: state.url_query.included,
                     order: orderPreparation(state, action.key),
-                    filter: state.url_query.filter
+                    filter: state.url_query.filter,
                 }
             }
         case "FILTER":
@@ -38,6 +38,18 @@ function reducer(state = initial_state, action) {
                     included: state.url_query.included,
                     order: state.url_query.order,
                     filter: filterPreparation(state, action.id, action.filter_data)
+                }
+            }
+        case "PAGE_NUMBER":
+            return {
+                url_query: {
+                    included: state.url_query.included,
+                    order: state.url_query.order,
+                    filter: state.url_query.filter,
+                    page: {
+                        number: action.number,
+                        size: 25
+                    }
                 }
             }
         default:

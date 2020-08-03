@@ -53,6 +53,7 @@ class FilterablePartTable extends React.Component {
             </div>
             <div className="part-collection">
                 <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
+                <Pagination link={this.state.links} dispatch={this.props.dispatch} />
             </div>
         </div>);
     }

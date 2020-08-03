@@ -137,6 +137,37 @@ class Link {
     get prev() { return this._prev; }
     get first() { return this._first; }
     get last() { return this._last; }
+
+    get_last_page_number() {
+        return this.get_page_size(this._last);
+    }
+
+    get_first_page_number() {
+       return this.get_page_size(this._first);
+    }
+
+    get_current_page_number() {
+       return this.get_page_size(this._self);
+    }
+
+    get_previous_page_number() {
+       return this.get_page_size(this._prev);
+    }
+
+    get_next_page_number() {
+       return this.get_page_size(this._next);
+    }
+
+
+    get_page_size(url) {
+        if (url) {
+            let urlSeachParam = new URLSearchParams(url);
+
+            for (let l of urlSeachParam)
+                if (l[0] === "page[number]")
+                    return l[1];
+        }
+    }
 }
 
 // export resource handlers to be able to import

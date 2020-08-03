@@ -3,10 +3,16 @@ class QueryHandler {
     static included = "included";
     static filter = "filter";
 
+    // page keys
+    static page = "page";
+    static number = "number";
+    static size = "size";
+
     constructor(queryObject) {
         this._order = this.getField(queryObject, QueryHandler.order);
         this._incuded = this.getField(queryObject, QueryHandler.included);
         this._filter = this.getField(queryObject, QueryHandler.filter);
+        this._page = this.getField(queryObject, QueryHandler.page);
     }
 
     getField(queryObject, field) {
@@ -22,8 +28,10 @@ class QueryHandler {
         qs += this.orderQS();
         // included fields
         qs += this.includedQS();
-        // TODO: filtration
+        // filtration
         qs += this.filterQS();
+        // pagination
+        qs += this.pageQS();
 
         return qs;
     }
@@ -52,6 +60,15 @@ class QueryHandler {
             // value
             qs += "=" + filter["value"];
         }
+
+        return qs;
+    }
+
+    pageQS() {
+        if (!this._page) return "";
+        let qs = "";
+        qs += "&page[size]=" + this._page[QueryHandler.size];
+        qs += "&page[number]=" + this._page[QueryHandler.number];
 
         return qs;
     }
