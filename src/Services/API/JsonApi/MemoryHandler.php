@@ -101,6 +101,7 @@ class MemoryHandler extends ResourceHandler
         $this->formFactorFilter($meta);
         $this->speedFilter($meta);
         $this->colorFilter($meta);
+        $this->modulesFilter($meta);
     }
 
     protected function formFactorFilter(Metadata $meta): void
@@ -129,6 +130,20 @@ class MemoryHandler extends ResourceHandler
             Metadata::NAME => "Speed",
             Metadata::FIELD => "speed",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
+        ]);
+    }
+
+    protected function modulesFilter(Metadata $meta): void
+    {
+        $modulesTypes = $this->repo->findModulesTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $modulesTypes,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Modules",
+            Metadata::FIELD => "modules_id",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
 }

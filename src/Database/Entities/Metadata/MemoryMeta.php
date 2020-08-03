@@ -15,7 +15,8 @@ class MemoryMeta extends AbstractMeta
         "price" => ["memory_id", "memory_prices"],
         "color" => ["memory_id", "memories_colors"],
         "modules" => ["modules_id", "modules"],
-        "cas_latency" => ["timing_id", "timings"]
+        "cas_latency" => ["timing_id", "timings"],
+        "modules_filter" => ["modules_id", "memories"]
     ];
 
     /**

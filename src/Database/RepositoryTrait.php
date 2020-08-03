@@ -151,4 +151,18 @@ SQL;
         if (!$res) return [];
         return $res->fetchAll();
     }
+
+    public function findModulesTypes(): array
+    {
+        $meta = Factory::create($this->_entityName);
+        [$foreignKey, $tableName] = $meta->get("modules_filter");
+
+        $sql = <<<SQL
+select distinct  m.id,  concat(m.amount, ' x ', m.capacity) as name from modules as m join $tableName as ms on ms.$foreignKey=m.id;
+SQL;
+
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $res->fetchAll();
+    }
 }
