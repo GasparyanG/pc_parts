@@ -88,6 +88,8 @@ class PSUHandler extends ResourceHandler
         $this->wattageFilter($meta);
         $this->lengthFilter($meta);
         $this->colorFilter($meta);
+//        $this->fanlessFilter($meta);
+        $this->modularityFilter($meta);
     }
 
     protected function efficiencyRatingFilter(Metadata $meta)
@@ -133,4 +135,30 @@ class PSUHandler extends ResourceHandler
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
     }
+
+    protected function modularityFilter(Metadata $meta): void
+    {
+        $modularity = $this->repo->findModularity();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $modularity,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Modular",
+            Metadata::FIELD => "modular",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+//    protected function fanlessFilter(Metadata $meta): void
+//    {
+//        $meta->addFiltrationData([
+//            Metadata::COLLECTION => [["id" => 0, "name" => "No"], ["id" => 1, "name" => "Yes"]],
+//            Metadata::TYPE => Metadata::CHECKBOX,
+//            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+//            Metadata::NAME => "Fanless",
+//            Metadata::FIELD => "fanless",
+//            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+//        ]);
+//    }
 }

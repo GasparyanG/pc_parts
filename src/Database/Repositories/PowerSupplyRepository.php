@@ -46,4 +46,15 @@ class PowerSupplyRepository extends EntityRepository
         if ($res) return $res[0];
         return [];
     }
+
+    public function findModularity(): array
+    {
+        $sql = <<<SQL
+select distinct QUOTE(modular) as id, modular as name from power_supplies
+SQL;
+
+        $res = $this->_em->getConnection()->query($sql);
+        if (!$res) return [];
+        return $res->fetchAll();
+    }
 }
