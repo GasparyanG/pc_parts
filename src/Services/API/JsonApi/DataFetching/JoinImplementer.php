@@ -81,6 +81,9 @@ class JoinImplementer
                 case NativeOrderImplementer::CPU_SOCKET_FILTER:
                     $this->cpuSocketsJoin($column);
                     break;
+                case NativeOrderImplementer::FRONT_USB_FILTER:
+                    $this->frontUSBFilter($column);
+                    break;
             }
         }
     }
@@ -246,6 +249,22 @@ left join (select vc.id, sct.type
     from $tableName ccs
          left join $mainTableName as vc on vc.id = ccs.$foreignKey
          left join cpu_sockets as sct on sct.id = ccs.cpu_socket_id) as $alias on $alias.id = a.id
+SQL;
+
+        $this->query .= " " . $sql;
+    }
+
+    private function frontUSBFilter($column): void
+    {
+        $meta = Factory::create($this->entityName);
+        if (!$meta) return;
+
+        [$foreignKey, $tableName] = $meta->get($column);
+
+        $alias = $this->fetcherHelper->alias($column);
+
+        $sql = <<<SQL
+join $tableName as $alias on a.id=$alias.$foreignKey;
 SQL;
 
         $this->query .= " " . $sql;

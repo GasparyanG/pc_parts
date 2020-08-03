@@ -97,6 +97,7 @@ class PcCaseHandler extends ResourceHandler
         $this->sidePanelWindowFilter($meta);
         $this->colorFilter($meta);
         $this->psuShroudFilter($meta);
+        $this->frontUsbFilter($meta);
     }
 
     protected function typeFilter(Metadata $meta)
@@ -135,6 +136,20 @@ class PcCaseHandler extends ResourceHandler
             Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
             Metadata::NAME => "PSU Shroud",
             Metadata::FIELD => "power_supply_shroud",
+            Metadata::OPERATOR => strtolower(FilterImplementer::IN)
+        ]);
+    }
+
+    protected function frontUsbFilter(Metadata $meta): void
+    {
+        $types = $this->repo->findFontPanelUsbTypes();
+
+        $meta->addFiltrationData([
+            Metadata::COLLECTION => $types,
+            Metadata::TYPE => Metadata::CHECKBOX,
+            Metadata::GROUPING => Metadata::CHECKBOX_GROUPING,
+            Metadata::NAME => "Front Panel USB",
+            Metadata::FIELD => "front_usb_filter",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
     }
