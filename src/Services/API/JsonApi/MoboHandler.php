@@ -50,7 +50,7 @@ class MoboHandler extends ResourceHandler
         "Name" => ["name", "name"],
         "Socket / CPU" => ["cpuSocket", "cpu_socket"],
         "Form Factor" => ["formFactor", "form_factor"],
-        "Memory Max" => ["mexMemory", "mex_memory", "GB"],
+        "Memory Max" => ["maxMemory", "max_memory", "GB"],
         "Color" => ["color", "color"],
         "Memory Slots" => ["memorySlots", "memory_slots"],
         "Price" => [ResourceHandler::PRICE, ResourceHandler::PRICE, "$"]
