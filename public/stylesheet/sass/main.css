@@ -93,6 +93,17 @@ body {
   transition: 0.5s;
   display: block; }
 
+.show-less-or-more {
+  margin-top: 0.5rem;
+  cursor: pointer; }
+
+.filter-shrink {
+  max-height: 150px;
+  overflow: hidden; }
+
+.show-less-or-more:hover {
+  color: blue; }
+
 #home_page {
   height: calc(100vh - 100px);
   background-color: #282838;

@@ -50,3 +50,18 @@
   transition: 0.5s;
   display: block;
 }
+
+// SHOW LESSOR MORE
+.show-less-or-more {
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.filter-shrink {
+  max-height: 150px;
+  overflow: hidden;
+}
+
+.show-less-or-more:hover {
+  color: blue;
+}

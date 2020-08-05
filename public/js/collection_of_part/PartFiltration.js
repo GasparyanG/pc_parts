@@ -26,6 +26,28 @@ function hideFilter(filterName)
     }
 }
 
+function showMore(fieldName) {
+    let opClassName = "show_" + fieldName;
+    let filterContClassName = "filter_" + fieldName;
+
+    let opElement = document.querySelector(`.${opClassName}`);
+    let filterCont = document.querySelector(`.${filterContClassName}`).firstChild;
+
+    if (opElement.classList.contains("show-more")) {
+        opElement.classList.remove("show-more");
+        opElement.classList.add("show-less");
+        opElement.innerHTML = "&uarr; show less";
+
+        filterCont.classList.remove("filter-shrink");
+    } else {
+        opElement.classList.remove("show-less");
+        opElement.classList.add("show-more");
+        opElement.innerHTML = "&darr; show more";
+
+        filterCont.classList.add("filter-shrink");
+    }
+}
+
 class PartFiltration extends React.Component {
     constructor(props) {
         super(props);
@@ -69,7 +91,14 @@ class CheckboxFilter extends React.Component {
                         <label htmlFor={this.props.filter.field + "_" + filterMeta.id}>{filterMeta.name}</label>
                     </div>
                 );
-        })
+        });
+
+        let lessOrMore = (<div></div>);
+        let shrink = "";
+        if (checkboxes.length > 5) {
+            lessOrMore = (<div className={"show-more show-less-or-more show_" + this.props.filter.field} onClick={() => showMore(this.props.filter.field)}>&darr; show more</div>)
+            shrink = "filter-shrink";
+        }
 
         return (
             <div>
@@ -82,8 +111,13 @@ class CheckboxFilter extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={"filter-show filter_" + this.props.filter.field}>
-                    {checkboxes}
+                <div className={"product-filter filter-show filter_" + this.props.filter.field}>
+                    <div className={shrink}>
+                        {checkboxes}
+                    </div>
+                    <div>
+                        {lessOrMore}
+                    </div>
                 </div>
             </div>
         );
@@ -114,7 +148,7 @@ class RangeFilter extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={"filter-show filter_" + this.props.filter.field}>
+                <div className={"product-filter filter-show filter_" + this.props.filter.field}>
                     <label htmlFor={this.props.filter.field + "_min" }>Min</label>
                     <input onChange={() => this.filter(this.props.filter)} id={this.props.filter.field + "_min" }
                            type="text" defaultValue={this.props.filter.min}/>
