@@ -64,18 +64,7 @@ class CheckboxFilter extends React.Component {
             <div>
                 <div className="filter-header">
                     <div className="filter-name">{this.props.filter.name}</div>
-                    <div onClick={() => hideFilter(this.props.filter.field)} className={hideFilterClassNames.hide_sign_class_name}>
-                        <div className={hideFilterClassNames.rotating_sign_class_name}>
-                            <div className={composeClassName(
-                                hideFilterClassNames.sign_bar_class_name,
-                                hideFilterClassNames.vertical_bar_class_name,
-                                "vertical_" + this.props.filter.field)}></div>
-                            <div className={composeClassName(
-                                hideFilterClassNames.sign_bar_class_name,
-                                hideFilterClassNames.horizontal_bar_class_name,
-                                "horizontal_" + this.props.filter.field)}></div>
-                        </div>
-                    </div>
+                    <CollapseSign  filter={this.props.filter}/>
                 </div>
                 <div className={composeClassName(
                     "product-filter",
@@ -110,18 +99,7 @@ class RangeFilter extends React.Component {
             <div>
                 <div className="filter-header">
                     <div className="filter-name">{this.props.filter.name}</div>
-                    <div className={hideFilterClassNames.hide_sign_class_name} onClick={() => hideFilter(this.props.filter.field)}>
-                        <div className={hideFilterClassNames.rotating_sign_class_name}>
-                            <div className={composeClassName(
-                                hideFilterClassNames.sign_bar_class_name,
-                                hideFilterClassNames.vertical_bar_class_name,
-                                "vertical_" + this.props.filter.field)}></div>
-                            <div className={composeClassName(
-                                hideFilterClassNames.sign_bar_class_name,
-                                hideFilterClassNames.horizontal_bar_class_name,
-                                "horizontal_" + this.props.filter.field)}></div>
-                        </div>
-                    </div>
+                    <CollapseSign  filter={this.props.filter}/>
                 </div>
                 <div className={composeClassName(
                     "product-filter",
@@ -133,6 +111,29 @@ class RangeFilter extends React.Component {
                     <label htmlFor={this.props.filter.field + "_max" }>Max</label>
                     <input onChange={() => this.filter(this.props.filter)} id={this.props.filter.field + "_max" }
                            type="text" defaultValue={this.props.filter.max}/>
+                </div>
+            </div>
+        );
+    }
+}
+
+class CollapseSign extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className={hideFilterClassNames.hide_sign_class_name} onClick={() => hideFilter(this.props.filter.field)}>
+                <div className={hideFilterClassNames.rotating_sign_class_name}>
+                    <div className={composeClassName(
+                        hideFilterClassNames.sign_bar_class_name,
+                        hideFilterClassNames.vertical_bar_class_name,
+                        "vertical_" + this.props.filter.field)}></div>
+                    <div className={composeClassName(
+                        hideFilterClassNames.sign_bar_class_name,
+                        hideFilterClassNames.horizontal_bar_class_name,
+                        "horizontal_" + this.props.filter.field)}></div>
                 </div>
             </div>
         );
