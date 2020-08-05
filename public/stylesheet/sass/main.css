@@ -49,6 +49,52 @@ body {
   background-color: #fff;
   transition: 0.02s; }
 
+.filter-name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  margin-top: 1rem; }
+
+.filter-header-component {
+  margin-right: 1rem; }
+
+.filter-header {
+  display: flex;
+  justify-content: space-between; }
+
+.hide-sign {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  cursor: pointer; }
+
+.rotating-sign {
+  position: absolute;
+  transform: translateY(30px); }
+
+.sign-bar {
+  position: absolute;
+  width: 20px;
+  height: 3px;
+  background-color: black; }
+
+.sign-collapse {
+  transform: rotate(90deg);
+  transition: 0.5s; }
+
+.sign-open {
+  transform: rotate(180deg);
+  transition: 0.5s; }
+
+#filtration .filters .filter-collapse {
+  transition: 0.5s;
+  display: none;
+  height: 0; }
+
+#filtration .filters .filter-show {
+  transition: 0.5s;
+  display: block; }
+
 #home_page {
   height: calc(100vh - 100px);
   background-color: #282838;

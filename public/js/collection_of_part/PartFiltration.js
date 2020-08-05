@@ -1,6 +1,31 @@
 import React from "react"
 import { Filtration } from "./Resource"
 
+function hideFilter(filterName)
+{
+    let filterClassName = "filter_" + filterName;
+    let filter = document.querySelector(`.${filterClassName}`);
+
+    let rotatingSignClassName = "vertical_" + filterName;
+    let rotatingBar = document.querySelector(`.${rotatingSignClassName}`);
+
+    if (!filter) return;
+
+    if (filter.classList.contains("filter-collapse")) {
+        filter.classList.add("filter-show");
+        filter.classList.remove("filter-collapse");
+
+        rotatingBar.classList.add("sign-open");
+        rotatingBar.classList.remove("sign-collapse");
+    } else  {
+        filter.classList.remove("filter-show");
+        filter.classList.add("filter-collapse");
+
+        rotatingBar.classList.add("sign-collapse");
+        rotatingBar.classList.remove("sign-open");
+    }
+}
+
 class PartFiltration extends React.Component {
     constructor(props) {
         super(props);
@@ -13,14 +38,14 @@ class PartFiltration extends React.Component {
             filtrationData = this.props.meta[Filtration.filtration_key];
 
         const filters = filtrationData.map(filterMeta => {
-            var filter = new Filtration(filterMeta);
+            let filter = new Filtration(filterMeta);
             if (filter.type === Filtration.checkbox_key)
                 return <CheckboxFilter filter={filter} dispatch={this.props.dispatch}/>
             else if(filter.type == Filtration.range_key)
                 return <RangeFilter filter={filter} dispatch={this.props.dispatch}/>
         });
 
-        return (<div>{filters}</div>);
+        return (<div className="filters">{filters}</div>);
     }
 }
 
@@ -48,8 +73,16 @@ class CheckboxFilter extends React.Component {
 
         return (
             <div>
-                <h3 className="filter-name">{this.props.filter.name}</h3>
-                <div>
+                <div className="filter-header">
+                    <div className="filter-header-component filter-name">{this.props.filter.name}</div>
+                    <div onClick={() => hideFilter(this.props.filter.field)} className="filter-header-component hide-sign">
+                        <div className="rotating-sign">
+                            <div className={"sign-bar vertical-bar vertical_" + this.props.filter.field}></div>
+                            <div className={"sign-bar horizontal-bar horizontal_" + this.props.filter.field}></div>
+                        </div>
+                    </div>
+                </div>
+                <div className={"filter-show filter_" + this.props.filter.field}>
                     {checkboxes}
                 </div>
             </div>
@@ -72,8 +105,16 @@ class RangeFilter extends React.Component {
     render() {
         return (
             <div>
-                <h3 className="filter-name">{this.props.filter.name}</h3>
-                <div>
+                <div className="filter-header">
+                    <div className="filter-name">{this.props.filter.name}</div>
+                    <div className="hide-sign" onClick={() => hideFilter(this.props.filter.field)}>
+                        <div className="rotating-sign">
+                            <div className={"sign-bar vertical-bar vertical_" + this.props.filter.field}></div>
+                            <div className={"sign-bar horizontal-bar horizontal_" + this.props.filter.field}></div>
+                        </div>
+                    </div>
+                </div>
+                <div className={"filter-show filter_" + this.props.filter.field}>
                     <label htmlFor={this.props.filter.field + "_min" }>Min</label>
                     <input onChange={() => this.filter(this.props.filter)} id={this.props.filter.field + "_min" }
                            type="text" defaultValue={this.props.filter.min}/>
