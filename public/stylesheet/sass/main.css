@@ -178,4 +178,7 @@ body {
 #collection-of-part .table-and-filtration .part-collection {
   flex: 5; }
 
+.filter-pinter {
+  cursor: pointer; }
+
 /*# sourceMappingURL=main.css.map */
