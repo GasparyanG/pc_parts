@@ -106,7 +106,6 @@ class Fetcher
             $rsm->addRootEntityFromClassMetadata($this->entityName, self::ALIAS);
 
             $query = $this->em->CreateNativeQuery($this->query, $rsm);
-//            echo $this->query;
             return $query->getResult();
         } catch (\Exception $e) {
             // TODO: return exception to caller

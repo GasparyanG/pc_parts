@@ -29,7 +29,7 @@ function reducer(state = initial_state, action) {
                 url_query: {
                     included: state.url_query.included,
                     order: orderPreparation(state, action.key),
-                    filter: state.url_query.filter,
+                    filter: state.url_query.filter
                 }
             }
         case "FILTER":
@@ -48,7 +48,7 @@ function reducer(state = initial_state, action) {
                     filter: state.url_query.filter,
                     page: {
                         number: action.number,
-                        size: 25
+                        size: action.size
                     }
                 }
             }

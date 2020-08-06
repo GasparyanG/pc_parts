@@ -33,7 +33,7 @@ class Links
     /**
      * @var int
      */
-    public static $size = 25;
+    public static $size = 5;
 
     /**
      * @var EntityManager

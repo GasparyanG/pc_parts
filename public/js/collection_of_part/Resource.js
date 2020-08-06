@@ -139,34 +139,48 @@ class Link {
     get last() { return this._last; }
 
     get_last_page_number() {
-        return this.get_page_size(this._last);
+        return this.get_page_number(this._last);
     }
 
     get_first_page_number() {
-       return this.get_page_size(this._first);
+       return this.get_page_number(this._first);
     }
 
     get_current_page_number() {
-       return this.get_page_size(this._self);
+       return this.get_page_number(this._next, true);
     }
 
     get_previous_page_number() {
-       return this.get_page_size(this._prev);
+       return this.get_page_number(this._prev);
     }
 
     get_next_page_number() {
-       return this.get_page_size(this._next);
+       return this.get_page_number(this._next);
     }
 
 
-    get_page_size(url) {
+    get_page_number(url, isCurr=false) {
         if (url) {
             let urlSeachParam = new URLSearchParams(url);
 
             for (let l of urlSeachParam)
                 if (l[0] === "page[number]")
+                    if (isCurr && l[1] != 0)
+                        return l[1] - 1;
+                    else return l[1];
+        }
+    }
+
+    get_page_size() {
+        if (this._first) {
+            let urlSeachParam = new URLSearchParams(this._first);
+
+            for (let l of urlSeachParam)
+                if (l[0] === "page[size]")
                     return l[1];
         }
+
+        return 25;
     }
 }
 
