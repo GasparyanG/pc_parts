@@ -29,15 +29,20 @@ body {
   display: flex;
   flex-direction: row;
   float: right;
-  margin-top: 4rem; }
+  margin-top: 2rem;
+  margin-right: 43%; }
 
 .page_identifier {
   color: #fff;
-  background-color: #282838;
+  background-color: darkslateblue;
   border-radius: 3px;
-  margin: 1rem;
-  padding: 0.3rem;
-  border: 1px solid #282838; }
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #28283A;
+  width: 25px;
+  height: 25px;
+  font-weight: 700;
+  text-align: center; }
 
 .page_active {
   color: #282838;

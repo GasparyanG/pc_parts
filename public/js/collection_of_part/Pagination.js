@@ -118,6 +118,8 @@ class Pagination extends React.Component {
             return this.prepareLeftPagination(pages);
         else if (lastPage > 8 && currentPage >= lastPage - 2)
             return this.prepareRightPagination(pages);
+        else if (lastPage == firstPage)
+            return null;
         else
             return this.prepareRegularPagination(pages);
     }
