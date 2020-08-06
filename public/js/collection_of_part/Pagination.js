@@ -28,8 +28,8 @@ class Pagination extends React.Component {
 
     prepareCenterPagination = (pages) => {
         const pages_meta = [
+            {tag_type: "p", page_number: 0, class_name: "page_identifier"},
             {tag_type: "p", page_number: 1, class_name: "page_identifier"},
-            {tag_type: "p", page_number: 2, class_name: "page_identifier"},
             {tag_type: "div", class_name: "pagination-dots"},
             {tag_type: "p", page_number: pages.prev_page, class_name: "page_identifier"},
             {tag_type: "p", page_number: pages.current_page, class_name: "page_identifier page_active"},
@@ -66,8 +66,8 @@ class Pagination extends React.Component {
 
     prepareRightPagination = (pages) => {
         const pages_meta = [
+            {tag_type: "p", page_number: 0, class_name: "page_identifier"},
             {tag_type: "p", page_number: 1, class_name: "page_identifier"},
-            {tag_type: "p", page_number: 2, class_name: "page_identifier"},
             {tag_type: "div", class_name: "pagination-dots"},
         ];
 

@@ -33,7 +33,7 @@ class Links
     /**
      * @var int
      */
-    public static $size = 5;
+    public static $size = 25;
 
     /**
      * @var EntityManager
@@ -112,7 +112,7 @@ class Links
             $queryParams[Resource::PAGE] = $this->defaults();
 
         // compute last
-        $last = round($this->total / self::$size);
+        $last = round($this->total / self::$size) - 1;
 
         $queryParams[Resource::PAGE][Resource::PAGE_NUMBER] = $last;
         return $this->prepareUri($queryParams);
