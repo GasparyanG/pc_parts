@@ -11,14 +11,16 @@
 #navigation .products-drop-down-bt {
   cursor: pointer;
   align-self: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   float: right;
+  display: flex;
 }
 
 .drop-state-arr {
   color: yellowgreen;
   font-size: 20px;
+  margin-left: 0.5rem;
 }
 
 
@@ -60,4 +62,17 @@
 
 #products-drop-down .parts .part_repr:hover {
   @extend .border_and_transition;
+}
+
+
+// navigation icons
+.icon-cont {
+  display: flex;
+}
+
+.nav-icon {
+  fill: grey;
+  width: 22px;
+  margin-right: 0.5rem;
+  align-self: center;
 }

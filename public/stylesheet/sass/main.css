@@ -14,13 +14,15 @@
 #navigation .products-drop-down-bt {
   cursor: pointer;
   align-self: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  float: right; }
+  float: right;
+  display: flex; }
 
 .drop-state-arr {
   color: yellowgreen;
-  font-size: 20px; }
+  font-size: 20px;
+  margin-left: 0.5rem; }
 
 #products-drop-down {
   background-color: #282838;
@@ -50,6 +52,15 @@
   width: 150px;
   height: 150px;
   border: 2px solid #323549; }
+
+.icon-cont {
+  display: flex; }
+
+.nav-icon {
+  fill: grey;
+  width: 22px;
+  margin-right: 0.5rem;
+  align-self: center; }
 
 body {
   margin: 0;
