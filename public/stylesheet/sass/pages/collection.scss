@@ -6,17 +6,22 @@
 }
 
 #collection-of-part .product-name img {
-  width: $coll_row_width;
+  max-height: $coll_row_width;
   margin-right: 1rem;
   margin-left: 1rem;
 }
 
 #collection-of-part .product-table .product-row td {
-  border-bottom: 1px solid $dark_mode;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.product-row {
+  font-size: 15px;
+  font-weight: 400;
 }
 
 #collection-of-part .product-table .product-table-header {
-  border-bottom: 1px solid $dark_mode;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
   padding-bottom: 1rem;
   color: rgba(0,0,0,0.5);
 }

@@ -152,15 +152,19 @@ body {
   font-weight: 500; }
 
 #collection-of-part .product-name img {
-  width: 70px;
+  max-height: 70px;
   margin-right: 1rem;
   margin-left: 1rem; }
 
 #collection-of-part .product-table .product-row td {
-  border-bottom: 1px solid #282838; }
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+
+.product-row {
+  font-size: 15px;
+  font-weight: 400; }
 
 #collection-of-part .product-table .product-table-header {
-  border-bottom: 1px solid #282838;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 1rem;
   color: rgba(0, 0, 0, 0.5); }
 
