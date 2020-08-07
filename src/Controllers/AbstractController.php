@@ -36,7 +36,7 @@ abstract class AbstractController
         // response with api or not
         $api = $req->query->get(self::API);
         if ((bool)$api !== true) {
-            return Response::create((new Twig())->render("collection_of_part.html.twig"));
+            return Response::create((new Twig())->render("collection_of_part.html.twig", ["not_home" => true]));
         } else {
             $composer = new static::$composer(new static::$handler(), $req->query);
             $composer->assembleCollection();
