@@ -36,7 +36,9 @@ class PcPart extends React.Component {
         return  (
             <tr className="product-row">
                 <td className="product-name">
-                    <img src={resource.attributes[TopLevelResource.image_key]} alt=""/>
+                    <div className="img-container">
+                        <img src={resource.attributes[TopLevelResource.image_key]} alt=""/>
+                    </div>
                     {resource.attributes[TopLevelResource.name_key]}
                 </td>
                 <Fields etl_fields={resource}/>

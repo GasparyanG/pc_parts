@@ -7,8 +7,14 @@
 
 #collection-of-part .product-name img {
   max-height: $coll_row_width;
-  margin-right: 1rem;
+}
+
+.img-container {
+  margin-right: 3rem;
   margin-left: 1rem;
+  width: 70px;
+  height: 70px;
+  color: #FFF;
 }
 
 #collection-of-part .product-table .product-row td {

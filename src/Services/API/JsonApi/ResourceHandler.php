@@ -31,6 +31,7 @@ abstract class ResourceHandler
      * @var string
      */
     public static $partImageDirectory = "/public/photos/product";
+    public static $defaultImage = "public/photos/default/no-image.png";
 
     /**
      * @var null|string
@@ -101,7 +102,7 @@ abstract class ResourceHandler
         if (static::$imageEntityName) {
             $imageRepo = $this->em->getRepository(static::$imageEntityName);
             $imageFileName = $imageRepo->findImageName($id, static::$assocName);
-            $attr[self::IMAGE] = $imageFileName ? self::$partImageDirectory . "/" . $imageFileName: null;
+            $attr[self::IMAGE] = $imageFileName ? self::$partImageDirectory . "/" . $imageFileName: self::$defaultImage;
         }
 
         return $attr;
