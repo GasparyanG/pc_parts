@@ -56,3 +56,21 @@
 .filter-pinter {
   cursor: pointer;
 }
+
+.filters-header {
+  font-size: 25px;
+  font-weight: 700;
+  width: 70%;
+  border-bottom: 1px solid black;
+  padding-bottom: .5rem;
+}
+
+.product-coll-header {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  background-color: darkslateblue;
+  color: $light_mode;
+  padding: 2rem;
+  width: 99vw;
+}

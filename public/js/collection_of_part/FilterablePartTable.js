@@ -47,15 +47,23 @@ class FilterablePartTable extends React.Component {
     render() {
         this.getData();
 
-        return (<div className="table-and-filtration">
-            <div id="filtration">
-                <PartFiltration meta={this.state.collection.meta} dispatch={this.props.dispatch}/>
+        return (
+            <div>
+                <div className="product-coll-header">
+                    Choose A PC Case
+                </div>
+                <div className="table-and-filtration">
+                    <div id="filtration">
+                        <div className="filters-header">Filters</div>
+                        <PartFiltration meta={this.state.collection.meta} dispatch={this.props.dispatch}/>
+                    </div>
+                    <div className="part-collection">
+                        <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
+                        <Pagination link={this.state.links} dispatch={this.props.dispatch} />
+                    </div>
+                </div>
             </div>
-            <div className="part-collection">
-                <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
-                <Pagination link={this.state.links} dispatch={this.props.dispatch} />
-            </div>
-        </div>);
+        );
     }
 }
 

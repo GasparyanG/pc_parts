@@ -11,7 +11,8 @@ body {
   margin: 0;
   font-family: "sf pro display","segoe ui","Roboto","Oxygen-Sans","Ubuntu","Cantarell","helvetica neue", "sans-serif";
   background-color: #fff;
-  color: #282838; }
+  color: #282838;
+  overflow-x: hidden; }
 
 .page_hint_message {
   text-align: center;
@@ -189,5 +190,21 @@ body {
 
 .filter-pinter {
   cursor: pointer; }
+
+.filters-header {
+  font-size: 25px;
+  font-weight: 700;
+  width: 70%;
+  border-bottom: 1px solid black;
+  padding-bottom: .5rem; }
+
+.product-coll-header {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  background-color: darkslateblue;
+  color: #fff;
+  padding: 2rem;
+  width: 99vw; }
 
 /*# sourceMappingURL=main.css.map */
