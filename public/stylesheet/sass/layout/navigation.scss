@@ -2,4 +2,62 @@
   height: $navigation_height;
   background-color: $nav_bar_color;
   display: flex;
+  color: $light_mode;
+  justify-content: space-between;
+  padding-left: $distance_from_left;
+  padding-right: $distance_from_left;
+}
+
+#navigation .products-drop-down-bt {
+  cursor: pointer;
+  align-self: center;
+  font-size: 20px;
+  font-weight: 600;
+  float: right;
+}
+
+.drop-state-arr {
+  color: yellowgreen;
+  font-size: 20px;
+}
+
+
+// Products dropdown
+#products-drop-down {
+  //display: flex;
+  background-color: $dark_mode;
+  width: 100vw;
+  position: absolute;
+  top: #{$navigation_height};
+  z-index: 1;
+  height: 325px;
+  color: $light_mode;
+}
+
+#products-drop-down .parts {
+  display: flex;
+  width: 80%;
+  margin-left: 10%;
+}
+
+#products-drop-down .parts img {
+  width: 75px;
+}
+
+#products-drop-down .parts a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#products-drop-down .part_repr {
+  margin: 1rem;
+  background: #323549;
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #323549;
+}
+
+#products-drop-down .parts .part_repr:hover {
+  @extend .border_and_transition;
 }

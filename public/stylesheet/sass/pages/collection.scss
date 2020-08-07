@@ -6,15 +6,21 @@
 }
 
 #collection-of-part .product-name img {
-  max-height: $coll_row_width;
+  width: $coll_row_width;
+  align-self: center;
 }
 
 .img-container {
+  display: flex;
+  justify-content: center;
   margin-right: 3rem;
   margin-left: 1rem;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   color: #FFF;
+  background-color: #FFF;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 #collection-of-part .product-table .product-row td {

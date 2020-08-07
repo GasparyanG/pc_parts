@@ -1,11 +1,55 @@
-.border_and_transition, #home_page .parts .part_repr:hover {
+.border_and_transition, #products-drop-down .parts .part_repr:hover, #home_page .parts .part_repr:hover {
   transition: 3ms;
   border: 2px solid beige; }
 
 #navigation {
   height: 100px;
   background-color: #191b2b;
-  display: flex; }
+  display: flex;
+  color: #fff;
+  justify-content: space-between;
+  padding-left: 3rem;
+  padding-right: 3rem; }
+
+#navigation .products-drop-down-bt {
+  cursor: pointer;
+  align-self: center;
+  font-size: 20px;
+  font-weight: 600;
+  float: right; }
+
+.drop-state-arr {
+  color: yellowgreen;
+  font-size: 20px; }
+
+#products-drop-down {
+  background-color: #282838;
+  width: 100vw;
+  position: absolute;
+  top: 100px;
+  z-index: 1;
+  height: 325px;
+  color: #fff; }
+
+#products-drop-down .parts {
+  display: flex;
+  width: 80%;
+  margin-left: 10%; }
+
+#products-drop-down .parts img {
+  width: 75px; }
+
+#products-drop-down .parts a {
+  text-decoration: none;
+  color: #fff; }
+
+#products-drop-down .part_repr {
+  margin: 1rem;
+  background: #323549;
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #323549; }
 
 body {
   margin: 0;
@@ -23,8 +67,7 @@ body {
   color: #fff;
   font-weight: 700;
   font-size: 25px;
-  align-self: center;
-  margin-left: 3rem; }
+  align-self: center; }
 
 .pagination {
   display: flex;
@@ -114,6 +157,14 @@ body {
 .show-less-or-more:hover {
   color: blue; }
 
+.show {
+  display: block;
+  transition: 0.7s; }
+
+.hide {
+  display: none;
+  transition: 0.7s; }
+
 #home_page {
   height: calc(100vh - 100px);
   background-color: #282838;
@@ -152,14 +203,20 @@ body {
   font-weight: 500; }
 
 #collection-of-part .product-name img {
-  max-height: 70px; }
+  width: 50px;
+  align-self: center; }
 
 .img-container {
+  display: flex;
+  justify-content: center;
   margin-right: 3rem;
   margin-left: 1rem;
-  width: 70px;
-  height: 70px;
-  color: #FFF; }
+  width: 60px;
+  height: 60px;
+  color: #FFF;
+  background-color: #FFF;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem; }
 
 #collection-of-part .product-table .product-row td {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
