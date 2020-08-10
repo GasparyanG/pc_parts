@@ -6,6 +6,42 @@ import PartCollection from "./PartCollection"
 import QueryHandler from "./QueryHandler"
 import PartFiltration from "./PartFiltration"
 
+function handleOnWindowResize()
+{
+    let w = document.documentElement.clientWidth;
+    let filtrationEl = document.querySelector("#filtration");
+    let partCollection = document.querySelector(".part-collection");
+
+    if (w > 600) {
+        filtrationEl.classList.remove("show");
+        filtrationEl.style.display = "block";
+        partCollection.style.display = "block";
+    } else if (w <= 600) {
+        filtrationEl.classList.remove("show");
+        filtrationEl.style.display = "none";
+        partCollection.style.display = "block";
+    }
+}
+
+function showFilters()
+{
+    window.onresize = handleOnWindowResize;
+
+    let filtrationEl = document.querySelector("#filtration");
+    let partCollection = document.querySelector(".part-collection");
+    if (!filtrationEl) return;
+
+    if (filtrationEl.classList.contains("show")) {
+        filtrationEl.style.display = "none";
+        filtrationEl.classList.remove("show");
+        partCollection.style.display = "block";
+    } else {
+        filtrationEl.style.display = "block";
+        filtrationEl.classList.add("show");
+        partCollection.style.display = "none";
+    }
+}
+
 class FilterablePartTable extends React.Component {
     constructor(props) {
         super(props);
@@ -51,6 +87,14 @@ class FilterablePartTable extends React.Component {
             <div>
                 <div className="product-coll-header">
                     Choose A PC Case
+                </div>
+                <div className="filters_and_order">
+                    <div onClick={showFilters} className="filter-button">
+                        Filters
+                    </div>
+                    <div className="order-button">
+                        Order
+                    </div>
                 </div>
                 <div className="table-and-filtration">
                     <div id="filtration">

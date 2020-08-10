@@ -91,3 +91,39 @@
   padding: 2rem;
   width: 99vw;
 }
+
+// hide me only when max-width is more than 600px
+.filters_and_order {
+  display: none;
+}
+
+// responsiveness
+@media only screen and (max-width: 600px)
+{
+  #filtration {
+    position: absolute;
+    height: auto;
+    width: 90vw;
+    background-color: $light_mode;
+    color: $dark_mode;
+    display: none;
+    margin-bottom: 2rem;
+  }
+
+  .filters_and_order {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .filters_and_order > div {
+    padding: 0.2rem;
+    border: 2px solid darkslateblue;
+    color: darkslateblue;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 35%;
+    text-align: center;
+  }
+}
