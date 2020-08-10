@@ -90,28 +90,42 @@ class Fields extends React.Component {
         const meta = resource.meta;
 
         const values = Object.values(meta[TopLevelResource.essential_fields_key]);
+        const keys = Object.keys(meta[TopLevelResource.essential_fields_key]);
 
         delete values[0];
 
         let i=0;
-        const rowData = values.map(function(key) {
+        const rowData = values.map(function(key, i) {
+            --i;    // because of value dleletion (see above)
             if (!resource.attributes[key[Resource.entity_attribute_key]]) {
                 if (key[Resource.default_key]) {
                     return (<td key={++i}>
-                        {key[Resource.default_key]}
+                        <span className="field-name">{keys[i]}:</span>
+                        <span>
+                            {key[Resource.default_key]}
+                        </span>
                     </td>);
                 } else {
                     return (<td key={++i}>
-                        ---
+                        <span className="field-name">{keys[i]}:</span>
+                        <span>
+                            ---
+                        </span>
                     </td>);
                 }
             } else if (key[Resource.sql_query_key] === Resource.price_value) {
                 return (<td key={++i}>
-                    {key[Resource.unit_key]}{resource.attributes[key[Resource.entity_attribute_key]] }
+                    <span className="field-name">{keys[i]}:</span>
+                    <span>
+                        {key[Resource.unit_key]}{resource.attributes[key[Resource.entity_attribute_key]] }
+                    </span>
                 </td>);
             } else {
                 return (<td key={++i}>
-                    {resource.attributes[key[Resource.entity_attribute_key]] } {key[Resource.unit_key]}
+                    <span className="field-name">{keys[i]}:</span>
+                    <span>
+                        {resource.attributes[key[Resource.entity_attribute_key]] } {key[Resource.unit_key]}
+                    </span>
                 </td>);
             }
         });
