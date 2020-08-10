@@ -89,4 +89,40 @@ function showMore(fieldName) {
     }
 }
 
-export { showMore, hideFilter, composeClassName, hideFilterClassNames, showLessOrMoreClassNames };
+function handleOnWindowResize()
+{
+    let w = document.documentElement.clientWidth;
+    let filtrationEl = document.querySelector("#filtration");
+    let partCollection = document.querySelector(".part-collection");
+
+    if (w > 600) {
+        filtrationEl.classList.remove("show");
+        filtrationEl.style.display = "block";
+        partCollection.style.display = "block";
+    } else if (w <= 600) {
+        filtrationEl.classList.remove("show");
+        filtrationEl.style.display = "none";
+        partCollection.style.display = "block";
+    }
+}
+
+function showFilters()
+{
+    window.onresize = handleOnWindowResize;
+
+    let filtrationEl = document.querySelector("#filtration");
+    let partCollection = document.querySelector(".part-collection");
+    if (!filtrationEl) return;
+
+    if (filtrationEl.classList.contains("show")) {
+        filtrationEl.style.display = "none";
+        filtrationEl.classList.remove("show");
+        partCollection.style.display = "block";
+    } else {
+        filtrationEl.style.display = "block";
+        filtrationEl.classList.add("show");
+        partCollection.style.display = "none";
+    }
+}
+
+export { showMore, hideFilter, composeClassName, hideFilterClassNames, showLessOrMoreClassNames, showFilters };
