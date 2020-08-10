@@ -5,7 +5,7 @@ import Pagination from "./Pagination"
 import PartCollection from "./PartCollection"
 import QueryHandler from "./QueryHandler"
 import PartFiltration from "./PartFiltration"
-import { showFilters } from "./collection_helper_functions"
+import { showFilters, showOrderings } from "./collection_helper_functions"
 
 class FilterablePartTable extends React.Component {
     constructor(props) {
@@ -57,7 +57,7 @@ class FilterablePartTable extends React.Component {
                     <div onClick={showFilters} className="filter-button">
                         Filters
                     </div>
-                    <div className="order-button">
+                    <div onClick={showOrderings} className="order-button">
                         Order
                     </div>
                 </div>

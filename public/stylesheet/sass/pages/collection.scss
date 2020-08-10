@@ -100,6 +100,32 @@
 // responsiveness
 @media only screen and (max-width: 600px)
 {
+  .product-row {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight: 400;
+    border: 2px solid darkslateblue;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #collection-of-part .product-table .product-row td {
+    border-bottom: none;
+  }
+
+  .orderings {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  #collection-of-part .product-table .product-table-header {
+    border-bottom: none;
+    text-align: center;
+  }
+
   #filtration {
     position: absolute;
     height: auto;

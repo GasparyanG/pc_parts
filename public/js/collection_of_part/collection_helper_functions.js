@@ -94,14 +94,17 @@ function handleOnWindowResize()
     let w = document.documentElement.clientWidth;
     let filtrationEl = document.querySelector("#filtration");
     let partCollection = document.querySelector(".part-collection");
+    let orderEl = document.querySelector(".orderings");
 
     if (w > 600) {
         filtrationEl.classList.remove("show");
         filtrationEl.style.display = "block";
+        orderEl.style.display = "table-row";
         partCollection.style.display = "block";
     } else if (w <= 600) {
         filtrationEl.classList.remove("show");
         filtrationEl.style.display = "none";
+        orderEl.style.display = "none";
         partCollection.style.display = "block";
     }
 }
@@ -125,4 +128,28 @@ function showFilters()
     }
 }
 
-export { showMore, hideFilter, composeClassName, hideFilterClassNames, showLessOrMoreClassNames, showFilters };
+function showOrderings()
+{
+    window.onresize = handleOnWindowResize;
+
+    let orderEl = document.querySelector(".orderings");
+    if (!orderEl) return;
+
+    if (orderEl.classList.contains("show")) {
+        orderEl.style.display = "none";
+        orderEl.classList.remove("show");
+    } else {
+        orderEl.style.display = "flex";
+        orderEl.classList.add("show");
+    }
+}
+
+export {
+    showMore,
+    hideFilter,
+    composeClassName,
+    hideFilterClassNames,
+    showLessOrMoreClassNames,
+    showFilters,
+    showOrderings
+};

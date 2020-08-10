@@ -76,7 +76,7 @@ class TableHeader extends React.Component {
                 className="product-table-header product-data" key={++i}>{key}
             </th>);
 
-        return (<tr>{headers}</tr>);
+        return (<tr className="orderings">{headers}</tr>);
     }
 }
 
