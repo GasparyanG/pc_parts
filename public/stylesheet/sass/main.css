@@ -94,9 +94,7 @@ a {
 .pagination {
   display: flex;
   flex-direction: row;
-  float: right;
-  margin-top: 2rem;
-  margin-right: 43%; }
+  margin-top: 2rem; }
 
 .page_identifier {
   color: #fff;
@@ -274,7 +272,10 @@ a {
   flex: 2; }
 
 #collection-of-part .table-and-filtration .part-collection {
-  flex: 5; }
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 .filter-pinter {
   cursor: pointer; }
@@ -292,8 +293,7 @@ a {
   text-align: center;
   background-color: darkslateblue;
   color: #fff;
-  padding: 2rem;
-  width: 99vw; }
+  padding: 2rem; }
 
 .filters_and_order {
   display: none; }
