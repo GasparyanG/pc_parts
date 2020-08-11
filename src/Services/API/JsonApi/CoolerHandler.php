@@ -21,6 +21,11 @@ class CoolerHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "CPU Cooler";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = Cooler::class;
 
     /**

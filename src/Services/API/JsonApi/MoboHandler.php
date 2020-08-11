@@ -26,6 +26,11 @@ class MoboHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "Motherboard";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = Motherboard::class;
 
     /**

@@ -26,6 +26,11 @@ class PcCaseHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "PC Case";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = PcCase::class;
 
     /**

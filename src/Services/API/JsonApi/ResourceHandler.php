@@ -18,6 +18,11 @@ abstract class ResourceHandler
     const IMAGE = "image";
 
     /**
+     * @var string
+     */
+    protected static $partName = "Part";
+
+    /**
      * @var null|string
      */
     public static $entityName = null;
@@ -204,6 +209,7 @@ abstract class ResourceHandler
     {
         $meta = new Metadata();
         $meta->setEssentialFields(static::$essentialFields);
+        $meta->setPart(static::$partName);
 
         // filtration preparation
         $this->filtrationData($meta);

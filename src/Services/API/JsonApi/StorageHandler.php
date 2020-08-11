@@ -20,6 +20,11 @@ class StorageHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "Storage";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = Storage::class;
 
     /**

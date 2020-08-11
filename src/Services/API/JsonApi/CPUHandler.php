@@ -25,6 +25,11 @@ class CPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "CPU";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = Cpu::class;
 
     /**

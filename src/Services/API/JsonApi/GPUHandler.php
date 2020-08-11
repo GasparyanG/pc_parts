@@ -25,6 +25,11 @@ class GPUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "Video Card";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = VideoCard::class;
 
     /**

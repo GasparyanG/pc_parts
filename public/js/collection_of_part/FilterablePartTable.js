@@ -48,10 +48,14 @@ class FilterablePartTable extends React.Component {
     render() {
         this.getData();
 
+        let part = "Part";
+        if (this.state.collection.meta)
+            part = this.state.collection.meta.part;
+
         return (
             <div>
                 <div className="product-coll-header">
-                    Choose A PC Case
+                    Choose A {part}
                 </div>
                 <div className="filters_and_order">
                     <div onClick={showFilters} className="filter-button">

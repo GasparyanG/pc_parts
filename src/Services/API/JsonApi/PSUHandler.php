@@ -21,6 +21,11 @@ class PSUHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "Power Supply";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = PowerSupply::class;
 
     /**

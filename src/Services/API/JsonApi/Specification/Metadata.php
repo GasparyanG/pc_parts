@@ -8,6 +8,7 @@ class Metadata
 {
     const ESSENTIAL_FIELDS = "essential_fields";
     const FILTRATION = "filtration";
+    const PART = "part";
 
     // Meant for filtration
     const COLLECTION = "collection";
@@ -30,6 +31,11 @@ class Metadata
     const OPERATOR = "operator";
 
     /**
+     * @var string|null
+     */
+    private $part = "Part";
+
+    /**
      * @var array
      */
     private $essentialFields = [];
@@ -46,6 +52,7 @@ class Metadata
 
     public function arrayRepresentation(): void
     {
+        $this->representation[self::PART] = $this->part;
         $this->representation[self::ESSENTIAL_FIELDS] = $this->essentialFields;
         $this->representation[self::FILTRATION] = $this->filtration;
     }
@@ -86,5 +93,21 @@ class Metadata
     public function setRepresentation(array $representation): void
     {
         $this->representation = $representation;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPart(): ?string
+    {
+        return $this->part;
+    }
+
+    /**
+     * @param string|null $part
+     */
+    public function setPart(?string $part): void
+    {
+        $this->part = $part;
     }
 }

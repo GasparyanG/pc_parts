@@ -22,6 +22,11 @@ class MemoryHandler extends ResourceHandler
     /**
      * {@inheritDoc}
      */
+    protected static $partName = "Memory";
+
+    /**
+     * {@inheritDoc}
+     */
     public static $entityName = Memory::class;
 
     /**
