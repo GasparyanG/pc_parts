@@ -17,14 +17,14 @@
   margin-left: 1rem;
   width: 60px;
   height: 60px;
-  color: #FFF;
-  background-color: #FFF;
+  color: $light_mode;
+  background-color: $light_mode;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
 }
 
 #collection-of-part .product-table .product-row td {
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid $border_main_color;
 }
 
 .product-row {
@@ -33,7 +33,7 @@
 }
 
 #collection-of-part .product-table .product-table-header {
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-bottom: 1px solid $border_main_color;
   padding-bottom: 1rem;
   color: rgba(0,0,0,0.5);
 }
@@ -81,7 +81,7 @@
   font-size: 25px;
   font-weight: 700;
   width: 70%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $border_main_color;
   padding-bottom: .5rem;
 }
 
@@ -89,7 +89,7 @@
   font-size: 30px;
   font-weight: 700;
   text-align: center;
-  background-color: darkslateblue;
+  background-color: $outline_color;
   color: $light_mode;
   padding: 2rem;
 }
@@ -103,15 +103,47 @@
   display: none;
 }
 
+// no product found
+.no-products-reporting {
+  display: flex;
+  font-size: 30px;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.no-products-action {
+  color: $dark_mode;
+  margin-left: 3rem;
+  border-radius: 8px;
+  border: 2px solid $outline_color;
+  padding: 0.3rem;
+  font-size: 20px;
+}
+
+.no-products-action:hover {
+  background-color: $outline_color;
+  color: $light_mode;
+}
+
 // responsiveness
 @media only screen and (max-width: 600px)
 {
+  .no-products-reporting {
+    font-size: 20px;
+  }
+
+  .no-products-action {
+    font-size: 15px;
+  }
+
   .product-row {
     display: flex;
     flex-direction: column;
     font-size: 15px;
     font-weight: 400;
-    border: 2px solid darkslateblue;
+    border: 2px solid $outline_color;
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -150,8 +182,8 @@
 
   .filters_and_order > div {
     padding: 0.2rem;
-    border: 2px solid darkslateblue;
-    color: darkslateblue;
+    border: 2px solid $outline_color;
+    color: $outline_color;
     font-weight: 500;
     border-radius: 8px;
     cursor: pointer;

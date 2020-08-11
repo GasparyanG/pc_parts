@@ -15,6 +15,7 @@ class FilterablePartTable extends React.Component {
         this.state = {
             collection: new TopLevelResource([]),
             links: new Link([]),
+            initial_loading: true
         }
     }
 
@@ -36,7 +37,8 @@ class FilterablePartTable extends React.Component {
                 if (self.state.links.self !== newLinks.self)
                     self.setState({
                         collection: new TopLevelResource(result),
-                        links: newLinks
+                        links: newLinks,
+                        initial_loading: false
                     });
             },
             error: function(er) {
@@ -51,6 +53,19 @@ class FilterablePartTable extends React.Component {
         let part = "Part";
         if (this.state.collection.meta)
             part = this.state.collection.meta.part;
+
+        if (!this.state.initial_loading && !this.state.collection.meta) {
+            return (
+                <div className="no-products-reporting">
+                    <div className="no-products-message">
+                        No Products Found
+                    </div>
+                    <a href="" className="no-products-action">
+                        Reset Filters
+                    </a>
+                </div>
+            );
+        }
 
         return (
             <div>
