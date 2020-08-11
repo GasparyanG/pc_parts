@@ -68,15 +68,9 @@ class FilterablePartTable extends React.Component {
             filtersHeader = "Filters"
         }
 
-        let partCollection = (
-            <div>
-                <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
-                <Pagination link={this.state.links} dispatch={this.props.dispatch} />
-            </div>
-        );
-
+        let noProductNotification = <div></div>;
         if (!this.state.initial_loading && !this.state.collection.data) {
-            partCollection = (
+            noProductNotification = (
                 <div className="no-products-reporting">
                     <div className="no-products-message">
                         No Products Found
@@ -107,7 +101,11 @@ class FilterablePartTable extends React.Component {
                         <PartFiltration meta={this.state.collection.meta} dispatch={this.props.dispatch}/>
                     </div>
                     <div className="part-collection">
-                        {partCollection}
+                        <div>
+                            {noProductNotification}
+                        </div>
+                        <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
+                        <Pagination link={this.state.links} dispatch={this.props.dispatch} />
                     </div>
                 </div>
             </div>
