@@ -35,11 +35,22 @@ class FilterablePartTable extends React.Component {
                 // Don't rerender already fetched data
                 var newLinks = new Link(result);
                 if (self.state.links.self !== newLinks.self)
-                    self.setState({
-                        collection: new TopLevelResource(result),
-                        links: newLinks,
-                        initial_loading: false
-                    });
+                    if (result == false) {
+                        // top level resource preparation
+                        let topLevelRs = new TopLevelResource(result);
+                        topLevelRs.meta = self.state.collection.meta;
+
+                        self.setState({
+                            collection: topLevelRs,
+                            links: newLinks
+                        });
+                    }
+                    else
+                        self.setState({
+                            collection: new TopLevelResource(result),
+                            links: newLinks,
+                            initial_loading: false
+                        });
             },
             error: function(er) {
                 console.log("Something went wrong");
@@ -57,8 +68,15 @@ class FilterablePartTable extends React.Component {
             filtersHeader = "Filters"
         }
 
-        if (!this.state.initial_loading && !this.state.collection.meta) {
-            return (
+        let partCollection = (
+            <div>
+                <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
+                <Pagination link={this.state.links} dispatch={this.props.dispatch} />
+            </div>
+        );
+
+        if (!this.state.initial_loading && !this.state.collection.data) {
+            partCollection = (
                 <div className="no-products-reporting">
                     <div className="no-products-message">
                         No Products Found
@@ -89,8 +107,7 @@ class FilterablePartTable extends React.Component {
                         <PartFiltration meta={this.state.collection.meta} dispatch={this.props.dispatch}/>
                     </div>
                     <div className="part-collection">
-                        <PartCollection collection={this.state.collection} dispatch={this.props.dispatch}/>
-                        <Pagination link={this.state.links} dispatch={this.props.dispatch} />
+                        {partCollection}
                     </div>
                 </div>
             </div>

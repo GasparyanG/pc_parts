@@ -17,6 +17,8 @@ class TopLevelResource {
     get data() { return this._data; }
     get meta() { return this._meta; }
 
+    set meta(meta) { this._meta = meta; }
+
     // TODO: get top level components
 }
 
