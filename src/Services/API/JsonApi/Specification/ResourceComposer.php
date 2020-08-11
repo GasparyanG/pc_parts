@@ -70,9 +70,11 @@ abstract class ResourceComposer
     public function assembleCollection(): void
     {
         // get entities
-        $links = new Links(static::$entityName, $this->queryBag);
         $fetcher = new Fetcher(static::$entityName, $this->queryBag);
         $entities = $fetcher->getEntities();
+
+        $fetcher = new Fetcher(static::$entityName, $this->queryBag);
+        $links = new Links(static::$entityName, $this->queryBag, $fetcher->count());
 
         // there may be no entity at all
         if (!$entities) return;

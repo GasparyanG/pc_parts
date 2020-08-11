@@ -51,6 +51,15 @@ class Fetcher
         $this->query = "";
     }
 
+    public function count(): ?int
+    {
+        $this->select(true);
+        $this->joins();
+        $this->filter();
+        $this->order();
+        return $this->amountOfRecords();
+    }
+
     public function getEntities(): iterable
     {
         $this->select();
@@ -61,9 +70,12 @@ class Fetcher
         return $this->find();
     }
 
-    private function select(): void
+    private function select(bool $count = false): void
     {
-        $this->query .= "select " . self::ALIAS . ".* from "
+        $select = self::ALIAS . ".* ";
+        if ($count)
+            $select = "count(" . self::ALIAS . ".id) as amount ";
+        $this->query .= "select " . $select . " from "
             . $this->em->getClassMetadata($this->entityName)->getTableName()
             . " as " . self::ALIAS;
     }
@@ -97,6 +109,19 @@ class Fetcher
         if ($links->getOffset())
             $this->query .= $links->getOffset() . ',';
         $this->query .= $links->getSize();
+    }
+
+    private function amountOfRecords(): ?int
+    {
+        try {
+            $rsm = new ResultSetMappingBuilder($this->em);
+            $rsm->addRootEntityFromClassMetadata($this->entityName, self::ALIAS);
+
+            $res = $this->em->getConnection()->query($this->query)->fetch();
+            return $res["amount"];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     private function find(): iterable

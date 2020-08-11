@@ -65,13 +65,17 @@ class Links
      */
     private $request;
 
-    public function __construct(string $entityName, ParameterBag $queryBag)
+    public function __construct(string $entityName, ParameterBag $queryBag, int $total = null)
     {
         $this->em = Connection::getEntityManager();
         $this->entityName = $entityName;
         $this->queryBag = $queryBag;
         $this->request = Request::createFromGlobals();
-        $this->total = $this->em->getRepository($this->entityName)->total();
+
+        if (!$total)
+            $this->total = $this->em->getRepository($this->entityName)->total();
+        else
+            $this->total = $total;
 
         $this->preparePageAndSize();
     }
