@@ -51,8 +51,11 @@ class FilterablePartTable extends React.Component {
         this.getData();
 
         let part = "Part";
-        if (this.state.collection.meta)
+        let filtersHeader = "";
+        if (this.state.collection.meta) {
             part = this.state.collection.meta.part;
+            filtersHeader = "Filters"
+        }
 
         if (!this.state.initial_loading && !this.state.collection.meta) {
             return (
@@ -82,7 +85,7 @@ class FilterablePartTable extends React.Component {
                 </div>
                 <div className="table-and-filtration">
                     <div id="filtration">
-                        <div className="filters-header">Filters</div>
+                        <div className="filters-header">{filtersHeader}</div>
                         <PartFiltration meta={this.state.collection.meta} dispatch={this.props.dispatch}/>
                     </div>
                     <div className="part-collection">
