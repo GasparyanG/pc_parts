@@ -19,6 +19,14 @@ abstract class ResourceHandler
     const RETAILER = "retailer";
     const URL = "url";
 
+    // Retailers
+    const WALMART = 2;
+    const AMAZON = 3;
+    const NEWEGG = 4;
+    const BANDH = 5;
+
+    public static $retailerLogoDir = "/public/photos/retailers";
+
     /**
      * @var string
      */
@@ -103,7 +111,10 @@ abstract class ResourceHandler
             $priceInfo = $priceRepo->findLastLowestPrice($id, static::$assocName);
 
             $attr[self::PRICE] = $priceInfo[self::PRICE] ?? null;
-            $attr[self::RETAILER] = $priceInfo["retailer_id"] ?? null;
+
+            $ret = $priceInfo["retailer"] ?? null;
+            $attr[self::RETAILER] = $this->prepareRetailerLogoUrl($ret);
+
             $attr[self::URL] = $priceInfo[self::URL] ?? null;
         }
 
@@ -288,5 +299,24 @@ abstract class ResourceHandler
             Metadata::FIELD => "sli_crossfire",
             Metadata::OPERATOR => strtolower(FilterImplementer::IN)
         ]);
+    }
+
+    protected function prepareRetailerLogoUrl(?string $retailerId): ?string
+    {
+        if (!$retailerId)
+            return null;
+
+        switch($retailerId) {
+            case self::WALMART:
+                return self::$retailerLogoDir . "/walmart_logo.jpg";
+            case self::AMAZON:
+                return self::$retailerLogoDir . "/amazon_logo.png";
+            case self::NEWEGG:
+                return self::$retailerLogoDir . "/newegg_logo.png";
+            case self::BANDH:
+                return self::$retailerLogoDir . "/bandh_logo.png";
+            default:
+                return null;
+        }
     }
 }
