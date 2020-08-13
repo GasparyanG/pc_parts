@@ -38,13 +38,14 @@ class NewEgg extends AbstractRetailerCrawler
         $request = new Request('GET', $this->prepareSearchUrl($searchTerm), self::$headers);
         $response = $this->client->send($request);
 
-        $crawler = new Crawler($response->getBody()->getContents());
+        $crawler = new Crawler($response->getBody()->getContents(), self::$baseUrl);
         $crawler = $crawler->filter(".item-container");
 
         $products = $crawler->each(function(Crawler $node) {
             $dataToReturn = [];
             $dataToReturn["price"] = self::extractPrice($node);
             $dataToReturn["model_number"] = self::extractModelNumber($node);
+            $dataToReturn["url"] = self::extractLink($node);
 
             return $dataToReturn;
         });
@@ -53,6 +54,7 @@ class NewEgg extends AbstractRetailerCrawler
             if ($product["model_number"] == $searchTerm) {
                 $this->crawledData = [
                     AbstractPersistingImplementer::PRICE => $product[AbstractPersistingImplementer::PRICE],
+                    AbstractPersistingImplementer::URL => $product[AbstractPersistingImplementer::URL],
                     AbstractPersistingImplementer::RETAILER_ID => $this->retailerId(),
                     AbstractPersistingImplementer::ENTITY_ID => $entityId
                 ];
@@ -81,6 +83,13 @@ class NewEgg extends AbstractRetailerCrawler
 
         if (count($matches) > 0)
             return self::tofloat($matches[1]);
+        return null;
+    }
+
+    protected static function extractLink(Crawler $node): ?string
+    {
+        $link = $node->filter(".item-info .item-title")->link()->getUri();
+        if ($link) return $link;
         return null;
     }
 

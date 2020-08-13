@@ -36,7 +36,6 @@ class BestBuy extends AbstractRetailerCrawler
         $request = new Request("GET", $this->prepareSearchUrl($searchTerm), self::$headers);
         $response = $this->client->send($request, [RequestOptions::DELAY => self::$delay]);
 
-//        echo "At least this\n";
         var_dump($response->getBody()->getContents());
 
         // filtering of skuItems

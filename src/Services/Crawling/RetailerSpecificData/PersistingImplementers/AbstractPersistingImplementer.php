@@ -13,6 +13,7 @@ abstract class AbstractPersistingImplementer
     const PRICE = "price";
     const ENTITY_ID = "entity_id";
     const RETAILER_ID = "retailer_id";
+    const URL = "url";
 
     /**
      * @var string|null

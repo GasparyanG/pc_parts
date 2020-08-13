@@ -57,8 +57,9 @@ foreach ($abstractFactories as $abstractFactoryName) {
                 echo $e->getMessage() . "\n";
             }
 
-            $persistingImplementer = $abstractFactory->getPersistingImplementer($retailer->getCrawledData());
-            $persistingImplementer->persist();
+//            $persistingImplementer = $abstractFactory->getPersistingImplementer($retailer->getCrawledData());
+//            $persistingImplementer->persist();
+            var_dump($retailer->getCrawledData());
         }
 
         --$nth_is_crawling;

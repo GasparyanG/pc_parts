@@ -56,6 +56,7 @@ class Walmart extends AbstractRetailerCrawler
                 if ($this->processModelNumber($modelNumber) === $searchTerm) {
                     $this->crawledData = [
                         AbstractPersistingImplementer::PRICE => $product[AbstractPersistingImplementer::PRICE],
+                        AbstractPersistingImplementer::URL => $this->prepareLink($product),
                         AbstractPersistingImplementer::RETAILER_ID => $this->retailerId(),
                         AbstractPersistingImplementer::ENTITY_ID => $entityId
                     ];
@@ -123,5 +124,18 @@ class Walmart extends AbstractRetailerCrawler
     protected function extractItems(array $assocArray): array
     {
         return $assocArray["searchContent"]["preso"]["items"];
+    }
+
+    protected function prepareLink($product): ?string
+    {
+        $url = $product[AbstractPersistingImplementer::URL] ?? null;
+        if (!$url) return null;
+
+        // add base url
+        $link = $url;
+        if (strpos($url, "https://") === false)
+            $link = self::$baseUrl . $url;
+
+        return $link;
     }
 }

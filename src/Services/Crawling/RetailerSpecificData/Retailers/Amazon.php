@@ -123,8 +123,10 @@ class Amazon extends AbstractRetailerCrawler
             if ($this->titleContainsModelNumber($crawler, $link["title_x_path"], $searchTerm)) {
                 $this->crawledData = [
                     AbstractPersistingImplementer::PRICE => $link[AbstractPersistingImplementer::PRICE],
+                    AbstractPersistingImplementer::URL => $link[AbstractPersistingImplementer::URL],
                     AbstractPersistingImplementer::RETAILER_ID => $this->retailerId(),
-                    AbstractPersistingImplementer::ENTITY_ID => $entityId
+                    AbstractPersistingImplementer::ENTITY_ID => $entityId,
+
                 ];
 
                 // Item is already found.
