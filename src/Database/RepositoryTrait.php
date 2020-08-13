@@ -36,22 +36,23 @@ trait RepositoryTrait
             ->getSingleScalarResult();
     }
 
-    public function findLastLowestPrice(int $id, string $name): ?float
+    public function findLastLowestPrice(int $id, string $name): ?array
     {
         $res = null;
-        try {
-            $res = $this->createQueryBuilder('c')
-                ->select("c.price")
-                ->where('c.' . $name . '= ' . $id)
-                ->orderBy("c.date DESC")
-                ->orderBy("c.price")
-                ->setMaxResults(1)
-                ->getQuery()
-                ->getSingleScalarResult();
-        } catch (\Exception $e) {}
+        $mainTableName = $this->_em->getClassMetadata($this->_entityName)->getTableName();
 
-        if (!$res) return null;
-        return $res;
+        $name = $name . "_id";
+        $sql = <<<SQL
+select price, url, retailer_id as retailer from $mainTableName where $name = $id order by date desc, price asc limit 1
+SQL;
+
+        try {
+            $res = $this->_em->getConnection()->query($sql);
+            if (!$res) return [];
+            return $res->fetchAll()[0];
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function findImageName(int $id, string $name): ?string

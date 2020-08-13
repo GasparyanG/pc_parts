@@ -16,6 +16,8 @@ abstract class ResourceHandler
 {
     const PRICE = "price";
     const IMAGE = "image";
+    const RETAILER = "retailer";
+    const URL = "url";
 
     /**
      * @var string
@@ -98,9 +100,11 @@ abstract class ResourceHandler
         // price
         if (static::$priceEntityName) {
             $priceRepo = $this->em->getRepository(static::$priceEntityName);
-            $price = $priceRepo->findLastLowestPrice($id, static::$assocName);
+            $priceInfo = $priceRepo->findLastLowestPrice($id, static::$assocName);
 
-            $attr[self::PRICE] = $price ? $price: null ;
+            $attr[self::PRICE] = $priceInfo[self::PRICE] ?? null;
+            $attr[self::RETAILER] = $priceInfo["retailer_id"] ?? null;
+            $attr[self::URL] = $priceInfo[self::URL] ?? null;
         }
 
         // image

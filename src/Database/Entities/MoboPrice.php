@@ -42,7 +42,7 @@ class MoboPrice
     /**
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -50,7 +50,7 @@ class MoboPrice
     /**
      * @param string $url
      */
-    public function setUrl(string $url): void
+    public function setUrl(?string $url): void
     {
         $this->url = $url;
     }
