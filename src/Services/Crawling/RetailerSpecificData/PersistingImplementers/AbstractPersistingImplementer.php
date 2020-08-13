@@ -39,6 +39,7 @@ abstract class AbstractPersistingImplementer
     public function persist(): void
     {
         $price = $this->crawledData[self::PRICE] ?? null;
+        $url = $this->crawledData[self::URL] ?? null;
         $retailer_id = $this->crawledData[self::RETAILER_ID] ?? null;
         $entity_id = $this->crawledData[self::ENTITY_ID] ?? null;
 
@@ -56,6 +57,9 @@ abstract class AbstractPersistingImplementer
 
         // Part
         $this->setPart($partPriceEntity);
+
+        // url
+        $partPriceEntity->setUrl($url);
 
         // date
         $partPriceEntity->setDate(time());
