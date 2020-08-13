@@ -88,8 +88,15 @@ class NewEgg extends AbstractRetailerCrawler
 
     protected static function extractLink(Crawler $node): ?string
     {
-        $link = $node->filter(".item-info .item-title")->link()->getUri();
-        if ($link) return $link;
+        try {
+            $link = $node->filter(".item-info .item-title")->link()->getUri();
+            if ($link) return $link;
+        } catch (\InvalidArgumentException $e) {
+            echo $e->getMessage();
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+
         return null;
     }
 
