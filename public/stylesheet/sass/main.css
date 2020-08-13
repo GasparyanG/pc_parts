@@ -91,6 +91,9 @@ a {
   font-size: 25px;
   align-self: center; }
 
+.retailer-logo {
+  width: 50px; }
+
 .pagination {
   display: flex;
   flex-direction: row;
@@ -245,6 +248,20 @@ a {
 .product-row {
   font-size: 15px;
   font-weight: 400; }
+
+.price-info {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.price-info > div {
+  margin-right: 1rem; }
+
+.price-info:last-child {
+  margin-right: 0; }
+
+.product-title {
+  color: #282838; }
 
 #collection-of-part .product-table .product-table-header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);

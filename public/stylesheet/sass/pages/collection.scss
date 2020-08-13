@@ -32,6 +32,24 @@
   font-weight: 400;
 }
 
+.price-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-info > div {
+  margin-right: 1rem;
+}
+
+.price-info:last-child {
+  margin-right: 0;
+}
+
+.product-title {
+  color: $dark_mode;
+}
+
 #collection-of-part .product-table .product-table-header {
   border-bottom: 1px solid $border_main_color;
   padding-bottom: 1rem;

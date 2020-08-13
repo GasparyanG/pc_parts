@@ -32,14 +32,16 @@ class PcPart extends React.Component {
 
     render() {
         let resource = new Resource(this.props.res_obj);
-        // TODO: render single resource
+
         return  (
             <tr className="product-row">
                 <td className="product-name">
                     <div className="img-container">
                         <img src={resource.attributes[TopLevelResource.image_key]} alt=""/>
                     </div>
-                    {resource.attributes[TopLevelResource.name_key]}
+                    <a className="product-title" target="_blank" href={resource.attributes["url"]}>
+                        {resource.attributes[TopLevelResource.name_key]}
+                    </a>
                 </td>
                 <Fields etl_fields={resource}/>
             </tr>
@@ -116,8 +118,13 @@ class Fields extends React.Component {
             } else if (key[Resource.sql_query_key] === Resource.price_value) {
                 return (<td key={++i}>
                     <span className="field-name">{keys[i]}:</span>
-                    <span>
-                        {key[Resource.unit_key]}{resource.attributes[key[Resource.entity_attribute_key]] }
+                    <span className="price-info">
+                        <div>
+                            {key[Resource.unit_key]}{resource.attributes[key[Resource.entity_attribute_key]] }
+                        </div>
+                        <div className="retailer-info">
+                            <img className="retailer-logo" src={resource.attributes["retailer"]} alt=""/>
+                        </div>
                     </span>
                 </td>);
             } else {
