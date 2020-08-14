@@ -189,6 +189,11 @@ a {
   display: none;
   transition: 0.7s; }
 
+.double-range-slider {
+  width: 70%;
+  padding-top: 2rem;
+  padding-left: 1rem; }
+
 #home_page {
   height: calc(100vh - 100px);
   background-color: #282838;

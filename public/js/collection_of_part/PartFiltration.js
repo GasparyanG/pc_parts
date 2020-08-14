@@ -87,27 +87,42 @@ class CheckboxFilter extends React.Component {
 class RangeFilter extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            min: null,
+            max: null
+        }
     }
 
-    filter = (filterData) => {
-        let min_val = document.getElementById(filterData.field + "_min").value;
-        let max_val = document.getElementById(filterData.field + "_max").value;
+    filter = (filter) => {
+        let val_obj = document.querySelector("#" + filter.field + "_range_slider > div").noUiSlider.get();
+        this.setState({
+            min: Number(val_obj[0]),
+            max: Number(val_obj[1])
+        });
 
-        this.props.dispatch({type: "FILTER", id: {min: min_val, max: max_val}, filter_data: filterData})
+        this.props.dispatch({type: "FILTER", id: {min: val_obj[0], max: val_obj[1]}, filter_data: filter})
     }
 
     render() {
+
+        let minVal = this.state.min != null ? this.state.min : Number(this.props.filter.min);
+        let maxVal = this.state.max != null ? this.state.max : Number(this.props.filter.max);
+
         return (
             <div>
                 <div className="filter-header">
                     <div className="filter-name">{this.props.filter.name}</div>
                     <CollapseSign  filter={this.props.filter}/>
                 </div>
-                <div className={composeClassName(
-                    "noUiSlider product-filter",
+                <div id={this.props.filter.field + "_range_slider"} className={composeClassName(
+                    "double-range-slider product-filter",
                     hideFilterClassNames.filter_show_class_name,
                     "filter_" + this.props.filter.field)}>
-                    <Nouislider range={{min:0,max:200}} start={[0,100]} tooltips={true} connect={true} />
+                    <Nouislider onChange={() => this.filter(this.props.filter)}
+                                range={{min:Number(this.props.filter.min),max:Number(this.props.filter.max)}}
+                                start={[minVal,maxVal]}
+                                tooltips={true}
+                                connect={true} />
                 </div>
             </div>
         );
