@@ -1,6 +1,8 @@
 import React from "react"
 import { Filtration } from "./Resource"
 import { showMore, hideFilter, composeClassName, hideFilterClassNames, showLessOrMoreClassNames } from "./collection_helper_functions"
+import Nouislider from "react-nouislider"
+import 'nouislider/distribute/nouislider.css';
 
 class PartFiltration extends React.Component {
     constructor(props) {
@@ -102,15 +104,10 @@ class RangeFilter extends React.Component {
                     <CollapseSign  filter={this.props.filter}/>
                 </div>
                 <div className={composeClassName(
-                    "product-filter",
+                    "noUiSlider product-filter",
                     hideFilterClassNames.filter_show_class_name,
                     "filter_" + this.props.filter.field)}>
-                    <label htmlFor={this.props.filter.field + "_min" }>Min</label>
-                    <input onChange={() => this.filter(this.props.filter)} id={this.props.filter.field + "_min" }
-                           type="text" defaultValue={this.props.filter.min}/>
-                    <label htmlFor={this.props.filter.field + "_max" }>Max</label>
-                    <input onChange={() => this.filter(this.props.filter)} id={this.props.filter.field + "_max" }
-                           type="text" defaultValue={this.props.filter.max}/>
+                    <Nouislider range={{min:0,max:200}} start={[0,100]} tooltips={true} connect={true} />
                 </div>
             </div>
         );
