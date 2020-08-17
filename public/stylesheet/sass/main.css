@@ -404,5 +404,8 @@ a {
     display: inline;
     text-align: center;
     margin-left: 1rem; } }
+.not-found-message {
+  text-align: center;
+  margin-top: 1rem; }
 
 /*# sourceMappingURL=main.css.map */

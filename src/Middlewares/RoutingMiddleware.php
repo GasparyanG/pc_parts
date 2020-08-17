@@ -2,6 +2,7 @@
 
 namespace App\Middlewares;
 
+use App\Services\TemplateEngine\Twig\Twig;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\Dispatching\DispatcherHelper\RoutingInformationHandler;
@@ -63,7 +64,7 @@ class RoutingMiddleware implements MiddlewareInterface
 
 		switch ($routeInfo[0]) {
 		    case FastRoute\Dispatcher::NOT_FOUND:
-		        // ... 404 Not Found
+		        return Response::create((new Twig())->render("not_found_page.html.twig", ["not_home" => true]));
 		        break;
 		    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
 		        $allowedMethods = $routeInfo[1];
