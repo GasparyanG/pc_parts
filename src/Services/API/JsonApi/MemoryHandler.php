@@ -134,6 +134,7 @@ class MemoryHandler extends ResourceHandler
             Metadata::MIN => $speedMinAndMax[Metadata::MIN] ?? 0,
             Metadata::MAX => $speedMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
+            Metadata::STEP => 25,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Speed",
             Metadata::FIELD => "speed",
@@ -178,6 +179,8 @@ class MemoryHandler extends ResourceHandler
             Metadata::MAX => $voltageMinANdMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 0.1,
+            Metadata::UNIT => "V",
             Metadata::NAME => "Voltage",
             Metadata::FIELD => "voltage",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)

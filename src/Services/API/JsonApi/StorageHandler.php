@@ -119,6 +119,8 @@ class StorageHandler extends ResourceHandler
             Metadata::MAX => $capacityMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 100,
+            Metadata::UNIT => "GB",
             Metadata::NAME => "Capacity",
             Metadata::FIELD => "capacity",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
@@ -134,6 +136,8 @@ class StorageHandler extends ResourceHandler
             Metadata::MAX => $cacheMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 8,
+            Metadata::UNIT => "MB",
             Metadata::NAME => "Cache",
             Metadata::FIELD => "cache",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)

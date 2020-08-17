@@ -133,6 +133,8 @@ class MoboHandler extends ResourceHandler
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Memory Max",
+            Metadata::STEP => 2,
+            Metadata::UNIT => "GB",
             Metadata::FIELD => "max_memory",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
         ]);
@@ -146,6 +148,7 @@ class MoboHandler extends ResourceHandler
             Metadata::MIN => $memorySlotsMinAndMax[Metadata::MIN] ?? 0,
             Metadata::MAX => $memorySlotsMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
+            Metadata::STEP => 1,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Memory Slots",
             Metadata::FIELD => "memory_slots",
