@@ -1,16 +1,13 @@
 import React from "react"
 import { Filtration } from "./Resource"
-import { showMore, hideFilter, composeClassName, hideFilterClassNames, showLessOrMoreClassNames } from "./collection_helper_functions"
+import { showMore, hideFilter,
+    composeClassName,
+    hideFilterClassNames,
+    showLessOrMoreClassNames,
+    extractNumber } from "./collection_helper_functions"
 import Nouislider from "react-nouislider"
 import 'nouislider/distribute/nouislider.css'
 import wNumb from "wnumb"
-
-
-function extractNumber(str) {
-    let regexp = new RegExp(/(\d+)/);
-    let num = str.match(regexp)[0];
-    return Number(num);
-}
 
 class PartFiltration extends React.Component {
     constructor(props) {

@@ -144,6 +144,13 @@ function showOrderings()
     }
 }
 
+function extractNumber(str) {
+    let regexp = new RegExp(/([\d,.]+)/);
+    str=str.replace(',', '');
+    let num = str.match(regexp)[0];
+    return Number(num);
+}
+
 export {
     showMore,
     hideFilter,
@@ -151,5 +158,6 @@ export {
     hideFilterClassNames,
     showLessOrMoreClassNames,
     showFilters,
-    showOrderings
+    showOrderings,
+    extractNumber
 };
