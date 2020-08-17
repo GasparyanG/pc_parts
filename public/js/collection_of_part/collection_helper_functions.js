@@ -151,6 +151,24 @@ function extractNumber(str) {
     return Number(num);
 }
 
+function showOrderingDirection(orderKey, name)
+{
+    const ordHeaders = document.querySelectorAll(".product-table-header");
+    const headToOrd = document.querySelector(".order_" + orderKey);
+    if (!headToOrd) return;
+
+    ordHeaders.forEach(hdr => {
+        hdr.innerHTML = hdr.innerHTML.replace("↑", "");
+        hdr.innerHTML = hdr.innerHTML.replace("↓", "");
+    });
+
+    headToOrd.classList.toggle("asc");
+    if (headToOrd.classList.contains("asc"))
+        headToOrd.innerHTML = name + " " + "&darr;";
+    else
+        headToOrd.innerHTML = name + " " + "&uarr;";
+}
+
 export {
     showMore,
     hideFilter,
@@ -159,5 +177,6 @@ export {
     showLessOrMoreClassNames,
     showFilters,
     showOrderings,
-    extractNumber
+    extractNumber,
+    showOrderingDirection
 };

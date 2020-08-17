@@ -1,5 +1,6 @@
 import React from "react"
 import {TopLevelResource, Resource, Link} from "./Resource";
+import { showOrderingDirection } from "./collection_helper_functions"
 
 class PartCollection extends React.Component {
     constructor(props) {
@@ -54,8 +55,10 @@ class TableHeader extends React.Component {
         super(props);
     }
 
-    order = (orderKey) => {
+    order = (orderKey, name) => {
         this.props.dispatch({type: "ORDER", key: orderKey});
+
+        showOrderingDirection(orderKey, name);
     }
 
     render() {
@@ -74,8 +77,8 @@ class TableHeader extends React.Component {
 
         let i=0;
         const headers = keys.map((key) =>
-            <th onClick={() => this.order(essentialFields[key][Resource.sql_query_key])}
-                className="product-table-header product-data" key={++i}>{key}
+            <th onClick={() => this.order(essentialFields[key][Resource.sql_query_key], key)}
+                className={"order_" + essentialFields[key][Resource.sql_query_key] + " product-table-header product-data"} key={++i}>{key}
             </th>);
 
         return (<tr className="orderings">{headers}</tr>);
