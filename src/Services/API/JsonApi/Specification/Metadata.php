@@ -30,6 +30,7 @@ class Metadata
     // Operators
     const OPERATOR = "operator";
     const STEP = "step";
+    const UNIT = "unit";
 
     /**
      * @var string|null

@@ -2,8 +2,15 @@ import React from "react"
 import { Filtration } from "./Resource"
 import { showMore, hideFilter, composeClassName, hideFilterClassNames, showLessOrMoreClassNames } from "./collection_helper_functions"
 import Nouislider from "react-nouislider"
-import 'nouislider/distribute/nouislider.css';
+import 'nouislider/distribute/nouislider.css'
 import wNumb from "wnumb"
+
+
+function extractNumber(str) {
+    let regexp = new Regexp(/(\d+)/);
+    let num = std.match(regexp)[0];
+    return Number(num);
+}
 
 class PartFiltration extends React.Component {
     constructor(props) {
@@ -97,8 +104,8 @@ class RangeFilter extends React.Component {
     filter = (filter) => {
         let val_obj = document.querySelector("#" + filter.field + "_range_slider > div").noUiSlider.get();
         this.setState({
-            min: Number(val_obj[0]),
-            max: Number(val_obj[1])
+            min: extractNumber(val_obj[0]),
+            max: extractNumber(val_obj[1])
         });
 
         this.props.dispatch({type: "FILTER", id: {min: val_obj[0], max: val_obj[1]}, filter_data: filter})
@@ -125,8 +132,9 @@ class RangeFilter extends React.Component {
                                 start={[minVal,maxVal]}
                                 tooltips={true}
                                 format={wNumb({
-                                    decimals: 0, // default is 2
+                                    decimals: this.props.filter.step > 1 ? 0: 2, // default is 2
                                     thousand: ',', // thousand delimiter
+                                    suffix: this.props.filter.suffix
                                 })}
                                 connect={true} />
                 </div>
