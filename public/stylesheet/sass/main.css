@@ -408,4 +408,14 @@ a {
   text-align: center;
   margin-top: 1rem; }
 
+.not-found-container {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.not-found-page-image {
+  width: 500px; }
+
 /*# sourceMappingURL=main.css.map */

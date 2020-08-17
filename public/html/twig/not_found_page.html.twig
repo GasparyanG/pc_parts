@@ -1,5 +1,8 @@
 {% extends "base_components/base_layout.html.twig" %}
 
 {% block payload %}
-    <h1 class="not-found-message">Page Is Not Found!</h1>
+    <div class="not-found-container">
+        <img class="not-found-page-image" src="/public/photos/default/not_found_page_image.jpg" alt="">
+        <h1 class="not-found-message">404 Not Found</h1>
+    </div>
 {% endblock %}
