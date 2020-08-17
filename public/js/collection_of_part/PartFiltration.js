@@ -7,8 +7,8 @@ import wNumb from "wnumb"
 
 
 function extractNumber(str) {
-    let regexp = new Regexp(/(\d+)/);
-    let num = std.match(regexp)[0];
+    let regexp = new RegExp(/(\d+)/);
+    let num = str.match(regexp)[0];
     return Number(num);
 }
 
@@ -103,12 +103,14 @@ class RangeFilter extends React.Component {
 
     filter = (filter) => {
         let val_obj = document.querySelector("#" + filter.field + "_range_slider > div").noUiSlider.get();
+        const minVal = extractNumber(val_obj[0]);
+        const maxVal = extractNumber(val_obj[1]);
         this.setState({
-            min: extractNumber(val_obj[0]),
-            max: extractNumber(val_obj[1])
+            min: minVal,
+            max: maxVal
         });
 
-        this.props.dispatch({type: "FILTER", id: {min: val_obj[0], max: val_obj[1]}, filter_data: filter})
+        this.props.dispatch({type: "FILTER", id: {min: minVal, max: maxVal}, filter_data: filter})
     }
 
     render() {
@@ -132,7 +134,7 @@ class RangeFilter extends React.Component {
                                 start={[minVal,maxVal]}
                                 tooltips={true}
                                 format={wNumb({
-                                    decimals: this.props.filter.step > 1 ? 0: 2, // default is 2
+                                    decimals: this.props.filter.step >= 1 ? 0: 1, // default is 2
                                     thousand: ',', // thousand delimiter
                                     suffix: this.props.filter.suffix
                                 })}

@@ -146,6 +146,8 @@ class GPUHandler extends ResourceHandler
             Metadata::MAX => $lengthMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 5,
+            Metadata::UNIT => "mm",
             Metadata::NAME => "Length",
             Metadata::FIELD => "length",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
@@ -160,6 +162,8 @@ class GPUHandler extends ResourceHandler
             Metadata::MIN => $memoryMinAndMax[Metadata::MIN] ?? 0,
             Metadata::MAX => $memoryMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
+            Metadata::STEP => 0.5,
+            Metadata::UNIT => "GB",
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Memory",
             Metadata::FIELD => "memory",
@@ -176,6 +180,8 @@ class GPUHandler extends ResourceHandler
             Metadata::MAX => $coreClockMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 10,
+            Metadata::UNIT => "MHz",
             Metadata::NAME => "Core Clock",
             Metadata::FIELD => "core_clock",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
@@ -190,6 +196,8 @@ class GPUHandler extends ResourceHandler
             Metadata::MIN => $boostClockMinAndMax[Metadata::MIN] ?? 0,
             Metadata::MAX => $boostClockMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
+            Metadata::STEP => 10,
+            Metadata::UNIT => "MHz",
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
             Metadata::NAME => "Boost Clock",
             Metadata::FIELD => "boost_clock",
@@ -206,6 +214,8 @@ class GPUHandler extends ResourceHandler
             Metadata::MAX => $tdpMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 10,
+            Metadata::UNIT => "W",
             Metadata::NAME => "TDP",
             Metadata::FIELD => "tdp",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
@@ -221,6 +231,7 @@ class GPUHandler extends ResourceHandler
             Metadata::MAX => $eswMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 1,
             Metadata::NAME => "Expansion Slot Width",
             Metadata::FIELD => "expansion_slot_width",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)

@@ -114,6 +114,8 @@ class CPUHandler extends ResourceHandler
             Metadata::MAX => round($coreClockMinAndMax[Metadata::MAX]) ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 0.1,
+            Metadata::UNIT => "GHz",
             Metadata::NAME => "Core Clock",
             Metadata::FIELD => "core_clock",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
@@ -129,6 +131,7 @@ class CPUHandler extends ResourceHandler
             Metadata::MAX => $coreCountMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 1,
             Metadata::NAME => "Core Count",
             Metadata::FIELD => "core_count",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
@@ -144,6 +147,8 @@ class CPUHandler extends ResourceHandler
             Metadata::MAX => $tdpMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 5,
+            Metadata::UNIT => "W",
             Metadata::NAME => "TDP",
             Metadata::FIELD => "tdp",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
