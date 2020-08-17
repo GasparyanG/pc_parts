@@ -120,6 +120,7 @@ class PSUHandler extends ResourceHandler
             Metadata::MAX => $wattageMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 10,
             Metadata::NAME => "Wattage",
             Metadata::FIELD => "wattage",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)
@@ -135,6 +136,7 @@ class PSUHandler extends ResourceHandler
             Metadata::MAX => $lengthMinAndMax[Metadata::MAX] ?? 0,
             Metadata::TYPE => Metadata::RANGE,
             Metadata::GROUPING => Metadata::RANGE_GROUPING,
+            Metadata::STEP => 5,
             Metadata::NAME => "Length",
             Metadata::FIELD => "length",
             Metadata::OPERATOR => strtolower(FilterImplementer::BETWEEN)

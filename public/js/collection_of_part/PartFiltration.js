@@ -3,6 +3,7 @@ import { Filtration } from "./Resource"
 import { showMore, hideFilter, composeClassName, hideFilterClassNames, showLessOrMoreClassNames } from "./collection_helper_functions"
 import Nouislider from "react-nouislider"
 import 'nouislider/distribute/nouislider.css';
+import wNumb from "wnumb"
 
 class PartFiltration extends React.Component {
     constructor(props) {
@@ -120,8 +121,13 @@ class RangeFilter extends React.Component {
                     "filter_" + this.props.filter.field)}>
                     <Nouislider onChange={() => this.filter(this.props.filter)}
                                 range={{min:Number(this.props.filter.min),max:Number(this.props.filter.max)}}
+                                step={this.props.filter.step}
                                 start={[minVal,maxVal]}
                                 tooltips={true}
+                                format={wNumb({
+                                    decimals: 0, // default is 2
+                                    thousand: ',', // thousand delimiter
+                                })}
                                 connect={true} />
                 </div>
             </div>

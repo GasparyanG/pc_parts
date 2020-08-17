@@ -29,6 +29,7 @@ class Metadata
     const RANGE_GROUPING = "and";
     // Operators
     const OPERATOR = "operator";
+    const STEP = "step";
 
     /**
      * @var string|null

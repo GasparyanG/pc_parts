@@ -35,6 +35,7 @@ class Filtration {
     static type_key = "type";
     static name_key = "name";
     static field_key = "field";
+    static step_key = "step";
 
     // for colleciton type
     static collection_key = "collection";
@@ -55,6 +56,7 @@ class Filtration {
         this._grouping = meta[Filtration.grouping_key];
         this._field = meta[Filtration.field_key];
         this._operator = meta[Filtration.operator_key];
+        this._step = meta[Filtration.step_key];
 
         if (meta[Filtration.type_key] === Filtration.range_key) {
             this._min = meta[Filtration.min_key];
@@ -72,6 +74,7 @@ class Filtration {
     get grouping() { return this._grouping; }
     get field() { return this._field; }
     get operator() { return this._operator; }
+    get step() { return this._step; }
 }
 
 // Meant for single object
