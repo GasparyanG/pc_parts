@@ -14,3 +14,17 @@
 .not-found-page-image {
   width: 500px;
 }
+
+.not-found-code {
+  color: red;
+}
+
+@media (max-width: 600px) {
+  .not-found-container {
+    margin: 1rem;
+  }
+
+  .not-found-page-image {
+    width: 300px;
+  }
+}
