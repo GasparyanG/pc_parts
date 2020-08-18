@@ -59,7 +59,7 @@ class MOBOScraping extends AbstractScraping
         "location" => "",
         "token" => "39617bff377afa74b261d27db5b64d04%3AkOaEjnfKnqqoNJqxl40L%2FakFbiJvZ0Pv3uOv61%2B9BGqc1LmsmIulouJIE3U9ro9%2F96PgxsDFFZI4Mwp80Tj0Ug%3D%3D",
         "search" => "",
-        "qid" => 1,
+        "qid" => 2,
         "scr" => 1,
         "scr_cw" => 1903,
         "scr_vh" => 357,
@@ -96,9 +96,9 @@ class MOBOScraping extends AbstractScraping
 
     public function crawl(): void
     {
-        try {
-            $collection = $this->fetchCollection();
-            for ($i=0; $i<count($collection); ++$i) {
+        $collection = $this->fetchCollection();
+        for ($i=0; $i<count($collection); ++$i) {
+            try {
                 $part = $collection[$i];
 
                 echo $i . " is starting... \n";
@@ -123,12 +123,12 @@ class MOBOScraping extends AbstractScraping
                 $moboPersistingImplementer->insert();
 
                 echo $i . " is finished already!\n";
+            } catch (GuzzleException $e) {
+                echo $e->getMessage();
+                return;
+            } catch (\InvalidArgumentException $e) {
+                echo $e->getMessage();
             }
-        } catch (GuzzleException $e) {
-            echo $e->getMessage();
-            return;
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
         }
     }
 

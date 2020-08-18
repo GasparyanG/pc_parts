@@ -56,7 +56,7 @@ class StorageScraper extends AbstractScraping
         "location" => "",
         "token" => "876c4455ff36ffc5df3dcdd2ae48dd04%3A6Xu2Gw3%2B9pABEe4r4Tc1PseFOTuuarRFdZU2y8bD8JYAgl7Be6JsIz1%2FZCwVkTRQU8vAjcfWvexT%2BPT70KKlYg%3D%3D",
         "search" => "",
-        "qid" => 1,
+        "qid" => 2,
         "scr" => 1,
         "scr_cw" => 1903,
         "scr_vh" => 357,
@@ -94,9 +94,9 @@ class StorageScraper extends AbstractScraping
 
     public function crawl(): void
     {
-        try {
-            $collection = $this->fetchCollection();
-            for ($i=0; $i<count($collection); ++$i) {
+        $collection = $this->fetchCollection();
+        for ($i=16; $i<count($collection); ++$i) {
+            try {
                 $part = $collection[$i];
                 if (!isset($part[Cooler::URL]) && !isset($part[Cooler::NAME])
                     && !filter_var($part["url"], FILTER_VALIDATE_URL)) continue;
@@ -116,12 +116,11 @@ class StorageScraper extends AbstractScraping
                 // persisting
                 $coolerPersistingImplementer = new StoragePersistingImplementer($storage);
                 $coolerPersistingImplementer->insert();
+            } catch (GuzzleException $e) {
+                echo $e->getMessage();
+            } catch (\InvalidArgumentException $e) {
+                echo $e->getMessage();
             }
-        } catch (GuzzleException $e) {
-            echo $e->getMessage();
-            return;
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
         }
     }
 

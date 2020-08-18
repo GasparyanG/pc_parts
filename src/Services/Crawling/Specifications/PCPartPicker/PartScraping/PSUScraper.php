@@ -55,7 +55,7 @@ class PSUScraper extends AbstractScraping
         "location" => "",
         "token" => "79a256ccc57ca63fd06a778c8c8a71b9%3ARYhfP5fPtqQGdjtFc38dTD9rdPUlTKg2b9U6fy47zw0T%2BqsAjXfchJpqgvzpYq1%2FgKY%2BrfFVltptfHLsLOo2aA%3D%3D",
         "search" => "",
-        "qid" => 1,
+        "qid" => 2,
         "scr" => 1,
         "scr_cw" => 1903,
         "scr_vh" => 357,
@@ -93,9 +93,9 @@ class PSUScraper extends AbstractScraping
 
     public function crawl(): void
     {
-        try {
-            $collection = $this->fetchCollection();
-            for ($i=0; $i<count($collection); ++$i) {
+        $collection = $this->fetchCollection();
+        for ($i=10; $i<count($collection); ++$i) {
+            try {
                 $part = $collection[$i];
 
                 echo $i . " is starting... \n";
@@ -120,12 +120,11 @@ class PSUScraper extends AbstractScraping
                 $psuPersistingImplementer->insert();
 
                 echo $i . " is finished already!\n";
+            } catch (GuzzleException $e) {
+                echo $e->getMessage();
+            } catch (\InvalidArgumentException $e) {
+                echo $e->getMessage();
             }
-        } catch (GuzzleException $e) {
-            echo $e->getMessage();
-            return;
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
         }
     }
 

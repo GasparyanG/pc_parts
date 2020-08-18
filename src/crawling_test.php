@@ -13,5 +13,11 @@ use App\Services\Crawling\Specifications\PCPartPicker\PartScraping\
     CaseScraper
 };
 
-$scraper = new CaseScraper();
-$scraper->crawl();
+$scraper1 = new PSUScraper();
+$scraper1->crawl();
+
+$scraper2 = new MOBOScraping();
+$scraper2->crawl();
+
+$scraper3 = new GPUScraper();
+$scraper3->crawl();

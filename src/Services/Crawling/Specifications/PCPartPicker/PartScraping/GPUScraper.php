@@ -59,7 +59,7 @@ class GPUScraper extends AbstractScraping
         "location" => "",
         "token" => "0fef29457345601a321cbf2d32a0f7fb%3Ag7S5dKPjaVYW6roQnPGMw17giha0QhlBuD1MXxPj8m%2Bp6csWCXCVjGWk78XmRzpcl9s5m9FWYizsrVO%2Ffsvo%2Bg%3D%3D",
         "search" => "",
-        "qid" => 1,
+        "qid" => 2,
         "scr" => 1,
         "scr_cw" => 1903,
         "scr_vh" => 357,
@@ -96,9 +96,9 @@ class GPUScraper extends AbstractScraping
 
     public function crawl(): void
     {
-        try {
-            $collection = $this->fetchCollection();
-            for ($i=0; $i<count($collection); ++$i) {
+        $collection = $this->fetchCollection();
+        for ($i=0; $i<count($collection); ++$i) {
+            try {
                 $part = $collection[$i];
 
                 echo $i . " is starting... \n";
@@ -123,12 +123,12 @@ class GPUScraper extends AbstractScraping
                 $gpuPersistingImplementer->insert();
 
                 echo $i . " is finished already!\n";
+            } catch (GuzzleException $e) {
+                echo $e->getMessage();
+                return;
+            } catch (\InvalidArgumentException $e) {
+                echo $e->getMessage();
             }
-        } catch (GuzzleException $e) {
-            echo $e->getMessage();
-            return;
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
         }
     }
 

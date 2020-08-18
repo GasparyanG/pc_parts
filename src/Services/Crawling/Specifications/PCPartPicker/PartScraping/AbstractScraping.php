@@ -76,6 +76,8 @@ abstract class AbstractScraping
         $crawler = new Crawler($body);
 
         $spec_crawler = $this->spec_crawler($crawler);
+        if (!is_iterable($spec_crawler)) return [];
+
         foreach ($spec_crawler as $node)
             // beware createSubCrawler is changed from private to public
             $this->extract_from_node($spec_crawler->createSubCrawler($node), $data);

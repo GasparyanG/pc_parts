@@ -16,12 +16,10 @@ use App\Database\Entities\
 };
 use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageScraperFactory;
 
-// TODO: uncomment PcCase
 $entitiesNames = [
     PcCase::class,
     PowerSupply::class,
     VideoCard::class,
-    // TODO: crawl below part images!
     Cpu::class,
     Cooler::class,
     Storage::class,
