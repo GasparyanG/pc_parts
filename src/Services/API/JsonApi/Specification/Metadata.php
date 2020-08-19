@@ -24,7 +24,7 @@ class Metadata
 
     // Grouping
     const GROUPING = "grouping";
-    const CHECKBOX_GROUPING = "or";
+    const CHECKBOX_GROUPING = "and";
 
     const RANGE_GROUPING = "and";
     // Operators
