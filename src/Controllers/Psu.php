@@ -4,18 +4,18 @@
 namespace App\Controllers;
 
 
-use App\Services\API\JsonApi\PsuHandler;
-use App\Services\API\JsonApi\Specification\PsuComposer;
+use App\Services\API\JsonApi\PSUHandler;
+use App\Services\API\JsonApi\Specification\PSUComposer;
 
 class Psu extends AbstractController
 {
     /**
      * {@inheritDoc}
      */
-    protected static $composer = PsuComposer::class;
+    protected static $composer = PSUComposer::class;
 
     /**
      * {@inheritDoc}
      */
-    protected  static $handler = PsuHandler::class;
+    protected  static $handler = PSUHandler::class;
 }

@@ -4,18 +4,18 @@
 namespace App\Controllers;
 
 
-use App\Services\API\JsonApi\CpuHandler;
-use App\Services\API\JsonApi\Specification\CpuComposer;
+use App\Services\API\JsonApi\CPUHandler;
+use App\Services\API\JsonApi\Specification\CPUComposer;
 
 class Cpu extends AbstractController
 {
     /**
      * {@inheritDoc}
      */
-    protected static $composer = CpuComposer::class;
+    protected static $composer = CPUComposer::class;
 
     /**
      * {@inheritDoc}
      */
-    protected  static $handler = CpuHandler::class;
+    protected  static $handler = CPUHandler::class;
 }
