@@ -72,7 +72,7 @@ class Memory
 
     /**
      * @var null|EccRegister
-     * @ManyToOne(targetEntity="ECCRegister", inversedBy="memories")
+     * @ManyToOne(targetEntity="EccRegister", inversedBy="memories")
      * @JoinColumn(name="ecc_register_id", referencedColumnName="id")
      */
     private $eccRegister;
