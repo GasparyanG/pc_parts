@@ -4,18 +4,18 @@
 namespace App\Controllers;
 
 
-use App\Services\API\JsonApi\GpuHandler;
-use App\Services\API\JsonApi\Specification\GpuComposer;
+use App\Services\API\JsonApi\GPUHandler;
+use App\Services\API\JsonApi\Specification\GPUComposer;
 
 class Gpu extends AbstractController
 {
     /**
      * {@inheritDoc}
      */
-    protected static $composer = GpuComposer::class;
+    protected static $composer = GPUComposer::class;
 
     /**
      * {@inheritDoc}
      */
-    protected  static $handler = GpuHandler::class;
+    protected  static $handler = GPUHandler::class;
 }

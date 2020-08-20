@@ -97,7 +97,7 @@ class MemoryHandler extends ResourceHandler
         FormFactor::class => "getFormFactor",
         Module::class => "getModule",
         Timing::class => "getTiming",
-        ECCRegister::class => "getECCRegister"
+        EccRegister::class => "getECCRegister"
     ];
 
     protected function filtrationData(Metadata $meta): void
