@@ -38,3 +38,21 @@
   font-weight: 500;
   font-size: 18px;
 }
+
+@media screen and (max-width: 600px) {
+  #home_page .parts .part_repr {
+    width: 150px;
+    height: 150px;
+  }
+
+  #home_page .parts .part_repr img {
+    width: 75px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #home_page .parts {
+    width: 90%;
+    margin-left: 5%;
+  }
+}
