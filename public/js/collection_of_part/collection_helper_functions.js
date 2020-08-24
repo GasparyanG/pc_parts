@@ -125,7 +125,12 @@ function showFilters()
 
     let filtrationEl = document.querySelector("#filtration");
     let partCollection = document.querySelector(".part-collection");
+    let orderEl = document.querySelector(".orderings");
     if (!filtrationEl) return;
+
+    // Close orderings if opned!
+    if (orderEl.classList.contains("show"))
+        showOrderings();
 
     if (filtrationEl.classList.contains("show")) {
         filtrationEl.style.display = "none";
@@ -143,7 +148,12 @@ function showOrderings()
     window.onresize = handleOnWindowResize;
 
     let orderEl = document.querySelector(".orderings");
+    let filtrationEl = document.querySelector("#filtration");
     if (!orderEl) return;
+
+    // Close filters if opened!
+    if (filtrationEl.classList.contains("show"))
+        showFilters();
 
     if (orderEl.classList.contains("show")) {
         orderEl.style.display = "none";
