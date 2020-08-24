@@ -89,13 +89,24 @@ a {
   color: #fff; }
 
 .nav-logo {
+  display: flex;
   color: #fff;
   font-weight: 700;
   font-size: 25px;
   align-self: center; }
 
+.nav-logo > a {
+  justify-content: center;
+  align-items: center; }
+
 .retailer-logo {
   width: 50px; }
+
+.pcparts_icon {
+  width: 30px; }
+
+.pcparts_icon_name {
+  align-self: center; }
 
 .pagination {
   display: flex;
