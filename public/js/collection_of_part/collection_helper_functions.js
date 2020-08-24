@@ -113,9 +113,10 @@ function handleOnWindowResize()
 
             filtrationEl.style.display = "none";
             orderEl.style.display = "none";
-        }
 
-        partCollection.style.display = "block";
+            // display collection if transition happened after big view
+            partCollection.style.display = "block"
+        }
     }
 }
 
