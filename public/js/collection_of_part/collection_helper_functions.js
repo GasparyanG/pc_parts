@@ -97,14 +97,24 @@ function handleOnWindowResize()
     let orderEl = document.querySelector(".orderings");
 
     if (w > 600) {
+        filtrationEl.classList.add("lrg-view");
+        filtrationEl.classList.remove("sml-view");
+
         filtrationEl.classList.remove("show");
         filtrationEl.style.display = "block";
         orderEl.style.display = "table-row";
         partCollection.style.display = "block";
     } else if (w <= 600) {
-        filtrationEl.classList.remove("show");
-        filtrationEl.style.display = "none";
-        orderEl.style.display = "none";
+        // If transition happend immediately after large view then deal with block
+        if (filtrationEl.classList.contains("lrg-view")) {
+            filtrationEl.classList.remove("show");
+            filtrationEl.classList.remove("lrg-view");
+            filtrationEl.classList.add("sml-view");
+
+            filtrationEl.style.display = "none";
+            orderEl.style.display = "none";
+        }
+
         partCollection.style.display = "block";
     }
 }

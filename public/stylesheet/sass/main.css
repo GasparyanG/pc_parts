@@ -186,12 +186,10 @@ a {
   color: blue; }
 
 .show {
-  display: block;
-  transition: 0.7s; }
+  display: block; }
 
 .hide {
-  display: none;
-  transition: 0.7s; }
+  display: none; }
 
 .double-range-slider {
   width: 70%;
