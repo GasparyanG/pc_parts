@@ -51,9 +51,6 @@ class RoutingMiddleware implements MiddlewareInterface
             $r->addRoute(Request::METHOD_GET, "/cooler/{id}", ["Cooler", "get"]);
             $r->addRoute(Request::METHOD_GET, "/cooler", ["Cooler", "getCollection"]);
 
-            // HOME
-            $r->addRoute(Request::METHOD_GET, "/home", ["Home", "get"]);
-
             // Redux Test
             $r->addRoute(Request::METHOD_GET, "/redux", ["Redux", "get"]);
         });
