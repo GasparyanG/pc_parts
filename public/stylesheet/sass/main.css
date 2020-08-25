@@ -431,6 +431,40 @@ a {
     display: inline;
     text-align: center;
     margin-left: 1rem; } }
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .orderings {
+    display: none;
+    flex-direction: column;
+    margin-bottom: 2rem; }
+
+  #collection-of-part .product-table .product-table-header {
+    border-bottom: none;
+    text-align: center;
+    width: 270%; }
+
+  #filtration {
+    position: absolute;
+    height: auto;
+    width: 90vw;
+    background-color: #fff;
+    color: #282838;
+    display: none;
+    margin-bottom: 2rem; }
+
+  .filters_and_order {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around; }
+
+  .filters_and_order > div {
+    padding: 0.2rem;
+    border: 2px solid darkslateblue;
+    color: darkslateblue;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 35%;
+    text-align: center; } }
 .not-found-message {
   text-align: center;
   margin-top: 1rem; }

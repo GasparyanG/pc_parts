@@ -96,7 +96,7 @@ function handleOnWindowResize()
     let partCollection = document.querySelector(".part-collection");
     let orderEl = document.querySelector(".orderings");
 
-    if (w > 600) {
+    if (w > 900) {
         filtrationEl.classList.add("lrg-view");
         filtrationEl.classList.remove("sml-view");
 
@@ -104,7 +104,7 @@ function handleOnWindowResize()
         filtrationEl.style.display = "block";
         orderEl.style.display = "table-row";
         partCollection.style.display = "block";
-    } else if (w <= 600) {
+    } else if (w <= 900) {
         // If transition happend immediately after large view then deal with block
         if (filtrationEl.classList.contains("lrg-view")) {
             filtrationEl.classList.remove("show");
