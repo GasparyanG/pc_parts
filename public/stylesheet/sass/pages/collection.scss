@@ -169,6 +169,8 @@
 
   #collection-of-part .product-table .product-row td {
     border-bottom: none;
+    display: flex;
+    align-items: center;
   }
 
   .orderings {
@@ -214,7 +216,6 @@
     color: rgba(0,0,0,0.7);
     margin-right: 1rem;
     display: inline;
-    text-align: center;
     margin-left: 1rem;
   }
 }
