@@ -102,24 +102,44 @@ class Fields extends React.Component {
         let i=0;
         const rowData = values.map(function(key, i) {
             --i;    // because of value deletion (see above)
-            if (!resource.attributes[key[Resource.entity_attribute_key]]) {
+            if (resource.attributes[key[Resource.entity_attribute_key]] === false) {
+                return (<td key={++i}>
+                    {/* Meant for smaller views: label of value */}
+                    <span className="field-name">{keys[i]}:</span>
+                    <span>
+                            No
+                        </span>
+                </td>);
+            } else if(resource.attributes[key[Resource.entity_attribute_key]] === true) {
+                return (<td key={++i}>
+                    {/* Meant for smaller views: label of value */}
+                    <span className="field-name">{keys[i]}:</span>
+                    <span>
+                            Yes
+                        </span>
+                </td>);
+            } else if (!resource.attributes[key[Resource.entity_attribute_key]]) {
                 if (key[Resource.default_key]) {
                     return (<td key={++i}>
+                        {/* Meant for smaller views: label of value */}
                         <span className="field-name">{keys[i]}:</span>
                         <span>
                             {key[Resource.default_key]}
                         </span>
                     </td>);
                 } else {
+                    // Value is absent
                     return (<td key={++i}>
+                        {/* Meant for smaller views: label of value */}
                         <span className="field-name">{keys[i]}:</span>
                         <span className="no_value">
                             <span></span>
                         </span>
                     </td>);
                 }
-            } else if (key[Resource.sql_query_key] === Resource.price_value) {
+            } else if (key[Resource.sql_query_key] === Resource.price_value) {  // price case
                 return (<td key={++i}>
+                    {/* Meant for smaller views: label of value */}
                     <span className="field-name">{keys[i]}:</span>
                     <span className="price-info">
                         <div>
@@ -132,6 +152,7 @@ class Fields extends React.Component {
                 </td>);
             } else {
                 return (<td key={++i}>
+                    {/* Meant for smaller views: label of value */}
                     <span className="field-name">{keys[i]}:</span>
                     <span>
                         {resource.attributes[key[Resource.entity_attribute_key]] } {key[Resource.unit_key]}

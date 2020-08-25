@@ -216,6 +216,11 @@ a {
   padding-top: 2rem;
   padding-left: 1rem; }
 
+@media screen and (min-width: 500px) and (max-width: 900px) {
+  .double-range-slider {
+    width: 40%;
+    padding-top: 2rem;
+    padding-left: 1rem; } }
 #home_page {
   height: calc(100vh - 100px);
   background-color: #282838;
