@@ -7,6 +7,12 @@ import QueryHandler from "./QueryHandler"
 import PartFiltration from "./PartFiltration"
 import { showFilters, showOrderings } from "./collection_helper_functions"
 
+function product_table_blurness() {
+    let productTable = document.querySelector(".product-table");
+    if (!productTable) return;
+    productTable.classList.toggle("under_request");
+}
+
 class FilterablePartTable extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +31,8 @@ class FilterablePartTable extends React.Component {
     componentWillUnmount() { }
 
     getData() {
+        product_table_blurness();
+
         var self = this;
         var path = window.location.pathname;
         let queryHandler = new QueryHandler(this.props.url_query);
@@ -51,6 +59,8 @@ class FilterablePartTable extends React.Component {
                             links: newLinks,
                             initial_loading: false
                         });
+
+                product_table_blurness();
             },
             error: function(er) {
                 console.log("Something went wrong");
