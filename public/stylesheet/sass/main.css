@@ -451,8 +451,7 @@ a {
 
   #collection-of-part .product-table .product-table-header {
     border-bottom: none;
-    text-align: center;
-    width: 270%; }
+    text-align: center; }
 
   #filtration {
     position: absolute;

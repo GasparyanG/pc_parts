@@ -160,7 +160,10 @@ function showOrderings()
         orderEl.style.display = "none";
         orderEl.classList.remove("show");
     } else {
-        orderEl.style.display = "flex";
+        if (window.innerWidth <= 600)
+            orderEl.style.display = "flex";
+        else if (window.innerWidth > 600)
+            orderEl.style.display = "table-row";
         orderEl.classList.add("show");
     }
 }
