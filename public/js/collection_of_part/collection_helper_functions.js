@@ -190,6 +190,12 @@ function showOrderingDirection(orderKey, name)
         headToOrd.innerHTML = name + " " + "&uarr;";
 }
 
+function product_table_blurness() {
+    let productTable = document.querySelector(".product-table");
+    if (!productTable) return;
+    productTable.classList.toggle("under_request");
+}
+
 export {
     showMore,
     hideFilter,
@@ -199,5 +205,6 @@ export {
     showFilters,
     showOrderings,
     extractNumber,
-    showOrderingDirection
+    showOrderingDirection,
+    product_table_blurness
 };
