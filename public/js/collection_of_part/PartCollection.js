@@ -101,7 +101,7 @@ class Fields extends React.Component {
 
         let i=0;
         const rowData = values.map(function(key, i) {
-            --i;    // because of value dleletion (see above)
+            --i;    // because of value deletion (see above)
             if (!resource.attributes[key[Resource.entity_attribute_key]]) {
                 if (key[Resource.default_key]) {
                     return (<td key={++i}>
@@ -113,8 +113,8 @@ class Fields extends React.Component {
                 } else {
                     return (<td key={++i}>
                         <span className="field-name">{keys[i]}:</span>
-                        <span>
-                            ---
+                        <span className="no_value">
+                            <span></span>
                         </span>
                     </td>);
                 }

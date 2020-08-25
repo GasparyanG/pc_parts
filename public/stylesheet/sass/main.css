@@ -108,6 +108,12 @@ a {
 .pcparts_icon_name {
   align-self: center; }
 
+.no_value {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.2); }
+
 .pagination {
   display: flex;
   flex-direction: row;
