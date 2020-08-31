@@ -118,7 +118,8 @@ abstract class ImageAbstractScraper
 
         // download
         // there are some urls, which contain https prefix
-        $urlToDownload = "https:" . str_replace(["https:", '"https', '"'], "", $imageUrl);
+        $http = $this->isHttp($imageUrl) ? "http:": "https:";
+        $urlToDownload = $http . str_replace(["https:", '"https', '"', "http:"], "", $imageUrl);
         file_put_contents(self::$image_directory . "/" . $fileName, file_get_contents($urlToDownload));
 
         return $fileName;
@@ -141,12 +142,12 @@ abstract class ImageAbstractScraper
 
     protected function extractFileName(string $imageUrl): array
     {
-        $pattern = "~.+/images/product/(.+)(\.jpg|\.png|.\jpeg)~i";
+        $pattern = "~.+/images/(product|I)/(.+)(\.jpg|\.png|\.jpeg)~i";
         $matches = [];
 
         preg_match($pattern, $imageUrl, $matches);
         if ($matches)
-            return [$matches[1], $matches[2]];
+            return [$matches[2], $matches[3]];
         return [null, null];
     }
 
@@ -193,4 +194,15 @@ abstract class ImageAbstractScraper
     }
 
     abstract public function persist(string $imageFileName, int $id): void;
+
+    protected function isHttp($url): bool
+    {
+        $pattern = "~http://.+/images/(product|I)/(.+)(\.jpg|\.png|\.jpeg)~i";
+        $matches = [];
+
+        preg_match($pattern, $url, $matches);
+        if ($matches)
+            return true;
+        return false;
+    }
 }
