@@ -41,7 +41,7 @@ abstract class ImageAbstractScraper
     protected $single_resource_headers = [
         "authority" => "pcpartpicker.com",
         "upgrade-insecure-requests" => "1",
-        "user-agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+        "user-agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36",
         "accept" => "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
         "sec-fetch-site" => "same-origin",
         "sec-fetch-mode" => "navigate",
@@ -51,7 +51,8 @@ abstract class ImageAbstractScraper
         "cookie" => "xcsrftoken=DQkGqCEtILSOWlANbIJGSoPj7U5kFKoe6IpOFbuvO4b18njVMnkR48E0AZym5V4w; "
             . "xgdpr-consent=allow; theme=light-mode; "
             . "xsessionid=lqcvep65fzh8eji6nc5cpr3e9t4wzp12; "
-            . "__cfduid=d66736e21d329af7bbccdc3241a8b58961590753547"
+            . "cf_clearance=4a86cf7722dc5d00bebf8d61c8aec2d98d4ff166-1598877291-0-1z449b3e55zb0507712zb009c34-150; "
+            . "__cfduid=db5c01007c90d1b6f19bf528885c59efa1598877291 "
     ];
 
     /**
