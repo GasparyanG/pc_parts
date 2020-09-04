@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Memory
 {
+    const IMAGE_METHOD = "getMemoryImages";
+
     /**
      * @var int
      * @Id

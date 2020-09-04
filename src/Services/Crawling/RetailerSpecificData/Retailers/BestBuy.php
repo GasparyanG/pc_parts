@@ -7,6 +7,7 @@ namespace App\Services\Crawling\RetailerSpecificData\Retailers;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\DomCrawler\Crawler;
+use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageAbstractScraper;
 
 class BestBuy extends AbstractRetailerCrawler
 {

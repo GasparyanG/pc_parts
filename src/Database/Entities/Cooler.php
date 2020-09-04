@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Cooler
 {
+    const IMAGE_METHOD = "getCoolerImages";
+
     /**
      * @var int
      * @Id

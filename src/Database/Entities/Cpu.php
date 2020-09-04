@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Cpu
 {
     const NAME = "name";
+    const IMAGE_METHOD = "getCpuImages";
 
     /**
      * @var int

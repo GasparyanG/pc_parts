@@ -9,6 +9,7 @@ use App\Services\Crawling\RetailerSpecificData\PersistingImplementers\AbstractPe
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
+use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageAbstractScraper;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Amazon extends AbstractRetailerCrawler

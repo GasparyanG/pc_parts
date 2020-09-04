@@ -250,4 +250,14 @@ abstract class ImageAbstractScraper
             return true;
         return false;
     }
+
+    public function imageIsRequired(int $entityId): bool
+    {
+        $em = Connection::getEntityManager();
+        $entity = $em->getRepository(static::$name)->find($entityId);
+
+        $methodName = (static::$name)::IMAGE_METHOD;
+        if (count($entity->$methodName()) > 0) return false;
+        return true;
+    }
 }

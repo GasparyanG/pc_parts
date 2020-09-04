@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Motherboard 
 {
+    const IMAGE_METHOD = "getMoboImages";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

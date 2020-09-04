@@ -8,6 +8,7 @@ use App\Database\Entities\Retailer;
 use App\Services\Crawling\RetailerSpecificData\PersistingImplementers\AbstractPersistingImplementer;
 use GuzzleHttp\Psr7\Request;
 use Symfony\Component\DomCrawler\Crawler;
+use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageAbstractScraper;
 
 class NewEgg extends AbstractRetailerCrawler
 {

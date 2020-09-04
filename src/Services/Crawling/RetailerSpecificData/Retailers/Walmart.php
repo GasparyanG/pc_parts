@@ -9,6 +9,7 @@ use App\Services\Crawling\RetailerSpecificData\PersistingImplementers\AbstractPe
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\DomCrawler\Crawler;
+use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageAbstractScraper;
 
 class Walmart extends AbstractRetailerCrawler
 {

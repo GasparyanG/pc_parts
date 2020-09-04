@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class VideoCard 
 {
+    const IMAGE_METHOD = "getGpuImages";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

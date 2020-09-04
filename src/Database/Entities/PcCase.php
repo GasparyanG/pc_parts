@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class PcCase 
 {
+    const IMAGE_METHOD = "getCaseImages";
+
     /**
      * @var int
      * @Column(type="integer", name="id")

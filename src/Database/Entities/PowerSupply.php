@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class PowerSupply
 {
+    const IMAGE_METHOD = "getPsuImages";
+
     /**
      * @var int
      * @Id

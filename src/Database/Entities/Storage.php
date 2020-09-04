@@ -12,6 +12,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Storage
 {
+    const IMAGE_METHOD = "getStorageImages";
+
     /**
      * @var int
      * @Id
