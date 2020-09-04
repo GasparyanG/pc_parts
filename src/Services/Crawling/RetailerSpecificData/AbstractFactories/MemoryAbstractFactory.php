@@ -4,6 +4,8 @@
 namespace App\Services\Crawling\RetailerSpecificData\AbstractFactories;
 
 
+use App\Database\Entities\Memory;
+
 class MemoryAbstractFactory extends AbstractFactory
 {
     /**
@@ -15,4 +17,9 @@ class MemoryAbstractFactory extends AbstractFactory
      * {@inheritDoc}
      */
     protected $entity = "App\Database\Entities\MemoryPartNumber";
+
+    /**
+     * {@inheritDoc}
+     */
+    protected static $imageScraperName = Memory::class;
 }

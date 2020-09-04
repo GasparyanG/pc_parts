@@ -4,6 +4,8 @@
 namespace App\Services\Crawling\RetailerSpecificData\AbstractFactories;
 
 
+use App\Database\Entities\Motherboard;
+
 class MoboAbstractFactory extends AbstractFactory
 {
     /**
@@ -15,4 +17,9 @@ class MoboAbstractFactory extends AbstractFactory
      * {@inheritDoc}
      */
     protected $entity = "App\Database\Entities\MotherboardPartNumber";
+
+    /**
+     * {@inheritDoc}
+     */
+    protected static $imageScraperName = Motherboard::class;
 }

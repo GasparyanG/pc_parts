@@ -4,6 +4,8 @@
 namespace App\Services\Crawling\RetailerSpecificData\AbstractFactories;
 
 
+use App\Database\Entities\VideoCard;
+
 class GpuAbstractFactory extends AbstractFactory
 {
     /**
@@ -15,4 +17,9 @@ class GpuAbstractFactory extends AbstractFactory
      * {@inheritDoc}
      */
     protected $entity = "App\Database\Entities\GpuPartNumber";
+
+    /**
+     * {@inheritDoc}
+     */
+    protected static $imageScraperName = VideoCard::class;
 }

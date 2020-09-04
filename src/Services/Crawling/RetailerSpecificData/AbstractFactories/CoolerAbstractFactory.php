@@ -4,6 +4,8 @@
 namespace App\Services\Crawling\RetailerSpecificData\AbstractFactories;
 
 
+use App\Database\Entities\Cooler;
+
 class CoolerAbstractFactory extends AbstractFactory
 {
     /**
@@ -15,4 +17,9 @@ class CoolerAbstractFactory extends AbstractFactory
      * {@inheritDoc}
      */
     protected $entity = "App\Database\Entities\CoolerPartNumber";
+
+    /**
+     * {@inheritDoc}
+     */
+    protected static $imageScraperName = Cooler::class;
 }

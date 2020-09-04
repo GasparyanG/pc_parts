@@ -92,6 +92,9 @@ class BAndH extends AbstractRetailerCrawler
 
             $this->extractImageUrls($this->crawledData);
 
+            // Download images and persist
+            $this->downloadAndPPersist($this->crawledData);
+
             // Item is already found.
             break;
         }
@@ -224,5 +227,12 @@ class BAndH extends AbstractRetailerCrawler
         if (count($matches) > 0)
             return self::tofloat($matches[1]);
         return null;
+    }
+
+    protected function downloadAndPPersist(array $crawledData): void
+    {
+        if (!isset($crawledData[AbstractPersistingImplementer::IMAGES])) return;
+
+
     }
 }

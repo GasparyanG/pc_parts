@@ -4,6 +4,8 @@
 namespace App\Services\Crawling\RetailerSpecificData\AbstractFactories;
 
 
+use App\Database\Entities\PcCase;
+
 class CaseAbstractFactory extends AbstractFactory
 {
     /**
@@ -15,4 +17,9 @@ class CaseAbstractFactory extends AbstractFactory
      * {@inheritDoc}
      */
     protected $entity = "App\Database\Entities\CasePartNumber";
+
+    /**
+     * {@inheritDoc}
+     */
+    protected static $imageScraperName = PcCase::class;
 }
