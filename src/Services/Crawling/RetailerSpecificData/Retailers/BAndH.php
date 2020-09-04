@@ -215,7 +215,6 @@ class BAndH extends AbstractRetailerCrawler
 
         // Extract images urls from product page
         $this->extractImageUrls($this->crawledData);
-        var_dump($this->crawledData);
 
         // Download images and persist
         $this->downloadAndPersist($this->crawledData, $entityId, $imageAbstractScraper);
@@ -248,6 +247,17 @@ class BAndH extends AbstractRetailerCrawler
         if (!isset($crawledData[AbstractPersistingImplementer::IMAGES]) || !$imageAbstractScraper) return;
 
         // Image scraper will deal with crawled data persistence as well.
-        $imageAbstractScraper->crawl($crawledData[AbstractPersistingImplementer::IMAGES], $id);
+        $imageAbstractScraper->downloadWithUrlsAndPersist($this->processImages($crawledData[AbstractPersistingImplementer::IMAGES]), $id);
+    }
+
+    protected function processImages(array $urls)
+    {
+        $patterns = ["~smallimages~", "~thumbnails~"];              // string to replace
+        $replacements = "images500x500";                            // string to replace with
+
+        for ($i = 0; $i < count($urls); ++$i)
+            $urls[$i] = preg_replace($patterns, $replacements, $urls[$i]);
+
+        return $urls;
     }
 }
