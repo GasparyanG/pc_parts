@@ -60,6 +60,9 @@ class NewEgg extends AbstractRetailerCrawler
                     AbstractPersistingImplementer::ENTITY_ID => $entityId
                 ];
 
+                // Download and persist images from provided product page
+                $this->pullImages($entityId, $imageAbstractScraper);
+
                 // Item is already found.
                 break;
             }
@@ -153,5 +156,59 @@ class NewEgg extends AbstractRetailerCrawler
         );
 
         return $retailer->getId();
+    }
+
+    // IMAGE PULLING
+    protected function pullImages(int $entityId, ?ImageAbstractScraper $imageAbstractScraper): void
+    {
+        // Don't proceed to get images, because entity already have them
+        if (!$imageAbstractScraper->imageIsRequired($entityId)) return;
+
+        // Extract images urls from product page
+        $this->extractImageUrls($this->crawledData);
+
+        // Download images and persist
+        $this->downloadAndPersist($this->crawledData, $entityId, $imageAbstractScraper);
+    }
+
+    protected function extractImageUrls(array& $crawledData): void
+    {
+        // Don't proceed if there is no link to process
+        if (!$crawledData[AbstractPersistingImplementer::URL]) return;
+
+        // send request
+        $request = new Request("GET", $crawledData[AbstractPersistingImplementer::URL], self::$headers);
+        $response = $this->client->send($request);
+
+        // prepare crawler
+        $crawler = new Crawler($response->getBody()->getContents(), self::$baseUrl);
+        $thumbnails = $crawler->filter(".navThumbs .noLine img");
+
+        // extract images
+        $images = $thumbnails->each(function(Crawler $crawler) {
+            return "https:" . $crawler->extract(["src"])[0];
+        });
+
+        // update images
+        $crawledData[AbstractPersistingImplementer::IMAGES] = $images;
+    }
+
+    protected function downloadAndPersist(array $crawledData, int $id, ?ImageAbstractScraper $imageAbstractScraper): void
+    {
+        if (!isset($crawledData[AbstractPersistingImplementer::IMAGES]) || !$imageAbstractScraper) return;
+
+        // Image scraper will deal with crawled data persistence as well.
+        $imageAbstractScraper->downloadWithUrlsAndPersist($this->processImages($crawledData[AbstractPersistingImplementer::IMAGES]), $id);
+    }
+
+    protected function processImages(array $urls)
+    {
+        $patterns = ["~ProductImageCompress.+/~"];              // string to replace
+        $replacements = "ProductImage/";                            // string to replace with
+
+        for ($i = 0; $i < count($urls); ++$i)
+            $urls[$i] = preg_replace($patterns, $replacements, $urls[$i]);
+
+        return $urls;
     }
 }
