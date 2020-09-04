@@ -14,6 +14,7 @@ abstract class AbstractPersistingImplementer
     const ENTITY_ID = "entity_id";
     const RETAILER_ID = "retailer_id";
     const URL = "url";
+    const IMAGES = "images";
 
     /**
      * @var string|null

@@ -53,6 +53,10 @@ class Walmart extends AbstractRetailerCrawler
                 // TODO: make more validated
                 $modelNumber = $crawler->filter(".prod-productsecondaryinformation > div")->eq(1)->text();
 
+//                $imageUrls = $crawler->filter(".prod-alt-image-carousel-image--left");
+
+//                echo "\n\n\n" . $imageUrls->count() . "\n\n\n";
+
                 if ($this->processModelNumber($modelNumber) === $searchTerm) {
                     $this->crawledData = [
                         AbstractPersistingImplementer::PRICE => $product[AbstractPersistingImplementer::PRICE],

@@ -61,7 +61,7 @@ class CPUScraper extends AbstractScraping
         "location" => "",
         "token" => "870029a9d748e87149e65db16b3c89b8%3AxVjuZb6x9kSDl2pldEpBpd%2FJZeI8ek2oR4y5HQFeh94R8rKneYKvLNWOL%2BCSZF9FKjbyZ7YIizgkvgObX11XRA%3D%3D",
         "search" => "",
-        "qid" => 1,
+        "qid" => 3,
         "scr" => 1,
         "scr_cw" => 1903,
         "scr_vh" => 357,

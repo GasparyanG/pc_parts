@@ -90,6 +90,8 @@ class BAndH extends AbstractRetailerCrawler
                 AbstractPersistingImplementer::ENTITY_ID => $entityId
             ];
 
+            $this->extractImageUrls($this->crawledData);
+
             // Item is already found.
             break;
         }
@@ -110,6 +112,28 @@ class BAndH extends AbstractRetailerCrawler
         );
 
         return $retailer->getId();
+    }
+
+    protected function extractImageUrls(array& $crawledData): void
+    {
+        // Don't proceed if there is no link to process
+        if (!$crawledData[AbstractPersistingImplementer::URL]) return;
+
+        // send request
+        $request = new Request("GET", $crawledData[AbstractPersistingImplementer::URL], self::$headers);
+        $response = $this->client->send($request);
+
+        // prepare crawler
+        $crawler = new Crawler($response->getBody()->getContents(), self::$baseUrl);
+        $thumbnails = $crawler->filter("[data-selenium=thumbnail] > img");
+
+        // extract images
+        $images = $thumbnails->each(function(Crawler $crawler) {
+            return $crawler->extract(["src"])[0];
+        });
+
+        // update images
+        $crawledData[AbstractPersistingImplementer::IMAGES] = $images;
     }
 
     private function extractPartNumber(Crawler $crawler, string $numberXpath, int $i): ?string

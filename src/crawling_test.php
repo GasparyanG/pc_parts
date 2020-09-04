@@ -13,11 +13,16 @@ use App\Services\Crawling\Specifications\PCPartPicker\PartScraping\
     CaseScraper
 };
 
-$scraper1 = new PSUScraper();
-$scraper1->crawl();
+$scrapers = [
+//    CoolerScraper::class,
+//    MemoryScraper::class,
+//    CPUScraper::class,
+//    StorageScraper::class,
+    PSUScraper::class, // continue from 32
+    MOBOScraping::class,
+    GPUScraper::class,
+    CaseScraper::class
+];
 
-$scraper2 = new MOBOScraping();
-$scraper2->crawl();
-
-$scraper3 = new GPUScraper();
-$scraper3->crawl();
+foreach ($scrapers as $scraper)
+    (new $scraper)->crawl();

@@ -55,6 +55,23 @@ abstract class ImageAbstractScraper
             . "__cfduid=db5c01007c90d1b6f19bf528885c59efa1598877291 "
     ];
 
+    protected $image_headers = [
+        'Origin' =>  "http://cdn.pcpartpicker.com",
+        "Cache-Control" => "max-age=0",
+        "upgrade-insecure-requests" => "1",
+        "Connection" => "keep-alive",
+        "user-agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36",
+        "Content-Type" => "application/x-www-form-urlencoded",
+        "accept" => "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "accept-language" => "en-US,en;q=0.9,hy-AM;q=0.8,hy;q=0.7,ru-RU;q=0.6,ru;q=0.5,la;q=0.4",
+        "cookie" => "xcsrftoken=DQkGqCEtILSOWlANbIJGSoPj7U5kFKoe6IpOFbuvO4b18njVMnkR48E0AZym5V4w; "
+            . "xgdpr-consent=allow; theme=light-mode; "
+            . "xsessionid=lqcvep65fzh8eji6nc5cpr3e9t4wzp12; "
+            . "cf_clearance=4a86cf7722dc5d00bebf8d61c8aec2d98d4ff166-1598877291-0-1z449b3e55zb0507712zb009c34-150; "
+            . "__cfduid=db5c01007c90d1b6f19bf528885c59efa1598877291 "
+    ];
+
+
     /**
      * @var string|null
      */
@@ -120,6 +137,9 @@ abstract class ImageAbstractScraper
         // there are some urls, which contain https prefix
         $http = $this->isHttp($imageUrl) ? "http:": "https:";
         $urlToDownload = $http . str_replace(["https:", '"https', '"', "http:"], "", $imageUrl);
+
+//        $context = stream_context_create(["http" => ["method" => "POST", "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"]]);
+
         file_put_contents(self::$image_directory . "/" . $fileName, file_get_contents($urlToDownload));
 
         return $fileName;
@@ -153,7 +173,6 @@ abstract class ImageAbstractScraper
 
     protected function urls($url): array
     {
-        echo $url . "\n";
         // prepare headers
         $this->single_resource_headers[self::REFERER] = self::getReferer();
 
