@@ -46,7 +46,13 @@ foreach ($abstractFactories as $abstractFactoryName) {
         foreach ($retailers as $retailerName) {
             $retailer = new $retailerName();
             try {
-                $retailer->crawl($partNumber, $partNumberEntity->getEntityId());
+
+                $retailer->crawl(
+                    $partNumber,
+                    $partNumberEntity->getEntityId(),
+                    $abstractFactory->getImageCrawler()
+                );
+
             } catch (\GuzzleHttp\Exception\ClientException $e) {
                 echo $e->getMessage() . "\n";
             } catch (\GuzzleHttp\Exception\ServerException $e) {

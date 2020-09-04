@@ -92,7 +92,7 @@ class Amazon extends AbstractRetailerCrawler
         return $xPathToReturn;
     }
 
-    public function crawl(string $searchTerm, int $entityId): void
+    public function crawl(string $searchTerm, int $entityId, ?ImageAbstractScraper $imageAbstractScraper): void
     {
         $crawler = new Crawler($this->search($searchTerm)->getBody()->getContents(), self::$baseUrl);
         [$xpathToSearchWith, $titleXPath] = $this->desiredXpath($crawler, self::$xPaths);

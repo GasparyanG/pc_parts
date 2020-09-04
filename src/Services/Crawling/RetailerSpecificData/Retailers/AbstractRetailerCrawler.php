@@ -5,6 +5,7 @@ namespace App\Services\Crawling\RetailerSpecificData\Retailers;
 
 
 use App\Database\Connection;
+use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageAbstractScraper;
 use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Client;
 
@@ -83,5 +84,5 @@ abstract class AbstractRetailerCrawler
     }
 
 
-    abstract public function crawl(string $searchTerm, int $entityId): void;
+    abstract public function crawl(string $searchTerm, int $entityId, ?ImageAbstractScraper $imageAbstractScraper): void;
 }

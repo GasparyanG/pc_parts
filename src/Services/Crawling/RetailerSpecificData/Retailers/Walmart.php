@@ -34,7 +34,7 @@ class Walmart extends AbstractRetailerCrawler
         "cookie" => "DL=94066%2C%2C%2Cip%2C94066%2C%2C; vtc=eajcIt5I5lINTSTbzdS7qM; AID=wmlspartner%3D0%3Areflectorid%3D0000000000000000000000%3Alastupd%3D1561622478503; TS013ed49a=01538efd7c20fcf3a21943a731e793d0f1fd563990423a4f34aab4ede001668ca7c26154989a61b65bd66c44fad526f152d7d68aae; cart-item-count=0; TS01b0be75=01538efd7c6747b9735f634cb34b17c23a50ddcc83c13dabe61eaba3f887d721deef2c7f04308f1834fc9b9b96a92fb1fbf86622b6; TS01e3f36f=01c5a4e2f9bff116ad96503b0ca72e6cc0ea3f2eef384ab4d9a174aaca0360074b19f26f1e71aa5e31be41594f6fedf8256b4407f2; TS018dc926=01c5a4e2f9bff116ad96503b0ca72e6cc0ea3f2eef384ab4d9a174aaca0360074b19f26f1e71aa5e31be41594f6fedf8256b4407f2; com.wm.reflector=\"reflectorid:0000000000000000000000@lastupd:1590682191033@firstcreate:1590682184353\"; adblocked=true; akavpau_p8=1590682802~id=ece52f633a7968d305d5320a2e903778; TS011baee6=0130aff23260c9a73f6cb0b6634d2d30890a3d8907f305e902e29854934b43cace9dec2fdd5fa4755550da48f91402cffee98843a8; akavpau_p0=1590682806~id=56d404a37de6490d0d1639a0955c1639",
     ];
 
-    public function crawl(string $searchTerm, int $entityId): void
+    public function crawl(string $searchTerm, int $entityId, ?ImageAbstractScraper $imageAbstractScraper): void
     {
         $request = new Request('GET', $this->prepareSearchUrl($searchTerm), self::$headers);
         $response = $this->client->send($request);

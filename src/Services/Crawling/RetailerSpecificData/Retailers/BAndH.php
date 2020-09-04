@@ -6,6 +6,7 @@ namespace App\Services\Crawling\RetailerSpecificData\Retailers;
 
 use App\Database\Entities\Retailer;
 use App\Services\Crawling\RetailerSpecificData\PersistingImplementers\AbstractPersistingImplementer;
+use App\Services\Crawling\Specifications\PCPartPicker\PartImageScraping\ImageAbstractScraper;
 use GuzzleHttp\Psr7\Request;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -63,7 +64,7 @@ class BAndH extends AbstractRetailerCrawler
         return $arrayTOReturn;
     }
 
-    public function crawl(string $searchTerm, int $entityId): void
+    public function crawl(string $searchTerm, int $entityId, ?ImageAbstractScraper $imageAbstractScraper): void
     {
         $request = new Request('GET', $this->prepareSearchUrl($searchTerm), self::$headers);
         $response = $this->client->send($request);
@@ -93,7 +94,7 @@ class BAndH extends AbstractRetailerCrawler
             $this->extractImageUrls($this->crawledData);
 
             // Download images and persist
-            $this->downloadAndPPersist($this->crawledData);
+            $this->downloadAndPersist($this->crawledData, $entityId, $imageAbstractScraper);
 
             // Item is already found.
             break;
@@ -229,10 +230,10 @@ class BAndH extends AbstractRetailerCrawler
         return null;
     }
 
-    protected function downloadAndPPersist(array $crawledData): void
+    protected function downloadAndPersist(array $crawledData, int $id, ?ImageAbstractScraper $imageAbstractScraper): void
     {
-        if (!isset($crawledData[AbstractPersistingImplementer::IMAGES])) return;
+        if (!isset($crawledData[AbstractPersistingImplementer::IMAGES]) || !$imageAbstractScraper) return;
 
-
+        $imageAbstractScraper->crawl($crawledData[AbstractPersistingImplementer::IMAGES], $id);
     }
 }

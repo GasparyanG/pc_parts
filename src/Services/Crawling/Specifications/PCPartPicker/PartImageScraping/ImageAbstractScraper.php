@@ -113,6 +113,23 @@ abstract class ImageAbstractScraper
         return $part === static::$name;
     }
 
+    /**
+     * Download with already processed (image pure urls) urls.
+     *
+     * @param array $urls
+     * @param int $id
+     */
+    public function downloadWithUrlsAndPersist(array $urls, int $id): void
+    {
+        foreach ($urls as $url) {
+            // download
+            $filename = $this->download($url, true);
+            if (!$filename) continue;
+            // persist
+            $this->persist($filename, $id);
+        }
+    }
+
     public function crawl(string $url, int $id): void
     {
         $urls = $this->urls($url);
@@ -128,17 +145,26 @@ abstract class ImageAbstractScraper
         }
     }
 
-    protected function download(string $imageUrl): ?string
+    /**
+     * @param string $imageUrl
+     * @param bool $simple          Don't try to do anything smart, just rely on provided arguments
+     * @return string|null
+     */
+    protected function download(string $imageUrl, bool $simple = false): ?string
     {
-        $fileName = $this->fileName($imageUrl);
-        if (!$fileName) return null;
+        if ($simple) {
+            $urlToDownload = $imageUrl;
+            // TODO: make extension dynamic like url's extension.
+            $fileName = hash("md5", time()) . ".jpg";
+        } else {
+            $fileName = $this->fileName($imageUrl);
+            if (!$fileName) return null;
 
-        // download
-        // there are some urls, which contain https prefix
-        $http = $this->isHttp($imageUrl) ? "http:": "https:";
-        $urlToDownload = $http . str_replace(["https:", '"https', '"', "http:"], "", $imageUrl);
-
-//        $context = stream_context_create(["http" => ["method" => "POST", "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36"]]);
+            // download
+            // there are some urls, which contain https prefix
+            $http = $this->isHttp($imageUrl) ? "http:": "https:";
+            $urlToDownload = $http . str_replace(["https:", '"https', '"', "http:"], "", $imageUrl);
+        }
 
         file_put_contents(self::$image_directory . "/" . $fileName, file_get_contents($urlToDownload));
 
