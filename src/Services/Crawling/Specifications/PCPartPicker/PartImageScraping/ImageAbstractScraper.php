@@ -155,7 +155,10 @@ abstract class ImageAbstractScraper
         if ($simple) {
             $urlToDownload = $imageUrl;
             // TODO: make extension dynamic like url's extension.
-            $fileName = hash("md5", time()) . ".jpg";
+            $currentTime = time();
+            $randInt = random_int(100, 200);
+            $nameToHash = $currentTime . '_' . $randInt;
+            $fileName = hash("md5", $nameToHash) . ".jpg";
         } else {
             $fileName = $this->fileName($imageUrl);
             if (!$fileName) return null;

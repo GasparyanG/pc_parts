@@ -12,14 +12,14 @@ $retailers = [
 ];
 
 $abstractFactories = [
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\GpuAbstractFactory::class,
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CpuAbstractFactory::class,
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\PsuAbstractFactory::class,
+//    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\GpuAbstractFactory::class,
+//    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CpuAbstractFactory::class,
+//    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\PsuAbstractFactory::class,
     \App\Services\Crawling\RetailerSpecificData\AbstractFactories\MoboAbstractFactory::class,
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CoolerAbstractFactory::class,
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\StorageAbstractFactory::class,
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CaseAbstractFactory::class,
-    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\MemoryAbstractFactory::class
+//    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CoolerAbstractFactory::class,
+//    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\StorageAbstractFactory::class,
+//    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\CaseAbstractFactory::class,
+//    \App\Services\Crawling\RetailerSpecificData\AbstractFactories\MemoryAbstractFactory::class
 ];
 
 function filterPartNumber(string $partNumber): ?string
@@ -39,6 +39,8 @@ foreach ($abstractFactories as $abstractFactoryName) {
     // iterate over part numbers
     foreach ($partNumbers as $partNumberEntity) {
         echo $nth_is_crawling . " left\n";
+        --$nth_is_crawling;
+        if ($nth_is_crawling > 415) continue;
 
         $partNumber = filterPartNumber($partNumberEntity->getPartNumber());
         // part number can be invalid, which means, that it doesn't need to be processed
@@ -66,7 +68,5 @@ foreach ($abstractFactories as $abstractFactoryName) {
             $persistingImplementer = $abstractFactory->getPersistingImplementer($retailer->getCrawledData());
             $persistingImplementer->persist();
         }
-
-        --$nth_is_crawling;
     }
 }
