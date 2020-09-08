@@ -61,7 +61,7 @@ class CPUScraper extends AbstractScraping
         "location" => "",
         "token" => "870029a9d748e87149e65db16b3c89b8%3AxVjuZb6x9kSDl2pldEpBpd%2FJZeI8ek2oR4y5HQFeh94R8rKneYKvLNWOL%2BCSZF9FKjbyZ7YIizgkvgObX11XRA%3D%3D",
         "search" => "",
-        "qid" => 3,
+        "qid" => 4,
         "scr" => 1,
         "scr_cw" => 1903,
         "scr_vh" => 357,
@@ -99,8 +99,8 @@ class CPUScraper extends AbstractScraping
 
     public function crawl(): void
     {
-        try {
-            foreach ($this->fetchCollection() as $part) {
+        foreach ($this->fetchCollection() as $part) {
+            try {
                 if (!isset($part[Cooler::URL]) && !isset($part[Cooler::NAME])
                     && !filter_var($part["url"], FILTER_VALIDATE_URL)) continue;
 
@@ -119,12 +119,12 @@ class CPUScraper extends AbstractScraping
                 // persisting
                 $cpuPersistingImplementer = new CPUPersistingImplementer($cpu);
                 $cpuPersistingImplementer->insert();
+            } catch (GuzzleException $e) {
+                echo $e->getMessage();
+                return;
+            } catch (\InvalidArgumentException $e) {
+                echo $e->getMessage();
             }
-        } catch (GuzzleException $e) {
-            echo $e->getMessage();
-            return;
-        } catch (\InvalidArgumentException $e) {
-            echo $e->getMessage();
         }
     }
 

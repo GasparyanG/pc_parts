@@ -14,11 +14,11 @@ use App\Services\Crawling\Specifications\PCPartPicker\PartScraping\
 };
 
 $scrapers = [
-//    CoolerScraper::class,
-//    MemoryScraper::class,
-//    CPUScraper::class,
-//    StorageScraper::class,
-    PSUScraper::class, // continue from 32
+    CoolerScraper::class,
+    MemoryScraper::class,
+    CPUScraper::class,
+    StorageScraper::class,
+    PSUScraper::class,
     MOBOScraping::class,
     GPUScraper::class,
     CaseScraper::class
