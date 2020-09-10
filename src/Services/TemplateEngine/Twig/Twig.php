@@ -18,6 +18,8 @@ class Twig
     {
         $loader = new FilesystemLoader(__DIR__ . '/../../../../public/html/twig');
         $this->twig = new Environment($loader, []);
+
+        $this->twig->addExtension(new AppExtension());
     }
 
     public function render($name, array $context = []): string
