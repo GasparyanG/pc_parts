@@ -18,6 +18,11 @@ abstract class ResourceComposer
     protected static $entityName;
 
     /**
+     * @var array
+     */
+    protected static $includedParams = [];
+
+    /**
      * @var ParameterBag
      */
     protected $queryBag;
@@ -58,8 +63,10 @@ abstract class ResourceComposer
         return $this->resource;
     }
 
-    public function assemble(): void
+    public function assemble(bool $staticIncluded = false): void
     {
+        if ($staticIncluded) $this->prepareIncludedQueryParams();
+
         $resource = $this->buildResource($this->id);
 
         // Prepare $this->resource for callers.
@@ -108,5 +115,12 @@ abstract class ResourceComposer
         $resource->setMeta($this->resourceHandler->meta());
 
         return $resource;
+    }
+
+    protected function prepareIncludedQueryParams(): void
+    {
+        $included = implode(",", static::$includedParams);
+
+        $this->queryBag->set(Resource::INCLUDED, $included);
     }
 }

@@ -26,18 +26,21 @@ abstract class AbstractController
     public function get(Request $req, array $placeholders): Response
     {
         $composer = new static::$composer(new static::$handler(), $req->query, $placeholders['id']);
-        $composer->assemble();
 
         $isApi = $req->query->get("api");
-        if ($isApi === "true")
+        if ($isApi === "true") {
+            $composer->assemble();
             return JsonResponse::success($composer->getResource());
-        else
+        }
+        else {
+            $composer->assemble(true);
             return Response::create((new Twig())->render("product.html.twig",
                 [
                     "data" => $composer->getResource(),
                     "not_home" => true
                 ]
             ));
+        }
     }
 
     public function getCollection(Request $req, array $placeholders): Response
