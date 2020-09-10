@@ -4,6 +4,7 @@
 namespace App\Services\TemplateEngine\Twig;
 
 
+use App\Services\Model\PartsGuru\PartGuruFactory;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -16,8 +17,11 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    public function getProductName(array $data): string
+    public function getProductName(array $data, string $entityName): ?string
     {
-        return $data["data"]["attributes"]["name"];
+        $partGuru = PartGuruFactory::create($entityName);
+        if ($partGuru)
+            return $partGuru->productName($data);
+        else return null;
     }
 }

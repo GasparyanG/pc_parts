@@ -23,6 +23,11 @@ abstract class AbstractController
      */
     protected  static $handler = null;
 
+    /**
+     * @var string
+     */
+    protected static $entityName = "";
+
     public function get(Request $req, array $placeholders): Response
     {
         $composer = new static::$composer(new static::$handler(), $req->query, $placeholders['id']);
@@ -37,7 +42,8 @@ abstract class AbstractController
             return Response::create((new Twig())->render("product.html.twig",
                 [
                     "data" => $composer->getResource(),
-                    "not_home" => true
+                    "not_home" => true,
+                    "entity_name" => static::$entityName
                 ]
             ));
         }
